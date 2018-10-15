@@ -1,0 +1,134 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    overflow: hidden;
+}
+
+.panel{
+    overflow: auto;
+    height: 100vh;
+}
+
+
+.head{
+    width: 100vw;
+    height: 60px;
+    background: #75A2A5;
+    margin-bottom: 30px;
+}
+
+.head .headCon{
+    width: 80%;
+    height: 60px;
+    margin: 0 auto;
+    text-align: right;
+
+}
+
+.head .headCon div{
+    padding-top: 20px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.head .headCon ul{
+    list-style-type: none;
+}
+
+.head .headCon ul li{
+    float: left;
+    padding: 18px 20px;
+    margin: 0px 40px;
+    text-align: center;
+    border-bottom: 3px solid #75A2A5;
+}
+
+.head .headCon ul li:hover{
+    border-bottom: 3px solid #5E8586;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.content{
+    width: 100vw;
+    margin-bottom: 30px;
+}
+
+.con{
+    width: 80%;
+    margin: 0 auto;
+}
+
+.con div{
+    margin-bottom: 2%;
+}
+
+.con div .filter{
+    width: 100%;
+    height: 50px;
+    background-color: #F6F6F6;
+    margin-bottom: 10px;
+}
+
+.con div .filter span{
+    margin-left: 30px;
+}
+
+.con div .filter input{
+    margin-top: 10px;
+    width: 190px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #5E8586;
+    padding-left: 10px;
+    outline: none;
+}
+
+.con div .filter button{
+    margin-left: 30px;
+    width: 100px;
+    height: 35px;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
+    border-radius: 3px;
+    color: #FFFFFF;
+    outline: none;
+}
+
+.con div .filter button:hover{
+    cursor: pointer;
+    background-color: #5E8586;
+    border: 1px solid #5E8586;
+}
+
+.max-panl{
+    height: 600px;
+    width: 100%;
+    box-shadow: 0px 0px 3px #BCBCBC;
+}
+
+.min-panl{
+    width: 100%;
+    height: 500px;
+}
+
+.min-panl div{
+    width: 32%;
+    float: left;
+    margin-right: 2%;
+    height: 500px;
+    box-shadow: 0px 0px 3px #BCBCBC;
+}
+
+.min-panl div:last-of-type{
+    margin-right: 0px;
+}
+
+.foot{
+    height: 160px;
+    background-color: #2B2B2B;
+}

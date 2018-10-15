@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>企业管理</title>
+    <link type="text/css" rel="stylesheet" href="../css/businessManagement.css">
+</head>
+<body>
+    <div class="panl">
+        <input type="hidden" class="companyId">
+        <input type="hidden" class="token">
+        <div class="title">
+            <span>企业数据</span>
+            <button class="new">新建</button>
+            <button class="save">保存</button>
+            <button class="reset">重置</button>
+        </div>
+        <div class="content">
+            <div class="data">
+                <span>基础资料：</span>
+                <div>
+                    <table>
+                        <tr>
+                            <td><span>企业名称：</span><input type="text" class="chName"></td>
+                            <td><span>中文简称：</span><input type="text" class="chShortName"></td>
+                        </tr>
+                        <tr>
+                            <td><span>英文名称：</span><input type="text" class="enName"></td>
+                            <td><span>英文简称：</span><input type="text" class="enShortName"></td>
+                        </tr>
+                        <tr>
+                            <td><span>注册日期：</span><input type="text" class="registerTime"></td>
+                            <td><span>网址：</span><input type="text" class="url"></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="other">
+                <span>证券数据：</span>
+                <button class="saveCompanyStock">保存</button>
+                <input class="companyStockId" type="hidden">
+                <div>
+                    <table>
+                        <tr>
+                            <td><span>证券类型：</span><input type="text" class="stockType"></td>
+                            <td><span>证券编号：</span><input type="text" class="stockCode"></td>
+                        </tr>
+                        <tr>
+                            <td><span>上市日期：</span><input type="text" class="listingTime"></td>
+                            <td><span>上市地址：</span><input type="text" class="stockExchange"></td>
+                        </tr>
+                    </table>
+                </div>
+                <table>
+                    <tr>
+                        <th>证券名称</th>
+                        <th>证券编号</th>
+                        <th>上市时间</th>
+                        <th>上市地址</th>
+                        <th>操作</th>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/businessManagement.js"></script>
+    <script type="text/javascript" src="../js/util.js"></script>
+</html>

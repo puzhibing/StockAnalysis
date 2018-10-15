@@ -1,0 +1,165 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    font-size: 14px;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+}
+
+.panl{
+    overflow: auto;
+    width: 100vw;
+    height: 100vh;
+}
+
+.title{
+    height: 29px;
+    border-bottom: 1px solid #BCBCBC;
+}
+
+.title span:first-of-type{
+    line-height: 35px;
+    margin-left: 20px;
+    color: #547576;
+}
+
+
+.title input{
+    width: 190px;
+    height: 20px;
+    border-radius: 3px;
+    border: 1px solid #5E8586;
+    padding-left: 10px;
+    margin-left: 65%;
+}
+
+.title button{
+    width: 50px;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
+    border-radius: 3px;
+    color: #FFFFFF;
+}
+
+.title button:hover{
+    cursor: pointer;
+    background-color: #5E8586;
+}
+
+.title button:first-of-type{
+    margin: 0px 20px;
+}
+
+.content{
+    margin-top: 20px;
+    height: 600px;
+    width: 100%;
+}
+
+.content .firstLine{
+    height: 200px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.content .firstLine>div{
+    float: left;
+    width: 31.33%;
+    height: 200px;
+    margin: 0% 1%;
+    box-shadow: 0px 0px 3px 0px #626262;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.content .firstLine .head{
+    height: 30px;
+    width: 100%;
+    background-color: #F6F6F6;
+    border-bottom: 1px dashed #BCBCBC;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+
+}
+
+.content .firstLine .head span{
+    font-size: 12px;
+    color: #547576;
+    margin-left: 10px;
+    line-height: 30px;
+}
+
+.content .secondLine{
+    height: 200px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.content .secondLine>div{
+    float: left;
+    width: 31.33%;
+    height: 200px;
+    margin: 0% 1%;
+    box-shadow: 0px 0px 3px 0px #626262;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.content .secondLine .head{
+    height: 30px;
+    width: 100%;
+    background-color: #F6F6F6;
+    border-bottom: 1px dashed #BCBCBC;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+
+}
+
+.content .secondLine .head span{
+    font-size: 12px;
+    color: #547576;
+    margin-left: 10px;
+    line-height: 30px;
+}
+
+
+
+.content .thirdLine{
+    height: 200px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+
+.content .thirdLine>div{
+    float: left;
+    width: 31.33%;
+    height: 200px;
+    margin: 0% 1%;
+    box-shadow: 0px 0px 3px 0px #626262;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
+.content .thirdLine .head{
+    height: 30px;
+    width: 100%;
+    background-color: #F6F6F6;
+    border-bottom: 1px dashed #BCBCBC;
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+
+}
+
+.content .thirdLine .head span{
+    font-size: 12px;
+    color: #547576;
+    margin-left: 10px;
+    line-height: 30px;
+}

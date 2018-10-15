@@ -1,0 +1,102 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+body{
+    overflow: hidden;
+    width: 100vw;
+    height: 100vh;
+}
+
+.panel{
+    height: 100vh;
+    width: 100vw;
+    overflow: auto;
+}
+
+.head{
+    height: 40px;
+    width: 100%;
+    background-color: #5E8586;
+    border-bottom: 2px solid #547576;
+}
+
+.content{
+    width: 100%;
+}
+
+.content .menu{
+    height: 800px;
+    width: 220px;
+    border-right: 1px solid #BCBCBC;
+    float: left;
+}
+
+.content .menu .title{
+    height: 30px;
+    width: 100%;
+    border-bottom: 1px solid #BCBCBC;
+    background-color: #ECECEC;
+    color: #BCBCBC;
+    font-size: 20px;
+}
+
+.content .menu .title div{
+    float: left;
+    height: 30px;
+}
+
+.content .menu .title div:first-of-type{
+    width: 190px;
+}
+
+.content .menu .title div:last-of-type{
+    border-left: 1px solid #BCBCBC;
+    width: 29px;
+    background-color: #E2E2E2;
+    text-align: center;
+}
+
+.content .menu .title div:last-of-type:hover{
+    background-color: #BCBCBC;
+    color: #737373;
+    cursor: pointer;
+}
+
+.content .menu div ul{
+    list-style-type: none;
+}
+
+.content .menu div ul li{
+    height: 50px;
+    width: 100%;
+    border-bottom: 1px solid #BCBCBC;
+
+}
+
+.content .menu div ul li:hover{
+    color: #75A2A5;
+    cursor: pointer;
+}
+
+.content .menu div ul li i{
+    margin-left: 10px;
+}
+
+.content .menu div ul li span{
+    margin-left: 10px;
+    line-height: 50px;
+}
+
+
+
+.content .con{
+    width: 85%;
+    float: left;
+}
+
+
+.content .con iframe{
+    border: none;
+}
