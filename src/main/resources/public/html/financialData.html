@@ -21,6 +21,7 @@
             <nav class="cashFlow">现金流</nav>
             <nav class="ownersEquityChange">所有者权益变动</nav>
         </div>
+        <input type="hidden" class="companyId">
         <div class="data">
             <!--流动资产-->
             <div class="dataType" id="currentAssets">
@@ -40,7 +41,12 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text" class="securitiesNumber"></td>
+                        <td>
+                            <input type="text" class="securitiesNumber">
+                            <div class="selectionPanel">
+
+                            </div>
+                        </td>
                         <td><span>证券类型：</span></td>
                         <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
@@ -80,6 +86,11 @@
                         <td><span>其他流动资产：</span></td>
                         <td><input type="text"class="OCA"></td>
                     </tr>
+                    <tr>
+                        <td colspan="4">
+                            <button class="save">保存</button>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
@@ -101,7 +112,12 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text" class="securitiesNumber"></td>
+                        <td>
+                            <input type="text" class="securitiesNumber">
+                            <div class="selectionPanel">
+
+                            </div>
+                        </td>
                         <td><span>证券类型：</span></td>
                         <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
@@ -159,6 +175,11 @@
                         <td><span>其他非流动资产：</span></td>
                         <td><input type="text" class="ONCA"></td>
                     </tr>
+                    <tr>
+                        <td colspan="4">
+                            <button class="save">保存</button>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
@@ -180,7 +201,12 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text" class="securitiesNumber"></td>
+                        <td>
+                            <input type="text" class="securitiesNumber">
+                            <div class="selectionPanel">
+
+                            </div>
+                        </td>
                         <td><span>证券类型：</span></td>
                         <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
@@ -224,6 +250,11 @@
                         <td><span>其他流动负债：</span></td>
                         <td><input type="text" class="OCL"></td>
                     </tr>
+                    <tr>
+                        <td colspan="4">
+                            <button class="save">保存</button>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
@@ -245,7 +276,12 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text" class="securitiesNumber"></td>
+                        <td>
+                            <input type="text" class="securitiesNumber">
+                            <div class="selectionPanel">
+
+                            </div>
+                        </td>
                         <td><span>证券类型：</span></td>
                         <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
@@ -273,6 +309,11 @@
                         <td><span>其他非流动负债：</span></td>
                         <td><input type="text" class="ONCL"></td>
                     </tr>
+                    <tr>
+                        <td colspan="4">
+                            <button class="save">保存</button>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
@@ -294,7 +335,12 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text" class="securitiesNumber"></td>
+                        <td>
+                            <input type="text" class="securitiesNumber">
+                            <div class="selectionPanel">
+
+                            </div>
+                        </td>
                         <td><span>证券类型：</span></td>
                         <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
@@ -315,6 +361,11 @@
                         <td><input type="text" class="surplusReserve"></td>
                         <td><span>未分配利润：</span></td>
                         <td><input type="text" class="undistributedProfit"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4">
+                            <button class="save">保存</button>
+                        </td>
                     </tr>
                 </table>
             </div>
@@ -337,7 +388,12 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text" class="securitiesNumber"></td>
+                        <td>
+                            <input type="text" class="securitiesNumber">
+                            <div class="selectionPanel">
+
+                            </div>
+                        </td>
                         <td><span>证券类型：</span></td>
                         <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
@@ -411,6 +467,11 @@
 						<td><span>稀释每股收益：</span></td>
 						<td><input type="text" class="DEPS"></td>
 					</tr>
+                    <tr>
+                        <td colspan="4">
+                            <button class="save">保存</button>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
@@ -432,7 +493,12 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text" class="securitiesNumber"></td>
+                        <td>
+                            <input type="text" class="securitiesNumber">
+                            <div class="selectionPanel">
+
+                            </div>
+                        </td>
                         <td><span>证券类型：</span></td>
                         <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
@@ -664,6 +730,11 @@
 						<td><span>现金及现金等价物净增加额：</span></td>
 						<td><input type="text" class="NIICACE"></td>
 					</tr>
+                    <tr>
+                        <td colspan="4">
+                            <button class="save">保存</button>
+                        </td>
+                    </tr>
 				</table>
             </div>
 
@@ -685,7 +756,12 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text" class="securitiesNumber"></td>
+                        <td>
+                            <input type="text" class="securitiesNumber">
+                            <div class="selectionPanel">
+
+                            </div>
+                        </td>
                         <td><span>证券类型：</span></td>
                         <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
@@ -767,10 +843,14 @@
 						<td class="sun"><span>本年年末余额：</span></td>
 						<td class="sun"><input type="text" class="BATEOTY" readonly="readonly"></td>
 					</tr>
+                    <tr>
+                        <td colspan="4">
+                            <button class="save">保存</button>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
-            <button>保存</button>
         </div>
     </div>
 </div>

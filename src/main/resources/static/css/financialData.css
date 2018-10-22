@@ -71,8 +71,18 @@ body{
     border-top-right-radius: 3px;
 }
 
+.content .data .dataType{
+    width: 700px;
+    margin: 0 auto;
+}
+
 .content .data .dataType table{
+    width: 700px;
 	margin: 0 auto;
+}
+
+.content .data .dataType tr{
+    width: 700px;
 }
 
 .content .data .dataType tr td{
@@ -117,10 +127,21 @@ body{
     color: #FFFFFF;
 }
 
-.content .data div{
+.content .data .dataType{
     display: none;
 }
 
-.content .data div:first-of-type{
+.content .data .dataType:first-of-type{
     display: block;
+}
+
+
+.content .data .dataType .selectionPanel{
+    display: none;
+    width: 200px;
+    height: 80px;
+    background-color: #F8F8F8;
+    border: 1px solid #547576;
+    z-index: 100;
+    position: absolute;
 }
