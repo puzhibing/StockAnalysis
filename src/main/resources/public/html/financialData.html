@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>财务数据</title>
-    <link type="text/css" rel="stylesheet" href="../css/financialData.css">
+    <link type="text/css" rel="stylesheet" href="../../static/css/financialData.css">
 </head>
 <body>
 <div class="panl">
@@ -28,7 +28,7 @@
                     <tr>
                         <td colspan="4">
                             <span>单位：</span>
-                            <select>
+                            <select class="currencyUnit">
                                 <option>元</option>
                                 <option>万</option>
                                 <option>十万</option>
@@ -40,13 +40,13 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="securitiesNumber"></td>
                         <td><span>证券类型：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
                     <tr>
                         <td><span>企业名称：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="companyName"></td>
                         <td><span>货币资金：</span></td>
                         <td><input type="text"></td>
                     </tr>
@@ -89,7 +89,7 @@
                     <tr>
                         <td colspan="4">
                             <span>单位：</span>
-                            <select>
+                            <select class="currencyUnit">
                                 <option>元</option>
                                 <option>万</option>
                                 <option>十万</option>
@@ -101,13 +101,13 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="securitiesNumber"></td>
                         <td><span>证券类型：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
                     <tr>
                         <td><span>企业名称：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="companyName"></td>
                         <td><span>可供出售金融资产：</span></td>
                         <td><input type="text"></td>
                     </tr>
@@ -168,7 +168,7 @@
                     <tr>
                         <td colspan="4">
                             <span>单位：</span>
-                            <select>
+                            <select class="currencyUnit">
                                 <option>元</option>
                                 <option>万</option>
                                 <option>十万</option>
@@ -180,13 +180,13 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="securitiesNumber"></td>
                         <td><span>证券类型：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
                     <tr>
                         <td><span>企业名称：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="companyName"></td>
                         <td><span>短期借款：</span></td>
                         <td><input type="text"></td>
                     </tr>
@@ -233,7 +233,7 @@
                     <tr>
                         <td colspan="4">
                             <span>单位：</span>
-                            <select>
+                            <select class="currencyUnit">
                                 <option>元</option>
                                 <option>万</option>
                                 <option>十万</option>
@@ -245,13 +245,13 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="securitiesNumber"></td>
                         <td><span>证券类型：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
                     <tr>
                         <td><span>企业名称：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="companyName"></td>
                         <td><span>长期借款：</span></td>
                         <td><input type="text"></td>
                     </tr>
@@ -282,7 +282,7 @@
                     <tr>
                         <td colspan="4">
                             <span>单位：</span>
-                            <select>
+                            <select class="currencyUnit">
                                 <option>元</option>
                                 <option>万</option>
                                 <option>十万</option>
@@ -294,13 +294,13 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="securitiesNumber"></td>
                         <td><span>证券类型：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
                     <tr>
                         <td><span>企业名称：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="companyName"></td>
                         <td><span>实收资本：</span></td>
                         <td><input type="text"></td>
                     </tr>
@@ -325,7 +325,7 @@
                     <tr>
                         <td colspan="4">
                             <span>单位：</span>
-                            <select>
+                            <select class="currencyUnit">
                                 <option>元</option>
                                 <option>万</option>
                                 <option>十万</option>
@@ -337,62 +337,80 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="securitiesNumber"></td>
                         <td><span>证券类型：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
                     <tr>
                         <td><span>企业名称：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="companyName"></td>
                         <td><span>营业收入：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="businessIncome"></td>
                     </tr>
                     <tr>
                         <td><span>营业成本：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="operatingCost"></td>
                         <td><span>营业税金及附加：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="businessTaxAndAdditional"></td>
                     </tr>
                     <tr>
                         <td><span>销售费用：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="sellingExpenses"></td>
                         <td><span>管理费用：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="managementCost"></td>
                     </tr>
                     <tr>
                         <td><span>财务费用：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="financialCost"></td>
                         <td><span>资产减值损失：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="assetsImpairmentLoss"></td>
                     </tr>
                     <tr>
                         <td><span>公允价值变动收益：</span></td>
-                        <td><input type="text"></td>
-                        <td><span>联营企业和合营企业的投资收益：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="fairValueChangeIncome"></td>
+                        <td class="sun"><span>投资收益：</span></td>
+                        <td class="sun"><input type="text" class="incomeFromInvestment" readonly="readonly"></td>
                     </tr>
                     <tr>
+                        <td><span>联营企业和合营企业投资收益：</span></td>
+                        <td><input type="text" class="investmentIncomeOfJointVenturesAndJointVentures"></td>
                         <td><span>其他投资收益：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="otherInvestmentIncome"></td>
+                    </tr>
+                    <tr>
+                        <td class="sun"><span>营业利润：</span></td>
+                        <td class="sun"><input type="text" class="operatingProfit" readonly="readonly"></td>
                         <td><span>营业外收入：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="nonOperatingIncome"></td>
                     </tr>
                     <tr>
-                        <td><span>非流动资产处置损失：</span></td>
-                        <td><input type="text"></td>
+                        <td class="sun"><span>营业外支出：</span></td>
+                        <td class="sun"><input type="text" class="nonOperatingExpenses" readonly="readonly"></td>
+                        <td><span>非流动资产处置损益：</span></td>
+                        <td><input type="text" class="profitAndLossDisposalOfIlliquidAssets"></td>
+                    </tr>
+                    <tr>
                         <td><span>其他营业外支出：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="otherNonOperatingExpenses"></td>
+						<td class="sun"><span>利润总额：</span></td>
+						<td class="sun"><input type="text" class="totalProfit" readonly="readonly"></td>
                     </tr>
-                    <tr>
-                        <td><span>所得税费用：</span></td>
-                        <td><input type="text"></td>
-                        <td><span>基本每股收益：</span></td>
-                        <td><input type="text"></td>
-                    </tr>
-                    <tr>
-                        <td><span>稀释每股收益：</span></td>
-                        <td><input type="text"></td>
-                    </tr>
+					<tr>
+						<td><span>所得税费用：</span></td>
+						<td><input type="text" class="incomeTaxExpense"></td>
+						<td class="sun"><span>净利润：</span></td>
+						<td class="sun"><input type="text" class="netProfit" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td class="sun"><span>每股收益：</span></td>
+						<td class="sun"><input type="text" class="earningsPerShare" readonly="readonly"></td>
+						<td><span>基本每股收益：</span></td>
+						<td><input type="text" class="basicEarningsPerShare"></td>
+					</tr>
+					<tr>
+						<td><span>稀释每股收益：</span></td>
+						<td><input type="text" class="dilutedEarningsPerShare"></td>
+					</tr>
                 </table>
             </div>
 
@@ -402,7 +420,7 @@
                     <tr>
                         <td colspan="4">
                             <span>单位：</span>
-                            <select>
+                            <select class="currencyUnit">
                                 <option>元</option>
                                 <option>万</option>
                                 <option>十万</option>
@@ -414,29 +432,239 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="securitiesNumber"></td>
                         <td><span>证券类型：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
                     <tr>
                         <td><span>企业名称：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
-                        <td><span>实收资本：</span></td>
-                        <td><input type="text"></td>
-                    </tr>
-                    <tr>
-                        <td><span>资本公积：</span></td>
-                        <td><input type="text"></td>
-                        <td><span>减-库存股：</span></td>
-                        <td><input type="text"></td>
-                    </tr>
-                    <tr>
-                        <td><span>盈余公积：</span></td>
-                        <td><input type="text"></td>
-                        <td><span>未分配利润：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" readonly="readonly" class="companyName"></td>
                     </tr>
                 </table>
+				<hr>
+				<table>
+					<tr>
+						<td colspan="4" style="color: #191970;text-align: left;"><span>经营活动产生的现金流量：</span></td>
+					</tr>
+					<tr>
+						<td><span>销售商品、提供劳务收到的现金：</span></td>
+						<td><input type="text" id="CRFSOGAS"></td>
+						<td><span>收到的税费返还：</span></td>
+						<td><input type="text" id="ROT"></td>
+					</tr>
+					<tr>
+						<td><span>收到的其他与经营活动相关的现金：</span></td>
+						<td><input type="text" id="OCRTBAR"></td>
+						<td class="sun"><span>经营活动现金流入小计：</span></td>
+						<td class="sun"><input type="text" id="CIIOA" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><span>购买商品、接受劳务支付的现金：</span></td>
+						<td><input type="text" id="CPFGAS"></td>
+						<td><span>支付的各项税费：</span></td>
+						<td><input type="text" id="POATOT"></td>
+					</tr>
+					<tr>
+						<td><span>支付其他与经营活动有关的现金：</span></td>
+						<td><input type="text" id="POOCRTBA"></td>
+						<td class="sun"><span>经营活动现金流出小计：</span></td>
+						<td class="sun"><input type="text" id="CFFOA" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td class="sun"><span>经营活动产生的现金流净额：</span></td>
+						<td class="sun"><input type="text" id="NCFFOA" readonly="readonly"></td>
+					</tr>
+				</table>
+				<hr>
+				<table>
+					<tr>
+						<td colspan="4" style="color: #191970;text-align: left;"><span>投资活动产生的现金流量：</span></td>
+					</tr>
+					<tr>
+						<td><span>收回投资收到的现金：</span></td>
+						<td><input type="text" id="CRFIR"></td>
+						<td><span>取得投资收益收到的现金：</span></td>
+						<td><input type="text" id="CRFII"></td>
+					</tr>
+					<tr>
+						<td><span>处置固定资产、无形资产和其他上期资产收回的现金净额：</span></td>
+						<td><input type="text" id="NCIDOFAIAAOAITPP"></td>
+						<td><span>处置子公司及其他营业单位收到的现金净额：</span></td>
+						<td><input type="text" id="NCRFDOSAOBU"></td>
+					</tr>
+					<tr>
+						<td><span>收到其他与投资活动相关的现金：</span></td>
+						<td><input type="text" id="OCRTIAHBR"></td>
+						<td class="sun"><span>投资活动现金流入小计：</span></td>
+						<td class="sun"><input type="text" id="CIOIA" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><span>构建固定资产、无形资产和其他上期投资支付的现金：</span></td>
+						<td><input type="text" id="COFAIAAOCPFPI"></td>
+						<td><span>投资支付的现金：</span></td>
+						<td><input type="text" id="CPFI"></td>
+					</tr>
+					<tr>
+						<td><span>取得子公司及其他营业单位支付的现金净额：</span></td>
+						<td><input type="text" id="NCPBSAOBU"></td>
+						<td><span>支付其他与投资活动有关的现金：</span></td>
+						<td><input type="text" id="POOCRTIA"></td>
+					</tr>
+					<tr>
+						<td class="sun"><span>投资活动现金流出小计：</span></td>
+						<td class="sun"><input type="text" id="CFOOIA" readonly="readonly"></td>
+						<td class="sun"><span>投资活动产生的现金流净额：</span></td>
+						<td class="sun"><input type="text" id="NCFFIA" readonly="readonly"></td>
+					</tr>
+				</table>
+				<hr>
+				<table>
+					<tr>
+						<td colspan="4" style="color: #191970;text-align: left;"><span>筹资活动产生的现金流量：</span></td>
+					</tr>
+					<tr>
+						<td><span>吸收投资收到的现金：</span></td>
+						<td><input type="text" id="CRFI"></td>
+						<td><span>取得借款收到的现金：</span></td>
+						<td><input type="text" id="CRFB"></td>
+					</tr>
+					<tr>
+						<td><span>收到其他与筹资活动有关的现金：</span></td>
+						<td><input type="text" id="OCRTFAR"></td>
+						<td class="sun"><span>筹资活动现金流入小计：</span></td>
+						<td class="sun"><input type="text" id="CIOFA"></td>
+					</tr>
+					<tr>
+						<td><span>偿还债务支出的现金：</span></td>
+						<td><input type="text" id="CFDR"></td>
+						<td><span>分配股利、利润或偿付利息支付的现金：</span></td>
+						<td><input type="text" id="CPFDPOIP"></td>
+					</tr>
+					<tr>
+						<td><span>支付其他与筹资活动有关的现金：</span></td>
+						<td><input type="text" id="POOCRTFA"></td>
+						<td class="sun"><span>筹资活动现金流出小计：</span></td>
+						<td class="sun"><input type="text" id="CFOOFA" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td class="sun"><span>筹资活动产生的现金流量净额：</span></td>
+						<td class="sun"><input type="text" id="NCFGBFRA" readonly="readonly"></td>
+					</tr>
+				</table>
+				<hr />
+				<table>
+					<tr>
+						<td colspan="4" style="color: #191970;text-align: left;"><span>其他对现金流的影响：</span></td>
+					</tr>
+					<tr>
+						<td><span>汇率变动对现金及现金等价物的影响：</span></td>
+						<td><input type="text" id="TEOERFOCACE"></td>
+						<td><span>现金及现金等价物净增加额：</span></td>
+						<td><input type="text" id="NIICACE"></td>
+					</tr>
+					<tr>
+						<td><span>期初现金及现金等价物余额：</span></td>
+						<td><input type="text" id="CACEATBOTY"></td>
+						<td><span>期末现金及现金等价物余额：</span></td>
+						<td><input type="text" id="BOCACEAEOT"></td>
+					</tr>
+				</table>
+				<hr />
+				<table>
+					<tr>
+						<td colspan="4" style="color: #191970;text-align: left;"><span>将净利润调节为经营活动现金流量：</span></td>
+					</tr>
+					<tr>
+						<td><span>净利润：</span></td>
+						<td><input type="text" id="NP"></td>
+						<td class="sun"><span>资产减值准备：</span></td>
+						<td class="sun"><input type="text" id="AIP" readonly="readonly"></td>
+					</tr>
+					<tr>
+						<td><span>固定资产折旧、汽油资产拆耗、生产性生物资产折旧：</span></td>
+						<td><input type="text" id="DOFAGADADOPBA"></td>
+						<td><span>无形资产摊销：</span></td>
+						<td><input type="text" id="AOIA"></td>
+					</tr>
+					<tr>
+						<td><span>长期待摊费用摊销：</span></td>
+						<td><input type="text" id="AOLTPE"></td>
+						<td><span>处置固定资产、无形资产和其他长期资产的损失（收益）：</span></td>
+						<td><input type="text" id="LOIFFAIAAOLTA"></td>
+					</tr>
+					<tr>
+						<td><span>固定资产报废损失：</span></td>
+						<td><input type="text" id="LOSOFA"></td>
+						<td><span>公允值变动损失：</span></td>
+						<td><input type="text" id="LOFVC"></td>
+					</tr>
+					<tr>
+						<td><span>财务费用：</span></td>
+						<td><input type="text" id="FC"></td>
+						<td><span>投资损失：</span></td>
+						<td><input type="text" id="LL"></td>
+					</tr>
+					<tr>
+						<td><span>递延所得税资产减少：</span></td>
+						<td><input type="text" id="DITAD"></td>
+						<td><span>递延所得税负债增加：</span></td>
+						<td><input type="text" id="IIIDITL"></td>
+					</tr>
+					<tr>
+						<td><span>存货的减少：</span></td>
+						<td><input type="text" id="LR"></td>
+						<td><span>经营性应收项目的减少：</span></td>
+						<td><input type="text" id="DIORI"></td>
+					</tr>
+					<tr>
+						<td><span>经营性应付项目的增加：</span></td>
+						<td><input type="text" id="IIOPI"></td>
+						<td><span>其他：</span></td>
+						<td><input type="text" id="Other"></td>
+					</tr>
+					<tr>
+						<td><span>经营活动产生的现金流量净额：</span></td>
+						<td><input type="text" id="NCFFOAc"></td>
+					</tr>
+				</table>
+				<hr />
+				<table>
+					<tr>
+						<td colspan="4" style="color: #191970;text-align: left;"><span>不涉及现金收支的重大投资和筹资活动：</span></td>
+					</tr>
+					<tr>
+						<td><span>债务转为资本：</span></td>
+						<td><input type="text" id="DTC"></td>
+						<td><span>一年内到期的可转换公司债券：</span></td>
+						<td><input type="text" id="SCBDWOY"></td>
+					</tr>
+					<tr>
+						<td><span>融资租入固定资产：</span></td>
+						<td><input type="text" id="FLOFA"></td>
+					</tr>
+				</table>
+				<hr />
+				<table>
+					<tr>
+						<td colspan="4" style="color: #191970;text-align: left;"><span>现金及现金等价物净变动情况：</span></td>
+					</tr>
+					<tr>
+						<td><span>现金的期末余额：</span></td>
+						<td><input type="text" id="CATEOTP"></td>
+						<td><span>现金的期初余额：</span></td>
+						<td><input type="text" id="IBOC"></td>
+					</tr>
+					<tr>
+						<td><span>现金等价物的期末余额：</span></td>
+						<td><input type="text" id="EBOCE"></td>
+						<td><span>现金等价物的期初余额：</span></td>
+						<td><input type="text" id="IBOCE"></td>
+					</tr>
+					<tr>
+						<td><span>现金及现金等价物净增加额：</span></td>
+						<td><input type="text" id="NIICACE"></td>
+					</tr>
+				</table>
             </div>
 
             <!--所有者权益变动-->
@@ -445,7 +673,7 @@
                     <tr>
                         <td colspan="4">
                             <span>单位：</span>
-                            <select>
+                            <select class="currencyUnit">
                                 <option>元</option>
                                 <option>万</option>
                                 <option>十万</option>
@@ -457,38 +685,88 @@
                     </tr>
                     <tr>
                         <td><span>证券编号：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" class="securitiesNumber"></td>
                         <td><span>证券类型：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="securitiesType"></td>
                     </tr>
                     <tr>
                         <td><span>企业名称：</span></td>
-                        <td><input type="text" readonly="readonly"></td>
+                        <td><input type="text" readonly="readonly" class="companyName"></td>
                         <td><span>上年年末余额：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="YEBATEOLY"></td>
                     </tr>
                     <tr>
                         <td><span>会计政策变更：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="accountingPolicyChange"></td>
                         <td><span>前期差错更正：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="earlyErrorCorrection"></td>
+                    </tr>
+                    <tr>
+                        <td class="sun"><span>本年年初余额：</span></td>
+                        <td class="sun"><input type="text" id="balanceAtTheBeginningOfThisYear" readonly="readonly"></td>
+                        <td class="sun"><span>本年增减变动金额：</span></td>
+                        <td class="sun"><input type="text" id="amountOfIncreaseOrDecreaseInTheCurrentYear" readonly="readonly"></td>
                     </tr>
                     <tr>
                         <td><span>净利润：</span></td>
-                        <td><input type="text"></td>
-                        <td><span>直接计入所有者权益的利得和损失：</span></td>
-                        <td><input type="text"></td>
+                        <td><input type="text" id="netProfit"></td>
+                        <td class="sun"><span>直接计入所有者权益的利得和损失：</span></td>
+                        <td class="sun"><input type="text" id="gainsAndLossesDirectlyIncludedInOwnersEquity" readonly="readonly"></td>
                     </tr>
                     <tr>
-                        <td><span>所有者投入和减少资本：</span></td>
-                        <td><input type="text"></td>
-                        <td><span>利润分配：</span></td>
-                        <td><input type="text"></td>
+                        <td><span>可供出售金融资产公允值变动净额：</span></td>
+                        <td><input type="text" id="netChangesInFairValueOfAvailableForSaleFinancialAssets"></td>
+						<td><span>权益法下被投资单位其他所有者权益变动的影响：</span></td>
+						<td><input type="text" id="theImpactOfChangesInOtherOwnersRightsAndInterestsOfInvestedUnitsUnderEquityMethod"></td>
                     </tr>
-                    <tr>
-                        <td><span>所有者内部结转：</span></td>
-                        <td><input type="text"></td>
-                    </tr>
+					<tr>
+						<td><span>与计入所有者权益项目相关的所得税影响：</span></td>
+						<td><input type="text" id="incomeTaxRelatedToOwnersEquityItems"></td>
+						<td><span>其他：</span></td>
+						<td><input type="text" id="other"></td>
+					</tr>
+					<tr>
+						<td class="sun"><span>所有者投入和减少资本：</span></td>
+						<td class="sun"><input type="text" id="ownersInvestAndReduceCapital" readonly="readonly"></td>
+						<td><span>所有者投入资本：</span></td>
+						<td><input type="text" id="capitalInvestedByOwners"></td>
+					</tr>
+					<tr>
+						<td><span>股份支付计入所有者权益的金额：</span></td>
+						<td><input type="text" id="theAmountOfSharePaymentIncludedInTheOwnersEquity"></td>
+						<td><span>其他：</span></td>
+						<td><input type="text" id="other"></td>
+					</tr>
+					<tr>
+						<td class="sun"><span>利润分配：</span></td>
+						<td class="sun"><input type="text" id="profitDistribution" readonly="readonly"></td>
+						<td><span>提取盈余公积：</span></td>
+						<td><input type="text" id="earningSurplusReserve"></td>
+					</tr>
+					<tr>
+						<td><span>对所有者（或股东）的分配：</span></td>
+						<td><input type="text" id="distributionOfOwnersOrShareholders"></td>
+						<td><span>其他：</span></td>
+						<td><input type="text" id="other"></td>
+					</tr>
+					<tr>
+						<td class="sun"><span>所有者权益内部结转：</span></td>
+						<td class="sun"><input type="text" id="internalTransferOfOwnersEquity" readonly="readonly"></td>
+						<td><span>资本公积转增资本（或股本）：</span></td>
+						<td><input type="text" id="capitalSurplusIncreasesCapitalOrCapitalStock"></td>
+					</tr>
+					<tr>
+						<td><span>盈余公积转增资本（或股本）：</span></td>
+						<td><input type="text" id="SSTICOCS"></td>
+						<td><span>盈余公积弥补亏损：</span></td>
+						<td><input type="text" id="SSTMUFL"></td>
+					</tr>
+					<tr>
+						<td><span>其他：</span></td>
+						<td><input type="text" id="other"></td>
+						<td class="sun"><span>本年年末余额：</span></td>
+						<td class="sun"><input type="text" id="BATEOTY" readonly="readonly"></td>
+					</tr>
                 </table>
             </div>
 
@@ -497,7 +775,7 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../js/financialData.js"></script>
+<script type="text/javascript" src="../../static/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../../static/js/financialData.js"></script>
 </body>
 </html>

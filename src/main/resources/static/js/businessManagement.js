@@ -54,9 +54,9 @@ function saveData(){
     formData.append("token", token);
 
     if("" == companyId){
-        u = "http://192.168.3.155:8888/insertCompany";
+        u = "/insertCompany";
     }else{
-        u = "http://192.168.3.155:8888/updateCompany";
+        u = "/updateCompany";
     }
     $.ajax({
         url: u,

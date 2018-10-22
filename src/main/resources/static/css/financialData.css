@@ -71,11 +71,26 @@ body{
     border-top-right-radius: 3px;
 }
 
+.content .data .dataType table{
+	margin: 0 auto;
+}
 
 .content .data .dataType tr td{
     height: 60px;
-    min-width: 180px;
     text-align: right;
+}
+
+.content .data .dataType tr td:nth-child(1){
+	width: 160px;
+}
+
+.content .data .dataType tr td:nth-child(3){
+	width: 160px;
+	padding-left: 50px;
+}
+
+.content .data .dataType tr td[class^="sun"]{
+	color: #B14141;
 }
 
 .content .data .dataType input{
@@ -84,6 +99,12 @@ body{
     border-radius: 3px;
     border: 1px solid #5E8586;
     padding-left: 10px;
+}
+
+.content .data .dataType hr{
+	margin: 0 auto;
+	width: 800px;
+	border-top: 1px dashed #547576;
 }
 
 .content .data button{
