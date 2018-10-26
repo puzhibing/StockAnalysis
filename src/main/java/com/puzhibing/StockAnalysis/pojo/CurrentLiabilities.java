@@ -8,9 +8,9 @@ package com.puzhibing.StockAnalysis.pojo;
  */
 public class CurrentLiabilities extends StockDataBean {
 
-	private String shortTermLoan;//短期借款
+	private String stl;//短期借款
 	
-	private String transactionalFinancialLiabilities;//交易性金融负债
+	private String tfl;//交易性金融负债
 	
 	private String billsPayable;//应付票据
 	
@@ -28,9 +28,9 @@ public class CurrentLiabilities extends StockDataBean {
 	
 	private String otherPayables;//其他应付款
 	
-	private String nonCurrentLiabilitiesDueWithinOneYear;//一年内到期的非流动负债
+	private String nldwoy;//一年内到期的非流动负债
 	
-	private String otherCurrentLiabilities;//其他流动负债
+	private String OCL;//其他流动负债
 
 	public String getShortTermLoan() {
 		return shortTermLoan;
