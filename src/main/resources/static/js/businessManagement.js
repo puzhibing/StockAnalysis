@@ -1,7 +1,3 @@
-let chName , chShortName , enName , enShortName , registerTime , url , companyId , token , tr ,
-    formData , u , stockType , stockCode , listingTime , stockExchange , companyStockId , result;
-
-
 //初始化
 $(document).ready(function () {
 
@@ -34,16 +30,16 @@ function initStyle(){
 
 //保存基础数据
 function saveData(){
-    chName = $(".chName").val();
-    chShortName = $(".chShortName").val();
-    enName = $(".enName").val();
-    enShortName = $(".enShortName").val();
-    registerTime = StringToDate($(".registerTime").val()).toString();
-    url = $(".url").val();
-    companyId = $(".companyId").val();
-    token = $(".token").val();
+    let chName = $(".chName").val();
+    let chShortName = $(".chShortName").val();
+    let enName = $(".enName").val();
+    let enShortName = $(".enShortName").val();
+    let registerTime = StringToDate($(".registerTime").val()).toString();
+    let url = $(".url").val();
+    let companyId = $(".companyId").val();
+    let token = $(".token").val();
 
-    formData =  new FormData();
+    let formData =  new FormData();
     formData.append("id", companyId);
     formData.append("chName", chName);
     formData.append("chShortName", chShortName);
@@ -53,6 +49,7 @@ function saveData(){
     formData.append("url", url);
     formData.append("token", token);
 
+    let u;
     if("" == companyId){
         u = "/insertCompany";
     }else{
@@ -93,20 +90,21 @@ function resetData(){
 
 //保存公司证券数据
 function saveCompanyStock(){
-    companyStockId = $(".companyStockId").val();
-    companyId = $(".companyId").val();
-    stockType = $(".stockType").val();
-    stockCode = $(".stockCode").val();
-    listingTime = $(".listingTime").val();
-    stockExchange = $(".stockExchange").val();
+    let companyStockId = $(".companyStockId").val();
+    let companyId = $(".companyId").val();
+    let stockType = $(".stockType").val();
+    let stockCode = $(".stockCode").val();
+    let listingTime = $(".listingTime").val();
+    let stockExchange = $(".stockExchange").val();
 
-    formData = new FormData();
+    let formData = new FormData();
     formData.append("id", companyStockId);
     formData.append("companyId", companyId);
     formData.append("stockCode", stockCode);
     formData.append("stockTypeId", stockType);
     formData.append("listingTime", listingTime);
     formData.append("stockExchangeId", stockExchange);
+    let u;
     if("" == companyStockId){
         u = "/insertCompanyStock";
     }else{
@@ -135,7 +133,7 @@ function saveCompanyStock(){
 
 //查询公司证券数据
 function selectCompanyStock(){
-    companyId = $(".companyId").val();
+    let companyId = $(".companyId").val();
     $.ajax({
         url: "/selectCompanyStockByCompanyId",
         type: "POST",
@@ -144,7 +142,7 @@ function selectCompanyStock(){
         },
         success: function (data) {
             if(data.b){
-                result = data.result;
+                let result = data.result;
                 JSON.stringify(result);
                 var str = "";
                 for(var i in result){

@@ -71,18 +71,9 @@ body{
     border-top-right-radius: 3px;
 }
 
-.content .data .dataType{
-    width: 700px;
-    margin: 0 auto;
-}
-
 .content .data .dataType table{
     width: 700px;
 	margin: 0 auto;
-}
-
-.content .data .dataType tr{
-    width: 700px;
 }
 
 .content .data .dataType tr td{
@@ -120,7 +111,6 @@ body{
 .content .data button{
     width: 700px;
     height: 30px;
-    margin: 50px 74px 30px 74px;
     background-color: #75A2A5;
     border: 1px solid #75A2A5;
     border-radius: 3px;
