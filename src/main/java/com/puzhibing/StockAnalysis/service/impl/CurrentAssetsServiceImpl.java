@@ -3,6 +3,7 @@ package com.puzhibing.StockAnalysis.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import com.puzhibing.StockAnalysis.utils.UnitCalculationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -16,7 +17,9 @@ import com.puzhibing.StockAnalysis.service.CurrentAssetsService;
 import com.puzhibing.StockAnalysis.utils.TokenUtil;
 import com.puzhibing.StockAnalysis.utils.UUIDUtil;
 
-
+/**
+ * 流动资产Service
+ */
 @Service
 public class CurrentAssetsServiceImpl implements CurrentAssetsService {
 	
@@ -28,6 +31,9 @@ public class CurrentAssetsServiceImpl implements CurrentAssetsService {
 	
 	@Autowired
 	private CurrentAssetsMapper currentAssetsMapper;
+
+	@Autowired
+	private UnitCalculationUtil unitCalculationUtil;
 	
 	private User user;
 	
@@ -45,9 +51,11 @@ public class CurrentAssetsServiceImpl implements CurrentAssetsService {
 	 * @throws Exception
 	 */
 	@Override
-	public ResultBean<Object> insertCurrentAssets(CurrentAssets currentAssets , String token) throws Exception {
+	public ResultBean<Object> insertCurrentAssets(CurrentAssets currentAssets , String currencyUnit , String token) throws Exception {
 		resultBean = new ResultBean<>();
-		if(null != currentAssets && !StringUtils.isEmpty(token)) {
+		if(null != currentAssets && !(StringUtils.isEmpty(token) && StringUtils.isEmpty(currencyUnit))) {
+			currentAssets = (CurrentAssets)unitCalculationUtil.calculation(currencyUnit , currentAssets , CurrentAssets.class);
+
 			user = tokenutil.tokenToUser(token);
 			currentAssets.setId(uuidutil.getUUID());
 			currentAssets.setDel("0");

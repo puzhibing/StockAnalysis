@@ -8,22 +8,24 @@ package com.puzhibing.StockAnalysis.pojo;
  */
 public class OwnersEquity extends StockDataBean {
 
-	private String paidInCapital;//实收资本
+	private String pic;//实收资本
 	
 	private String capitalReserve;//资本公积
 	
-	private String lessTreasuryShares;//减：库存股
+	private String lts;//减：库存股
 	
 	private String surplusReserve;//盈余公积
 	
 	private String undistributedProfit;//未分配利润
 
-	public String getPaidInCapital() {
-		return paidInCapital;
+	private String toe;//所有者权益合计
+
+	public String getPic() {
+		return pic;
 	}
 
-	public void setPaidInCapital(String paidInCapital) {
-		this.paidInCapital = paidInCapital;
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
 
 	public String getCapitalReserve() {
@@ -34,12 +36,12 @@ public class OwnersEquity extends StockDataBean {
 		this.capitalReserve = capitalReserve;
 	}
 
-	public String getLessTreasuryShares() {
-		return lessTreasuryShares;
+	public String getLts() {
+		return lts;
 	}
 
-	public void setLessTreasuryShares(String lessTreasuryShares) {
-		this.lessTreasuryShares = lessTreasuryShares;
+	public void setLts(String lts) {
+		this.lts = lts;
 	}
 
 	public String getSurplusReserve() {
@@ -58,12 +60,23 @@ public class OwnersEquity extends StockDataBean {
 		this.undistributedProfit = undistributedProfit;
 	}
 
+	public String getToe() {
+		return toe;
+	}
+
+	public void setToe(String toe) {
+		this.toe = toe;
+	}
+
 	@Override
 	public String toString() {
-		return "OwnersEquity [paidInCapital=" + paidInCapital + ", capitalReserve=" + capitalReserve
-				+ ", lessTreasuryShares=" + lessTreasuryShares + ", surplusReserve=" + surplusReserve
-				+ ", undistributedProfit=" + undistributedProfit + "]";
+		return "OwnersEquity{" +
+				"pic='" + pic + '\'' +
+				", capitalReserve='" + capitalReserve + '\'' +
+				", lts='" + lts + '\'' +
+				", surplusReserve='" + surplusReserve + '\'' +
+				", undistributedProfit='" + undistributedProfit + '\'' +
+				", toe='" + toe + '\'' +
+				'}';
 	}
-	
-	
 }

@@ -166,7 +166,7 @@ function saveCurrentAssets(){
     formData.append('token', token);
 
     $.ajax({
-        url: "",
+        url: "/insertCurrentAssets",
         type: "POST",
         processData: false,
         contentType: false,
@@ -205,7 +205,7 @@ function saveNonCurrentAssets(){
     let LTPE = div.find(".LTPE").val();//长期待摊费用
     let DTA = div.find(".DTA").val();//递延所得税资产
     let ONCA = div.find(".ONCA").val();//其他非流动资产
-    let NCA = div.find(".NCA").val();//非流动资产合计
+    let TNCA = div.find(".TNCA").val();//非流动资产合计
     
     let formData = new FormData();
     formData.append('id', id);
@@ -229,7 +229,7 @@ function saveNonCurrentAssets(){
     formData.append('ltpe', LTPE);
     formData.append('dta', DTA);
     formData.append('onca', ONCA);
-    formData.append('nca', NCA);
+    formData.append('tnca', TNCA);
     
     $.ajax({
         url: '',
@@ -318,6 +318,7 @@ function saveNonCurrentLiabilities(){
     let estimatedLiabilities = div.find(".estimatedLiabilities").val();//预计负债
     let DITL = div.find(".DITL").val();//递延所得税负债
     let ONCL = div.find(".ONCL").val();//其他非流动负债
+    let TNCL = div.find(".TNCL").val();//非流动负债合计
 
     let formData = new FormData();
     formData.append('id', id);
@@ -331,6 +332,7 @@ function saveNonCurrentLiabilities(){
     formData.append('estimatedLiabilities', estimatedLiabilities);
     formData.append('ditl', DITL);
     formData.append('dncl', ONCL);
+    formData.append('tncl', TNCL);
 
     $.ajax({
         url: '',
@@ -350,6 +352,7 @@ function saveNonCurrentLiabilities(){
 //保存所有者权益
 function saveOwnersEquity(){
     let div = $('.saveOwnersEquity').parents("#ownersEquity");
+    let id = div.find(".id").val();//数据id
     let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
@@ -358,8 +361,10 @@ function saveOwnersEquity(){
     let LTS = div.find(".LTS").val();//减：库存股
     let surplusReserve = div.find(".surplusReserve").val();//盈余公积
     let undistributedProfit = div.find(".undistributedProfit").val();//未分配利润
+    let TOE = div.find(".TOE").val();//所有者权益合计
 
     let formData = new FormData();
+    formData.append('id', id);
     formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
@@ -368,6 +373,7 @@ function saveOwnersEquity(){
     formData.append('lts', LTS);
     formData.append('surplusReserve', surplusReserve);
     formData.append('undistributedProfit', undistributedProfit);
+    formData.append('toe', TOE);
 
     $.ajax({
         url: '',
@@ -388,6 +394,7 @@ function saveOwnersEquity(){
 //保存利润
 function saveProfit(){
     let div = $('.saveProfit').parents("#profit");
+    let id = div.find(".id").val();//数据id
     let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
@@ -416,6 +423,7 @@ function saveProfit(){
 
 
     let formData = new FormData();
+    formData.append('id', id);
     formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
@@ -459,7 +467,8 @@ function saveProfit(){
 
 //保存现金流
 function saveCashFlow(){
-    let div = $('.saveCashFlow').parents("#cashFlow");
+    let div = $('.saveCashFlow').parents("#cashFlow")
+    let id = div.find(".id").val();//数据id
     let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
@@ -523,6 +532,7 @@ function saveCashFlow(){
     let TEOERFOCACE = div.find(".TEOERFOCACE").val();//汇率变动对现金及现金等价物的影响
 
     let formData = new FormData();
+    formData.append('id', id);
     formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
@@ -601,9 +611,10 @@ function saveCashFlow(){
 }
 
 
-
+//保存所有者权益变动
 function saveOwnersEquityChange(){
     let div = $('.saveOwnersEquityChange').parents("#ownersEquityChange");
+    let id = div.find(".id").val();//数据id
     let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
@@ -634,6 +645,7 @@ function saveOwnersEquityChange(){
     let BATEOTY = div.find(".BATEOTY").val();//本年年末余额
 
     let formData = new FormData();
+    formData.append('id', id);
     formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);

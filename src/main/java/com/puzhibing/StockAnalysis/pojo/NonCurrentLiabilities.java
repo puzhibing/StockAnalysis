@@ -8,26 +8,28 @@ package com.puzhibing.StockAnalysis.pojo;
  */
 public class NonCurrentLiabilities extends StockDataBean {
 
-	private String longTermLoan;//长期借款
+	private String ltl;//长期借款
 	
 	private String bondsPayable;//应付债券
 	
-	private String longTermPayables;//长期应付款
+	private String ltp;//长期应付款
 	
 	private String specialPayable;//专项应付款
 	
 	private String estimatedLiabilities;//预计负债
 	
-	private String deferredIncomeTaxLiabilities;//递延所得税负债
+	private String ditl;//递延所得税负债
 	
-	private String otherNonCurrentLiabilities;//其他非流动负债
+	private String dncl;//其他非流动负债
 
-	public String getLongTermLoan() {
-		return longTermLoan;
+	private String tncl;//非流动负债合计
+
+	public String getLtl() {
+		return ltl;
 	}
 
-	public void setLongTermLoan(String longTermLoan) {
-		this.longTermLoan = longTermLoan;
+	public void setLtl(String ltl) {
+		this.ltl = ltl;
 	}
 
 	public String getBondsPayable() {
@@ -38,12 +40,12 @@ public class NonCurrentLiabilities extends StockDataBean {
 		this.bondsPayable = bondsPayable;
 	}
 
-	public String getLongTermPayables() {
-		return longTermPayables;
+	public String getLtp() {
+		return ltp;
 	}
 
-	public void setLongTermPayables(String longTermPayables) {
-		this.longTermPayables = longTermPayables;
+	public void setLtp(String ltp) {
+		this.ltp = ltp;
 	}
 
 	public String getSpecialPayable() {
@@ -62,29 +64,41 @@ public class NonCurrentLiabilities extends StockDataBean {
 		this.estimatedLiabilities = estimatedLiabilities;
 	}
 
-	public String getDeferredIncomeTaxLiabilities() {
-		return deferredIncomeTaxLiabilities;
+	public String getDitl() {
+		return ditl;
 	}
 
-	public void setDeferredIncomeTaxLiabilities(String deferredIncomeTaxLiabilities) {
-		this.deferredIncomeTaxLiabilities = deferredIncomeTaxLiabilities;
+	public void setDitl(String ditl) {
+		this.ditl = ditl;
 	}
 
-	public String getOtherNonCurrentLiabilities() {
-		return otherNonCurrentLiabilities;
+	public String getDncl() {
+		return dncl;
 	}
 
-	public void setOtherNonCurrentLiabilities(String otherNonCurrentLiabilities) {
-		this.otherNonCurrentLiabilities = otherNonCurrentLiabilities;
+	public void setDncl(String dncl) {
+		this.dncl = dncl;
+	}
+
+	public String getTncl() {
+		return tncl;
+	}
+
+	public void setTncl(String tncl) {
+		this.tncl = tncl;
 	}
 
 	@Override
 	public String toString() {
-		return "NonCurrentLiabilities [longTermLoan=" + longTermLoan + ", bondsPayable=" + bondsPayable
-				+ ", longTermPayables=" + longTermPayables + ", specialPayable=" + specialPayable
-				+ ", estimatedLiabilities=" + estimatedLiabilities + ", deferredIncomeTaxLiabilities="
-				+ deferredIncomeTaxLiabilities + ", otherNonCurrentLiabilities=" + otherNonCurrentLiabilities + "]";
+		return "NonCurrentLiabilities{" +
+				"ltl='" + ltl + '\'' +
+				", bondsPayable='" + bondsPayable + '\'' +
+				", ltp='" + ltp + '\'' +
+				", specialPayable='" + specialPayable + '\'' +
+				", estimatedLiabilities='" + estimatedLiabilities + '\'' +
+				", ditl='" + ditl + '\'' +
+				", dncl='" + dncl + '\'' +
+				", tncl='" + tncl + '\'' +
+				'}';
 	}
-	
-	
 }

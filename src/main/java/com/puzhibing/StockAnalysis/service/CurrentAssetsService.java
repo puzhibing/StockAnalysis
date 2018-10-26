@@ -13,7 +13,7 @@ public interface CurrentAssetsService {
 	 * @return
 	 * @throws Exception
 	 */
-	ResultBean<Object> insertCurrentAssets(CurrentAssets currentAssets , String token)	throws Exception;
+	ResultBean<Object> insertCurrentAssets(CurrentAssets currentAssets , String currencyUnit , String token)	throws Exception;
 	
 	
 	

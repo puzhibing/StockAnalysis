@@ -41,7 +41,7 @@ public class NonCurrentAssets extends StockDataBean {
 	
 	private String onca;//其他非流动资产
 
-	private String nca;//非流动资产合计
+	private String tnca;//非流动资产合计
 
 	public String getAfsfa() {
 		return afsfa;
@@ -179,23 +179,35 @@ public class NonCurrentAssets extends StockDataBean {
 		this.onca = onca;
 	}
 
-	public String getNca() {
-		return nca;
+	public String getTnca() {
+		return tnca;
 	}
 
-	public void setNca(String nca) {
-		this.nca = nca;
+	public void setTnca(String tnca) {
+		this.tnca = tnca;
 	}
 
 	@Override
 	public String toString() {
-		return "NonCurrentAssets [afsfa=" + afsfa + ", haei=" + haei + ", ltr=" + ltr + ", ltbi=" + ltbi + ", ire="
-				+ ire + ", fixedAssets=" + fixedAssets + ", cap=" + cap + ", engineerMaterial=" + engineerMaterial
-				+ ", fac=" + fac + ", pba=" + pba + ", gasolineAssets=" + gasolineAssets + ", intangibleAssets="
-				+ intangibleAssets + ", de=" + de + ", goodwill=" + goodwill + ", ltpe=" + ltpe + ", dta=" + dta
-				+ ", onca=" + onca + ", nca=" + nca + "]";
+		return "NonCurrentAssets{" +
+				"afsfa='" + afsfa + '\'' +
+				", haei='" + haei + '\'' +
+				", ltr='" + ltr + '\'' +
+				", ltbi='" + ltbi + '\'' +
+				", ire='" + ire + '\'' +
+				", fixedAssets='" + fixedAssets + '\'' +
+				", cap='" + cap + '\'' +
+				", engineerMaterial='" + engineerMaterial + '\'' +
+				", fac='" + fac + '\'' +
+				", pba='" + pba + '\'' +
+				", gasolineAssets='" + gasolineAssets + '\'' +
+				", intangibleAssets='" + intangibleAssets + '\'' +
+				", de='" + de + '\'' +
+				", goodwill='" + goodwill + '\'' +
+				", ltpe='" + ltpe + '\'' +
+				", dta='" + dta + '\'' +
+				", onca='" + onca + '\'' +
+				", tnca='" + tnca + '\'' +
+				'}';
 	}
-	
-	
-	
 }

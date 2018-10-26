@@ -28,9 +28,9 @@ public class CurrentAssetsController {
 	 * @return
 	 */
 	@RequestMapping(value = "/insertCurrentAssets")
-	public ResultBean<Object> insertCurrentAssets(CurrentAssets currentAssets , String token){
+	public ResultBean<Object> insertCurrentAssets(CurrentAssets currentAssets , String currencyUnit , String token){
 		try {
-			resultBean = currentAssetsServiceImpl.insertCurrentAssets(currentAssets, token);
+			resultBean = currentAssetsServiceImpl.insertCurrentAssets(currentAssets , currencyUnit , token);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resultBean = new ResultBean<>();

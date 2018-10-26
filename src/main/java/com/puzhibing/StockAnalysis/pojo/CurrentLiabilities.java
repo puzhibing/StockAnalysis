@@ -30,22 +30,25 @@ public class CurrentLiabilities extends StockDataBean {
 	
 	private String nldwoy;//一年内到期的非流动负债
 	
-	private String OCL;//其他流动负债
+	private String ocl;//其他流动负债
 
-	public String getShortTermLoan() {
-		return shortTermLoan;
+	private String tcl;//流动负债合计
+
+
+	public String getStl() {
+		return stl;
 	}
 
-	public void setShortTermLoan(String shortTermLoan) {
-		this.shortTermLoan = shortTermLoan;
+	public void setStl(String stl) {
+		this.stl = stl;
 	}
 
-	public String getTransactionalFinancialLiabilities() {
-		return transactionalFinancialLiabilities;
+	public String getTfl() {
+		return tfl;
 	}
 
-	public void setTransactionalFinancialLiabilities(String transactionalFinancialLiabilities) {
-		this.transactionalFinancialLiabilities = transactionalFinancialLiabilities;
+	public void setTfl(String tfl) {
+		this.tfl = tfl;
 	}
 
 	public String getBillsPayable() {
@@ -112,31 +115,47 @@ public class CurrentLiabilities extends StockDataBean {
 		this.otherPayables = otherPayables;
 	}
 
-	public String getNonCurrentLiabilitiesDueWithinOneYear() {
-		return nonCurrentLiabilitiesDueWithinOneYear;
+	public String getNldwoy() {
+		return nldwoy;
 	}
 
-	public void setNonCurrentLiabilitiesDueWithinOneYear(String nonCurrentLiabilitiesDueWithinOneYear) {
-		this.nonCurrentLiabilitiesDueWithinOneYear = nonCurrentLiabilitiesDueWithinOneYear;
+	public void setNldwoy(String nldwoy) {
+		this.nldwoy = nldwoy;
 	}
 
-	public String getOtherCurrentLiabilities() {
-		return otherCurrentLiabilities;
+	public String getOcl() {
+		return ocl;
 	}
 
-	public void setOtherCurrentLiabilities(String otherCurrentLiabilities) {
-		this.otherCurrentLiabilities = otherCurrentLiabilities;
+	public void setOcl(String ocl) {
+		this.ocl = ocl;
 	}
+
+	public String getTcl() {
+		return tcl;
+	}
+
+	public void setTcl(String tcl) {
+		this.tcl = tcl;
+	}
+
 
 	@Override
 	public String toString() {
-		return "CurrentLiabilities [shortTermLoan=" + shortTermLoan + ", transactionalFinancialLiabilities="
-				+ transactionalFinancialLiabilities + ", billsPayable=" + billsPayable + ", accountsPayable="
-				+ accountsPayable + ", advancePayment=" + advancePayment + ", payrollPayable=" + payrollPayable
-				+ ", taxesPayable=" + taxesPayable + ", interestPayable=" + interestPayable + ", dividendPayable="
-				+ dividendPayable + ", otherPayables=" + otherPayables + ", nonCurrentLiabilitiesDueWithinOneYear="
-				+ nonCurrentLiabilitiesDueWithinOneYear + ", otherCurrentLiabilities=" + otherCurrentLiabilities + "]";
+		return "CurrentLiabilities{" +
+				"stl='" + stl + '\'' +
+				", tfl='" + tfl + '\'' +
+				", billsPayable='" + billsPayable + '\'' +
+				", accountsPayable='" + accountsPayable + '\'' +
+				", advancePayment='" + advancePayment + '\'' +
+				", payrollPayable='" + payrollPayable + '\'' +
+				", taxesPayable='" + taxesPayable + '\'' +
+				", interestPayable='" + interestPayable + '\'' +
+				", dividendPayable='" + dividendPayable + '\'' +
+				", otherPayables='" + otherPayables + '\'' +
+				", nldwoy='" + nldwoy + '\'' +
+				", ocl='" + ocl + '\'' +
+				", tcl='" + tcl + '\'' +
+				'}';
 	}
-	
-	
 }

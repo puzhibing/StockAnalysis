@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>财务数据</title>
-    <link type="text/css" rel="stylesheet" href="../../static/css/financialData.css">
+    <link type="text/css" rel="stylesheet" href="../css/financialData.css">
 </head>
 <body>
 <div class="panl">
@@ -187,7 +187,7 @@
                         <td><span>其他非流动资产：</span></td>
                         <td><input type="text" class="ONCA"></td>
                         <td><span>非流动资产合计：</span></td>
-                        <td><input type="text" class="NCA" readonly="readonly"></td>
+                        <td><input type="text" class="TNCA" readonly="readonly"></td>
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -281,6 +281,7 @@
 
             <!--非流动负债-->
             <div class="dataType" id="nonCurrentLiabilities">
+                <input class="id" type="hidden"/>
                 <table>
                     <tr>
                         <td colspan="4">
@@ -333,6 +334,8 @@
                     <tr>
                         <td><span>其他非流动负债：</span></td>
                         <td><input type="text" class="ONCL"></td>
+                        <td><span>非流动负债合计：</span></td>
+                        <td><input type="text" class="TNCL"></td>
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -344,6 +347,7 @@
 
             <!--所有者权益-->
             <div class="dataType" id="ownersEquity">
+                <input class="id" type="hidden"/>
                 <table>
                     <tr>
                         <td colspan="4">
@@ -390,6 +394,8 @@
                     <tr>
                         <td><span>未分配利润：</span></td>
                         <td><input type="text" class="undistributedProfit"></td>
+                        <td><span>所有者权益合计：</span></td>
+                        <td><input type="text" class="TOE"></td>
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -401,6 +407,7 @@
 
             <!--利润-->
             <div class="dataType" id="profit">
+                <input class="id" type="hidden"/>
                 <table>
                     <tr>
                         <td colspan="4">
@@ -508,6 +515,7 @@
 
             <!--现金流-->
             <div class="dataType" id="cashFlow">
+                <input class="id" type="hidden"/>
                 <table>
                     <tr>
                         <td colspan="4">
@@ -771,6 +779,7 @@
 
             <!--所有者权益变动-->
             <div class="dataType" id="ownersEquityChange">
+                <input class="id" type="hidden"/>
                 <table>
                     <tr>
                         <td colspan="4">
@@ -890,7 +899,7 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="../../static/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../../static/js/financialData.js"></script>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../js/financialData.js"></script>
 </body>
 </html>
