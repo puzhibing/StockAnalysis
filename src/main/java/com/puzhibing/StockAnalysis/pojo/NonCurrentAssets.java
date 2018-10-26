@@ -7,78 +7,80 @@ package com.puzhibing.StockAnalysis.pojo;
  */
 public class NonCurrentAssets extends StockDataBean {
 
-	private String availableForSaleFinancialAssets;//可供出售金融资产
+	private String afsfa;//可供出售金融资产
 	
-	private String holdingAnExpiredInvestment;//持有到期投资
+	private String haei;//持有到期投资
 	
-	private String longTermReceivables;//长期应收款
+	private String ltr;//长期应收款
 	
-	private String longTermEquityInvestment;//长期股权投资
+	private String ltbi;//长期股权投资
 	
-	private String investmentRealEstate;//投资性房地产
+	private String ire;//投资性房地产
 	
 	private String fixedAssets;//固定资产
 	
-	private String constructionInProgress;//在建工程
+	private String cap;//在建工程
 	
 	private String engineerMaterial;//工程物资
 	
-	private String fixedAssetsCleanup;//固定资产清理
+	private String fac;//固定资产清理
 	
-	private String productiveBiologicalAssets;//生产性生物资产
+	private String pba;//生产性生物资产
 	
 	private String gasolineAssets;//汽油资产
 	
 	private String intangibleAssets;//无形资产
 	
-	private String developmentExpenditure;//开发支出
+	private String de;//开发支出
 	
 	private String goodwill;//商誉
 	
-	private String longTermPrepaidExpenses;//长期待摊费用
+	private String ltpe;//长期待摊费用
 	
-	private String deferredTaxAssets;//递延所得税资产
+	private String dta;//递延所得税资产
 	
-	private String otherNonCurrentAssets;//其他非流动资产
+	private String onca;//其他非流动资产
 
-	public String getAvailableForSaleFinancialAssets() {
-		return availableForSaleFinancialAssets;
+	private String nca;//非流动资产合计
+
+	public String getAfsfa() {
+		return afsfa;
 	}
 
-	public void setAvailableForSaleFinancialAssets(String availableForSaleFinancialAssets) {
-		this.availableForSaleFinancialAssets = availableForSaleFinancialAssets;
+	public void setAfsfa(String afsfa) {
+		this.afsfa = afsfa;
 	}
 
-	public String getHoldingAnExpiredInvestment() {
-		return holdingAnExpiredInvestment;
+	public String getHaei() {
+		return haei;
 	}
 
-	public void setHoldingAnExpiredInvestment(String holdingAnExpiredInvestment) {
-		this.holdingAnExpiredInvestment = holdingAnExpiredInvestment;
+	public void setHaei(String haei) {
+		this.haei = haei;
 	}
 
-	public String getLongTermReceivables() {
-		return longTermReceivables;
+	public String getLtr() {
+		return ltr;
 	}
 
-	public void setLongTermReceivables(String longTermReceivables) {
-		this.longTermReceivables = longTermReceivables;
+	public void setLtr(String ltr) {
+		this.ltr = ltr;
 	}
 
-	public String getLongTermEquityInvestment() {
-		return longTermEquityInvestment;
+	public String getLtbi() {
+		return ltbi;
 	}
 
-	public void setLongTermEquityInvestment(String longTermEquityInvestment) {
-		this.longTermEquityInvestment = longTermEquityInvestment;
+	public void setLtbi(String ltbi) {
+		this.ltbi = ltbi;
 	}
 
-	public String getInvestmentRealEstate() {
-		return investmentRealEstate;
+	public String getIre() {
+		return ire;
 	}
 
-	public void setInvestmentRealEstate(String investmentRealEstate) {
-		this.investmentRealEstate = investmentRealEstate;
+	public void setIre(String ire) {
+		this.ire = ire;
 	}
 
 	public String getFixedAssets() {
@@ -89,12 +91,12 @@ public class NonCurrentAssets extends StockDataBean {
 		this.fixedAssets = fixedAssets;
 	}
 
-	public String getConstructionInProgress() {
-		return constructionInProgress;
+	public String getCap() {
+		return cap;
 	}
 
-	public void setConstructionInProgress(String constructionInProgress) {
-		this.constructionInProgress = constructionInProgress;
+	public void setCap(String cap) {
+		this.cap = cap;
 	}
 
 	public String getEngineerMaterial() {
@@ -105,20 +107,20 @@ public class NonCurrentAssets extends StockDataBean {
 		this.engineerMaterial = engineerMaterial;
 	}
 
-	public String getFixedAssetsCleanup() {
-		return fixedAssetsCleanup;
+	public String getFac() {
+		return fac;
 	}
 
-	public void setFixedAssetsCleanup(String fixedAssetsCleanup) {
-		this.fixedAssetsCleanup = fixedAssetsCleanup;
+	public void setFac(String fac) {
+		this.fac = fac;
 	}
 
-	public String getProductiveBiologicalAssets() {
-		return productiveBiologicalAssets;
+	public String getPba() {
+		return pba;
 	}
 
-	public void setProductiveBiologicalAssets(String productiveBiologicalAssets) {
-		this.productiveBiologicalAssets = productiveBiologicalAssets;
+	public void setPba(String pba) {
+		this.pba = pba;
 	}
 
 	public String getGasolineAssets() {
@@ -137,12 +139,12 @@ public class NonCurrentAssets extends StockDataBean {
 		this.intangibleAssets = intangibleAssets;
 	}
 
-	public String getDevelopmentExpenditure() {
-		return developmentExpenditure;
+	public String getDe() {
+		return de;
 	}
 
-	public void setDevelopmentExpenditure(String developmentExpenditure) {
-		this.developmentExpenditure = developmentExpenditure;
+	public void setDe(String de) {
+		this.de = de;
 	}
 
 	public String getGoodwill() {
@@ -153,43 +155,47 @@ public class NonCurrentAssets extends StockDataBean {
 		this.goodwill = goodwill;
 	}
 
-	public String getLongTermPrepaidExpenses() {
-		return longTermPrepaidExpenses;
+	public String getLtpe() {
+		return ltpe;
 	}
 
-	public void setLongTermPrepaidExpenses(String longTermPrepaidExpenses) {
-		this.longTermPrepaidExpenses = longTermPrepaidExpenses;
+	public void setLtpe(String ltpe) {
+		this.ltpe = ltpe;
 	}
 
-	public String getDeferredTaxAssets() {
-		return deferredTaxAssets;
+	public String getDta() {
+		return dta;
 	}
 
-	public void setDeferredTaxAssets(String deferredTaxAssets) {
-		this.deferredTaxAssets = deferredTaxAssets;
+	public void setDta(String dta) {
+		this.dta = dta;
 	}
 
-	public String getOtherNonCurrentAssets() {
-		return otherNonCurrentAssets;
+	public String getOnca() {
+		return onca;
 	}
 
-	public void setOtherNonCurrentAssets(String otherNonCurrentAssets) {
-		this.otherNonCurrentAssets = otherNonCurrentAssets;
+	public void setOnca(String onca) {
+		this.onca = onca;
+	}
+
+	public String getNca() {
+		return nca;
+	}
+
+	public void setNca(String nca) {
+		this.nca = nca;
 	}
 
 	@Override
 	public String toString() {
-		return "NonCurrentAssets [availableForSaleFinancialAssets=" + availableForSaleFinancialAssets
-				+ ", holdingAnExpiredInvestment=" + holdingAnExpiredInvestment + ", longTermReceivables="
-				+ longTermReceivables + ", longTermEquityInvestment=" + longTermEquityInvestment
-				+ ", investmentRealEstate=" + investmentRealEstate + ", fixedAssets=" + fixedAssets
-				+ ", constructionInProgress=" + constructionInProgress + ", engineerMaterial=" + engineerMaterial
-				+ ", fixedAssetsCleanup=" + fixedAssetsCleanup + ", productiveBiologicalAssets="
-				+ productiveBiologicalAssets + ", gasolineAssets=" + gasolineAssets + ", intangibleAssets="
-				+ intangibleAssets + ", developmentExpenditure=" + developmentExpenditure + ", goodwill=" + goodwill
-				+ ", longTermPrepaidExpenses=" + longTermPrepaidExpenses + ", deferredTaxAssets=" + deferredTaxAssets
-				+ ", otherNonCurrentAssets=" + otherNonCurrentAssets + "]";
+		return "NonCurrentAssets [afsfa=" + afsfa + ", haei=" + haei + ", ltr=" + ltr + ", ltbi=" + ltbi + ", ire="
+				+ ire + ", fixedAssets=" + fixedAssets + ", cap=" + cap + ", engineerMaterial=" + engineerMaterial
+				+ ", fac=" + fac + ", pba=" + pba + ", gasolineAssets=" + gasolineAssets + ", intangibleAssets="
+				+ intangibleAssets + ", de=" + de + ", goodwill=" + goodwill + ", ltpe=" + ltpe + ", dta=" + dta
+				+ ", onca=" + onca + ", nca=" + nca + "]";
 	}
+	
 	
 	
 }

@@ -10,7 +10,7 @@ public class CurrentAssets extends StockDataBean {
 	
 	private String moneyFunds;//货币资金
 	
-	private String transactionalFinancialAssets;//交易性金融资产
+	private String tfa;//交易性金融资产
 	
 	private String billReceivable;//应收票据
 	
@@ -26,9 +26,11 @@ public class CurrentAssets extends StockDataBean {
 	
 	private String stock;//存货
 	
-	private String nonCurrentAssetsDueWithinOneYear;//一年内到期的非流动资产
+	private String ncadwoy;//一年内到期的非流动资产
 	
-	private String otherCurrentAssets;//其他流动资产
+	private String oca;//其他流动资产
+	
+	private String tca;//流动资产合计
 
 	public String getMoneyFunds() {
 		return moneyFunds;
@@ -38,12 +40,12 @@ public class CurrentAssets extends StockDataBean {
 		this.moneyFunds = moneyFunds;
 	}
 
-	public String getTransactionalFinancialAssets() {
-		return transactionalFinancialAssets;
+	public String getTfa() {
+		return tfa;
 	}
 
-	public void setTransactionalFinancialAssets(String transactionalFinancialAssets) {
-		this.transactionalFinancialAssets = transactionalFinancialAssets;
+	public void setTfa(String tfa) {
+		this.tfa = tfa;
 	}
 
 	public String getBillReceivable() {
@@ -102,32 +104,39 @@ public class CurrentAssets extends StockDataBean {
 		this.stock = stock;
 	}
 
-	public String getNonCurrentAssetsDueWithinOneYear() {
-		return nonCurrentAssetsDueWithinOneYear;
+	public String getNcadwoy() {
+		return ncadwoy;
 	}
 
-	public void setNonCurrentAssetsDueWithinOneYear(String nonCurrentAssetsDueWithinOneYear) {
-		this.nonCurrentAssetsDueWithinOneYear = nonCurrentAssetsDueWithinOneYear;
+	public void setNcadwoy(String ncadwoy) {
+		this.ncadwoy = ncadwoy;
 	}
 
-	public String getOtherCurrentAssets() {
-		return otherCurrentAssets;
+	public String getOca() {
+		return oca;
 	}
 
-	public void setOtherCurrentAssets(String otherCurrentAssets) {
-		this.otherCurrentAssets = otherCurrentAssets;
+	public void setOca(String oca) {
+		this.oca = oca;
+	}
+
+	public String getTca() {
+		return tca;
+	}
+
+	public void setTca(String tca) {
+		this.tca = tca;
 	}
 
 	@Override
 	public String toString() {
-		return "CurrentAssets [moneyFunds=" + moneyFunds + ", transactionalFinancialAssets="
-				+ transactionalFinancialAssets + ", billReceivable=" + billReceivable + ", accountsReceivable="
-				+ accountsReceivable + ", prepayments=" + prepayments + ", interestReceivable=" + interestReceivable
-				+ ", dividendReceivable=" + dividendReceivable + ", otherReceivables=" + otherReceivables + ", stock="
-				+ stock + ", nonCurrentAssetsDueWithinOneYear=" + nonCurrentAssetsDueWithinOneYear
-				+ ", otherCurrentAssets=" + otherCurrentAssets + "]";
+		return "CurrentAssets [moneyFunds=" + moneyFunds + ", tfa=" + tfa + ", billReceivable=" + billReceivable
+				+ ", accountsReceivable=" + accountsReceivable + ", prepayments=" + prepayments
+				+ ", interestReceivable=" + interestReceivable + ", dividendReceivable=" + dividendReceivable
+				+ ", otherReceivables=" + otherReceivables + ", stock=" + stock + ", ncadwoy=" + ncadwoy + ", oca="
+				+ oca + ", tca=" + tca + "]";
 	}
-	
+
 	
 	
 }
