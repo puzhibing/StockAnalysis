@@ -1,4 +1,6 @@
 
+let token = "";
+
 $(function () {
 
     $(".menu nav").click(function () {
@@ -115,7 +117,7 @@ function selectionPanel(li){
     let type = th.attr("type");
     let name = th.attr("name");
 
-    $(".companyId").val(id);
+    $(".companyStockId").val(id);
     th.parents(".selectionPanel").siblings(".securitiesNumber").val(code);
     th.parents("tr").siblings("tr").find(".securitiesType").val(type);
     th.parents("tr").siblings("tr").find(".companyName").val(name);
@@ -127,7 +129,8 @@ function selectionPanel(li){
 //保存流动资产数据
 function saveCurrentAssets(){
     let div = $('.saveCurrentAssets').parents("#currentAssets");
-    let companyId = $(".companyId").val();//企业id
+    let id = div.find(".id").val();//数据id
+    let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
     let moneyFunds = div.find(".moneyFunds").val();//货币资金
@@ -141,9 +144,11 @@ function saveCurrentAssets(){
     let stock = div.find(".stock").val();//存货
     let NCADWOY = div.find(".NCADWOY").val();//一年内到期的非流动资产
     let OCA = div.find(".OCA").val();//其他流动资产
+    let TCA = div.find(".TCA").val();//流动资产合计
 
     let formData = new FormData();
-    formData.append('companyId', companyId);
+    formData.append('id', id);
+    formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('moneyFunds', moneyFunds);
@@ -157,6 +162,8 @@ function saveCurrentAssets(){
     formData.append('stock', stock);
     formData.append('ncadwoy', NCADWOY);
     formData.append('oca', OCA);
+    formData.append('tca', TCA);
+    formData.append('token', token);
 
     $.ajax({
         url: "",
@@ -177,7 +184,8 @@ function saveCurrentAssets(){
 //保存非流动资产
 function saveNonCurrentAssets(){
     let div = $('.saveNonCurrentAssets').parents("#nonCurrentAssets");
-    let companyId = $(".companyId").val();//企业id
+    let id = div.find(".id").val();//数据id
+    let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
     let AFSFA = div.find(".AFSFA").val();//可供出售金融资产
@@ -197,9 +205,11 @@ function saveNonCurrentAssets(){
     let LTPE = div.find(".LTPE").val();//长期待摊费用
     let DTA = div.find(".DTA").val();//递延所得税资产
     let ONCA = div.find(".ONCA").val();//其他非流动资产
+    let NCA = div.find(".NCA").val();//非流动资产合计
     
     let formData = new FormData();
-    formData.append('companyId', companyId);
+    formData.append('id', id);
+    formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('afsfa', AFSFA);
@@ -219,6 +229,7 @@ function saveNonCurrentAssets(){
     formData.append('ltpe', LTPE);
     formData.append('dta', DTA);
     formData.append('onca', ONCA);
+    formData.append('nca', NCA);
     
     $.ajax({
         url: '',
@@ -239,7 +250,8 @@ function saveNonCurrentAssets(){
 //保存流动负债
 function saveCurrentLiabilities(){
     let div = $('.saveCurrentLiabilities').parents("#currentLiabilities");
-    let companyId = $(".companyId").val();//企业id
+    let id = div.find(".id").val();//数据id
+    let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
     let STL = div.find(".STL").val();//短期借款
@@ -254,9 +266,11 @@ function saveCurrentLiabilities(){
     let otherPayables = div.find(".otherPayables").val();//其他应付款
     let NLDWOY = div.find(".NLDWOY").val();//一年内到期的非流动负债
     let OCL = div.find(".OCL").val();//其他流动负债
+    let TCL = div.find(".TCL").val();//流动负债合计
 
     let formData = new FormData();
-    formData.append('companyId', companyId);
+    formData.append('id', id);
+    formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('stl', STL);
@@ -271,6 +285,7 @@ function saveCurrentLiabilities(){
     formData.append('otherPayables', otherPayables);
     formData.append('nldwoy', NLDWOY);
     formData.append('ocl', OCL);
+    formData.append('tcl', TCL);
 
     $.ajax({
         url: '',
@@ -292,7 +307,8 @@ function saveCurrentLiabilities(){
 //保存非流动负债
 function saveNonCurrentLiabilities(){
     let div = $('.saveNonCurrentLiabilities').parents("#nonCurrentLiabilities");
-    let companyId = $(".companyId").val();//企业id
+    let id = div.find(".id").val();//数据id
+    let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
     let LTL = div.find(".LTL").val();//长期借款
@@ -304,7 +320,8 @@ function saveNonCurrentLiabilities(){
     let ONCL = div.find(".ONCL").val();//其他非流动负债
 
     let formData = new FormData();
-    formData.append('companyId', companyId);
+    formData.append('id', id);
+    formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('ltl', LTL);
@@ -333,7 +350,7 @@ function saveNonCurrentLiabilities(){
 //保存所有者权益
 function saveOwnersEquity(){
     let div = $('.saveOwnersEquity').parents("#ownersEquity");
-    let companyId = $(".companyId").val();//企业id
+    let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
     let PIC = div.find(".PIC").val();//实收资本
@@ -343,7 +360,7 @@ function saveOwnersEquity(){
     let undistributedProfit = div.find(".undistributedProfit").val();//未分配利润
 
     let formData = new FormData();
-    formData.append('companyId', companyId);
+    formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('pic', PIC);
@@ -371,7 +388,7 @@ function saveOwnersEquity(){
 //保存利润
 function saveProfit(){
     let div = $('.saveProfit').parents("#profit");
-    let companyId = $(".companyId").val();//企业id
+    let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
     let businessIncome = div.find(".businessIncome").val();//营业收入
@@ -399,7 +416,7 @@ function saveProfit(){
 
 
     let formData = new FormData();
-    formData.append('companyId', companyId);
+    formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('businessIncome', businessIncome);
@@ -443,7 +460,7 @@ function saveProfit(){
 //保存现金流
 function saveCashFlow(){
     let div = $('.saveCashFlow').parents("#cashFlow");
-    let companyId = $(".companyId").val();//企业id
+    let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
     let CRFSOGAS = div.find(".CRFSOGAS").val();//销售商品、提供劳务收到的现金
@@ -506,7 +523,7 @@ function saveCashFlow(){
     let TEOERFOCACE = div.find(".TEOERFOCACE").val();//汇率变动对现金及现金等价物的影响
 
     let formData = new FormData();
-    formData.append('companyId', companyId);
+    formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('crfsogas', CRFSOGAS);
@@ -587,7 +604,7 @@ function saveCashFlow(){
 
 function saveOwnersEquityChange(){
     let div = $('.saveOwnersEquityChange').parents("#ownersEquityChange");
-    let companyId = $(".companyId").val();//企业id
+    let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
     let YEBATEOLY = div.find(".YEBATEOLY").val();//上年年末余额
@@ -617,7 +634,7 @@ function saveOwnersEquityChange(){
     let BATEOTY = div.find(".BATEOTY").val();//本年年末余额
 
     let formData = new FormData();
-    formData.append('companyId', companyId);
+    formData.append('companyStockId', companyStockId);
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('yebateoly', YEBATEOLY);

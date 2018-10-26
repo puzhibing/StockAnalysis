@@ -21,10 +21,11 @@
             <nav class="cashFlow">现金流</nav>
             <nav class="ownersEquityChange">所有者权益变动</nav>
         </div>
-        <input type="hidden" class="companyId">
+        <input type="hidden" class="companyStockId">
         <div class="data">
             <!--流动资产-->
             <div class="dataType" id="currentAssets">
+                <input class="id" type="hidden"/>
                 <table>
                     <tr>
                         <td colspan="4">
@@ -89,6 +90,8 @@
                     <tr>
                         <td><span>其他流动资产：</span></td>
                         <td><input type="text"class="OCA"></td>
+                        <td><span>流动资产合计：</span></td>
+                        <td><input type="text"class="TCA" readonly="readonly"></td>
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -100,6 +103,7 @@
 
             <!--非流动资产-->
             <div class="dataType" id="nonCurrentAssets">
+                <input class="id" type="hidden"/>
                 <table>
                     <tr>
                         <td colspan="4">
@@ -182,6 +186,8 @@
                     <tr>
                         <td><span>其他非流动资产：</span></td>
                         <td><input type="text" class="ONCA"></td>
+                        <td><span>非流动资产合计：</span></td>
+                        <td><input type="text" class="NCA" readonly="readonly"></td>
                     </tr>
                     <tr>
                         <td colspan="4">
@@ -193,6 +199,7 @@
 
             <!--流动负债-->
             <div class="dataType" id="currentLiabilities">
+                <input class="id" type="hidden"/>
                 <table>
                     <tr>
                         <td colspan="4">
@@ -259,6 +266,10 @@
                         <td><input type="text" class="NLDWOY"></td>
                         <td><span>其他流动负债：</span></td>
                         <td><input type="text" class="OCL"></td>
+                    </tr>
+                    <tr>
+                        <td><span>流动负债合计：</span></td>
+                        <td><input type="text" class="TCL" readonly="readonly"></td>
                     </tr>
                     <tr>
                         <td colspan="4">
