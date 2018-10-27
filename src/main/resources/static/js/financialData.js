@@ -1,5 +1,5 @@
 
-var token = "";
+let token = "";
 
 $(function () {
 
@@ -188,7 +188,7 @@ function resetCurrentAssets(){
     $(".companyStockId").val("");//企业证券id
     div.find(".dataTime").val("");//数据日期
     div.find(".currencyUnit").val("1");//单位
-    div.find(".currencyUnit").children('option:first').attr('selected','selected');
+    div.find(".currencyUnit").children('option:first').attr('selected' , 'selected');
     div.find(".moneyFunds").val("");//货币资金
     div.find(".TFA").val("");//交易性金融资产
     div.find(".billReceivable").val("");//应收票据
@@ -430,7 +430,7 @@ function saveNonCurrentLiabilities(){
 function resetNonCurrentLiabilities(){
 	let div = $('.saveNonCurrentLiabilities').parents("#nonCurrentLiabilities");
     div.find(".id").val('');//数据id
-    $(".companyStockId").val'();//企业证券id
+    $(".companyStockId").val('');//企业证券id
     div.find(".dataTime").val('');//数据日期
     div.find(".currencyUnit").val("1");//单位
     div.find(".currencyUnit").children('option:first').attr('selected','selected');
