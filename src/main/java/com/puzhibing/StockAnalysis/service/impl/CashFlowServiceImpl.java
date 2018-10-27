@@ -56,11 +56,11 @@ public class CashFlowServiceImpl implements CashFlowService {
 		if(null != cashFlow && !(StringUtils.isEmpty(currencyUnit) && StringUtils.isEmpty(token))) {
 			cashFlow = (CashFlow)unitCalculationUtil.calculation(currencyUnit , cashFlow , CashFlow.class);
 			
-			user = tokenutil.tokenToUser(token);
+//			user = tokenutil.tokenToUser(token);
 			cashFlow.setId(uuidutil.getUUID());
 			cashFlow.setDel("0");
 			cashFlow.setInsertTime(new Date());
-			cashFlow.setInsertUserId(user.getId());
+//			cashFlow.setInsertUserId(user.getId());
 			try {
 				cashFlowMapper.insertCashFlow(cashFlow);
 				resultBean.setB(true);

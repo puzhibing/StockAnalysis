@@ -47,11 +47,11 @@ public class OwnersEquityServiceImpl implements OwnersEquityService {
 		if(null != ownersEquity && !(StringUtils.isEmpty(currencyUnit) && StringUtils.isEmpty(token))) {
 			ownersEquity = (OwnersEquity)unitCalculationUtil.calculation(currencyUnit , ownersEquity , OwnersEquity.class);
 			
-			user = tokenutil.tokenToUser(token);
+//			user = tokenutil.tokenToUser(token);
 			ownersEquity.setId(uuidutil.getUUID());
 			ownersEquity.setDel("0");
 			ownersEquity.setInsertTime(new Date());
-			ownersEquity.setInsertUserId(user.getId());
+//			ownersEquity.setInsertUserId(user.getId());
 			try {
 				ownersEquityMapper.insertOwnersEquity(ownersEquity);
 				resultBean.setB(true);

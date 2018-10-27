@@ -15,14 +15,12 @@ public class CurrentLiabilitiesSql {
 	public String insertCurrentLiabilities(CurrentLiabilities currentLiabilities) {
 		return new SQL() {{
 			INSERT_INTO("t_currentLiabilities");
-			INTO_COLUMNS("id , companyStockId , dataTime , shortTermLoan , transactionalFinancialLiabilities , billsPayable");
-			INTO_COLUMNS("accountsPayable , advancePayment , payrollPayable , taxesPayable , interestPayable , dividendPayable");
-			INTO_COLUMNS("otherPayables , nonCurrentLiabilitiesDueWithinOneYear , otherCurrentLiabilities");
+			INTO_COLUMNS("id , companyStockId , dataTime , stl , tfl , billsPayable , accountsPayable , advancePayment , payrollPayable");
+			INTO_COLUMNS("taxesPayable , interestPayable , dividendPayable , otherPayables , nldwoy , ocl , tcl");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
-			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{shortTermLoan} , #{transactionalFinancialLiabilities} , #{billsPayable}");
-			INTO_VALUES("#{accountsPayable} , #{advancePayment} , #{payrollPayable} , #{taxesPayable} , #{interestPayable} , #{dividendPayable}");
-			INTO_VALUES("#{otherPayables} , #{nonCurrentLiabilitiesDueWithinOneYear} , #{otherCurrentLiabilities}");
+			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{stl} , #{tfl} , #{billsPayable} , #{accountsPayable} , #{advancePayment} , #{payrollPayable}");
+			INTO_VALUES("#{taxesPayable} , #{interestPayable} , #{dividendPayable} , #{otherPayables} , #{nldwoy} , #{ocl , #{tcl}}");
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}

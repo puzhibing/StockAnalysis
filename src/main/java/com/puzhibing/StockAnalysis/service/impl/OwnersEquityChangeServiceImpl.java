@@ -56,11 +56,11 @@ public class OwnersEquityChangeServiceImpl implements OwnersEquityChangeService 
 		if(null != ownersEquityChange && !(StringUtils.isEmpty(currencyUnit) && StringUtils.isEmpty(token))) {
 			ownersEquityChange = (OwnersEquityChange)unitCalculationUtil.calculation(currencyUnit , ownersEquityChange , OwnersEquityChange.class);
 			
-			user = tokenutil.tokenToUser(token);
+//			user = tokenutil.tokenToUser(token);
 			ownersEquityChange.setId(uuidutil.getUUID());
 			ownersEquityChange.setDel("0");
 			ownersEquityChange.setInsertTime(new Date());
-			ownersEquityChange.setInsertUserId(user.getId());
+//			ownersEquityChange.setInsertUserId(user.getId());
 			try {
 				ownersEquityChangeMapper.insertOwnersEquityChange(ownersEquityChange);
 				resultBean.setB(true);

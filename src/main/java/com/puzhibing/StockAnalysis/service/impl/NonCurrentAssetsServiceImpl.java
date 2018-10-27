@@ -55,11 +55,11 @@ public class NonCurrentAssetsServiceImpl implements NonCurrentAssetsService {
 		if(null != nonCurrentAssets && !StringUtils.isEmpty(token)) {
 			nonCurrentAssets = (NonCurrentAssets)unitCalculationUtil.calculation(currencyUnit , nonCurrentAssets , NonCurrentAssets.class);
 
-			user = tokenutil.tokenToUser(token);
+//			user = tokenutil.tokenToUser(token);
 			nonCurrentAssets.setId(uuidutil.getUUID());
 			nonCurrentAssets.setDel("0");
 			nonCurrentAssets.setInsertTime(new Date());
-			nonCurrentAssets.setInsertUserId(user.getId());
+//			nonCurrentAssets.setInsertUserId(user.getId());
 			try {
 				nonCurrentAssetsMapper.insertNonCurrentAssets(nonCurrentAssets);
 				resultBean.setB(true);

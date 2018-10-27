@@ -15,15 +15,12 @@ public class NonCurrentAssetsSql {
 	public String insertNonCurrentAssets(NonCurrentAssets nonCurrentAssets) {
 		return new SQL() {{
 			INSERT_INTO("t_nonCurrentAssets");
-			INTO_COLUMNS("id , companyStockId , dataTime , availableForSaleFinancialAssets , holdingAnExpiredInvestment");
-			INTO_COLUMNS("longTermReceivables , longTermEquityInvestment , investmentRealEstate , fixedAssets , constructionInProgress");
-			INTO_COLUMNS("engineerMaterial , fixedAssetsCleanup , productiveBiologicalAssets , gasolineAssets , intangibleAssets");
-			INTO_COLUMNS("developmentExpenditure , goodwill , longTermPrepaidExpenses , deferredTaxAssets , otherNonCurrentAssets");
+			INTO_COLUMNS("id , companyStockId , dataTime , afsfa , haei , ltr , ltbi , ire , fixedAssets , cap , engineerMaterial");
+			INTO_COLUMNS("fac , pba , gasolineAssets , intangibleAssets , de , goodwill , ltpe , dta , onca , tnca");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
-			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{availableForSaleFinancialAssets} , #{holdingAnExpiredInvestment}");
-			INTO_VALUES("#{longTermReceivables} , #{longTermEquityInvestment} , #{investmentRealEstate} , #{fixedAssets} , #{constructionInProgress}");
-			INTO_VALUES("#{engineerMaterial} , #{fixedAssetsCleanup} , #{productiveBiologicalAssets} , #{gasolineAssets} , #{intangibleAssets}");
-			INTO_VALUES("#{developmentExpenditure} , #{goodwill} , #{longTermPrepaidExpenses} , #{deferredTaxAssets} , #{otherNonCurrentAssets}");
+			
+			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{afsfa} , #{haei} , #{ltr} , #{ltbi} , #{ire} , #{fixedAssets} , #{cap} , #{engineerMaterial}");
+			INTO_VALUES("#{fac} , #{pba} , #{gasolineAssets} , #{intangibleAssets} , #{de} , #{goodwill} , #{ltpe} , #{dta} , #{onca} , #{tnca}");
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}

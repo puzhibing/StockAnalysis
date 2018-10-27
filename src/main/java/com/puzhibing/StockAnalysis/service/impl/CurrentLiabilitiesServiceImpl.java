@@ -56,11 +56,11 @@ public class CurrentLiabilitiesServiceImpl implements CurrentLiabilitiesService 
 		if(null != currentLiabilities && !(StringUtils.isEmpty(token) && StringUtils.isEmpty(currencyUnit))) {
 			currentLiabilities = (CurrentLiabilities)unitCalculationUtil.calculation(currencyUnit , currentLiabilities , CurrentLiabilities.class);
 			
-			user = tokenutil.tokenToUser(token);
+//			user = tokenutil.tokenToUser(token);
 			currentLiabilities.setId(uuidutil.getUUID());
 			currentLiabilities.setDel("0");
 			currentLiabilities.setInsertTime(new Date());
-			currentLiabilities.setInsertUserId(user.getId());
+//			currentLiabilities.setInsertUserId(user.getId());
 			try {
 				currentLiabilitiesMapper.insertCurrentLiabilities(currentLiabilities);
 				resultBean.setB(true);

@@ -9,7 +9,11 @@ import com.puzhibing.StockAnalysis.pojo.ResultBean;
 import com.puzhibing.StockAnalysis.service.NonCurrentAssetsService;
 
 
-
+/**
+ * 非流动资产
+ * @author asus
+ *
+ */
 @RestController
 public class NonCurrentAssetsController {
 

@@ -172,12 +172,35 @@ function saveCurrentAssets(){
         contentType: false,
         data: formData,
         success: function (res) {
-            if(res.status){
-                alert("保存成功");
+            if(res.b){
+            	resetCurrentAssets();
             }
         }
     });
 
+}
+
+
+//重置流动资产表单
+function resetCurrentAssets(){
+	let div = $('.saveCurrentAssets').parents("#currentAssets");
+	div.find(".id").val("");//数据id
+    $(".companyStockId").val("");//企业证券id
+    div.find(".dataTime").val("");//数据日期
+    div.find(".currencyUnit").val("1");//单位
+    div.find(".currencyUnit").children('option:first').attr('selected','selected');
+    div.find(".moneyFunds").val("");//货币资金
+    div.find(".TFA").val("");//交易性金融资产
+    div.find(".billReceivable").val("");//应收票据
+    div.find(".accountsReceivable").val("");//应收账款
+    div.find(".prepayments").val("");//预付账款
+    div.find(".interestReceivable").val("");//应收利息
+    div.find(".dividendReceivable").val("");//应收股利
+    div.find(".otherReceivables").val("");//其他应收款
+    div.find(".stock").val("");//存货
+    div.find(".NCADWOY").val("");//一年内到期的非流动资产
+    div.find(".OCA").val("");//其他流动资产
+    div.find(".TCA").val("");//流动资产合计
 }
 
 
@@ -232,18 +255,48 @@ function saveNonCurrentAssets(){
     formData.append('tnca', TNCA);
     
     $.ajax({
-        url: '',
+        url: '/insertNonCurrentAssets',
         type: 'POST',
         processData: false,
         contentType: false,
         data: formData,
         success: function (res) {
-            if(res.status){
-                alert('122');
+            if(res.b){
+            	resetNonCurrentAssets();
             }
         }
     });
 }
+
+
+//重置非流动资产表单
+function resetNonCurrentAssets(){
+	let div = $('.saveNonCurrentAssets').parents("#nonCurrentAssets");
+    div.find(".id").val('');//数据id
+    $(".companyStockId").val('');//企业证券id
+    div.find(".dataTime").val('');//数据日期
+    div.find(".currencyUnit").val("1");//单位
+    div.find(".currencyUnit").children('option:first').attr('selected','selected');
+    div.find(".AFSFA").val('');//可供出售金融资产
+    div.find(".HAEI").val('');//持有到期投资
+    div.find(".LTR").val('');//长期应收款
+    div.find(".LTEI").val('');//长期股权投资
+    div.find(".IRE").val('');//投资性房地产
+    div.find(".fixedAssets").val('');//固定资产
+    div.find(".CAP").val('');//在建工程
+    div.find(".engineerMaterial").val('');//工程物资
+    div.find(".FAC").val('');//固定资产清理
+    div.find(".PBA").val('');//生产性生物资产
+    div.find(".gasolineAssets").val('');//汽油资产
+    div.find(".intangibleAssets").val('');//无形资产
+    div.find(".DE").val('');//开发支出
+    div.find(".goodwill").val('');//商誉
+    div.find(".LTPE").val('');//长期待摊费用
+    div.find(".DTA").val('');//递延所得税资产
+    div.find(".ONCA").val('');//其他非流动资产
+    div.find(".TNCA").val('');//非流动资产合计
+}
+
 
 
 
@@ -288,18 +341,42 @@ function saveCurrentLiabilities(){
     formData.append('tcl', TCL);
 
     $.ajax({
-        url: '',
+        url: '/insertCurrentLiabilities',
         type: 'POST',
         processData: false,
         contentType: false,
         data: formData,
         success: function (res) {
-            if(res.status){
-                alert('122');
+            if(res.b){
+            	resetCurrentLiabilities();
             }
         }
     });
 
+}
+
+
+//重置流动负债表单
+function resetCurrentLiabilities(){
+	let div = $('.saveCurrentLiabilities').parents("#currentLiabilities");
+    div.find(".id").val('');//数据id
+    $(".companyStockId").val('');//企业证券id
+    div.find(".dataTime").val('');//数据日期
+    div.find(".currencyUnit").val("1");//单位
+    div.find(".currencyUnit").children('option:first').attr('selected','selected');
+    div.find(".STL").val('');//短期借款
+    div.find(".TFL").val('');//交易性金融负债
+    div.find(".billsPayable").val('');//应付票据
+    div.find(".accountsPayable").val('');//应付账款
+    div.find(".advancePayment").val('');//预收款项
+    div.find(".payrollPayable").val('');//应付职工薪酬
+    div.find(".taxesPayable").val('');//应交税费
+    div.find(".interestPayable").val('');//应付利息
+    div.find(".dividendPayable").val('');//应付股利
+    div.find(".otherPayables").val('');//其他应付款
+    div.find(".NLDWOY").val('');//一年内到期的非流动负债
+    div.find(".OCL").val('');//其他流动负债
+    div.find(".TCL").val('');//流动负债合计
 }
 
 
@@ -341,12 +418,35 @@ function saveNonCurrentLiabilities(){
         contentType: false,
         data: formData,
         success: function (res) {
-            if(res.status){
-                alert('122');
+            if(res.b){
+            	resetNonCurrentLiabilities();
             }
         }
     });
 }
+
+
+//重置非流动负债表单
+function resetNonCurrentLiabilities(){
+	let div = $('.saveNonCurrentLiabilities').parents("#nonCurrentLiabilities");
+    div.find(".id").val('');//数据id
+    $(".companyStockId").val'();//企业证券id
+    div.find(".dataTime").val('');//数据日期
+    div.find(".currencyUnit").val("1");//单位
+    div.find(".currencyUnit").children('option:first').attr('selected','selected');
+    div.find(".LTL").val('');//长期借款
+    div.find(".bondsPayable").val('');//应付债券
+    div.find(".LTP").val('');//长期应付款
+    div.find(".specialPayable").val('');//专项应付款
+    div.find(".estimatedLiabilities").val('');//预计负债
+    div.find(".DITL").val('');//递延所得税负债
+    div.find(".ONCL").val('');//其他非流动负债
+    div.find(".TNCL").val('');//非流动负债合计
+}
+
+
+
+
 
 
 //保存所有者权益
@@ -376,18 +476,36 @@ function saveOwnersEquity(){
     formData.append('toe', TOE);
 
     $.ajax({
-        url: '',
+        url: '/insertOwnersEquity',
         type: 'POST',
         processData: false,
         contentType: false,
         data: formData,
         success: function (res) {
-            if(res.status){
-                alert('122');
+            if(res.b){
+            	resetOwnersEquity();
             }
         }
     });
 }
+
+
+//重置所有者权益表单
+function resetOwnersEquity(){
+	let div = $('.saveOwnersEquity').parents("#ownersEquity");
+    div.find(".id").val('');//数据id
+    $(".companyStockId").val('');//企业证券id
+    div.find(".dataTime").val('');//数据日期
+    div.find(".currencyUnit").val("1");//单位
+    div.find(".currencyUnit").children('option:first').attr('selected','selected');
+    div.find(".PIC").val('');//实收资本
+    div.find(".capitalReserve").val('');//资本公积
+    div.find(".LTS").val('');//减：库存股
+    div.find(".surplusReserve").val('');//盈余公积
+    div.find(".undistributedProfit").val('');//未分配利润
+    div.find(".TOE").val('');//所有者权益合计
+}
+
 
 
 
@@ -451,18 +569,53 @@ function saveProfit(){
     formData.append('deps', DEPS);
 
     $.ajax({
-        url: '',
+        url: '/insertProfit',
         type: 'POST',
         processData: false,
         contentType: false,
         data: formData,
         success: function (res) {
-            if(res.status){
-                alert('122');
+            if(res.b){
+            	resetProfit();
             }
         }
     });
 }
+
+//重置利润表单
+function resetProfit(){
+	let div = $('.saveProfit').parents("#profit");
+    div.find(".id").val('');//数据id
+    $(".companyStockId").val('');//企业证券id
+    div.find(".dataTime").val('');//数据日期
+    div.find(".currencyUnit").val("1");//单位
+    div.find(".currencyUnit").children('option:first').attr('selected','selected');
+    div.find(".businessIncome").val('');//营业收入
+    div.find(".operatingCost").val('');//营业成本
+    div.find(".BTAA").val('');//营业税金及附加
+    div.find(".sellingExpenses").val('');//销售费用
+    div.find(".managementCost").val('');//管理费用
+    div.find(".financialCost").val('');//财务费用
+    div.find(".AIL").val('');//资产减值损失
+    div.find(".FVCI").val('');//公允价值变动收益
+    div.find(".IFI").val('');//投资收益
+    div.find(".IIOJVAJV").val('');//联营企业和合营企业投资收益
+    div.find(".OII").val('');//其他投资收益
+    div.find(".operatingProfit").val('');//营业利润
+    div.find(".NOI").val('');//营业外收入
+    div.find(".NOE").val('');//营业外支出
+    div.find(".PALDOIA").val('');//非流动资产处置损益
+    div.find(".ONOE").val('');//其他营业外支出
+    div.find(".totalProfit").val('');//利润总额
+    div.find(".ITE").val('');//所得税费用
+    div.find(".netProfit").val('');//净利润
+    div.find(".EPS").val('');//每股收益
+    div.find(".BEPS").val('');//基本每股收益
+    div.find(".DEPS").val('');//稀释每股收益
+}
+
+
+
 
 
 //保存现金流
@@ -597,18 +750,91 @@ function saveCashFlow(){
 
 
     $.ajax({
-        url: '',
+        url: '/insertCashFlow',
         type: 'POST',
         processData: false,
         contentType: false,
         data: formData,
         success: function (res) {
-            if(res.status){
-                alert('122');
+            if(res.b){
+            	resetCashFlow();
             }
         }
     });
 }
+
+
+//重置现金流表单
+function resetCashFlow(){
+	let div = $('.saveCashFlow').parents("#cashFlow")
+    div.find(".id").val('');//数据id
+    $(".companyStockId").val('');//企业证券id
+    div.find(".dataTime").val('');//数据日期
+    div.find(".currencyUnit").val("1");//单位
+    div.find(".currencyUnit").children('option:first').attr('selected','selected');
+    div.find(".CRFSOGAS").val('');//销售商品、提供劳务收到的现金
+    div.find(".ROT").val('');//收到的税费返还
+    div.find(".OCRTBAR").val('');//收到的其他与经营活动相关的现金
+    div.find(".CIIOA").val('');//经营活动现金流入小计
+    div.find(".CPFGAS").val('');//购买商品、接受劳务支付的现金
+    div.find(".POATOT").val('');//支付的各项税费
+    div.find(".POOCRTBA").val('');//支付其他与经营活动有关的现金
+    div.find(".CFFOA").val('');//经营活动现金流出小计
+    div.find(".NCFFOA").val('');//经营活动产生的现金流净额
+    div.find(".CRFIR").val('');//收回投资收到的现金
+    div.find(".CRFII").val('');//取得投资收益收到的现金
+    div.find(".NCIDOFAIAAOAITPP").val('');//处置固定资产、无形资产和其他上期资产收回的现金净额
+    div.find(".NCRFDOSAOBU").val('');//处置子公司及其他营业单位收到的现金净额
+    div.find(".OCRTIAHBR").val('');//收到其他与投资活动相关的现金
+    div.find(".CIOIA").val('');//投资活动现金流入小计
+    div.find(".COFAIAAOCPFPI").val('');//构建固定资产、无形资产和其他上期投资支付的现金
+    div.find(".CPFI").val('');//投资支付的现金
+    div.find(".NCPBSAOBU").val('');//取得子公司及其他营业单位支付的现金净额
+    div.find(".POOCRTIA").val('');//支付其他与投资活动有关的现金
+    div.find(".CFOOIA").val('');//投资活动现金流出小计
+    div.find(".NCFFIA").val('');//投资活动产生的现金流净额
+    div.find(".CRFI").val('');//吸收投资收到的现金
+    div.find(".CRFB").val('');//取得借款收到的现金
+    div.find(".OCRTFAR").val('');//收到其他与筹资活动有关的现金
+    div.find(".CIOFA").val('');//筹资活动现金流入小计
+    div.find(".CFDR").val('');//偿还债务支出的现金
+    div.find(".CPFDPOIP").val('');//分配股利、利润或偿付利息支付的现金
+    div.find(".POOCRTFA").val('');//支付其他与筹资活动有关的现金
+    div.find(".CFOOFA").val('');//筹资活动现金流出小计
+    div.find(".NCFGBFRA").val('');//筹资活动产生的现金流量净额
+    div.find(".NP").val('');//净利润
+    div.find(".AIP").val('');//资产减值准备
+    div.find(".DOFAGADADOPBA").val('');//固定资产折旧、汽油资产拆耗、生产性生物资产折旧
+    div.find(".AOIA").val('');//无形资产摊销
+    div.find(".AOLTPE").val('');//长期待摊费用摊销
+    div.find(".LOIFFAIAAOLTA").val('');//处置固定资产、无形资产和其他长期资产的损失（收益）
+    div.find(".LOSOFA").val('');//固定资产报废损失
+    div.find(".LOFVC").val('');//公允值变动损失
+    div.find(".FC").val('');//财务费用
+    div.find(".LL").val('');//投资损失
+    div.find(".DITAD").val('');//递延所得税资产减少
+    div.find(".IIIDITL").val('');//递延所得税负债增加
+    div.find(".LR").val('');//存货的减少
+    div.find(".DIORI").val('');//经营性应收项目的减少
+    div.find(".IIOPI").val('');//经营性应付项目的增加
+    div.find(".Other").val('');//其他
+    div.find(".NCFFOAc").val('');//经营活动产生的现金流量净额
+    div.find(".DTC").val('');//债务转为资本
+    div.find(".SCBDWOY").val('');//一年内到期的可转换公司债券
+    div.find(".FLOFA").val('');//融资租入固定资产
+    div.find(".CATEOTP").val('');//现金的期末余额
+    div.find(".IBOC").val('');//现金的期初余额
+    div.find(".EBOCE").val('');//现金等价物的期末余额
+    div.find(".IBOCE").val('');//现金等价物的期初余额
+    div.find(".CACEATBOTY").val('');//期初现金及现金等价物余额
+    div.find(".BOCACEAEOT").val('');//期末现金及现金等价物余额
+    div.find(".NIICACE").val('');//现金及现金等价物净增加额
+    div.find(".TEOERFOCACE").val('');//汇率变动对现金及现金等价物的影响
+}
+
+
+
+
 
 
 //保存所有者权益变动
@@ -676,15 +902,51 @@ function saveOwnersEquityChange(){
     formData.append('bateoty', BATEOTY);
 
     $.ajax({
-        url: '',
+        url: '/insertOwnersEquityChange',
         type: 'POST',
         processData: false,
         contentType: false,
         data: formData,
         success: function (res) {
-            if(res.status){
-                alert('122');
+            if(res.b){
+            	resetOwnersEquityChange();
             }
         }
     });
+}
+
+
+//重置所有者权益表单
+function resetOwnersEquityChange(){
+	let div = $('.saveOwnersEquityChange').parents("#ownersEquityChange");
+    div.find(".id").val('');//数据id
+    $(".companyStockId").val('');//企业证券id
+    div.find(".dataTime").val('');//数据日期
+    div.find(".currencyUnit").val("1");//单位
+    div.find(".currencyUnit").children('option:first').attr('selected','selected');
+    div.find(".YEBATEOLY").val('');//上年年末余额
+    div.find(".APC").val('');//会计政策变更
+    div.find(".EEC").val('');//前期差错更正
+    div.find(".BATBOTY").val('');//本年年初余额
+    div.find(".AOIODITCY").val('');//本年增减变动金额
+    div.find(".NP").val('');//净利润
+    div.find(".GALDIIOE").val('');//直接计入所有者权益的利得和损失
+    div.find(".NCIFVOAFSFA").val('');//可供出售金融资产公允值变动净额
+    div.find(".TIOCIOORAIOIUUEM").val('');//权益法下被投资单位其他所有者权益变动的影响
+    div.find(".ITRTOEI").val('');//与计入所有者权益项目相关的所得税影响
+    div.find(".other1").val('');//其他
+    div.find(".OIARC").val('');//所有者投入和减少资本
+    div.find(".CIBO").val('');//所有者投入资本
+    div.find(".TAOSPIITOE").val('');//股份支付计入所有者权益的金额
+    div.find(".other2").val('');//其他
+    div.find(".PD").val('');//利润分配
+    div.find(".ESR").val('');//提取盈余公积
+    div.find(".DOOOS").val('');//对所有者（或股东）的分配
+    div.find(".other3").val('');//其他
+    div.find(".ITOOE").val('');//所有者权益内部结转
+    div.find(".CSICOCS").val('');//资本公积转增资本（或股本）
+    div.find(".SSTICOCS").val('');//盈余公积转增资本（或股本）
+    div.find(".SSTMUFL").val('');//盈余公积弥补亏损
+    div.find(".other4").val('');//其他
+    div.find(".BATEOTY").val('');//本年年末余额
 }

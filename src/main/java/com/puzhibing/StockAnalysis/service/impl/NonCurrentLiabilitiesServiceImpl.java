@@ -53,11 +53,11 @@ public class NonCurrentLiabilitiesServiceImpl implements NonCurrentLiabilitiesSe
 			nonCurrentLiabilities = (NonCurrentLiabilities) unitCalculationUtil.calculation(currencyUnit,
 					nonCurrentLiabilities, NonCurrentLiabilities.class);
 
-			user = tokenutil.tokenToUser(token);
+//			user = tokenutil.tokenToUser(token);
 			nonCurrentLiabilities.setId(uuidutil.getUUID());
 			nonCurrentLiabilities.setDel("0");
 			nonCurrentLiabilities.setInsertTime(new Date());
-			nonCurrentLiabilities.setInsertUserId(user.getId());
+//			nonCurrentLiabilities.setInsertUserId(user.getId());
 			try {
 				nonCurrentLiabilitiesMapper.insertNonCurrentLiabilities(nonCurrentLiabilities);
 				resultBean.setB(true);

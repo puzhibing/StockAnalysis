@@ -16,12 +16,13 @@ public class CurrentAssetsSql {
 	public String insertCurrentAssets(CurrentAssets currentAssets) {
 		return new SQL() {{
 			INSERT_INTO("t_currentAssets");
-			INTO_COLUMNS("id , companyStockId , dataTime , moneyFunds , transactionalFinancialAssets , billReceivable");
-			INTO_COLUMNS("accountsReceivable , prepayments , interestReceivable , dividendReceivable , otherReceivables");
-			INTO_COLUMNS("stock , nonCurrentAssetsDueWithinOneYear , otherCurrentAssets , del , insertUserId , insertTime , updateUserId , updateTime");
-			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{moneyFunds} , #{transactionalFinancialAssets} , #{billReceivable}");
-			INTO_VALUES("#{accountsReceivable} , #{prepayments} , #{interestReceivable} , #{dividendReceivable} , #{otherReceivables}");
-			INTO_VALUES("#{stock} , #{nonCurrentAssetsDueWithinOneYear} , #{otherCurrentAssets} , #{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
+			INTO_COLUMNS("id , companyStockId , dataTime , moneyFunds , tfa , billReceivable , accountsReceivable , prepayments");
+			INTO_COLUMNS("interestReceivable , dividendReceivable , otherReceivables , stock , ncadwoy , oca , tca");
+			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
+			
+			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{moneyFunds} , #{tfa} , #{billReceivable} , #{accountsReceivable} , #{prepayments}");
+			INTO_VALUES("#{interestReceivable} , #{dividendReceivable} , #{otherReceivables} , #{stock} , #{ncadwoy} , #{oca} , #{tca}");
+			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}
 	

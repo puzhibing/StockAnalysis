@@ -15,12 +15,10 @@ public class NonCurrentLiabilitiesSql {
 	public String insertNonCurrentLiabilities(NonCurrentLiabilities nonCurrentLiabilities) {
 		return new SQL() {{
 			INSERT_INTO("t_nonCurrentLiabilities");
-			INTO_COLUMNS("id , companyStockId , dataTime , longTermLoan , bondsPayable , longTermPayables");
-			INTO_COLUMNS("specialPayable , estimatedLiabilities , deferredIncomeTaxLiabilities , otherNonCurrentLiabilities");
+			INTO_COLUMNS("id , companyStockId , dataTime , ltl , bondsPayable , ltp , specialPayable , estimatedLiabilities , ditl , dncl , tncl");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
-			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{longTermLoan} , #{bondsPayable} , #{longTermPayables}");
-			INTO_VALUES("#{specialPayable} , #{estimatedLiabilities} , #{deferredIncomeTaxLiabilities} , #{otherNonCurrentLiabilities}");
+			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{ltl} , #{bondsPayable} , #{ltp} , #{specialPayable} , #{estimatedLiabilities} , #{ditl} , #{dncl} , #{tncl}");
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}
