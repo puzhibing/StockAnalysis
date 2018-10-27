@@ -15,7 +15,7 @@ public interface CurrentLiabilitiesService {
 	 * @return
 	 * @throws Exception
 	 */
-	ResultBean<Object> insertCurrentLiabilities(CurrentLiabilities currentLiabilities , String token) throws Exception;
+	ResultBean<Object> insertCurrentLiabilities(CurrentLiabilities currentLiabilities , String currencyUnit , String token) throws Exception;
 	
 	
 	

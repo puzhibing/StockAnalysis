@@ -15,6 +15,7 @@ import com.puzhibing.StockAnalysis.pojo.User;
 import com.puzhibing.StockAnalysis.service.CurrentLiabilitiesService;
 import com.puzhibing.StockAnalysis.utils.TokenUtil;
 import com.puzhibing.StockAnalysis.utils.UUIDUtil;
+import com.puzhibing.StockAnalysis.utils.UnitCalculationUtil;
 
 
 @Service
@@ -28,6 +29,9 @@ public class CurrentLiabilitiesServiceImpl implements CurrentLiabilitiesService 
 	
 	@Autowired
 	private CurrentLiabilitiesMapper currentLiabilitiesMapper;
+	
+	@Autowired
+	private UnitCalculationUtil unitCalculationUtil;
 	
 	private ResultBean<Object> resultBean;
 	
@@ -46,10 +50,12 @@ public class CurrentLiabilitiesServiceImpl implements CurrentLiabilitiesService 
 	 * @throws Exception
 	 */
 	@Override
-	public ResultBean<Object> insertCurrentLiabilities(CurrentLiabilities currentLiabilities, String token)
+	public ResultBean<Object> insertCurrentLiabilities(CurrentLiabilities currentLiabilities , String currencyUnit , String token)
 			throws Exception {
 		resultBean = new ResultBean<>();
-		if(null != currentLiabilities && !StringUtils.isEmpty(token)) {
+		if(null != currentLiabilities && !(StringUtils.isEmpty(token) && StringUtils.isEmpty(currencyUnit))) {
+			currentLiabilities = (CurrentLiabilities)unitCalculationUtil.calculation(currencyUnit , currentLiabilities , CurrentLiabilities.class);
+			
 			user = tokenutil.tokenToUser(token);
 			currentLiabilities.setId(uuidutil.getUUID());
 			currentLiabilities.setDel("0");

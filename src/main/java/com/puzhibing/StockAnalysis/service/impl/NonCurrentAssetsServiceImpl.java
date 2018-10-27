@@ -15,6 +15,7 @@ import com.puzhibing.StockAnalysis.pojo.User;
 import com.puzhibing.StockAnalysis.service.NonCurrentAssetsService;
 import com.puzhibing.StockAnalysis.utils.TokenUtil;
 import com.puzhibing.StockAnalysis.utils.UUIDUtil;
+import com.puzhibing.StockAnalysis.utils.UnitCalculationUtil;
 
 
 
@@ -29,6 +30,9 @@ public class NonCurrentAssetsServiceImpl implements NonCurrentAssetsService {
 	
 	@Autowired
 	private NonCurrentAssetsMapper nonCurrentAssetsMapper;
+	
+	@Autowired
+	private UnitCalculationUtil unitCalculationUtil;
 	
 	private ResultBean<Object> resultBean;
 	
@@ -46,9 +50,11 @@ public class NonCurrentAssetsServiceImpl implements NonCurrentAssetsService {
 	 * @return
 	 */
 	@Override
-	public ResultBean<Object> insertNonCurrentAssets(NonCurrentAssets nonCurrentAssets, String token) throws Exception {
+	public ResultBean<Object> insertNonCurrentAssets(NonCurrentAssets nonCurrentAssets , String currencyUnit , String token) throws Exception {
 		resultBean = new ResultBean<>();
 		if(null != nonCurrentAssets && !StringUtils.isEmpty(token)) {
+			nonCurrentAssets = (NonCurrentAssets)unitCalculationUtil.calculation(currencyUnit , nonCurrentAssets , NonCurrentAssets.class);
+
 			user = tokenutil.tokenToUser(token);
 			nonCurrentAssets.setId(uuidutil.getUUID());
 			nonCurrentAssets.setDel("0");

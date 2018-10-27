@@ -1,5 +1,11 @@
 package com.puzhibing.StockAnalysis.pojo;
 
+
+/**
+ * 所有者权益变动
+ * @author asus
+ *
+ */
 public class OwnersEquityChange extends StockDataBean {
 
     private String yebateoly;//上年年末余额

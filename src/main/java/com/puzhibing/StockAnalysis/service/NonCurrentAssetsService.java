@@ -12,7 +12,7 @@ public interface NonCurrentAssetsService {
 	 * @param token
 	 * @return
 	 */
-	ResultBean<Object> insertNonCurrentAssets(NonCurrentAssets nonCurrentAssets , String token) throws Exception;
+	ResultBean<Object> insertNonCurrentAssets(NonCurrentAssets nonCurrentAssets , String currencyUnit , String token) throws Exception;
 	
 	
 	/**

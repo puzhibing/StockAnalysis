@@ -27,9 +27,9 @@ public class NonCurrentLiabilitiesController {
 	 * @return
 	 */
 	@RequestMapping(value = "/insertNonCurrentLiabilities")
-	public ResultBean<Object> insertNonCurrentLiabilities(NonCurrentLiabilities nonCurrentLiabilities, String token){
+	public ResultBean<Object> insertNonCurrentLiabilities(NonCurrentLiabilities nonCurrentLiabilities , String currencyUnit , String token){
 		try {
-			resultBean = nonCurrentLiabilitiesServiceImpl.insertNonCurrentLiabilities(nonCurrentLiabilities, token);
+			resultBean = nonCurrentLiabilitiesServiceImpl.insertNonCurrentLiabilities(nonCurrentLiabilities , currencyUnit , token);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resultBean = new ResultBean<>();

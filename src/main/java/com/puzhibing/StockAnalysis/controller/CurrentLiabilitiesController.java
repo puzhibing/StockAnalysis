@@ -27,9 +27,9 @@ public class CurrentLiabilitiesController {
 	 * @return
 	 */
 	@RequestMapping(value = "/insertCurrentLiabilities")
-	public ResultBean<Object> insertCurrentLiabilities(CurrentLiabilities currentLiabilities, String token){
+	public ResultBean<Object> insertCurrentLiabilities(CurrentLiabilities currentLiabilities , String currencyUnit , String token){
 		try {
-			resultBean = currentLiabilitiesServiceImpl.insertCurrentLiabilities(currentLiabilities, token);
+			resultBean = currentLiabilitiesServiceImpl.insertCurrentLiabilities(currentLiabilities , currencyUnit , token);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resultBean = new ResultBean<>();

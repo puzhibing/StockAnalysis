@@ -28,9 +28,9 @@ public class NonCurrentAssetsController {
 	 * @return
 	 */
 	@RequestMapping(value = "/insertNonCurrentAssets")
-	public ResultBean<Object> insertNonCurrentAssets(NonCurrentAssets nonCurrentAssets, String token){
+	public ResultBean<Object> insertNonCurrentAssets(NonCurrentAssets nonCurrentAssets , String currencyUnit , String token){
 		try {
-			resultBean = nonCurrentAssetsServiceImpl.insertNonCurrentAssets(nonCurrentAssets, token);
+			resultBean = nonCurrentAssetsServiceImpl.insertNonCurrentAssets(nonCurrentAssets , currencyUnit , token);
 		} catch (Exception e) {
 			resultBean = new ResultBean<>();
 			resultBean.setB(false);

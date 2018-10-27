@@ -14,7 +14,7 @@ public interface NonCurrentLiabilitiesService {
 	 * @return
 	 * @throws Exception 
 	 */
-	ResultBean<Object> insertNonCurrentLiabilities(NonCurrentLiabilities nonCurrentLiabilities , String token) throws Exception;
+	ResultBean<Object> insertNonCurrentLiabilities(NonCurrentLiabilities nonCurrentLiabilities , String currencyUnit , String token) throws Exception;
 	
 	
 	
