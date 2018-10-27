@@ -1,5 +1,5 @@
 
-let token = "";
+var token = "";
 
 $(function () {
 
