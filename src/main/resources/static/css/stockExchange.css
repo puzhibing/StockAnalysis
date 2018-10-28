@@ -52,7 +52,6 @@ body{
 
 .content .data{
     width: 740px;
-    float: left;
 }
 
 .content .data tr td{
@@ -82,4 +81,64 @@ body{
     width: 700px;
     margin: 0 auto;
     border-top: 1px dashed #BCBCBC;
+}
+
+
+.content .table{
+    width: 740px;
+}
+
+.content .table table{
+    width: 700px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.content .table table th{
+    background-color: #5E8586;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    height: 30px;
+    border:  1px solid #D0D0D0;
+}
+
+.content .table table th:first-of-type{
+    width: 50px;
+}
+
+.content .table table th:last-of-type{
+    width: 80px;
+}
+
+.content .table table td{
+    color: #464646;
+    font-size: 14px;
+    height: 30px;
+    padding-left: 10px;
+    border:  1px solid #D0D0D0;
+}
+
+.content .table table td:first-of-type{
+    text-align: center;
+    padding-left: 0px;
+}
+
+.content .table table td:last-of-type {
+    text-align: center;
+    padding-left: 0px;
+}
+
+.content .table table td button{
+    width: 50px;
+    background-color: #C86A6A;
+    border: 1px solid #C86A6A;
+    border-radius: 3px;
+    color: #FFFFFF;
+}
+
+.content .table table td button:hover{
+    cursor: pointer;
+    background-color: #B14141;
+    border: 1px solid #B14141;
 }

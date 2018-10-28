@@ -3,6 +3,8 @@ let token = "";
 
 $(function () {
 
+    calculation();//给标签绑定数据绑定事件
+
     $(".menu nav").click(function () {
         switchNav(this);
     });
@@ -146,6 +148,10 @@ function saveCurrentAssets(){
     let OCA = div.find(".OCA").val();//其他流动资产
     let TCA = div.find(".TCA").val();//流动资产合计
 
+    if(id == "" && companyStockId == "" && dataTime ==""){
+        return;
+    }
+
     let formData = new FormData();
     formData.append('id', id);
     formData.append('companyStockId', companyStockId);
@@ -204,6 +210,10 @@ function resetCurrentAssets(){
 }
 
 
+
+
+
+
 //保存非流动资产
 function saveNonCurrentAssets(){
     let div = $('.saveNonCurrentAssets').parents("#nonCurrentAssets");
@@ -229,7 +239,11 @@ function saveNonCurrentAssets(){
     let DTA = div.find(".DTA").val();//递延所得税资产
     let ONCA = div.find(".ONCA").val();//其他非流动资产
     let TNCA = div.find(".TNCA").val();//非流动资产合计
-    
+
+    if(id == "" && companyStockId == "" && dataTime ==""){
+        return;
+    }
+
     let formData = new FormData();
     formData.append('id', id);
     formData.append('companyStockId', companyStockId);
@@ -252,7 +266,8 @@ function saveNonCurrentAssets(){
     formData.append('ltpe', LTPE);
     formData.append('dta', DTA);
     formData.append('onca', ONCA);
-    formData.append('tnca', TNCA);
+    formData.append('tnca', TNCA)
+    formData.append('token', token);
     
     $.ajax({
         url: '/insertNonCurrentAssets',
@@ -321,6 +336,10 @@ function saveCurrentLiabilities(){
     let OCL = div.find(".OCL").val();//其他流动负债
     let TCL = div.find(".TCL").val();//流动负债合计
 
+    if(id == "" && companyStockId == "" && dataTime ==""){
+        return;
+    }
+
     let formData = new FormData();
     formData.append('id', id);
     formData.append('companyStockId', companyStockId);
@@ -339,6 +358,7 @@ function saveCurrentLiabilities(){
     formData.append('nldwoy', NLDWOY);
     formData.append('ocl', OCL);
     formData.append('tcl', TCL);
+    formData.append('token', token);
 
     $.ajax({
         url: '/insertCurrentLiabilities',
@@ -397,6 +417,10 @@ function saveNonCurrentLiabilities(){
     let ONCL = div.find(".ONCL").val();//其他非流动负债
     let TNCL = div.find(".TNCL").val();//非流动负债合计
 
+    if(id == "" && companyStockId == "" && dataTime ==""){
+        return;
+    }
+
     let formData = new FormData();
     formData.append('id', id);
     formData.append('companyStockId', companyStockId);
@@ -410,6 +434,7 @@ function saveNonCurrentLiabilities(){
     formData.append('ditl', DITL);
     formData.append('dncl', ONCL);
     formData.append('tncl', TNCL);
+    formData.append('token', token);
 
     $.ajax({
         url: '',
@@ -463,6 +488,10 @@ function saveOwnersEquity(){
     let undistributedProfit = div.find(".undistributedProfit").val();//未分配利润
     let TOE = div.find(".TOE").val();//所有者权益合计
 
+    if(id == "" && companyStockId == "" && dataTime ==""){
+        return;
+    }
+
     let formData = new FormData();
     formData.append('id', id);
     formData.append('companyStockId', companyStockId);
@@ -474,6 +503,7 @@ function saveOwnersEquity(){
     formData.append('surplusReserve', surplusReserve);
     formData.append('undistributedProfit', undistributedProfit);
     formData.append('toe', TOE);
+    formData.append('token', token);
 
     $.ajax({
         url: '/insertOwnersEquity',
@@ -524,6 +554,7 @@ function saveProfit(){
     let financialCost = div.find(".financialCost").val();//财务费用
     let AIL = div.find(".AIL").val();//资产减值损失
     let FVCI = div.find(".FVCI").val();//公允价值变动收益
+    let ADI = div.find(".ADI").val();//资产处置收益
     let IFI = div.find(".IFI").val();//投资收益
     let IIOJVAJV = div.find(".IIOJVAJV").val();//联营企业和合营企业投资收益
     let OII = div.find(".OII").val();//其他投资收益
@@ -539,6 +570,9 @@ function saveProfit(){
     let BEPS = div.find(".BEPS").val();//基本每股收益
     let DEPS = div.find(".DEPS").val();//稀释每股收益
 
+    if(id == "" && companyStockId == "" && dataTime ==""){
+        return;
+    }
 
     let formData = new FormData();
     formData.append('id', id);
@@ -553,6 +587,7 @@ function saveProfit(){
     formData.append('financialCost', financialCost);
     formData.append('ail', AIL);
     formData.append('fvci', FVCI);
+    formData.append('adi', ADI);
     formData.append('ifi', IFI);
     formData.append('iiojvajv', IIOJVAJV);
     formData.append('oii', OII);
@@ -567,6 +602,7 @@ function saveProfit(){
     formData.append('eps', EPS);
     formData.append('beps', BEPS);
     formData.append('deps', DEPS);
+    formData.append('token', token);
 
     $.ajax({
         url: '/insertProfit',
@@ -684,6 +720,10 @@ function saveCashFlow(){
     let NIICACE = div.find(".NIICACE").val();//现金及现金等价物净增加额
     let TEOERFOCACE = div.find(".TEOERFOCACE").val();//汇率变动对现金及现金等价物的影响
 
+    if(id == "" && companyStockId == "" && dataTime ==""){
+        return;
+    }
+
     let formData = new FormData();
     formData.append('id', id);
     formData.append('companyStockId', companyStockId);
@@ -747,6 +787,7 @@ function saveCashFlow(){
     formData.append('bocaceaeot', BOCACEAEOT);
     formData.append('niicace', NIICACE);
     formData.append('teoerfocace', TEOERFOCACE);
+    formData.append('token', token);
 
 
     $.ajax({
@@ -870,6 +911,10 @@ function saveOwnersEquityChange(){
     let other4 = div.find(".other4").val();//其他
     let BATEOTY = div.find(".BATEOTY").val();//本年年末余额
 
+    if(id == "" && companyStockId == "" && dataTime ==""){
+        return;
+    }
+
     let formData = new FormData();
     formData.append('id', id);
     formData.append('companyStockId', companyStockId);
@@ -900,6 +945,7 @@ function saveOwnersEquityChange(){
     formData.append('sstmufl', SSTMUFL);
     formData.append('other4', other4);
     formData.append('bateoty', BATEOTY);
+    formData.append('token', token);
 
     $.ajax({
         url: '/insertOwnersEquityChange',
@@ -949,4 +995,44 @@ function resetOwnersEquityChange(){
     div.find(".SSTMUFL").val('');//盈余公积弥补亏损
     div.find(".other4").val('');//其他
     div.find(".BATEOTY").val('');//本年年末余额
+}
+
+
+
+
+//编辑表达数值，触发修改合计表单中的值
+//将所有需要计算的标签设置class=dataBinding
+//将每组需要计算的标签设置相同的tag值
+//将每组需要接收计算结果的id值等于tag的值
+function calculation(){
+    let inputs = $(".dataBinding");
+    if(inputs.length > 0){
+        for (let i = 0 ; i < inputs.length ; i++){
+            //循环给所有需要数据绑定的标签绑定事件（表单值变化触发的事件）
+            $(inputs[i]).bind('input propertychange', function() {
+                let obj = $(this);
+                let b = true;
+                while(b){//定义循环处理相同的情况（合计是其他合计的基数情况）
+                    let tagv = obj.attr('tag');//获取当前触发事件的对象的tag属性值
+                    let elemtns = $('input[tag=' + tagv + ']')//找到其他tag值相同的标签
+                    if(elemtns.length == 0){
+                        b = false;
+                    }
+                    let str = 0;
+                    for (let j = 0 ; j < elemtns.length ; j++){
+                        if($(elemtns[j]).val() != ""){
+                            str += parseFloat($(elemtns[j]).val());
+                        }else{
+                            str += 0;
+                        }
+                    }
+                    $('#' + tagv).val(str);
+                    obj = $('#' + tagv);
+                }
+            });
+
+
+        }
+    }
+
 }

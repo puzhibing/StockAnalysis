@@ -94,6 +94,10 @@ body{
 	color: #B14141;
 }
 
+.content .data .dataType tr td[class^="sun"] input{
+    color: #B14141;
+}
+
 .content .data .dataType input{
     width: 190px;
     height: 30px;
