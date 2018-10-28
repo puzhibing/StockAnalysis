@@ -18,3 +18,23 @@ function StringToDate(strDate){
     }
     return null;
 }
+
+
+
+//解析url获取参数
+function getURLParameters(key){
+    let value = '';
+    let url = window.location.href.trim();
+    let arr = url.split('?');
+    if(arr[1].indexOf('&') != 0){
+        let parameters = arr[1].split('&');
+        for(let i = 0 ; i < parameters.length ; i++){
+            let v = parameters[i].split('=');
+            if(v[0].trim() == key.trim()){
+                value = v[1].trim();
+                break;
+            }
+        }
+    }
+    return value;
+}

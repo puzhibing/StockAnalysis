@@ -99,7 +99,7 @@ function saveStockExchange(){
 //修改数据
 function updateStockExchange(b){
     let v = $(b).attr('data');
-    let arr = v.splice(';');
+    let arr = v.split(';');
     $('#id').val(arr[0]);
     $('#name').val(arr[1]);
     $('#address').val(arr[2]);
