@@ -69,14 +69,14 @@ public class StockTypeController {
 	
 	/**
 	 * 删除数据
-	 * @param stockType
+	 * @param id
 	 * @param token
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteStockType")
-	public ResultBean<Object> deleteStockType(StockType stockType, String token){
+	public ResultBean<Object> deleteStockType(String id, String token){
 		try {
-			resultBean = stockTypeServiceImpl.deleteStockType(stockType, token);
+			resultBean = stockTypeServiceImpl.deleteStockType(id, token);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resultBean = new ResultBean<>();

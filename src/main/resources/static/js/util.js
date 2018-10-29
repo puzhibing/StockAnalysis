@@ -1,5 +1,5 @@
 
-let url = "http://192.168.3.155:8888";
+let url = "http://localhost:8888";
 
 //将字符串日期转换为日期对象1900-01-01 00:00:00
 function StringToDate(strDate){

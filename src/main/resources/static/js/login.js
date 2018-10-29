@@ -28,10 +28,10 @@ function login(){
         },
         success: function (res) {
             if(res.b){
-                let token = b.result;
-                window.href='home.html?token=' + token;
+                let token = res.result;
+                window.location.href = 'home.html?token=' + token;
             }else{
-                alert(b.result);
+                alert(res.result);
             }
         }
     });

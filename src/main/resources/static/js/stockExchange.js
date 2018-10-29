@@ -1,7 +1,10 @@
 let token = '';
 
-
 $(document).ready(function () {
+	
+	//获取token
+    token = getURLParameters('token');
+	
     selectAllStockExchange();
 
     $('.save').click(function () {
@@ -33,12 +36,13 @@ function selectAllStockExchange(){
 
 //解析处理结果
 function analysisResult(list){
+	list = JSON.parse(list);
     $('.table table').html('');
-    let str = '<tr><th>序号</th><th>交易所名称</th><th>交易所地址</th><th>操作</th></tr>';
+    let str = '<tr><th>序号</th><th>交易所名称</th><th>交易所网址</th><th>操作</th></tr>';
     for(let i = 0 ; i < list.length ; i++){
-        str += '<tr id="' + list[i].id + '"><td>' + (i + 1) + '</td><td>' + list[i].name + '<td>' + list[i].address + '</td>' +
-            '<button data="' + list[i].id + ';' + list[i].name + ';' + list[i].address +  '" onclick="updateStockExchange(this)">编辑</button>' +
-            '<button onclick="deleteStockExchange(' + list[i].id + ')" ">删除</button></td></tr>';
+        str += '<tr id="' + list[i].id + '"><td>' + (i + 1) + '</td><td>' + list[i].name + '<td>' + list[i].url + '</td>' +
+            '<td><button data="' + list[i].id + ';' + list[i].name + ';' + list[i].url +  '" onclick="updateStockExchange(this)">编辑</button>' +
+            '<button onclick="deleteStockExchange(\'' + list[i].id + '\')">删除</button></td></tr>';
     }
     $('.table table').html(str);
 }
@@ -46,11 +50,12 @@ function analysisResult(list){
 
 //删除数据
 function deleteStockExchange(id){
+	id = id.trim();
     $.ajax({
         url: '/deleteStockExchange',
         type: 'POST',
         data: {
-            id: id.trim(),
+            id: id,
             token: token
         },
         success: function (res) {
@@ -67,7 +72,7 @@ function deleteStockExchange(id){
 function saveStockExchange(){
     let id = $('#id').val().trim();
     let name = $('#name').val().trim();
-    let address = $('#address').val().trim();
+    let address = $('#url').val().trim();
     if(name == ''){
         alert('无效内容');
         return;
@@ -77,12 +82,12 @@ function saveStockExchange(){
         url = '/insertStockExchange';
     }
     $.ajax({
-        utl: url,
+        url: url,
         type: 'POST',
         data: {
             id: id,
             name: name,
-            address: address,
+            url: address,
             token: token
         },
         success: function (res) {
@@ -102,7 +107,7 @@ function updateStockExchange(b){
     let arr = v.split(';');
     $('#id').val(arr[0]);
     $('#name').val(arr[1]);
-    $('#address').val(arr[2]);
+    $('#url').val(arr[2]);
 }
 
 
@@ -110,5 +115,5 @@ function updateStockExchange(b){
 function resetData(){
     $('#id').val('');
     $('#name').val('');
-    $('#address').val('');
+    $('#url').val('');
 }

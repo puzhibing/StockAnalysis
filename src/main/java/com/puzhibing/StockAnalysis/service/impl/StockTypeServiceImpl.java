@@ -16,7 +16,11 @@ import com.puzhibing.StockAnalysis.service.StockTypeService;
 import com.puzhibing.StockAnalysis.utils.TokenUtil;
 import com.puzhibing.StockAnalysis.utils.UUIDUtil;
 
-
+/**
+ * 证券类型
+ * @author asus
+ *
+ */
 @Service
 public class StockTypeServiceImpl implements StockTypeService {
 	
@@ -87,21 +91,24 @@ public class StockTypeServiceImpl implements StockTypeService {
 	
 	/**
 	 * 删除数据
-	 * @param stockType
+	 * @param id
 	 * @param token
 	 * @return
 	 * @throws Exception
 	 */
 	@Override
-	public ResultBean<Object> deleteStockType(StockType stockType, String token) throws Exception {
+	public ResultBean<Object> deleteStockType(String id, String token) throws Exception {
 		ResultBean<Object> resultBean = new ResultBean<>();
-		if(null != stockType && !StringUtils.isEmpty(token)) {
+		if(!(StringUtils.isEmpty(token) && StringUtils.isEmpty(id))) {
 			User user = tokenutil.tokenToUser(token);
-			stockType.setDel("-1");
-			stockType.setUpdateTime(new Date());
-			stockType.setUpdateUserId(user.getId());
+			
 			try {
-				stockTypeMapper.updateStockType(stockType);
+				StockType stockType = stockTypeMapper.selectStockTypeById(id);
+				stockType.setDel("-1");
+				stockType.setUpdateTime(new Date());
+				stockType.setUpdateUserId(user.getId());
+				
+				stockTypeMapper.deleteStockType(stockType);
 				resultBean.setB(true);
 			} catch (Exception e) {
 				throw e;

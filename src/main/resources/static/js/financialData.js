@@ -2,6 +2,9 @@
 let token = "";
 
 $(function () {
+	
+	//获取token
+    token = getURLParameters('token');
 
     calculation();//给标签绑定数据绑定事件
 

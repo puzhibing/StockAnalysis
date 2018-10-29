@@ -32,12 +32,12 @@ public interface StockExchangeService {
 	
 	/**
 	 * 删除数据
-	 * @param stockExchange
+	 * @param id
 	 * @param token
 	 * @return
 	 * @throws Exception
 	 */
-	ResultBean<Object> deleteStockExchange(StockExchange stockExchange , String token) throws Exception;
+	ResultBean<Object> deleteStockExchange(String id , String token) throws Exception;
 	
 	
 	

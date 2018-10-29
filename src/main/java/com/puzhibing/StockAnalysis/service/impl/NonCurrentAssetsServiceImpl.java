@@ -52,7 +52,7 @@ public class NonCurrentAssetsServiceImpl implements NonCurrentAssetsService {
 	@Override
 	public ResultBean<Object> insertNonCurrentAssets(NonCurrentAssets nonCurrentAssets , String currencyUnit , String token) throws Exception {
 		resultBean = new ResultBean<>();
-		if(null != nonCurrentAssets && !StringUtils.isEmpty(token)) {
+		if(null != nonCurrentAssets && !(StringUtils.isEmpty(token) && StringUtils.isEmpty(currencyUnit))) {
 			nonCurrentAssets = (NonCurrentAssets)unitCalculationUtil.calculation(currencyUnit , nonCurrentAssets , NonCurrentAssets.class);
 
 //			user = tokenutil.tokenToUser(token);

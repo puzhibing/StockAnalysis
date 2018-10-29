@@ -34,12 +34,12 @@ public interface StockTypeService {
 	
 	/**
 	 * 删除数据
-	 * @param stockType
+	 * @param id
 	 * @param token
 	 * @return
 	 * @throws Exception
 	 */
-	ResultBean<Object> deleteStockType(StockType stockType , String token) throws Exception;
+	ResultBean<Object> deleteStockType(String id , String token) throws Exception;
 	
 	
 	

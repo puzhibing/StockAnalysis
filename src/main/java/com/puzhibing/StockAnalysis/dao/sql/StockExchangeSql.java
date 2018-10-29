@@ -15,8 +15,8 @@ public class StockExchangeSql {
 	public String insertStockExchange(StockExchange stockExchange) {
 		return new SQL() {{
 			INSERT_INTO("t_stockExchange");
-			INTO_COLUMNS("id , name , address , del , insertUserId , insertTime , updateUserId , updateTime");
-			INTO_VALUES("#{id} , #{name} , #{address} , #{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
+			INTO_COLUMNS("id , name , url , del , insertUserId , insertTime , updateUserId , updateTime");
+			INTO_VALUES("#{id} , #{name} , #{url} , #{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}
 	
@@ -30,7 +30,7 @@ public class StockExchangeSql {
 	public String updateStockExchange(StockExchange stockExchange) {
 		return new SQL() {{
 			UPDATE("t_stockExchange");
-			SET("name = #{name} , address = #{address} , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
+			SET("name = #{name} , url = #{url} , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
 	}
@@ -58,7 +58,7 @@ public class StockExchangeSql {
 	 */
 	public String selectStockExchangeById(String id){
 		return new SQL() {{
-			SELECT("id , name , address , del , insertUserId , insertTime , updateUserId , updateTime");
+			SELECT("id , name , url , del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_stockExchange");
 			WHERE("del = '0' and id = #{id}");
 		}}.toString();
@@ -71,7 +71,7 @@ public class StockExchangeSql {
 	 */
 	public String selectAllStockExchange() {
 		return new SQL() {{
-			SELECT("id , name , address , del , insertUserId , insertTime , updateUserId , updateTime");
+			SELECT("id , name , url , del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_stockExchange");
 			WHERE("del = '0'");
 		}}.toString();

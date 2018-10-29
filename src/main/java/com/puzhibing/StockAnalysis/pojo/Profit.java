@@ -23,6 +23,8 @@ public class Profit extends StockDataBean {
     private String ail;//资产减值损失
 
     private String fvci;//公允价值变动收益
+    
+    private String adi;//资产处置收益
 
     private String ifi;//投资收益
 
@@ -116,7 +118,15 @@ public class Profit extends StockDataBean {
         this.fvci = fvci;
     }
 
-    public String getIfi() {
+    public String getAdi() {
+		return adi;
+	}
+
+	public void setAdi(String adi) {
+		this.adi = adi;
+	}
+
+	public String getIfi() {
         return ifi;
     }
 
@@ -228,31 +238,15 @@ public class Profit extends StockDataBean {
         this.deps = deps;
     }
 
-    @Override
-    public String toString() {
-        return "Profit{" +
-                "businessIncome='" + businessIncome + '\'' +
-                ", operatingCost='" + operatingCost + '\'' +
-                ", btaa='" + btaa + '\'' +
-                ", sellingExpenses='" + sellingExpenses + '\'' +
-                ", managementCost='" + managementCost + '\'' +
-                ", financialCost='" + financialCost + '\'' +
-                ", ail='" + ail + '\'' +
-                ", fvci='" + fvci + '\'' +
-                ", ifi='" + ifi + '\'' +
-                ", iiojvajv='" + iiojvajv + '\'' +
-                ", oii='" + oii + '\'' +
-                ", operatingProfit='" + operatingProfit + '\'' +
-                ", noi='" + noi + '\'' +
-                ", noe='" + noe + '\'' +
-                ", paldoia='" + paldoia + '\'' +
-                ", onoe='" + onoe + '\'' +
-                ", totalProfit='" + totalProfit + '\'' +
-                ", ite='" + ite + '\'' +
-                ", netProfit='" + netProfit + '\'' +
-                ", eps='" + eps + '\'' +
-                ", beps='" + beps + '\'' +
-                ", deps='" + deps + '\'' +
-                '}';
-    }
+	@Override
+	public String toString() {
+		return "Profit [businessIncome=" + businessIncome + ", operatingCost=" + operatingCost + ", btaa=" + btaa
+				+ ", sellingExpenses=" + sellingExpenses + ", managementCost=" + managementCost + ", financialCost="
+				+ financialCost + ", ail=" + ail + ", fvci=" + fvci + ", adi=" + adi + ", ifi=" + ifi + ", iiojvajv="
+				+ iiojvajv + ", oii=" + oii + ", operatingProfit=" + operatingProfit + ", noi=" + noi + ", noe=" + noe
+				+ ", paldoia=" + paldoia + ", onoe=" + onoe + ", totalProfit=" + totalProfit + ", ite=" + ite
+				+ ", netProfit=" + netProfit + ", eps=" + eps + ", beps=" + beps + ", deps=" + deps + "]";
+	}
+
+    
 }

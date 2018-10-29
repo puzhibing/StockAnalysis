@@ -32,8 +32,6 @@ public class UserServiceImpl implements UserService {
 	
 	private String password;
 	
-	private boolean b = false;
-	
 	private User user;
 	
 	private String token;
@@ -124,6 +122,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public ResultBean<Object> verifyLogin(String username, String password) {
 		ResultBean<Object> resultBean = new ResultBean<>();
+		boolean b = false;
 		if(!StringUtils.isEmpty(username)) {
 			try {
 				List<User> list = userMapper.selectUserByUsername(username);

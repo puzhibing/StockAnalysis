@@ -2,6 +2,10 @@
 let token = '';
 
 $(document).ready(function () {
+	
+	//获取token
+    token = getURLParameters('token');
+	
     obtainAllData();
 
     $('.save').click(function () {
@@ -32,12 +36,13 @@ function obtainAllData(){
 
 //解析处理结果
 function analysisResult(list){
+	list = JSON.parse(list);
     $('.table table').html('');
     let str = '<tr><th>序号</th><th>证券类型名称</th><th>操作</th></tr>';
     for(let i = 0 ; i < list.length ; i++){
-        str += '<tr id="' + list[i].id + '"><td>' + (i + 1) + '</td><td>' + list[i].name + '' +
-            '<button data="' + list[i].id + ';' + list[i].name + '" onclick="updateStockType(this)">编辑</button>' +
-            '<button onclick="deleteStockType(' + list[i].id + ')" ">删除</button></td></tr>';
+        str += '<tr id="' + list[i].id + '"><td>' + (i + 1) + '</td><td>' + list[i].name + '</td>' +
+            '<td><button data="' + list[i].id + ';' + list[i].name + '" onclick="updateStockType(this)">编辑</button>' +
+            '<button onclick="deleteStockType(\'' + list[i].id + '\')" ">删除</button></td></tr>';
     }
     $('.table table').html(str);
 }
@@ -45,11 +50,12 @@ function analysisResult(list){
 
 //点击删除处理函数
 function deleteStockType(id){
+	id = id.trim();
     $.ajax({
         url: '/deleteStockType',
         type: 'POST',
         data: {
-            id: id.trim(),
+            id: id,
             token: token
         },
         success: function (res) {

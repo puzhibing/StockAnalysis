@@ -16,7 +16,11 @@ import com.puzhibing.StockAnalysis.service.StockExchangeService;
 import com.puzhibing.StockAnalysis.utils.TokenUtil;
 import com.puzhibing.StockAnalysis.utils.UUIDUtil;
 
-
+/**
+ * 证券交易所
+ * @author asus
+ *
+ */
 @Service
 public class StockExchangeServiceImpl implements StockExchangeService {
 
@@ -89,19 +93,22 @@ public class StockExchangeServiceImpl implements StockExchangeService {
 	
 	/**
 	 * 删除数据
-	 * @param stockExchange
+	 * @param id
 	 * @param token
 	 * @return
 	 */
 	@Override
-	public ResultBean<Object> deleteStockExchange(StockExchange stockExchange, String token) throws Exception {
+	public ResultBean<Object> deleteStockExchange(String id, String token) throws Exception {
 		ResultBean<Object> resultBean = new ResultBean<>();
-		if(null != stockExchange && !StringUtils.isEmpty(token)) {
+		if(!(StringUtils.isEmpty(token) && StringUtils.isEmpty(id))) {
 			User user = tokenutil.tokenToUser(token);
-			stockExchange.setDel("-1");
-			stockExchange.setUpdateTime(new Date());
-			stockExchange.setUpdateUserId(user.getId());
+			
 			try {
+				StockExchange stockExchange = stockExchangeMapper.selectStockExchangeById(id);
+				stockExchange.setDel("-1");
+				stockExchange.setUpdateTime(new Date());
+				stockExchange.setUpdateUserId(user.getId());
+				
 				stockExchangeMapper.deleteStockExchange(stockExchange);
 				resultBean.setB(true);
 			} catch (Exception e) {

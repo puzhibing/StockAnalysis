@@ -1,11 +1,11 @@
 
-var height;
-var width;
+let token = '';
+let height;
+let width;
 
 $(function () {
     height = $(document.body).outerHeight(true);
     width = $(document.body).outerWidth(true);
-
 
     //初始化页面宽度和高度
     $(".con").css({
@@ -23,25 +23,26 @@ $(function () {
     });
 
 
-
+    //获取token
+    token = getURLParameters('token');
 
     //页面跳转
     $(".dataManagement").click(function () {
-        $(".iframe").attr("src" , "dataManagement.html");
+        $(".iframe").attr("src" , "dataManagement.html?token=" + token);
     });
     $(".businessManagement").click(function () {
-        $(".iframe").attr("src" , "businessManagement.html");
+        $(".iframe").attr("src" , "businessManagement.html?token=" + token);
     });
     $(".financialData").click(function () {
-        $(".iframe").attr("src" , "financialData.html");
+        $(".iframe").attr("src" , "financialData.html?token=" + token);
     });
 
     $(".securitiesType").click(function () {
-        $(".iframe").attr("src" , "securitiesType.html");
+        $(".iframe").attr("src" , "securitiesType.html?token=" + token);
     });
 
     $(".stockExchange").click(function () {
-        $(".iframe").attr("src" , "stockExchange.html");
+        $(".iframe").attr("src" , "stockExchange.html?token=" + token);
     });
 
 });

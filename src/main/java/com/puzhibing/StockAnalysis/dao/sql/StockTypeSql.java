@@ -76,6 +76,7 @@ public class StockTypeSql {
 			SELECT("id , name , del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_stockType");
 			WHERE("del = '0'");
+			ORDER_BY("name");
 		}}.toString();
 	}
 }

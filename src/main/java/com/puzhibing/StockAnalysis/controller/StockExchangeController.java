@@ -80,9 +80,9 @@ public class StockExchangeController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteStockExchange")
-	public ResultBean<Object> deleteStockExchange(StockExchange stockExchange, String token){
+	public ResultBean<Object> deleteStockExchange(String id, String token){
 		try {
-			resultBean = stockExchangeServiceImpl.deleteStockExchange(stockExchange, token);
+			resultBean = stockExchangeServiceImpl.deleteStockExchange(id, token);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resultBean = new ResultBean<>();

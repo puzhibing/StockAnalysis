@@ -10,7 +10,7 @@ public class StockExchange extends TotalBean {
 
 	private String name;//名称
 	
-	private String address;//地址
+	private String url;//网址
 
 	public String getName() {
 		return name;
@@ -20,18 +20,20 @@ public class StockExchange extends TotalBean {
 		this.name = name;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getUrl() {
+		return url;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	@Override
 	public String toString() {
-		return "StockExchange [name=" + name + ", address=" + address + "]";
+		return "StockExchange [name=" + name + ", url=" + url + "]";
 	}
+
+	
 	
 	
 }

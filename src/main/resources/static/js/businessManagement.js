@@ -1,5 +1,11 @@
+
+let token = '';
+
 //初始化
 $(document).ready(function () {
+	
+    //获取token
+    token = getURLParameters('token');
 
     initStyle();
 
