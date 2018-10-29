@@ -69,15 +69,17 @@ public class CompanyStockServiceImpl implements CompanyStockService {
 	 * @throws Exception
 	 */
 	@Override
-	public ResultBean<Object> deleteCompanyStock(CompanyStock companyStock, String token) throws Exception {
+	public ResultBean<Object> deleteCompanyStock(String id, String token) throws Exception {
 		ResultBean<Object> resultBean = new ResultBean<>();
-		if(null != companyStock && !StringUtils.isEmpty(token)) {
+		if(!(StringUtils.isEmpty(token) && StringUtils.isEmpty(id))) {
 			User user = tokenutil.tokenToUser(token);
-			
-			companyStock.setDel("-1");
-			companyStock.setUpdateTime(new Date());
-			companyStock.setUpdateUserId(user.getId());
+
 			try {
+				CompanyStock companyStock = companyStockMapper.selectCompanyStockById(id);
+				companyStock.setDel("-1");
+				companyStock.setUpdateTime(new Date());
+				companyStock.setUpdateUserId(user.getId());
+	
 				companyStockMapper.deleteCompanyStock(companyStock);
 				resultBean.setB(true);
 			} catch (Exception e) {

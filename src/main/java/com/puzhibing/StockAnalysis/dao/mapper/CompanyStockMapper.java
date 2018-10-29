@@ -69,4 +69,13 @@ public interface CompanyStockMapper {
 	 */
 	@UpdateProvider(type = CompanyStockSql.class , method = "updateCompanyStock")
 	void updateCompanyStock(CompanyStock companyStock);
+	
+	
+	/**
+	 * 根据id查询数据
+	 * @param id
+	 * @return
+	 */
+	@SelectProvider(type = CompanyStockSql.class , method = "selectCompanyStockById")
+	CompanyStock selectCompanyStockById(String id);
 }
