@@ -215,3 +215,14 @@ body{
     border: 1px solid #5E8586;
     padding-left: 10px;
 }
+
+
+.other .selectionPanel{
+    display: none;
+    width: 200px;
+    height: 80px;
+    background-color: #F8F8F8;
+    border: 1px solid #547576;
+    z-index: 100;
+    position: absolute;
+}
