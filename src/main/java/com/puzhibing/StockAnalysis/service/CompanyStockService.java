@@ -26,7 +26,7 @@ public interface CompanyStockService {
 	 * @return
 	 * @throws Exception
 	 */
-	ResultBean<Object> deleteCompanyStock(CompanyStock companyStock , String token) throws Exception;
+	ResultBean<Object> deleteCompanyStock(String id , String token) throws Exception;
 	
 	
 	

@@ -20,6 +20,12 @@ function StringToDate(strDate){
 }
 
 
+//将long类型的时间转换成日期
+function longToDate(long){
+    return new Date(long);
+}
+
+
 
 //解析url获取参数
 function getURLParameters(key){

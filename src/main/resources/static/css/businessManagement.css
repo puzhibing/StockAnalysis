@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 *{
     padding: 0px;
     margin: 0px;
@@ -215,3 +216,233 @@ body{
     border: 1px solid #5E8586;
     padding-left: 10px;
 }
+=======
+*{
+    padding: 0px;
+    margin: 0px;
+    font-size: 14px;
+}
+
+body{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+}
+
+.panl{
+    overflow: auto;
+    width: 100vw;
+    height: 100vh;
+}
+
+.title{
+    height: 29px;
+    border-bottom: 1px solid #BCBCBC;
+}
+
+.title span{
+    line-height: 35px;
+    margin-left: 20px;
+    color: #547576;
+}
+
+.title button{
+    width: 50px;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
+    border-radius: 3px;
+    color: #FFFFFF;
+    margin-right: 20px;
+}
+
+.title button:hover{
+    cursor: pointer;
+    background-color: #5E8586;
+}
+
+.title button:first-of-type{
+    margin-left: 75%;
+}
+.title button:last-of-type{
+    margin-right: 0px;
+}
+
+.content{
+    margin-top: 50px;
+}
+
+.content .data{
+    width: 740px;
+}
+
+.content .data tr td{
+    height: 60px;
+    width: 320px;
+    text-align: right;
+}
+
+.content .data tr td span{
+    color: #2B2B2B;
+}
+
+.content .data input{
+    width: 190px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #5E8586;
+    padding-left: 10px;
+}
+
+.content .data button{
+    width: 50px;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
+    border-radius: 3px;
+    color: #FFFFFF;
+}
+
+.content .data button:hover{
+    cursor: pointer;
+    background-color: #5E8586;
+}
+
+.content .data span{
+    margin-left: 20px;
+    color: #547576;
+}
+
+.content .data div{
+    width: 700px;
+    margin: 0 auto;
+}
+
+.content .data div:first-of-type{
+    border-top: 1px dashed #BCBCBC;
+    margin-bottom: 80px;
+}
+
+.content .other{
+    margin-left: 20px;
+    width: 740px;
+}
+
+.content .other span{
+    color: #547576;
+}
+
+.content .other button{
+    width: 50px;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
+    border-radius: 3px;
+    color: #FFFFFF;
+}
+
+.content .other button:hover{
+    cursor: pointer;
+    background-color: #5E8586;
+}
+
+.content .other div:first-of-type{
+    border-top: 1px dashed #BCBCBC;
+}
+
+.content .other table{
+    margin-top: 10px;
+    border-collapse: collapse;
+    margin-left: 50px;
+}
+
+.content .other table tr th{
+    background-color: #E2E2E2;
+    border: 1px solid #BCBCBC;
+    text-align: center;
+    min-width: 80px;
+    color: #626262;
+}
+
+
+.content .other table tr th:last-of-type{
+    min-width: 100px;
+}
+
+.content .other table tr td{
+    border: 1px solid #BCBCBC;
+    padding-left: 5px;
+    color: #626262;
+}
+
+.content .other table tr td:last-of-type{
+    text-align: center;
+    padding-left: 0px;
+}
+
+.content .other table tr td .edit{
+    width: 35px;
+    height: 20px;
+    font-size: 10px;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
+    border-radius: 3px;
+    color: #FFFFFF;
+    margin-right: 10px;
+}
+
+.content .other table tr td .edit:hover{
+    cursor: pointer;
+    background-color: #5E8586;
+    border: 1px solid #5E8586;
+}
+
+
+.content .other table tr td .del{
+    width: 35px;
+    height: 20px;
+    font-size: 10px;
+    background-color: #EE5858;
+    border: 1px solid #EE5858;
+    border-radius: 3px;
+    color: #FFFFFF;
+}
+
+.content .other table tr td .del:hover{
+    cursor: pointer;
+    background-color: #B14141;
+    border: 1px solid #B14141;
+}
+
+.content .other div table{
+    margin-left: 0px;
+}
+
+.content .other div tr td{
+    border: 0px solid #BCBCBC;
+    height: 60px;
+    width: 320px;
+    text-align: right;
+}
+
+.content .other div tr td span{
+    color: #2B2B2B;
+}
+
+.content .other div tr td input{
+    width: 190px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #5E8586;
+    padding-left: 10px;
+}
+
+
+.other .selectionPanel{
+    display: none;
+    width: 200px;
+    height: 80px;
+    background-color: #F8F8F8;
+    border: 1px solid #547576;
+    z-index: 100;
+    position: absolute;
+}
+>>>>>>> branch 'dev' of https://github.com/puzhibing/StockAnalysis.git
