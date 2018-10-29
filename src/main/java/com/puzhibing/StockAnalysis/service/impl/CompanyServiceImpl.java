@@ -56,14 +56,17 @@ public class CompanyServiceImpl implements CompanyService {
 		resultUtil = new ResultBean<>();
 		if(null != company && !StringUtils.isEmpty(token)) {
 			user = tokenutil.tokenToUser(token);
-			company.setId(uuidutil.getUUID());
+			String id = uuidutil.getUUID();
+			company.setId(id);
 			company.setDel("0");
 			company.setInsertUserId(user.getId());
 			company.setInsertTime(new Date());
 			
 			try {
 				companyMapper.insertCompany(company);
+				Company company2 = companyMapper.selectCompanyInfoById(id);
 				resultUtil.setB(true);
+				resultUtil.setResult(JSON.toJSONString(company2));
 			} catch (Exception e) {
 				throw e;
 			}
@@ -125,7 +128,7 @@ public class CompanyServiceImpl implements CompanyService {
 			String json = (String)resultBean.getResult();
 			List<CompanyStock> list = JSON.parseObject(json, new ArrayList<CompanyStock>().getClass());
 			for (CompanyStock companyStock : list) {
-				companyStockServiceImpl.deleteCompanyStock(companyStock, token);
+				companyStockServiceImpl.deleteCompanyStock(companyStock.getId(), token);
 			}
 			
 			//删除企业数据

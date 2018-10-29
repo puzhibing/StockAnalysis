@@ -72,4 +72,19 @@ public class CompanyStockSql {
 		}}.toString();
 	}
 	
+	
+	/**
+	 * 根据id查询数据
+	 * @param id
+	 * @return
+	 */
+	public String selectCompanyStockById(String id) {
+		return new SQL() {{
+			SELECT("id , companyId , stockCode , stockTypeId , listingTime , stockExchangeId , del");
+			SELECT("insertUserId , insertTime , updateUserId , updateTime");
+			FROM("t_companyStock");
+			WHERE("id = #{id}");
+		}}.toString();
+	}
+	
 }

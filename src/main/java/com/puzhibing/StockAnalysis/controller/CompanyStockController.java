@@ -46,9 +46,9 @@ public class CompanyStockController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteCompanyStock")
-	public ResultBean<Object> deleteCompanyStock(CompanyStock companyStock, String token){
+	public ResultBean<Object> deleteCompanyStock(String id, String token){
 		try {
-			resultBean = companyStockServiceImpl.deleteCompanyStock(companyStock, token);
+			resultBean = companyStockServiceImpl.deleteCompanyStock(id, token);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resultBean = new ResultBean<>();
