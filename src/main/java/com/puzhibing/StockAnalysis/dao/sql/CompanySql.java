@@ -1,5 +1,8 @@
 package com.puzhibing.StockAnalysis.dao.sql;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.ibatis.jdbc.SQL;
 
 import com.puzhibing.StockAnalysis.pojo.Company;
@@ -85,6 +88,33 @@ public class CompanySql {
 			SELECT("insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_company");
 			WHERE("del = '0' and id = #{id}");
+		}}.toString();
+	}
+	
+	
+	
+	
+	
+	/**
+	 * 根据名称动态查询英文名称或中文名称
+	 * @param name
+	 * @return
+	 */
+	public String selectCompanyLikeName(String name) {
+		return new SQL() {{
+			SELECT("id , chName , chShortName , enName , enShortName , registerTime , url , del");
+			SELECT("insertUserId , insertTime , updateUserId , updateTime");
+			FROM("t_company");
+			
+			Pattern p = Pattern.compile("[a-z,A-Z]");
+			Matcher m = p.matcher(name);
+			if(m.find()) {//英文查询
+				WHERE("del = '0' and enName like #{name}");
+			}else {//中文查询
+				WHERE("del = '0' and chName like #{name}");
+			}
+			
+			
 		}}.toString();
 	}
 

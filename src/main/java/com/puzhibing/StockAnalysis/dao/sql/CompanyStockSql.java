@@ -87,4 +87,19 @@ public class CompanyStockSql {
 		}}.toString();
 	}
 	
+	
+	
+	/**
+	 * 根据编号模糊查询数据
+	 * @param stockCode
+	 * @return
+	 */
+	public String selectCompanyStockLikeCode(String stockCode) {
+		return new SQL() {{
+			SELECT("id , companyId , stockCode , stockTypeId , listingTime , stockExchangeId , del");
+			SELECT("insertUserId , insertTime , updateUserId , updateTime");
+			FROM("t_companyStock");
+			WHERE("stockCode like #{stockCode} and del = '0'");
+		}}.toString();
+	}
 }

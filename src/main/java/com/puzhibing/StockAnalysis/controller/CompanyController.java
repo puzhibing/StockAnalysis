@@ -135,5 +135,27 @@ public class CompanyController {
 		
 		return resultBean;
 	}
+	
+	
+	
+	
+	/**
+	 * 根据编号或名称模糊查询企业数据
+	 * @param value
+	 * @return
+	 */
+	@RequestMapping(value = "/fuzzyQueryCompany")
+	public ResultBean<Object> fuzzyQueryCompany(String value){
+		try {
+			resultBean = companyServiceImpl.fuzzyQueryCompany(value);
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultBean = new ResultBean<>();
+			resultBean.setB(false);
+			resultBean.setResult("数据处理异常");
+		}
+		
+		return resultBean;
+	}
 
 }

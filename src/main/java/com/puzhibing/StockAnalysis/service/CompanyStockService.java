@@ -48,4 +48,14 @@ public interface CompanyStockService {
 	 * @throws Exception
 	 */
 	ResultBean<Object> updateCompanyStock(CompanyStock companyStock , String token) throws Exception;
+	
+	
+	
+	/**
+	 * 根据编号模糊查询数据
+	 * @param stockCode
+	 * @return
+	 * @throws Exception
+	 */
+	ResultBean<Object> selectCompanyStockLikeCode(String stockCode) throws Exception;
 }

@@ -57,4 +57,15 @@ public interface CompanyService {
 	 */
 	ResultBean<Object> selectCompanyInfoById(String id) throws Exception;
 	
+	
+	
+	/**
+	 * 根据编号或名称模糊查询企业数据
+	 * @param value	编号或名称
+	 * @return
+	 * @throws Exception
+	 */
+	ResultBean<Object> fuzzyQueryCompany(String value) throws Exception;
+	
+	
 }
