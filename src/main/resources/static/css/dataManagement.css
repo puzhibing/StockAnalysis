@@ -18,27 +18,44 @@ body{
 }
 
 .title{
-    height: 29px;
+    height: 30px;
     border-bottom: 1px solid #BCBCBC;
 }
 
 .title span:first-of-type{
-    line-height: 35px;
     margin-left: 20px;
     color: #547576;
 }
 
+.title div{
+    float: left;
+    margin-top: 5px;
+}
 
-.title input{
+.title .text{
+    margin-left: 65%;
+}
+
+.title .text .selectionPanel{
+    display: none;
+    width: 200px;
+    height: 80px;
+    background-color: #F8F8F8;
+    border: 1px solid #547576;
+    z-index: 100;
+    position: absolute;
+}
+
+.title div input{
     width: 190px;
     height: 20px;
     border-radius: 3px;
     border: 1px solid #5E8586;
     padding-left: 10px;
-    margin-left: 65%;
 }
 
 .title button{
+
     width: 50px;
     background-color: #75A2A5;
     border: 1px solid #75A2A5;

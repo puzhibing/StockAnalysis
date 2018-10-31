@@ -8,10 +8,20 @@
 <body>
 <div class="panl">
     <div class="title">
-        <span>数据管理</span>
-        <input type="text" placeholder="证券编号/企业名称">
-        <button class="save">搜索</button>
-        <button class="reset">重置</button>
+        <div>
+            <span>数据管理</span>
+        </div>
+        <div class="text">
+            <input class="companyId" type="hidden">
+            <input type="text" class="securitiesNumber" placeholder="证券编号/企业名称">
+            <div class="selectionPanel">
+                选择面板
+            </div>
+        </div>
+        <div>
+            <button class="save">搜索</button>
+            <button class="reset">重置</button>
+        </div>
     </div>
     <div class="content">
         <div class="enterpriseInfo">
