@@ -50,7 +50,7 @@ function selectAllStockType(){
             $('.stockType').html('');
             let str = '<option value=""></option>';
             if(res.b){
-                let types = res.result;
+                let types = JSON.parse(res.result);
                 for (let i = 0 ; i < types.length ; i++){
                     str += '<option value="' + types[i].id + '">' + types[i].name + '</option>';
                 }
@@ -72,7 +72,7 @@ function selectAllStockExchange(){
             $('.stockExchange').html('');
             let str = '<option value=""></option>';
             if(res.b){
-                let types = res.result;
+                let types = JSON.parse(res.result);
                 for (let i = 0 ; i < types.length ; i++){
                     str += '<option value="' + types[i].id + '">' + types[i].name + '</option>';
                 }
