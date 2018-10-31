@@ -140,4 +140,27 @@ public class CompanyStockServiceImpl implements CompanyStockService {
 		return resultBean;
 	}
 
+
+
+	/**
+	 * 根据编号模糊查询数据
+	 * @param stockCode
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public ResultBean<Object> selectCompanyStockLikeCode(String stockCode) throws Exception {
+		ResultBean<Object> resultBean = new ResultBean<>();
+		if(!StringUtils.isEmpty(stockCode)) {
+			try {
+				List<CompanyStock> list = companyStockMapper.selectCompanyStockLikeCode("%" + stockCode + "%");
+				resultBean.setB(true);
+				resultBean.setResult(list);
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+		return resultBean;
+	}
+
 }

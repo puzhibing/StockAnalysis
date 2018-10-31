@@ -112,7 +112,7 @@ function saveData(){
     $.ajax({
         url: u,
         type: "POST",
-        date: formData,
+        data: formData,
         cache: false,
         processData: false,
         contentType: false,
@@ -156,7 +156,7 @@ function saveCompanyStock(){
     let companyId = $(".companyId").val();
     let stockType = $(".stockType").val();
     let stockCode = $(".stockCode").val();
-    let listingTime = $(".listingTime").val();
+    let listingTime = StringToDate($(".listingTime").val()).toString();
     let stockExchange = $(".stockExchange").val();
 
     let formData = new FormData();

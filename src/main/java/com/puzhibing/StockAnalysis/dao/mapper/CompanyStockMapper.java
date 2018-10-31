@@ -78,4 +78,14 @@ public interface CompanyStockMapper {
 	 */
 	@SelectProvider(type = CompanyStockSql.class , method = "selectCompanyStockById")
 	CompanyStock selectCompanyStockById(String id);
+	
+	
+	
+	/**
+	 * 根据编号模糊查询数据
+	 * @param stockCode
+	 * @return
+	 */
+	@SelectProvider(type = CompanyStockSql.class , method = "selectCompanyStockLikeCode")
+	List<CompanyStock> selectCompanyStockLikeCode(String stockCode);
 }

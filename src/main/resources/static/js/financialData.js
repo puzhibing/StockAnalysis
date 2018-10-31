@@ -102,12 +102,13 @@ function fuzzyAcquisition(v) {
             stockCode: value
         },
         success: function (res) {
+            $(v).siblings(".selectionPanel").html('');
             if(res.status){
                 let str = '<ul>';
                 for(var i = 0; i < 1; i++){
                     str += '<li id="' + '" code="' + '" type="' + '" name="' + '" onclick="selectionPanel(this)"><span>' + 123231 + '</span></li>';
                 }
-                $(".selectionPanel").html(str + '<ul/>');
+                $(v).siblings(".selectionPanel").html(str + '<ul/>');
             }
         }
     });
@@ -126,7 +127,6 @@ function selectionPanel(li){
     th.parents(".selectionPanel").siblings(".securitiesNumber").val(code);
     th.parents("tr").siblings("tr").find(".securitiesType").val(type);
     th.parents("tr").siblings("tr").find(".companyName").val(name);
-    th.parent("ul").remove();
     th.parent("ul").parent("div").hide();
 }
 

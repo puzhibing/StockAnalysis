@@ -35,12 +35,12 @@ function fuzzyAcquisition(v) {
         url: "/fuzzyQueryCompany",
         type: "POST",
         data: {
-            stockCode: value
+        	value: value
         },
         success: function (res) {
             $(v).siblings(".selectionPanel").html('');
             if(res.b){
-                let list = b.result;
+                let list = res.result;
                 let str = '<ul>';
                 for(var i = 0; i < list.length; i++){
                     str += '<li id="' + list[i].id +  '" name="' + list[i].name + '" onclick="selectionPanel(this)"><span>' + list[i].chName + '</span></li>';

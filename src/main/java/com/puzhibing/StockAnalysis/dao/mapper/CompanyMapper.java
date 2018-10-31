@@ -77,4 +77,15 @@ public interface CompanyMapper {
 		@Result(property = "updateTime" , column = "updateTime")
 	})
 	Company selectCompanyInfoById(String id);
+	
+	
+	
+	
+	/**
+	 * 根据英文或中文名称动态查询
+	 * @param name
+	 * @return
+	 */
+	@SelectProvider(type = CompanySql.class , method = "selectCompanyLikeName")
+	List<Company> selectCompanyLikeName(String name);
 }

@@ -1,8 +1,11 @@
 package com.puzhibing.StockAnalysis.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,9 +67,8 @@ public class CompanyServiceImpl implements CompanyService {
 			
 			try {
 				companyMapper.insertCompany(company);
-				Company company2 = companyMapper.selectCompanyInfoById(id);
 				resultUtil.setB(true);
-				resultUtil.setResult(JSON.toJSONString(company2));
+				resultUtil.setResult(JSON.toJSONString(company));
 			} catch (Exception e) {
 				throw e;
 			}
@@ -185,6 +187,53 @@ public class CompanyServiceImpl implements CompanyService {
 				resultBean.setResult(company);
 			} catch (Exception e) {
 				throw e;
+			}
+		}
+		return resultBean;
+	}
+
+
+
+	
+	/**
+	 * 根据编号或名称模糊查询企业数据
+	 * @param value	编号或名称
+	 * @return
+	 * @throws Exception
+	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public ResultBean<Object> fuzzyQueryCompany(String value) throws Exception {
+		ResultBean<Object> resultBean = new ResultBean<>();
+		if(!StringUtils.isEmpty(value)) {
+			Pattern p = Pattern.compile("[0-9]");
+			Matcher m = p.matcher(value);
+			if(m.find()) {//编号查询
+				try {
+					List<Company> companies = new ArrayList<>();
+					Company company = null;
+					List<Object> list = (List)companyStockServiceImpl.selectCompanyStockLikeCode(value).getResult();
+					for (Object object : list) {
+						company = companyMapper.selectCompanyInfoById(((CompanyStock)object).getCompanyId());
+						companies.add(company);
+					}
+					
+					resultBean.setB(true);
+					resultBean.setResult(companies);
+					
+				} catch (Exception e) {
+					throw e;
+				}
+				
+			}else {//名称查询
+				try {
+					List<Company> list = companyMapper.selectCompanyLikeName("%" + value + "%");
+					
+					resultBean.setB(true);
+					resultBean.setResult(list);
+				} catch (Exception e) {
+					throw e;
+				}
 			}
 		}
 		return resultBean;
