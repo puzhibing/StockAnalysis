@@ -33,7 +33,8 @@ $(document).ready(function () {
 //初始化样式
 function initStyle(){
     $(".other button").attr("disabled","disabled");
-    $(".other input").attr("disabled","disabled")
+    $(".other input").attr("disabled","disabled");
+    $(".other select").attr("disabled","disabled")
     $(".other button").css({
         "cursor":"not-allowed"
     });
@@ -50,7 +51,7 @@ function selectAllStockType(){
             $('.stockType').html('');
             let str = '<option value=""></option>';
             if(res.b){
-                let types = res.result;
+                let types = JSON.parse(res.result);
                 for (let i = 0 ; i < types.length ; i++){
                     str += '<option value="' + types[i].id + '">' + types[i].name + '</option>';
                 }
@@ -72,7 +73,7 @@ function selectAllStockExchange(){
             $('.stockExchange').html('');
             let str = '<option value=""></option>';
             if(res.b){
-                let types = res.result;
+                let types = JSON.parse(res.result);
                 for (let i = 0 ; i < types.length ; i++){
                     str += '<option value="' + types[i].id + '">' + types[i].name + '</option>';
                 }
@@ -129,6 +130,7 @@ function saveData(){
 
                 $(".other button").removeAttr("disabled");
                 $(".other input").removeAttr("disabled");
+                $(".other select").removeAttr("disabled");
                 $(".other button").css({
                     "cursor":"pointer"
                 });
@@ -216,7 +218,7 @@ function selectCompanyStock(){
                         '<td>' + result[i].stockCode + '</td>' +
                         '<td>' + result[i].listingTime + '</td>' +
                         '<td>' + result[i].stockExchangeId[0].name + '</td>' +
-                        '<td><button class="edit" onclick="updateCompanyStock(this)">编辑</button>' +
+                        '<td><button class="edit" onclick="updateCompanyStock(this)" data="' + result[i].id + '' + result[i].stockTypeId[0].id + ';' + result[i].stockCode + ';' + result[i].listingTime + ';' + result[i].stockExchangeId[0].id + '">编辑</button>' +
                         '<button class="del" onclick="removeRow(\'' + result[i].id + '\')">删除</button></td>' +
                         '</tr>';
                 }
@@ -228,8 +230,17 @@ function selectCompanyStock(){
 
 
 //编辑证券数据
-function updateCompanyStock(){
+function updateCompanyStock(bj){
+    var data = $(bj).attr('data');
+    var arr = data.split(';');
 
+    $(".companyStockId").val(arr[0]);
+    $(".stockCode").val(arr[2]);
+    $(".listingTime").val(arr[3]);
+    $('.stockType').val(arr[1]);
+    $('.stockType option[value=\'' + arr[1] + '\']').attr('selected','selected');
+    $('.stockExchange').val(arr[4]);
+    $('.stockExchange option[value=\'' + arr[4] + '\']').attr('selected','selected');
 }
 
 
@@ -245,7 +256,8 @@ function removeRow(id){
         },
         success: function (res) {
             if(res.b){
-
+                alert('删除成功');
+                selectCompanyStock();
             }
         }
     });

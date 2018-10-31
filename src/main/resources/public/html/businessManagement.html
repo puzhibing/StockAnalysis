@@ -8,7 +8,6 @@
 <body>
     <div class="panl">
         <input type="hidden" class="companyId">
-        <input type="hidden" class="token">
         <div class="title">
             <span>企业数据</span>
             <button class="new">新建</button>
@@ -42,12 +41,22 @@
                 <div>
                     <table>
                         <tr>
-                            <td><span>证券类型：</span><input type="text" class="stockType"></td>
+                            <td>
+                                <span>证券类型：</span>
+                                <select class="stockType">
+                                    <option value=""></option>
+                                </select>
+                            </td>
                             <td><span>证券编号：</span><input type="text" class="stockCode"></td>
                         </tr>
                         <tr>
                             <td><span>上市日期：</span><input type="text" class="listingTime"></td>
-                            <td><span>上市地址：</span><input type="text" class="stockExchange"></td>
+                            <td>
+                                <span>上市地址：</span>
+                                <select class="stockExchange">
+                                    <option value=""></option>
+                                </select>
+                            </td>
                         </tr>
                     </table>
                 </div>
