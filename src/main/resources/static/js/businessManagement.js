@@ -214,8 +214,8 @@ function findAllCompany(){
                 let str = '<tr><th>序号</th><th>企业名称</th><th>中文简称</th><th>英文名称</th><th>英文简称</th><th>注册日期</th><th>网址</th></tr>';
                 for (let i = 0 ; i < result.length ; i++){
                     str += '<tr id="' + result[i].id + '" onclick="selected(this)" data="' + result[i].id + ';' + result[i].chName + ';' + result[i].chShortName + ';' + result[i].enName + ';' + result[i].enShortName + ';' + result[i].registerTime + ';' + result[i].url + ';' + '">' +
-                        '<td>' + result[i].chName + '</td><td>' + result[i].chShortName + '</td><td>' + result[i].enName + '</td>' +
-                        '<td>' + result[i].enShortName + '</td><td>' + result[i].registerTime + '</td><td>' + result[i].url + '</td></tr>';
+                        '<td>' + (i + 1) + '</td><td>' + result[i].chName + '</td><td>' + result[i].chShortName + '</td><td>' + result[i].enName + '</td>' +
+                        '<td>' + result[i].enShortName + '</td><td>' + new Date(result[i].registerTime) + '</td><td>' + result[i].url + '</td></tr>';
                 }
                 $('.CompanyData table').html(str);
             }
@@ -230,6 +230,7 @@ function selected(tr){
     tr.css({
         'background-color':'#75A2A5'
     });
+    tr.substring()
     let data = tr.attr('data');
     let arr = data.split(';');
 

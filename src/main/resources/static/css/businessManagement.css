@@ -231,6 +231,7 @@ body{
 
 
 .content .CompanyData{
+    width: 300px;
     overflow: auto;
     border: 1px solid #BCBCBC;
 }
