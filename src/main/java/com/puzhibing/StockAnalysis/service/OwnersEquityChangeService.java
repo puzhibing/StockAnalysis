@@ -16,4 +16,14 @@ public interface OwnersEquityChangeService {
 	 * @throws Exception
 	 */
 	ResultBean<Object> insertOwnersEquityChange(OwnersEquityChange ownersEquityChange , String currencyUnit, String token) throws Exception;
+	
+	
+	
+	/**
+	 * 查询数据
+	 * @param companyStockId
+	 * @return
+	 * @throws Exception
+	 */
+	ResultBean<Object> selectOwnersEquityChangeByCompanyStockId(String companyStockId) throws Exception;
 }

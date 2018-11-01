@@ -99,4 +99,25 @@ public class CompanyStockController {
 		}
 		return resultBean;
 	}
+	
+	
+	
+	
+	/**
+	 * 根据id查询所有数据
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/selectAllSecuritiesDataById")
+	public ResultBean<Object> selectAllSecuritiesDataById(String id){
+		try {
+			resultBean = companyStockServiceImpl.selectAllSecuritiesDataById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultBean = new ResultBean<>();
+			resultBean.setB(false);
+			resultBean.setResult("数据处理异常");
+		}
+		return resultBean;
+	}
 }

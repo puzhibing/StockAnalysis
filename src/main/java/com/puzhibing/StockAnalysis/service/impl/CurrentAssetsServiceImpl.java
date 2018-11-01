@@ -56,11 +56,11 @@ public class CurrentAssetsServiceImpl implements CurrentAssetsService {
 		if(null != currentAssets && !(StringUtils.isEmpty(token) && StringUtils.isEmpty(currencyUnit))) {
 			currentAssets = (CurrentAssets)unitCalculationUtil.calculation(currencyUnit , currentAssets , CurrentAssets.class);
 
-//			user = tokenutil.tokenToUser(token);
+			user = tokenutil.tokenToUser(token);
 			currentAssets.setId(uuidutil.getUUID());
 			currentAssets.setDel("0");
 			currentAssets.setInsertTime(new Date());
-//			currentAssets.setInsertUserId(user.getId());
+			currentAssets.setInsertUserId(user.getId());
 			try {
 				currentAssetsMapper.insertCurrentAssets(currentAssets);
 				resultBean.setB(true);

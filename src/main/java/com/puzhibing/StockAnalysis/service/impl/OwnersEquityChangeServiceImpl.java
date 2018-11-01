@@ -1,11 +1,13 @@
 package com.puzhibing.StockAnalysis.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
+import com.alibaba.fastjson.JSON;
 import com.puzhibing.StockAnalysis.dao.mapper.OwnersEquityChangeMapper;
 import com.puzhibing.StockAnalysis.pojo.OwnersEquityChange;
 import com.puzhibing.StockAnalysis.pojo.ResultBean;
@@ -56,14 +58,33 @@ public class OwnersEquityChangeServiceImpl implements OwnersEquityChangeService 
 		if(null != ownersEquityChange && !(StringUtils.isEmpty(currencyUnit) && StringUtils.isEmpty(token))) {
 			ownersEquityChange = (OwnersEquityChange)unitCalculationUtil.calculation(currencyUnit , ownersEquityChange , OwnersEquityChange.class);
 			
-//			user = tokenutil.tokenToUser(token);
+			user = tokenutil.tokenToUser(token);
 			ownersEquityChange.setId(uuidutil.getUUID());
 			ownersEquityChange.setDel("0");
 			ownersEquityChange.setInsertTime(new Date());
-//			ownersEquityChange.setInsertUserId(user.getId());
+			ownersEquityChange.setInsertUserId(user.getId());
 			try {
 				ownersEquityChangeMapper.insertOwnersEquityChange(ownersEquityChange);
 				resultBean.setB(true);
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+		return resultBean;
+	}
+
+
+	
+	
+	
+	@Override
+	public ResultBean<Object> selectOwnersEquityChangeByCompanyStockId(String companyStockId) throws Exception {
+		resultBean = new ResultBean<>();
+		if (!StringUtils.isEmpty(companyStockId)) {
+			try {
+				List<OwnersEquityChange> list = ownersEquityChangeMapper.selectOwnersEquityChangeByCompanyStockId(companyStockId);
+				resultBean.setB(true);
+				resultBean.setResult(list);
 			} catch (Exception e) {
 				throw e;
 			}

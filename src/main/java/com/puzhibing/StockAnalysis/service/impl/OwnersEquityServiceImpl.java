@@ -1,6 +1,7 @@
 package com.puzhibing.StockAnalysis.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,14 +48,36 @@ public class OwnersEquityServiceImpl implements OwnersEquityService {
 		if(null != ownersEquity && !(StringUtils.isEmpty(currencyUnit) && StringUtils.isEmpty(token))) {
 			ownersEquity = (OwnersEquity)unitCalculationUtil.calculation(currencyUnit , ownersEquity , OwnersEquity.class);
 			
-//			user = tokenutil.tokenToUser(token);
+			user = tokenutil.tokenToUser(token);
 			ownersEquity.setId(uuidutil.getUUID());
 			ownersEquity.setDel("0");
 			ownersEquity.setInsertTime(new Date());
-//			ownersEquity.setInsertUserId(user.getId());
+			ownersEquity.setInsertUserId(user.getId());
 			try {
 				ownersEquityMapper.insertOwnersEquity(ownersEquity);
 				resultBean.setB(true);
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+		return resultBean;
+	}
+
+	
+	
+	/**
+	 * 查询数据
+	 * @param companyStockId
+	 * @return
+	 */
+	@Override
+	public ResultBean<Object> selectOwnersEquityByCompanyStockId(String companyStockId) throws Exception {
+		resultBean = new ResultBean<>();
+		if(!StringUtils.isEmpty(companyStockId)) {
+			try {
+				List<OwnersEquity> list = ownersEquityMapper.selectOwnersEquityByCompanyStockId(companyStockId);
+				resultBean.setB(true);
+				resultBean.setResult(list);
 			} catch (Exception e) {
 				throw e;
 			}

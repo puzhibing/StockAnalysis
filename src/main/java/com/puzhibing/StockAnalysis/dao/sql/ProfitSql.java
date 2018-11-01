@@ -30,4 +30,21 @@ public class ProfitSql {
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}
+	
+	
+	
+	/**
+	 * 查询数据
+	 * @param companyStockId
+	 * @return
+	 */
+	public String selectProfitByCompanyStockId(String companyStockId){
+		return new SQL() {{
+			SELECT("id , companyStockId , dataTime , businessIncome , operatingCost , btaa , sellingExpenses , managementCost , financialCost");
+			SELECT("ail , fvci , adi , ifi , iiojvajv , oii , operatingProfit , noi , noe , paldoia , onoe , totalProfit , ite , netProfit , eps , beps , deps");
+			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
+			FROM("t_profit");
+			WHERE("companyStockId = #{companyStockId} and del = '0'");
+		}}.toString();
+	}
 }

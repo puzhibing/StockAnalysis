@@ -1,12 +1,14 @@
 package com.puzhibing.StockAnalysis.service.impl;
 
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.puzhibing.StockAnalysis.dao.mapper.ProfitMapper;
+import com.puzhibing.StockAnalysis.pojo.CashFlow;
 import com.puzhibing.StockAnalysis.pojo.Profit;
 import com.puzhibing.StockAnalysis.pojo.ResultBean;
 import com.puzhibing.StockAnalysis.pojo.User;
@@ -66,6 +68,24 @@ public class ProfitServiceImpl implements ProfitService {
 			try {
 				profitMapper.insertProfit(profit);
 				resultBean.setB(true);
+			} catch (Exception e) {
+				throw e;
+			}
+		}
+		return resultBean;
+	}
+
+
+
+
+	@Override
+	public ResultBean<Object> selectProfitByCompanyStockId(String companyStockId) throws Exception {
+		resultBean = new ResultBean<>();
+		if(!StringUtils.isEmpty(companyStockId)) {
+			try {
+				List<Profit> list = profitMapper.selectProfitByCompanyStockId(companyStockId);
+				resultBean.setB(true);
+				resultBean.setResult(list);
 			} catch (Exception e) {
 				throw e;
 			}

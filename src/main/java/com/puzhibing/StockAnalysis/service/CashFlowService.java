@@ -14,4 +14,15 @@ public interface CashFlowService {
 	 * @throws Exception
 	 */
 	ResultBean<Object> insertCashFlow(CashFlow cashFlow , String currencyUnit , String token) throws Exception;
+	
+	
+	
+	
+	/**
+	 * 查询数据
+	 * @param companyStockId
+	 * @return
+	 * @throws Exception
+	 */
+	ResultBean<Object> selectCashFlowByCompanyStockId(String companyStockId) throws Exception;
 }

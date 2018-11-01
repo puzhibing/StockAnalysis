@@ -20,4 +20,14 @@ public interface ProfitService {
 	 * @throws Exception
 	 */
 	ResultBean<Object> insertProfit(Profit profit , String currencyUnit , String token)throws Exception;
+	
+	
+	
+	/**
+	 * 查询数据
+	 * @param companyStockId
+	 * @return
+	 * @throws Exception
+	 */
+	ResultBean<Object> selectProfitByCompanyStockId(String companyStockId) throws Exception;
 }
