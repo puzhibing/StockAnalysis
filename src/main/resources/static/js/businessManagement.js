@@ -40,6 +40,12 @@ function initStyle(){
     $(".other button").css({
         "cursor":"not-allowed"
     });
+
+    let width = $(document.body).outerWidth(true);
+
+    $('.content .CompanyData').css({
+        'width':width-740-220
+    });
 }
 
 
