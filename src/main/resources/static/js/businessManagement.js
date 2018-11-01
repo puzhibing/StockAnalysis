@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     getURLParameters('token');
 
-    findAllCompany();
+    // findAllCompany();
 
     selectAllStockType();
 
@@ -42,9 +42,11 @@ function initStyle(){
     });
 
     let width = $(document.body).outerWidth(true);
+    let height = $(document.body).outerHeight(true);
 
     $('.content .CompanyData').css({
-        'width':width-760
+        'max-width':width-770,
+        'max-height':height-80
     });
 }
 
@@ -217,11 +219,11 @@ function findAllCompany(){
         success: function (res) {
             if(res.b){
                 let result = res.result;
-                let str = '<tr><th>序号</th><th>企业名称</th><th>中文简称</th><th>英文名称</th><th>英文简称</th><th>注册日期</th><th>网址</th></tr>';
+                let str = '<tr><th>序号</th><th>企业名称</th><th>中文简称</th><th>英文名称</th><th>英文简称</th><th>注册日期</th><th>网址</th><th>操作</th></tr>';
                 for (let i = 0 ; i < result.length ; i++){
                     str += '<tr id="' + result[i].id + '" onclick="selected(this)" data="' + result[i].id + ';' + result[i].chName + ';' + result[i].chShortName + ';' + result[i].enName + ';' + result[i].enShortName + ';' + result[i].registerTime + ';' + result[i].url + ';' + '">' +
                         '<td>' + (i + 1) + '</td><td>' + result[i].chName + '</td><td>' + result[i].chShortName + '</td><td>' + result[i].enName + '</td>' +
-                        '<td>' + result[i].enShortName + '</td><td>' + new Date(result[i].registerTime) + '</td><td>' + result[i].url + '</td></tr>';
+                        '<td>' + result[i].enShortName + '</td><td>' + new Date(result[i].registerTime) + '</td><td>' + result[i].url + '</td><td><button onclick="removeRow(\'' + result[i].id + '\')">删除</button></td></tr>';
                 }
                 $('.CompanyData table').html(str);
             }

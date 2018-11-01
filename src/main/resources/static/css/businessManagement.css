@@ -231,16 +231,17 @@ body{
 
 
 .content .CompanyData{
-    overflow: scroll;
-    border: 1px solid #BCBCBC;
+    overflow: auto;
+    /*border: 1px solid #F0F0F0;*/
 }
 
 .content .CompanyData table{
+    width: 1000px;
     border-collapse: collapse;
 }
 
 .content .CompanyData table tr:hover{
-    background-color: #75A2A5;
+    background-color: #C0E1E3;
 }
 
 .content .CompanyData table th{
@@ -249,16 +250,15 @@ body{
     font-size: 14px;
     font-weight: 500;
     height: 30px;
-    border:  1px solid #D0D0D0;
-    min-width: 200px;
+    border:  1px solid #F0F0F0;
 }
 
-.content .CompanyData table th:first-of-type{
-    width: 50px;
+.content .CompanyData table tbody th:first-of-type{
+    width: 30px;
 }
 
-.content .CompanyData table th:last-of-type{
-    width: 80px;
+.content .CompanyData table tbody th:last-of-type{
+    width: 60px;
 }
 
 
@@ -267,7 +267,7 @@ body{
     font-size: 14px;
     height: 30px;
     padding-left: 10px;
-    border:  1px solid #D0D0D0;
+    border:  1px solid #F0F0F0;
 }
 
 .content .CompanyData table td:first-of-type{
