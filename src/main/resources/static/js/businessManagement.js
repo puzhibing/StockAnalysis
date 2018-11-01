@@ -11,6 +11,8 @@ $(document).ready(function () {
 
     getURLParameters('token');
 
+    findAllCompany();
+
     selectAllStockType();
 
     selectAllStockExchange();
@@ -49,7 +51,7 @@ function selectAllStockType(){
         data: {},
         success: function (res) {
             $('.stockType').html('');
-            let str = '<option value=""></option>';
+            let str = '';
             if(res.b){
                 let types = JSON.parse(res.result);
                 for (let i = 0 ; i < types.length ; i++){
@@ -71,7 +73,7 @@ function selectAllStockExchange(){
         data: {},
         success: function (res) {
             $('.stockExchange').html('');
-            let str = '<option value=""></option>';
+            let str = '';
             if(res.b){
                 let types = JSON.parse(res.result);
                 for (let i = 0 ; i < types.length ; i++){
@@ -134,6 +136,7 @@ function saveData(){
                 $(".other button").css({
                     "cursor":"pointer"
                 });
+                findAllCompany();
             }
         }
     });
@@ -198,6 +201,53 @@ function saveCompanyStock(){
 
 
 
+//获取所有企业数据
+function findAllCompany(){
+    $('.CompanyData table').html('');
+    $.ajax({
+        url: '/selectAllCompany',
+        type: 'POST',
+        data: {},
+        success: function (res) {
+            if(res.b){
+                let result = res.result;
+                let str = '<tr><th>序号</th><th>企业名称</th><th>中文简称</th><th>英文名称</th><th>英文简称</th><th>注册日期</th><th>网址</th></tr>';
+                for (let i = 0 ; i < result.length ; i++){
+                    str += '<tr id="' + result[i].id + '" onclick="selected(this)" data="' + result[i].id + ';' + result[i].chName + ';' + result[i].chShortName + ';' + result[i].enName + ';' + result[i].enShortName + ';' + result[i].registerTime + ';' + result[i].url + ';' + '">' +
+                        '<td>' + result[i].chName + '</td><td>' + result[i].chShortName + '</td><td>' + result[i].enName + '</td>' +
+                        '<td>' + result[i].enShortName + '</td><td>' + result[i].registerTime + '</td><td>' + result[i].url + '</td></tr>';
+                }
+                $('.CompanyData table').html(str);
+            }
+        }
+    });
+}
+
+
+//选中表格中的数据处理函数
+function selected(tr){
+    tr = $(tr);
+    tr.css({
+        'background-color':'#75A2A5'
+    });
+    let data = tr.attr('data');
+    let arr = data.split(';');
+
+    $(".companyId").val(arr[0]);
+    $(".chName").val(arr[1]);
+    $(".chShortName").val(arr[2]);
+    $(".enName").val(arr[3]);
+    $(".enShortName").val(arr[4]);
+    $(".registerTime").val(longToDate(arr[5]));
+    $(".url").val(arr[6]);
+
+    selectCompanyStock();
+
+}
+
+
+
+
 //查询公司证券数据
 function selectCompanyStock(){
     let companyId = $(".companyId").val();
@@ -210,7 +260,7 @@ function selectCompanyStock(){
         success: function (data) {
             $(".other>table").html('');
             if(data.b){
-            	let result = JSON.parse(data.result);
+                let result = JSON.parse(data.result);
                 var str = "<tr><th>证券名称</th><th>证券编号</th><th>上市时间</th><th>上市地址</th><th>操作</th></tr>";
                 for(var i in result){
                     str += '<tr id="' + result[i].id + '">' +
