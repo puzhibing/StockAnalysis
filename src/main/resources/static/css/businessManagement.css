@@ -54,6 +54,10 @@ body{
     margin-top: 50px;
 }
 
+.content .BasicData , .content .CompanyData{
+    float: left;
+}
+
 .content .data{
     width: 740px;
 }
@@ -95,7 +99,7 @@ body{
 }
 
 .content .data div{
-    width: 700px;
+    width: 740px;
     margin: 0 auto;
 }
 
@@ -226,13 +230,62 @@ body{
 }
 
 
-/*.other .selectionPanel{*/
-    /*display: none;*/
-    /*width: 200px;*/
-    /*height: 80px;*/
-    /*background-color: #F8F8F8;*/
-    /*border: 1px solid #547576;*/
-    /*z-index: 100;*/
-    /*position: absolute;*/
-/*}*/
+.content .CompanyData{
+    overflow: auto;
+    border: 1px solid #BCBCBC;
+}
 
+.content .CompanyData table tr:hover{
+    background-color: #75A2A5;
+}
+
+.content .CompanyData table th{
+    background-color: #5E8586;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    height: 30px;
+    border:  1px solid #D0D0D0;
+}
+
+.content .CompanyData table th:first-of-type{
+    width: 50px;
+}
+
+.content .CompanyData table th:last-of-type{
+    width: 80px;
+}
+
+
+.content .CompanyData table td{
+    color: #464646;
+    font-size: 14px;
+    height: 30px;
+    padding-left: 10px;
+    border:  1px solid #D0D0D0;
+}
+
+.content .CompanyData table td:first-of-type{
+    text-align: center;
+    padding-left: 0px;
+}
+
+.content .CompanyData table td:last-of-type {
+    text-align: center;
+    padding-left: 0px;
+}
+
+.content .CompanyData table td button{
+    width: 40px;
+    background-color: #C86A6A;
+    border: 1px solid #C86A6A;
+    border-radius: 3px;
+    color: #FFFFFF;
+    font-size: 12px;
+}
+
+.content .CompanyData table td button:hover{
+    cursor: pointer;
+    background-color: #B14141;
+    border: 1px solid #B14141;
+}
