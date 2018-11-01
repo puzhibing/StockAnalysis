@@ -166,6 +166,7 @@ function saveCompanyStock(){
     formData.append("stockTypeId", stockType);
     formData.append("listingTime", listingTime);
     formData.append("stockExchangeId", stockExchange);
+    formData.append("token", token);
     let u;
     if("" == companyStockId){
         u = "/insertCompanyStock";
@@ -209,8 +210,7 @@ function selectCompanyStock(){
         success: function (data) {
             $(".other>table").html('');
             if(data.b){
-                let result = data.result;
-                JSON.stringify(result);
+            	let result = JSON.parse(data.result);
                 var str = "<tr><th>证券名称</th><th>证券编号</th><th>上市时间</th><th>上市地址</th><th>操作</th></tr>";
                 for(var i in result){
                     str += '<tr id="' + result[i].id + '">' +
