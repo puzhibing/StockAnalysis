@@ -241,7 +241,8 @@ body{
 }
 
 .content .CompanyData table tr:hover{
-    background-color: #C0E1E3;
+    background-color: #81CBCE;
+    cursor: pointer;
 }
 
 .content .CompanyData table th{

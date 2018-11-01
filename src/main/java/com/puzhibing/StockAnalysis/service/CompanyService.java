@@ -36,7 +36,7 @@ public interface CompanyService {
 	 * @return
 	 * @throws Exception
 	 */
-	ResultBean<Object> deleteCompany(Company company , String token) throws Exception;
+	ResultBean<Object> deleteCompany(String id , String token) throws Exception;
 	
 	
 	

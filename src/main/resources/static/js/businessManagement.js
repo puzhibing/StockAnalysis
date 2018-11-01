@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     getURLParameters('token');
 
-    // findAllCompany();
+     findAllCompany();
 
     selectAllStockType();
 
@@ -223,7 +223,7 @@ function findAllCompany(){
                 for (let i = 0 ; i < result.length ; i++){
                     str += '<tr id="' + result[i].id + '" onclick="selected(this)" data="' + result[i].id + ';' + result[i].chName + ';' + result[i].chShortName + ';' + result[i].enName + ';' + result[i].enShortName + ';' + result[i].registerTime + ';' + result[i].url + ';' + '">' +
                         '<td>' + (i + 1) + '</td><td>' + result[i].chName + '</td><td>' + result[i].chShortName + '</td><td>' + result[i].enName + '</td>' +
-                        '<td>' + result[i].enShortName + '</td><td>' + new Date(result[i].registerTime) + '</td><td>' + result[i].url + '</td><td><button onclick="removeRow(\'' + result[i].id + '\')">删除</button></td></tr>';
+                        '<td>' + result[i].enShortName + '</td><td>' + new Date(result[i].registerTime) + '</td><td>' + result[i].url + '</td><td><button onclick="deleteCompany(\'' + result[i].id + '\')">删除</button></td></tr>';
                 }
                 $('.CompanyData table').html(str);
             }
@@ -236,7 +236,7 @@ function findAllCompany(){
 function selected(tr){
     tr = $(tr);
     tr.css({
-        'background-color':'#75A2A5'
+        'background-color':'#81CBCE'
     });
     tr.siblings('tr').css({
         'background-color':'#FFFFFF'
@@ -319,6 +319,26 @@ function removeRow(id){
             if(res.b){
                 alert('删除成功');
                 selectCompanyStock();
+            }
+        }
+    });
+}
+
+
+
+function deleteCompany(id){
+    id = id.trim();
+    $.ajax({
+        url: '/deleteCompany',
+        type: 'POST',
+        data: {
+            id: id,
+            token: token
+        },
+        success: function (res) {
+            if(res.b){
+                alert('删除成功');
+                findAllCompany();
             }
         }
     });

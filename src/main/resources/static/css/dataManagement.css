@@ -33,7 +33,7 @@ body{
 }
 
 .title .text{
-    margin-left: 65%;
+    margin-left: 60%;
 }
 
 .title .text .selectionPanel{
@@ -44,6 +44,19 @@ body{
     border: 1px solid #547576;
     z-index: 100;
     position: absolute;
+}
+
+.title .text .selectionPanel ul{
+	list-style-type: none;
+}
+
+.title .text .selectionPanel ul li{
+	height: 25px;
+}
+
+.title .text .selectionPanel ul li:hover{
+	cursor: pointer;
+	backgroup-color: #81CBCE;
 }
 
 .title div input{

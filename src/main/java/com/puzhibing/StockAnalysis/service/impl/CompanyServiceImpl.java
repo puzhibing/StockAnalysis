@@ -116,17 +116,18 @@ public class CompanyServiceImpl implements CompanyService {
 	@SuppressWarnings("unchecked")
 	@Override
 	@Transactional//开启事务
-	public ResultBean<Object> deleteCompany(Company company, String token) throws Exception {
+	public ResultBean<Object> deleteCompany(String id, String token) throws Exception {
 		
 		/*
 		 * 1.删除其他相关数据
 		 * 2.删除主体数据
 		 */
 		resultUtil = new ResultBean<>();
-		if(null != company && !StringUtils.isEmpty(token)) {
+		if(!(StringUtils.isEmpty(token) && StringUtils.isEmpty(id))) {
 			user = tokenutil.tokenToUser(token);
 			//删除股票数据
-			ResultBean<Object> resultBean = companyStockServiceImpl.selectCompanyStockByCompanyId(company.getId());
+			Company company = companyMapper.selectCompanyById(id);
+			ResultBean<Object> resultBean = companyStockServiceImpl.selectCompanyStockByCompanyId(id);
 			String json = (String)resultBean.getResult();
 			List<CompanyStock> list = JSON.parseObject(json, new ArrayList<CompanyStock>().getClass());
 			for (CompanyStock companyStock : list) {

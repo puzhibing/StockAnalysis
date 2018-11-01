@@ -88,4 +88,13 @@ public interface CompanyMapper {
 	 */
 	@SelectProvider(type = CompanySql.class , method = "selectCompanyLikeName")
 	List<Company> selectCompanyLikeName(String name);
+	
+	
+	/**
+	 * 根据id查询数据
+	 * @param id
+	 * @return
+	 */
+	@SelectProvider(type = CompanySql.class , method = "selectCompanyById")
+	Company selectCompanyById(String id);
 }

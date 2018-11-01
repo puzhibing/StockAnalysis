@@ -80,9 +80,9 @@ public class CompanyController {
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteCompany")
-	public ResultBean<Object> deleteCompany(Company company , String token) {
+	public ResultBean<Object> deleteCompany(String id , String token) {
 		try {
-			resultBean = companyServiceImpl.deleteCompany(company, token);
+			resultBean = companyServiceImpl.deleteCompany(id, token);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resultBean = new ResultBean<>();
