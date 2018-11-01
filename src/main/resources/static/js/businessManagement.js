@@ -44,7 +44,7 @@ function initStyle(){
     let width = $(document.body).outerWidth(true);
 
     $('.content .CompanyData').css({
-        'width':width-740-220
+        'width':width-760
     });
 }
 
@@ -236,7 +236,9 @@ function selected(tr){
     tr.css({
         'background-color':'#75A2A5'
     });
-    tr.substring()
+    tr.siblings('tr').css({
+        'background-color':'#FFFFFF'
+    });
     let data = tr.attr('data');
     let arr = data.split(';');
 

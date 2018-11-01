@@ -231,8 +231,12 @@ body{
 
 
 .content .CompanyData{
-    overflow: auto;
+    overflow: scroll;
     border: 1px solid #BCBCBC;
+}
+
+.content .CompanyData table{
+    border-collapse: collapse;
 }
 
 .content .CompanyData table tr:hover{
@@ -246,6 +250,7 @@ body{
     font-weight: 500;
     height: 30px;
     border:  1px solid #D0D0D0;
+    min-width: 200px;
 }
 
 .content .CompanyData table th:first-of-type{
