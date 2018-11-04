@@ -301,9 +301,72 @@ body{
 
 /*导入面板样式*/
 .importPal{
-    position: absolute;
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 200;
+    width: 100vw;
+    height: 100vh;
+    background-color:rgba(140,140,140,0.5);/*设置背景透明*/
+    display: none;
+}
+
+.importPal .import{
+    position:absolute;
     z-index: 500;
+    width: 300px;
+    height: 200px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px #464646;
+}
+
+.importPal .import .title i{
+    font-size: 16px;
+    color: #C86A6A;
+    margin-left: 190px;
+}
+
+.importPal .import .title i:hover{
+    font-size: 18px;
+    color: #B14141;
+}
+
+.importPal .import .condition{
     width: 100%;
-    height: 100%;
-    border: 1px solid #3A76D8;
+}
+
+.importPal .import .condition>div{
+    width: 90%;
+    margin: 0 auto;
+    text-align: right;
+}
+
+
+.importPal .import .condition div div{
+    margin-top: 20px;
+}
+
+.importPal .import .condition div select{
+    width: 203px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #5E8586;
+    padding-left: 10px;
+}
+
+
+.importPal .import .condition button{
+    width: 100%;
+    height: 35px;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
+    border-radius: 3px;
+    color: #FFFFFF;
+    margin-top: 40px;
+}
+
+.importPal .import .condition button:hover{
+    cursor: pointer;
+    background-color: #5E8586;
 }

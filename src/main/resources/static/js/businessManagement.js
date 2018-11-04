@@ -3,6 +3,7 @@ let token = '';
 
 //初始化
 $(document).ready(function () {
+
 	
     //获取token
     token = getURLParameters('token');
@@ -29,6 +30,18 @@ $(document).ready(function () {
         saveCompanyStock();
     });
 
+    $('.importBu').click(function () {
+        $('.importPal').show();
+    });
+
+    $('.importPal .import .title i').click(function () {
+        $('.importPal').hide();
+    });
+
+    $('.importData').click(function () {
+        importData();
+    })
+
 });
 
 
@@ -47,6 +60,13 @@ function initStyle(){
     $('.content .CompanyData').css({
         'max-width':width-785,
         'max-height':height-80
+    });
+
+    $('.importPal .import').css({
+        'width': '325px',
+        'height': '225px',
+        'top': (height - 325) / 2,
+        'left': (width - 225) / 2,
     });
 }
 
@@ -356,3 +376,29 @@ function deleteCompany(id){
     });
 }
 
+
+
+//导入数据
+function importData(){
+    let add = $('').val();
+    let type = $('').val();
+
+    $.ajax({
+        url: '',
+        type: 'POST',
+        data: {},
+        beforeSend: function(){
+            processing();//添加加载效果
+        },
+        success: function (res) {
+            if(res.b){
+                alert('导入成功');
+            }else{
+                alert('导入失败');
+            }
+        },
+        complete: function () {
+            closeProcessing();//关闭特效
+        }
+    });
+}

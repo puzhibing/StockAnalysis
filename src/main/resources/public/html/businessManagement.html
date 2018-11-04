@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>企业管理</title>
     <link type="text/css" rel="stylesheet" href="../css/businessManagement.css">
+    <link type="text/css" rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="panl">
@@ -11,7 +12,7 @@
         <div class="title">
             <span>企业数据</span>
             <button class="new">新建</button>
-            <button class="import">导入数据</button>
+            <button class="importBu">导入数据</button>
             <button class="save">保存</button>
             <button class="reset">重置</button>
         </div>
@@ -74,13 +75,11 @@
                 </div>
             </div>
 
-
             <div class="CompanyData">
                 <table>
 
                 </table>
             </div>
-
 
         </div>
     </div>
@@ -88,9 +87,32 @@
     <!--导入数据面板-->
     <div class="importPal">
         <div class="import">
-            212315615
+            <div class="title">
+                <span>企业数据导入</span>
+                <i class="fa fa-remove"></i>
+            </div>
+            <div class="condition">
+                <div>
+                    <div>
+                        <span>上市交易所：</span>
+                        <select class="add">
+                            <option>上海证券交易所</option>
+                            <option>深圳证券交易所</option>
+                        </select>
+                    </div>
+                    <div>
+                        <span>证券类型：</span>
+                        <select class="type">
+                            <option>A 股</option>
+                            <option>B 股</option>
+                        </select>
+                    </div>
+                    <button class="importData">导入数据</button>
+                </div>
+            </div>
         </div>
     </div>
+
 </body>
     <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
     <script type="text/javascript" src="../js/businessManagement.js"></script>

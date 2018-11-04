@@ -57,3 +57,31 @@ function getURLParameters(key){
     }
     return value;
 }
+
+
+
+//定义处理提示效果
+function processing(){
+    let str = '<div class="processing" style="position:fixed;top: 0px;left: 0px;z-index: 900;width: 100vw;height: 100vh;background-color:rgba(140,140,140,0.1);">' +
+        '<i class="fa fa-spinner fa-pulse"></i>'+
+        '</div>';
+
+    $('body').append(str);
+
+    let width = $(document.body).outerWidth(true);
+    let height = $(document.body).outerHeight(true);
+    $('.processing i').css({
+        'font-size': '36px',
+        'color': '#547576',
+        'position': 'absolute',
+        'z-index': '1000',
+        'top': '200px',
+        'left': (width - 20) / 2,
+    });
+}
+
+
+//关闭处理提示效果
+function closeProcessing(){
+    $('.processing').remove();
+}
