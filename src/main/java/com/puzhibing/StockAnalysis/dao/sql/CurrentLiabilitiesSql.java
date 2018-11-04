@@ -20,7 +20,7 @@ public class CurrentLiabilitiesSql {
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
 			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{stl} , #{tfl} , #{billsPayable} , #{accountsPayable} , #{advancePayment} , #{payrollPayable}");
-			INTO_VALUES("#{taxesPayable} , #{interestPayable} , #{dividendPayable} , #{otherPayables} , #{nldwoy} , #{ocl , #{tcl}}");
+			INTO_VALUES("#{taxesPayable} , #{interestPayable} , #{dividendPayable} , #{otherPayables} , #{nldwoy} , #{ocl} , #{tcl}");
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}
@@ -34,10 +34,9 @@ public class CurrentLiabilitiesSql {
 	public String updateCurrentLiabilities(CurrentLiabilities currentLiabilities) {
 		return new SQL() {{
 			UPDATE("t_currentLiabilities");
-			SET("dataTime = #{dataTime} , shortTermLoan = #{shortTermLoan} , transactionalFinancialLiabilities = #{transactionalFinancialLiabilities}");
-			SET("billsPayable = #{billsPayable} , accountsPayable = #{accountsPayable} , advancePayment = #{advancePayment} , payrollPayable = #{payrollPayable}");
-			SET("taxesPayable = #{taxesPayable} , interestPayable = #{interestPayable} , dividendPayable = #{dividendPayable} , otherPayables = #{otherPayables}");
-			SET("nonCurrentLiabilitiesDueWithinOneYear = #{nonCurrentLiabilitiesDueWithinOneYear} , otherCurrentLiabilities = #{otherCurrentLiabilities}");
+			SET("dataTime = #{dataTime} , stl = #{stl} , tfl = #{tfl} , billsPayable = #{billsPayable} , accountsPayable = #{accountsPayable}");
+			SET("advancePayment = #{advancePayment} , payrollPayable = #{payrollPayable} , taxesPayable = #{taxesPayable} , interestPayable = #{interestPayable}");
+			SET("dividendPayable = #{dividendPayable} , otherPayables = #{otherPayables} , nldwoy = #{nldwoy} , ocl = #{ocl} , tcl = #{tcl}");
 			SET("updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -66,9 +65,8 @@ public class CurrentLiabilitiesSql {
 	 */
 	public String selectCurrentLiabilities(String companyStockId) {
 		return new SQL() {{
-			SELECT("id , companyStockId , dataTime , shortTermLoan , transactionalFinancialLiabilities , billsPayable");
-			SELECT("accountsPayable , advancePayment , payrollPayable , taxesPayable , interestPayable , dividendPayable");
-			SELECT("otherPayables , nonCurrentLiabilitiesDueWithinOneYear , otherCurrentLiabilities");
+			SELECT("id , companyStockId , dataTime , stl , tfl , billsPayable , accountsPayable , advancePayment , payrollPayable");
+			SELECT("taxesPayable , interestPayable , dividendPayable , otherPayables , nldwoy , ocl , tcl");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_currentLiabilities");
 			WHERE("del = '0' and companyStockId = #{companyStockId}");

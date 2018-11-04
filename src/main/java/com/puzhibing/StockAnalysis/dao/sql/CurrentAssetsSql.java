@@ -37,10 +37,10 @@ public class CurrentAssetsSql {
 	public String updateCurrentAssets(CurrentAssets currentAssets) {
 		return new SQL() {{
 			UPDATE("t_currentAssets");
-			SET("companyStockId = #{companyStockId} , dataTime = #{dataTime} , moneyFunds = #{moneyFunds} , transactionalFinancialAssets = #{transactionalFinancialAssets}");
+			SET("companyStockId = #{companyStockId} , dataTime = #{dataTime} , moneyFunds = #{moneyFunds} , tfa = #{tfa}");
 			SET("billReceivable = #{billReceivable} , accountsReceivable = #{accountsReceivable} , prepayments = #{prepayments} , interestReceivable = #{interestReceivable}");
-			SET("dividendReceivable = #{dividendReceivable} , otherReceivables = #{otherReceivables} , stock = #{stock} , nonCurrentAssetsDueWithinOneYear = #{nonCurrentAssetsDueWithinOneYear}");
-			SET("otherCurrentAssets = #{otherCurrentAssets} , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
+			SET("dividendReceivable = #{dividendReceivable} , otherReceivables = #{otherReceivables} , stock = #{stock} , ncadwoy = #{ncadwoy}");
+			SET("oca = #{oca} , tca = #{tca} , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
 	}
@@ -69,9 +69,9 @@ public class CurrentAssetsSql {
 	 */
 	public String selectCurrentAssetsBycompanyStockId(String companyStockId) {
 		return new SQL() {{
-			SELECT("id , companyStockId , dataTime , moneyFunds , transactionalFinancialAssets , billReceivable");
-			SELECT("accountsReceivable , prepayments , interestReceivable , dividendReceivable , otherReceivables");
-			SELECT("stock , nonCurrentAssetsDueWithinOneYear , otherCurrentAssets , del , insertUserId , insertTime , updateUserId , updateTime");
+			SELECT("id , companyStockId , dataTime , moneyFunds , tfa , billReceivable , accountsReceivable , prepayments");
+			SELECT("interestReceivable , dividendReceivable , otherReceivables , stock , ncadwoy , oca , tca");
+			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_currentAssets");
 			WHERE("del = '0' and companyStockId = #{companyStockId}");
 			ORDER_BY("dataTime DESC");

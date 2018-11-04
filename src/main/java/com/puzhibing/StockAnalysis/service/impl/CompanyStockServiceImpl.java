@@ -1,10 +1,10 @@
 package com.puzhibing.StockAnalysis.service.impl;
 
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
+import com.puzhibing.StockAnalysis.dao.mapper.CompanyMapper;
+import com.puzhibing.StockAnalysis.pojo.Company;
+import com.puzhibing.StockAnalysis.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -14,15 +14,6 @@ import com.puzhibing.StockAnalysis.dao.mapper.CompanyStockMapper;
 import com.puzhibing.StockAnalysis.pojo.CompanyStock;
 import com.puzhibing.StockAnalysis.pojo.ResultBean;
 import com.puzhibing.StockAnalysis.pojo.User;
-import com.puzhibing.StockAnalysis.service.CashFlowService;
-import com.puzhibing.StockAnalysis.service.CompanyStockService;
-import com.puzhibing.StockAnalysis.service.CurrentAssetsService;
-import com.puzhibing.StockAnalysis.service.CurrentLiabilitiesService;
-import com.puzhibing.StockAnalysis.service.NonCurrentAssetsService;
-import com.puzhibing.StockAnalysis.service.NonCurrentLiabilitiesService;
-import com.puzhibing.StockAnalysis.service.OwnersEquityChangeService;
-import com.puzhibing.StockAnalysis.service.OwnersEquityService;
-import com.puzhibing.StockAnalysis.service.ProfitService;
 import com.puzhibing.StockAnalysis.utils.TokenUtil;
 import com.puzhibing.StockAnalysis.utils.UUIDUtil;
 
@@ -38,6 +29,9 @@ public class CompanyStockServiceImpl implements CompanyStockService {
 	
 	@Autowired
 	private CompanyStockMapper companyStockMapper;
+
+	@Autowired
+	private CompanyMapper companyMapper;
 	
 	@Autowired
 	private CurrentAssetsService currentAssetsServiceImpl;
@@ -137,9 +131,8 @@ public class CompanyStockServiceImpl implements CompanyStockService {
 		ResultBean<Object> resultBean = new ResultBean<>();
 		try {
 			List<CompanyStock> list = companyStockMapper.selectCompanyStockByCompanyId(companyId);
-			String json = JSON.toJSONString(list);
 			resultBean.setB(true);
-			resultBean.setResult(json);
+			resultBean.setResult(list);
 		} catch (Exception e) {
 			throw e;
 		}
@@ -230,6 +223,35 @@ public class CompanyStockServiceImpl implements CompanyStockService {
 			} catch (Exception e) {
 				throw e;
 			}
+		}
+		return resultBean;
+	}
+
+
+
+	/**
+	 * 根据证券编号查询企业数据和证券类型数据
+	 * @param stockCode
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public ResultBean<Object> selectAllDataLikeCode(String stockCode) throws Exception {
+		ResultBean<Object> resultBean = new ResultBean<>();
+		List<Map<String, Object>> list = new ArrayList<>();
+		try{
+			List<CompanyStock> companyStocks = companyStockMapper.selectAllDataLikeCode("%" + stockCode + "%");
+			for(CompanyStock companyStock : companyStocks){
+				Company company = companyMapper.selectCompanyById(companyStock.getCompanyId());
+				Map<String, Object> map = new HashMap<>();
+				map.put("company" , company);
+				map.put("companyStock" , companyStock);
+				list.add(map);
+			}
+			resultBean.setB(true);
+			resultBean.setResult(list);
+		}catch (Exception e){
+			throw e;
 		}
 		return resultBean;
 	}

@@ -38,12 +38,9 @@ public class NonCurrentAssetsSql {
 	public String updateNonCurrentAssets(NonCurrentAssets nonCurrentAssets) {
 		return new SQL() {{
 			UPDATE("t_nonCurrentAssets");
-			SET("companyStockId = #{companyStockId} , dataTime = #{dataTime} , availableForSaleFinancialAssets = #{availableForSaleFinancialAssets}");
-			SET("holdingAnExpiredInvestment = #{holdingAnExpiredInvestment} , longTermReceivables = #{longTermReceivables} , longTermEquityInvestment = #{longTermEquityInvestment}");
-			SET("investmentRealEstate = #{investmentRealEstate} , fixedAssets = #{fixedAssets} , constructionInProgress = #{constructionInProgress}");
-			SET("engineerMaterial = #{engineerMaterial} , fixedAssetsCleanup = #{fixedAssetsCleanup} , productiveBiologicalAssets = #{productiveBiologicalAssets}");
-			SET("gasolineAssets = #{gasolineAssets} , intangibleAssets = #{intangibleAssets} , developmentExpenditure = #{developmentExpenditure}");
-			SET("goodwill = #{goodwill} , longTermPrepaidExpenses = #{longTermPrepaidExpenses} , deferredTaxAssets = #{deferredTaxAssets} , otherNonCurrentAssets = #{otherNonCurrentAssets}");
+			SET("companyStockId = #{companyStockId} , dataTime = #{dataTime} , afsfa = #{afsfa} , haei = #{haei} , ltr = #{ltr} , ltbi = #{ltbi}");
+			SET("ire = #{ire} , fixedAssets = #{fixedAssets} , cap = #{cap} , engineerMaterial = #{engineerMaterial} , fac = #{fac} , pba = #{pba}");
+			SET("gasolineAssets = #{gasolineAssets} , intangibleAssets = #{intangibleAssets} , de = #{de} , goodwill = #{goodwill} , ltpe = #{ltpe} , dta = #{dta} , onca = #{onca} , tnca = #{tnca}");
 			SET("updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -78,10 +75,8 @@ public class NonCurrentAssetsSql {
 	 */
 	public String selectNonCurrentAssetsByCompanyStockId(String companyStockId) {
 		return new SQL() {{
-			SELECT("id , companyStockId , dataTime , availableForSaleFinancialAssets , holdingAnExpiredInvestment");
-			SELECT("longTermReceivables , longTermEquityInvestment , investmentRealEstate , fixedAssets , constructionInProgress");
-			SELECT("engineerMaterial , fixedAssetsCleanup , productiveBiologicalAssets , gasolineAssets , intangibleAssets");
-			SELECT("developmentExpenditure , goodwill , longTermPrepaidExpenses , deferredTaxAssets , otherNonCurrentAssets");
+			SELECT("id , companyStockId , dataTime , afsfa , haei , ltr , ltbi , ire , fixedAssets , cap , engineerMaterial");
+			SELECT("fac , pba , gasolineAssets , intangibleAssets , de , goodwill , ltpe , dta , onca , tnca");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_nonCurrentAssets");
 			WHERE("del = '0'");

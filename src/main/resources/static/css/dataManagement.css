@@ -22,7 +22,7 @@ body{
     border-bottom: 1px solid #BCBCBC;
 }
 
-.title span:first-of-type{
+.title>span:first-of-type{
     margin-left: 20px;
     color: #547576;
 }
@@ -51,12 +51,16 @@ body{
 }
 
 .title .text .selectionPanel ul li{
-	height: 25px;
+	padding: 5px 5px;
 }
 
 .title .text .selectionPanel ul li:hover{
 	cursor: pointer;
 	backgroup-color: #81CBCE;
+}
+
+.title .text .selectionPanel ul li span{
+    font-size: 13px;
 }
 
 .title div input{
@@ -116,3 +120,85 @@ body{
     margin-left: 10px;
     line-height: 30px;
 }
+
+.enterpriseInfo .company{
+    width: 45%;
+    float: left;
+}
+
+.enterpriseInfo .company span{
+    display: block;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+
+
+.enterpriseInfo .companyStocks{
+    float: left;
+    margin-top: 20px;
+}
+
+
+.enterpriseInfo .companyStocks table{
+    white-space: nowrap;
+    border-collapse: collapse;
+}
+
+.enterpriseInfo .companyStocks table tr:hover{
+    background-color: #F6F6F6;
+    cursor: pointer;
+}
+
+.enterpriseInfo .companyStocks table th{
+    background-color: #5E8586;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    height: 35px;
+    border:  1px solid #F0F0F0;
+    padding: 0px 10px;
+}
+
+.enterpriseInfo .companyStocks table td{
+    font-size: 14px;
+    font-weight: 500;
+    height: 35px;
+    border:  1px solid #F0F0F0;
+    padding: 0px 10px;
+}
+
+.content .data{
+    margin: 5px;
+    overflow: auto;
+}
+
+.content .data table{
+    white-space: nowrap;
+    border-collapse: collapse;
+}
+
+.content .data table tr:hover{
+    background-color: #E5E5E5;
+    cursor: pointer;
+}
+
+.content .data th{
+    background-color: #5E8586;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 500;
+    height: 25px;
+    border:  1px solid #F0F0F0;
+    padding: 0px 10px;
+}
+.content .data td{
+    font-size: 13px;
+    font-weight: 500;
+    height: 25px;
+    border:  1px solid #F0F0F0;
+    padding: 0px 10px;
+}
+
+/*.content .data table{*/
+    /*width: 2000px;*/
+/*}*/

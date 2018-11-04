@@ -1,7 +1,5 @@
 package com.puzhibing.StockAnalysis.dao.sql;
 
-import static org.assertj.core.api.Assertions.from;
-
 import org.apache.ibatis.jdbc.SQL;
 
 import com.puzhibing.StockAnalysis.pojo.OwnersEquityChange;

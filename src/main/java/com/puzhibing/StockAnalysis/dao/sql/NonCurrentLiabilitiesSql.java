@@ -35,8 +35,8 @@ public class NonCurrentLiabilitiesSql {
 	public String updateNonCurrentLiabilities(NonCurrentLiabilities nonCurrentLiabilities) {
 		return new SQL() {{
 			UPDATE("t_nonCurrentLiabilities");
-			SET("dataTime = #{dataTime} , longTermLoan = #{longTermLoan} , bondsPayable = #{bondsPayable} , longTermPayables = #{longTermPayables}");
-			SET("specialPayable = #{specialPayable} , estimatedLiabilities = #{estimatedLiabilities} , deferredIncomeTaxLiabilities = #{deferredIncomeTaxLiabilities} , otherNonCurrentLiabilities = #{otherNonCurrentLiabilities}");
+			SET("dataTime = #{dataTime} , ltl = #{ltl} , bondsPayable = #{bondsPayable} , ltp = #{ltp} , specialPayable = #{specialPayable}");
+			SET("estimatedLiabilities = #{estimatedLiabilities} , ditl = #{ditl} , dncl = #{dncl} , tncl = #{tncl}");
 			SET("updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -70,8 +70,7 @@ public class NonCurrentLiabilitiesSql {
 	 */
 	public String selectNonCurrentLiabilitiesByCompanyStockId(String companyStockId) {
 		return new SQL() {{
-			SELECT("id , companyStockId , dataTime , longTermLoan , bondsPayable , longTermPayables");
-			SELECT("specialPayable , estimatedLiabilities , deferredIncomeTaxLiabilities , otherNonCurrentLiabilities");
+			SELECT("id , companyStockId , dataTime , ltl , bondsPayable , ltp , specialPayable , estimatedLiabilities , ditl , dncl , tncl");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_nonCurrentLiabilities");
 			WHERE("del = '0' and companyStockId = #{companyStockId}");

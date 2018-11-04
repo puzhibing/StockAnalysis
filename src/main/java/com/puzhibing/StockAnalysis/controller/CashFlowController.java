@@ -1,5 +1,6 @@
 package com.puzhibing.StockAnalysis.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,6 +16,7 @@ import com.puzhibing.StockAnalysis.service.CashFlowService;
 @RestController
 public class CashFlowController {
 
+	@Autowired
 	private CashFlowService cashFlowServiceImpl;
 	
 	private ResultBean<Object> resultBean;
@@ -32,7 +34,7 @@ public class CashFlowController {
 	@RequestMapping(value = "/insertCashFlow")
 	public ResultBean<Object> insertCashFlow(CashFlow cashFlow, String currencyUnit, String token){
 		try {
-			resultBean = cashFlowServiceImpl.insertCashFlow(cashFlow, currencyUnit, token);
+			resultBean = cashFlowServiceImpl.insertCashFlow(cashFlow , currencyUnit , token);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resultBean = new ResultBean<>();

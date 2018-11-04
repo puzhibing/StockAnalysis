@@ -45,7 +45,7 @@ function initStyle(){
     let height = $(document.body).outerHeight(true);
 
     $('.content .CompanyData').css({
-        'max-width':width-770,
+        'max-width':width-785,
         'max-height':height-80
     });
 }
@@ -103,6 +103,11 @@ function saveData(){
     let enShortName = $(".enShortName").val();
     let registerTime = StringToDate($(".registerTime").val()).toString();
     let url = $(".url").val();
+
+    if(chName == ''){
+        alert('请填写正确的数据');
+        return;
+    }
 
     let formData =  new FormData();
     formData.append("id", companyId);
@@ -236,7 +241,7 @@ function findAllCompany(){
 function selected(tr){
     tr = $(tr);
     tr.css({
-        'background-color':'#81CBCE'
+        'background-color':'#E5E5E5'
     });
     tr.siblings('tr').css({
         'background-color':'#FFFFFF'
@@ -251,6 +256,13 @@ function selected(tr){
     $(".enShortName").val(arr[4]);
     $(".registerTime").val(longToDate(arr[5]));
     $(".url").val(arr[6]);
+
+    $(".other button").removeAttr("disabled");
+    $(".other input").removeAttr("disabled");
+    $(".other select").removeAttr("disabled");
+    $(".other button").css({
+        "cursor":"pointer"
+    });
 
     selectCompanyStock();
 
@@ -271,13 +283,13 @@ function selectCompanyStock(){
         success: function (data) {
             $(".other>table").html('');
             if(data.b){
-                let result = JSON.parse(data.result);
+                let result = data.result;
                 var str = "<tr><th>证券名称</th><th>证券编号</th><th>上市时间</th><th>上市地址</th><th>操作</th></tr>";
                 for(var i in result){
                     str += '<tr id="' + result[i].id + '">' +
                         '<td>' + result[i].stockTypeId[0].name + '</td>' +
                         '<td>' + result[i].stockCode + '</td>' +
-                        '<td>' + result[i].listingTime + '</td>' +
+                        '<td>' + longToDate(result[i].listingTime) + '</td>' +
                         '<td>' + result[i].stockExchangeId[0].name + '</td>' +
                         '<td><button class="edit" onclick="updateCompanyStock(this)" data="' + result[i].id + '' + result[i].stockTypeId[0].id + ';' + result[i].stockCode + ';' + result[i].listingTime + ';' + result[i].stockExchangeId[0].id + '">编辑</button>' +
                         '<button class="del" onclick="removeRow(\'' + result[i].id + '\')">删除</button></td>' +

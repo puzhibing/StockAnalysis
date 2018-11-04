@@ -22,7 +22,7 @@ body{
     border-bottom: 1px solid #BCBCBC;
 }
 
-.title span{
+.title>span{
     line-height: 35px;
     margin-left: 20px;
     color: #547576;
@@ -131,6 +131,7 @@ body{
 
 
 .content .data .dataType .selectionPanel{
+    overflow: auto;
     display: none;
     width: 200px;
     height: 80px;
@@ -138,4 +139,25 @@ body{
     border: 1px solid #547576;
     z-index: 100;
     position: absolute;
+}
+
+.content .data .dataType .selectionPanel ul{
+    list-style-type: none;
+    /*min-width: 300px;*/
+}
+
+
+.content .data .dataType .selectionPanel ul li{
+    text-align: left;
+    font-size: 12px;
+    padding: 5px 5px;
+}
+
+.content .data .dataType .selectionPanel ul li:hover{
+    cursor: pointer;
+    backgroup-color: #81CBCE;
+}
+
+.content .data .dataType .selectionPanel ul li span{
+    font-size: 12px;
 }

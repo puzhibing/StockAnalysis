@@ -68,4 +68,13 @@ public interface CompanyStockService {
 	 * @throws Exception
 	 */
 	ResultBean<Object> selectAllSecuritiesDataById(String id) throws Exception;
+
+
+	/**
+	 * 根据证券编号查询企业数据和证券类型数据
+	 * @param stockCode
+	 * @return
+	 * @throws Exception
+	 */
+	ResultBean<Object> selectAllDataLikeCode(String stockCode) throws Exception;
 }

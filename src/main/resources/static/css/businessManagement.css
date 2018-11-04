@@ -30,7 +30,7 @@ body{
 }
 
 .title button{
-    width: 50px;
+    padding: 0px 10px;
     background-color: #75A2A5;
     border: 1px solid #75A2A5;
     border-radius: 3px;
@@ -44,7 +44,7 @@ body{
 }
 
 .title button:first-of-type{
-    margin-left: 75%;
+    margin-left: 65%;
 }
 .title button:last-of-type{
     margin-right: 0px;
@@ -146,6 +146,7 @@ body{
     text-align: center;
     min-width: 80px;
     color: #626262;
+    padding: 0px 10px;
 }
 
 
@@ -155,13 +156,13 @@ body{
 
 .content .other table tr td{
     border: 1px solid #BCBCBC;
-    padding-left: 5px;
     color: #626262;
+    padding: 0px 10px;
+    text-align: left;
 }
 
 .content .other table tr td:last-of-type{
     text-align: center;
-    padding-left: 0px;
 }
 
 .content .other table tr td .edit{
@@ -221,6 +222,7 @@ body{
     padding-left: 10px;
 }
 
+
 .content .other div tr td select{
     width: 203px;
     height: 30px;
@@ -241,7 +243,7 @@ body{
 }
 
 .content .CompanyData table tr:hover{
-    background-color: #81CBCE;
+    background-color: #E5E5E5;
     cursor: pointer;
 }
 
@@ -294,4 +296,14 @@ body{
     cursor: pointer;
     background-color: #B14141;
     border: 1px solid #B14141;
+}
+
+
+/*导入面板样式*/
+.importPal{
+    position: absolute;
+    z-index: 500;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #3A76D8;
 }

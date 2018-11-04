@@ -22,7 +22,20 @@ function StringToDate(strDate){
 
 //将long类型的时间转换成日期
 function longToDate(long){
-    return new Date(long);
+    let date = new Date(long);
+    let str = date.getFullYear() + '-' ;
+        if(date.getMonth() < 10){
+            str += '0' + date.getMonth() + '-';
+        }else{
+            str += date.getMonth() + '-';
+        }
+
+    if(date.getDate() < 10){
+        str += '0' + date.getDate();
+    }else{
+        str += date.getDate();
+    }
+    return str;
 }
 
 

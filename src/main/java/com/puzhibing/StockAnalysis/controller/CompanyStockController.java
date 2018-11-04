@@ -120,4 +120,23 @@ public class CompanyStockController {
 		}
 		return resultBean;
 	}
+
+
+	/**
+	 * 根据证券编号模糊查询企业数据和相关其他数据
+	 * @param stockCode
+	 * @return
+	 */
+	@RequestMapping(value = "/selectAllDataLikeCode")
+	public ResultBean<Object> selectAllDataLikeCode(String stockCode){
+		try {
+			resultBean = companyStockServiceImpl.selectAllDataLikeCode(stockCode);
+		} catch (Exception e) {
+			e.printStackTrace();
+			resultBean = new ResultBean<>();
+			resultBean.setB(false);
+			resultBean.setResult("数据处理异常");
+		}
+		return resultBean;
+	}
 }

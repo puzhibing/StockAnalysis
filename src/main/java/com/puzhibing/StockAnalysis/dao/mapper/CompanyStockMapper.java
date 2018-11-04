@@ -88,4 +88,30 @@ public interface CompanyStockMapper {
 	 */
 	@SelectProvider(type = CompanyStockSql.class , method = "selectCompanyStockLikeCode")
 	List<CompanyStock> selectCompanyStockLikeCode(String stockCode);
+
+
+	/**
+	 * 根据证券编号模糊查询所有数据（包含证券类型和上市地址）
+	 * @param stockCode
+	 * @return
+	 */
+	@SelectProvider(type = CompanyStockSql.class , method = "selectCompanyStockLikeCode")
+	@Results({
+			@Result(property = "id" , column = "id" , id = true),
+			@Result(property = "companyId" , column = "companyId"),
+			@Result(property = "stockCode" , column = "stockCode"),
+			@Result(property = "stockTypeId" , column = "stockTypeId" , one = @One(
+					select = "com.puzhibing.StockAnalysis.dao.mapper.StockTypeMapper.selectStockTypeById"
+			)),
+			@Result(property = "listingTime" , column = "listingTime"),
+			@Result(property = "stockExchangeId" , column = "stockExchangeId" , one = @One(
+					select = "com.puzhibing.StockAnalysis.dao.mapper.StockExchangeMapper.selectStockExchangeById"
+			)),
+			@Result(property = "del" , column = "del"),
+			@Result(property = "insertUserId" , column = "insertUserId"),
+			@Result(property = "insertTime" , column = "insertTime"),
+			@Result(property = "updateUserId" , column = "updateUserId"),
+			@Result(property = "updateTime" , column = "updateTime")
+	})
+	List<CompanyStock> selectAllDataLikeCode(String stockCode);
 }

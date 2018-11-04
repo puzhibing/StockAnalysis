@@ -17,16 +17,30 @@ $(function () {
         fuzzyAcquisition(this);
     });
 
-    //失去焦点隐藏选择面板等操作
-    $('.securitiesNumber').blur(function () {
-        let obj = $(this);
-        obj.siblings(".selectionPanel").hide();
-        if(obj.val() == ""){
-            $(".companyId").val('');
-            obj.parents("tr").siblings("tr").find(".securitiesType").val('');
-            obj.parents("tr").siblings("tr").find(".companyName").val('');
+
+
+
+    $(document).click(function () {
+        let se = $('.selectionPanel');
+        if(se.css('display') == 'block'){
+            se.hide();
         }
     });
+
+
+    function stopPropagation(e) {
+        if (e.stopPropagation)
+            e.stopPropagation();
+        else
+            e.cancelBubble = true;
+    }
+
+    $('.selectionPanel').bind('click',function(e){
+        stopPropagation(e);
+    });
+
+
+
 
     //保存流动资产
     $(".saveCurrentAssets").click(function () {
@@ -96,19 +110,25 @@ function fuzzyAcquisition(v) {
     $(v).siblings(".selectionPanel").show();
     let value = $(v).val();
     $.ajax({
-        url: "",
+        url: "/selectAllDataLikeCode",
         type: "POST",
         data: {
             stockCode: value
         },
         success: function (res) {
             $(v).siblings(".selectionPanel").html('');
-            if(res.status){
-                let str = '<ul>';
-                for(var i = 0; i < 1; i++){
-                    str += '<li id="' + '" code="' + '" type="' + '" name="' + '" onclick="selectionPanel(this)"><span>' + 123231 + '</span></li>';
+            if(res.b){
+                let data = res.result;
+                if(data.length > 0){
+                    let str = '<ul>';
+                    for(var i = 0; i < data.length; i++){
+                        str += '<li id="' + data[i].companyStock.id +  '" code="' + data[i].companyStock.stockCode + '" type="' + data[i].companyStock.stockTypeId[0].name + '" name="' + data[i].company.chName + '" onclick="selectionPanel(this)">' +
+                            '<span>' + data[i].companyStock.stockTypeId[0].name + " | " + data[i].companyStock.stockCode + " | " + data[i].company.chName + '</span></li>';
+                    }
+                    str += '<ul/>';
+                    $(v).siblings(".selectionPanel").html(str);
                 }
-                $(v).siblings(".selectionPanel").html(str + '<ul/>');
+
             }
         }
     });
@@ -151,7 +171,8 @@ function saveCurrentAssets(){
     let OCA = div.find(".OCA").val();//其他流动资产
     let TCA = div.find(".TCA").val();//流动资产合计
 
-    if(id == "" && companyStockId == "" && dataTime ==""){
+    if(companyStockId == "" || dataTime ==""){
+        alert('数据录入异常');
         return;
     }
 
@@ -182,6 +203,7 @@ function saveCurrentAssets(){
         data: formData,
         success: function (res) {
             if(res.b){
+                alert('数据添加成功');
             	resetCurrentAssets();
             }
         }
@@ -243,7 +265,8 @@ function saveNonCurrentAssets(){
     let ONCA = div.find(".ONCA").val();//其他非流动资产
     let TNCA = div.find(".TNCA").val();//非流动资产合计
 
-    if(id == "" && companyStockId == "" && dataTime ==""){
+    if(companyStockId == "" || dataTime ==""){
+        alert('数据录入异常');
         return;
     }
 
@@ -280,6 +303,7 @@ function saveNonCurrentAssets(){
         data: formData,
         success: function (res) {
             if(res.b){
+                alert('数据添加成功');
             	resetNonCurrentAssets();
             }
         }
@@ -339,7 +363,8 @@ function saveCurrentLiabilities(){
     let OCL = div.find(".OCL").val();//其他流动负债
     let TCL = div.find(".TCL").val();//流动负债合计
 
-    if(id == "" && companyStockId == "" && dataTime ==""){
+    if(companyStockId == "" || dataTime ==""){
+        alert('数据录入异常');
         return;
     }
 
@@ -371,6 +396,7 @@ function saveCurrentLiabilities(){
         data: formData,
         success: function (res) {
             if(res.b){
+                alert('数据添加成功');
             	resetCurrentLiabilities();
             }
         }
@@ -420,7 +446,8 @@ function saveNonCurrentLiabilities(){
     let ONCL = div.find(".ONCL").val();//其他非流动负债
     let TNCL = div.find(".TNCL").val();//非流动负债合计
 
-    if(id == "" && companyStockId == "" && dataTime ==""){
+    if(companyStockId == "" || dataTime ==""){
+        alert('数据录入异常');
         return;
     }
 
@@ -440,13 +467,14 @@ function saveNonCurrentLiabilities(){
     formData.append('token', token);
 
     $.ajax({
-        url: '',
+        url: '/insertNonCurrentLiabilities',
         type: 'POST',
         processData: false,
         contentType: false,
         data: formData,
         success: function (res) {
             if(res.b){
+                alert('数据添加成功');
             	resetNonCurrentLiabilities();
             }
         }
@@ -491,7 +519,8 @@ function saveOwnersEquity(){
     let undistributedProfit = div.find(".undistributedProfit").val();//未分配利润
     let TOE = div.find(".TOE").val();//所有者权益合计
 
-    if(id == "" && companyStockId == "" && dataTime ==""){
+    if(companyStockId == "" || dataTime ==""){
+        alert('数据录入异常');
         return;
     }
 
@@ -516,6 +545,7 @@ function saveOwnersEquity(){
         data: formData,
         success: function (res) {
             if(res.b){
+                alert('数据添加成功');
             	resetOwnersEquity();
             }
         }
@@ -573,7 +603,8 @@ function saveProfit(){
     let BEPS = div.find(".BEPS").val();//基本每股收益
     let DEPS = div.find(".DEPS").val();//稀释每股收益
 
-    if(id == "" && companyStockId == "" && dataTime ==""){
+    if(companyStockId == "" || dataTime ==""){
+        alert('数据录入异常');
         return;
     }
 
@@ -615,6 +646,7 @@ function saveProfit(){
         data: formData,
         success: function (res) {
             if(res.b){
+                alert('数据添加成功');
             	resetProfit();
             }
         }
@@ -723,7 +755,8 @@ function saveCashFlow(){
     let NIICACE = div.find(".NIICACE").val();//现金及现金等价物净增加额
     let TEOERFOCACE = div.find(".TEOERFOCACE").val();//汇率变动对现金及现金等价物的影响
 
-    if(id == "" && companyStockId == "" && dataTime ==""){
+    if(companyStockId == "" || dataTime ==""){
+        alert('数据录入异常');
         return;
     }
 
@@ -801,6 +834,7 @@ function saveCashFlow(){
         data: formData,
         success: function (res) {
             if(res.b){
+                alert('数据添加成功');
             	resetCashFlow();
             }
         }
@@ -914,7 +948,8 @@ function saveOwnersEquityChange(){
     let other4 = div.find(".other4").val();//其他
     let BATEOTY = div.find(".BATEOTY").val();//本年年末余额
 
-    if(id == "" && companyStockId == "" && dataTime ==""){
+    if(companyStockId == "" || dataTime ==""){
+        alert('数据录入异常');
         return;
     }
 
@@ -958,6 +993,7 @@ function saveOwnersEquityChange(){
         data: formData,
         success: function (res) {
             if(res.b){
+                alert('数据添加成功');
             	resetOwnersEquityChange();
             }
         }

@@ -215,8 +215,23 @@ public class CompanyServiceImpl implements CompanyService {
 					Company company = null;
 					List<Object> list = (List)companyStockServiceImpl.selectCompanyStockLikeCode(value).getResult();
 					for (Object object : list) {
-						company = companyMapper.selectCompanyInfoById(((CompanyStock)object).getCompanyId());
-						companies.add(company);
+						if(companies.size() == 0){
+							company = companyMapper.selectCompanyInfoById(((CompanyStock)object).getCompanyId());
+							companies.add(company);
+						}else{
+							boolean b = false;
+							for (Company company1: companies) {
+								if(((CompanyStock)object).getCompanyId().equals(company1.getId())){
+									b = true;
+								}
+							}
+							if(!b){
+								company = companyMapper.selectCompanyInfoById(((CompanyStock)object).getCompanyId());
+								companies.add(company);
+							}
+
+						}
+
 					}
 					
 					resultBean.setB(true);
