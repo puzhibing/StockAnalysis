@@ -102,4 +102,21 @@ public class CompanyStockSql {
 			WHERE("stockCode like #{stockCode} and del = '0'");
 		}}.toString();
 	}
+	
+	
+	
+	/**
+	 * 根据企业id，证券类型id
+	 * @param companyId
+	 * @param stockTypeId
+	 * @return
+	 */
+	public String selectCompanyStockByCompanyIdAndStockTypeId(String companyId , String stockTypeId){
+		return new SQL() {{
+			SELECT("id , companyId , stockCode , stockTypeId , listingTime , stockExchangeId , del");
+			SELECT("insertUserId , insertTime , updateUserId , updateTime");
+			FROM("t_companyStock");
+			WHERE("companyId = #{param1} and stockTypeId = #{param2}");
+		}}.toString();
+	}
 }

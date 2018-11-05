@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import com.puzhibing.StockAnalysis.dao.mapper.ProfitMapper;
-import com.puzhibing.StockAnalysis.pojo.CashFlow;
 import com.puzhibing.StockAnalysis.pojo.Profit;
 import com.puzhibing.StockAnalysis.pojo.ResultBean;
 import com.puzhibing.StockAnalysis.pojo.User;
@@ -60,11 +59,11 @@ public class ProfitServiceImpl implements ProfitService {
 		if(null != profit && !(StringUtils.isEmpty(currencyUnit) && StringUtils.isEmpty(token))) {
 			profit = (Profit)unitCalculationUtil.calculation(currencyUnit , profit , Profit.class);
 			
-//			user = tokenutil.tokenToUser(token);
+			user = tokenutil.tokenToUser(token);
 			profit.setId(uuidutil.getUUID());
 			profit.setDel("0");
 			profit.setInsertTime(new Date());
-//			profit.setInsertUserId(user.getId());
+			profit.setInsertUserId(user.getId());
 			try {
 				profitMapper.insertProfit(profit);
 				resultBean.setB(true);

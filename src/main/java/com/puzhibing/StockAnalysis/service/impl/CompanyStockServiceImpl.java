@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.alibaba.fastjson.JSON;
 import com.puzhibing.StockAnalysis.dao.mapper.CompanyStockMapper;
 import com.puzhibing.StockAnalysis.pojo.CompanyStock;
 import com.puzhibing.StockAnalysis.pojo.ResultBean;

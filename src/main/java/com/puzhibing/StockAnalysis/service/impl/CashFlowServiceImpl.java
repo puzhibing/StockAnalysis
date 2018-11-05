@@ -9,7 +9,6 @@ import org.springframework.util.StringUtils;
 
 import com.puzhibing.StockAnalysis.dao.mapper.CashFlowMapper;
 import com.puzhibing.StockAnalysis.pojo.CashFlow;
-import com.puzhibing.StockAnalysis.pojo.OwnersEquity;
 import com.puzhibing.StockAnalysis.pojo.ResultBean;
 import com.puzhibing.StockAnalysis.pojo.User;
 import com.puzhibing.StockAnalysis.service.CashFlowService;

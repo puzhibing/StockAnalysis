@@ -114,4 +114,15 @@ public interface CompanyStockMapper {
 			@Result(property = "updateTime" , column = "updateTime")
 	})
 	List<CompanyStock> selectAllDataLikeCode(String stockCode);
+	
+	
+	
+	/**
+	 * 根据企业id，证券类型id
+	 * @param companyId
+	 * @param stockTypeId
+	 * @return
+	 */
+	@SelectProvider(type = CompanyStockSql.class , method = "selectCompanyStockByCompanyIdAndStockTypeId")
+	CompanyStock selectCompanyStockByCompanyIdAndStockTypeId(String companyId , String stockTypeId);
 }

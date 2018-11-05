@@ -14,9 +14,9 @@ $(document).ready(function () {
 
      findAllCompany();
 
-    selectAllStockType();
+    selectAllStockType('1');
 
-    selectAllStockExchange();
+    selectAllStockExchange('1');
 
     $(".save").click(function () {
         saveData();
@@ -31,6 +31,8 @@ $(document).ready(function () {
     });
 
     $('.importBu').click(function () {
+    	selectAllStockExchange('2');
+    	selectAllStockType('2');
         $('.importPal').show();
     });
 
@@ -72,20 +74,29 @@ function initStyle(){
 
 
 //获取所有证券类型数据
-function selectAllStockType(){
+function selectAllStockType(hj){
     $.ajax({
         url: '/selectAllStockType',
         type: 'POST',
         data: {},
         success: function (res) {
             $('.stockType').html('');
+            $('.importPal .type').html('');
             let str = '';
             if(res.b){
                 let types = JSON.parse(res.result);
-                for (let i = 0 ; i < types.length ; i++){
-                    str += '<option value="' + types[i].id + '">' + types[i].name + '</option>';
+                if(hj == '1'){
+                	for (let i = 0 ; i < types.length ; i++){
+                        str += '<option value="' + types[i].id + '">' + types[i].name + '</option>';
+                    }
+                    $('.stockType').html(str);
+                }else if(hj == '2'){
+                	for (let i = 0 ; i < types.length ; i++){
+                        str += '<option value="' + types[i].name + '">' + types[i].name + '</option>';
+                    }
+                    $('.importPal .type').html(str);
                 }
-                $('.stockType').html(str);
+                
             }
         }
     });
@@ -94,20 +105,28 @@ function selectAllStockType(){
 
 
 //获取所有交易所数据
-function selectAllStockExchange(){
+function selectAllStockExchange(hj){
     $.ajax({
         url: '/selectAllStockExchange',
         type: 'POST',
         data: {},
         success: function (res) {
             $('.stockExchange').html('');
+            $('.importPal .add').html('');
             let str = '';
             if(res.b){
                 let types = JSON.parse(res.result);
-                for (let i = 0 ; i < types.length ; i++){
-                    str += '<option value="' + types[i].id + '">' + types[i].name + '</option>';
+                if(hj == '1'){
+                	for (let i = 0 ; i < types.length ; i++){
+                        str += '<option value="' + types[i].id + '">' + types[i].name + '</option>';
+                    }
+                    $('.stockExchange').html(str);
+                }else if(hj == '2'){
+                	for (let i = 0 ; i < types.length ; i++){
+                        str += '<option value="' + types[i].name + '">' + types[i].name + '</option>';
+                    }
+                	$('.importPal .add').html(str);
                 }
-                $('.stockExchange').html(str);
             }
         }
     });
@@ -380,11 +399,26 @@ function deleteCompany(id){
 
 //导入数据
 function importData(){
-    let add = $('').val();
-    let type = $('').val();
+    let add = $('.importPal .add').val();
+    let type = $('.importPal .type').val();
+    let url = '';
+    switch(add){
+    	case '':
+    		url = '/';
+    		break;
+    	case '':
+    		url = '/';
+    		break;
+    	case '':
+    		url = '/';
+    		break;
+    	
+    }
+    
+    
 
     $.ajax({
-        url: '',
+        url: url,
         type: 'POST',
         data: {},
         beforeSend: function(){
