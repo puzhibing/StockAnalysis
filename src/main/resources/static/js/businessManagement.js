@@ -92,7 +92,7 @@ function selectAllStockType(hj){
                     $('.stockType').html(str);
                 }else if(hj == '2'){
                 	for (let i = 0 ; i < types.length ; i++){
-                        str += '<option value="' + types[i].name + '">' + types[i].name + '</option>';
+                        str += '<option value="' + types[i].id + ';' + types[i].name + '">' + types[i].name + '</option>';
                     }
                     $('.importPal .type').html(str);
                 }
@@ -123,7 +123,7 @@ function selectAllStockExchange(hj){
                     $('.stockExchange').html(str);
                 }else if(hj == '2'){
                 	for (let i = 0 ; i < types.length ; i++){
-                        str += '<option value="' + types[i].name + '">' + types[i].name + '</option>';
+                        str += '<option value="' + types[i].id + ';' + types[i].name + '">' + types[i].name + '</option>';
                     }
                 	$('.importPal .add').html(str);
                 }
@@ -401,10 +401,12 @@ function deleteCompany(id){
 function importData(){
     let add = $('.importPal .add').val();
     let type = $('.importPal .type').val();
+    add = add.split(';');
+    type = type.split(';');
     let url = '';
-    switch(add){
-    	case '':
-    		url = '/';
+    switch(add[1]){
+    	case '上海证券交易所':
+    		url = '/crawlingShanghai';
     		break;
     	case '':
     		url = '/';
@@ -414,21 +416,34 @@ function importData(){
     		break;
     	
     }
-    
-    
+    let t = '';
+    switch(type[1]){
+        case 'A 股':
+            t = 'A';
+            break;
+        case 'B 股':
+            t = 'B';
+            break;
+
+    }
 
     $.ajax({
         url: url,
         type: 'POST',
-        data: {},
+        data: {
+            type: t,
+            stockTypeId: type[0],
+            stockExchangeId: add[0],
+            token: token
+        },
         beforeSend: function(){
             processing();//添加加载效果
         },
         success: function (res) {
             if(res.b){
-                alert('导入成功');
+                alert(res.result);
             }else{
-                alert('导入失败');
+                alert(res.result);
             }
         },
         complete: function () {
