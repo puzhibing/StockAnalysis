@@ -16,4 +16,10 @@ public interface CrawlingCompanyDate {
 	 * @throws IOException 
 	 */
 	ResultBean<Object> crawlingShanghai(String type , String stockTypeId , String stockExchangeId , String token) throws MalformedURLException, IOException;
+	
+	
+	
+	
+	
+	ResultBean<Object> crawlingShenzhen(String type , String stockTypeId , String stockExchangeId , String token) throws MalformedURLException, IOException;
 }

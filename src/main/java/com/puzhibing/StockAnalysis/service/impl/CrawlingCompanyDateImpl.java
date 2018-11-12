@@ -13,17 +13,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
 import com.puzhibing.StockAnalysis.dao.mapper.CompanyMapper;
 import com.puzhibing.StockAnalysis.dao.mapper.CompanyStockMapper;
 import com.puzhibing.StockAnalysis.pojo.Company;
 import com.puzhibing.StockAnalysis.pojo.CompanyStock;
 import com.puzhibing.StockAnalysis.pojo.ResultBean;
 import com.puzhibing.StockAnalysis.pojo.reptileBean.SHData;
-import com.puzhibing.StockAnalysis.pojo.reptileBean.SHJSONData;
-import com.puzhibing.StockAnalysis.service.CompanyService;
+import com.puzhibing.StockAnalysis.pojo.reptileBean.SZData;
 import com.puzhibing.StockAnalysis.service.CrawlingCompanyDate;
 import com.puzhibing.StockAnalysis.utils.TokenUtil;
 import com.puzhibing.StockAnalysis.utils.UUIDUtil;
@@ -68,7 +69,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 		String stockType = "1";
 		String pageHelpCacheSize = "1";
 		String pageHelpBeginPage = "1";
-		String pageHelpPageSize = "1";
+		String pageHelpPageSize = "100";
 		String pageHelpPageNo = "1";
 		String num = "1541335792225";
 
@@ -113,15 +114,10 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
             
 			result = result.substring(result.indexOf("(") + 1, result.lastIndexOf(")"));
 			
-			SHJSONData shjsonData = JSON.parseObject(result, SHJSONData.class);
+			System.err.println(result);
+//			SHJSONData shjsonData = JSON.parseObject(result, SHJSONData.class);
 			
-			Boolean b = SHparsingStorage(shjsonData , stockTypeId , stockExchangeId , token);
-			if(b) {
-				resultUtil.setB(true);
-			}else {
-				resultUtil.setB(false);
-				resultUtil.setResult("处理异常");
-			}
+			resultUtil = SHparsingStorage(result , stockTypeId , stockExchangeId , token);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -139,15 +135,26 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	 * @param shjsonData
 	 * @return
 	 */
-	public boolean SHparsingStorage(SHJSONData shjsonData , String stockTypeId , String stockExchangeId , String token) {
-		boolean b = false;
-		if(shjsonData != null && !(StringUtils.isEmpty(stockTypeId) && StringUtils.isEmpty(stockExchangeId) && StringUtils.isEmpty(token))) {
+	@Transactional//开启事务
+	public ResultBean<Object> SHparsingStorage(String result , String stockTypeId , String stockExchangeId , String token) {
+		ResultBean<Object> resultBean = new ResultBean<>();
+		if(!(StringUtils.isEmpty(result) && StringUtils.isEmpty(stockTypeId) && StringUtils.isEmpty(stockExchangeId) && StringUtils.isEmpty(token))) {
 			try {
 				List<Company> list = companyMapper.selectAllCompany();
 				
 				//添加数据
-				List<SHData> list2 = shjsonData.getPageHelp().getData();
+				JSONArray jsonArray = JSON.parseObject(result).getJSONArray("result");
+				List<SHData> list2 = new ArrayList<>();
+				for (Object object : jsonArray) {
+					list2.add((SHData)object);
+				}
+				
 				String companyId = "";
+				
+				int cn = 0;//记录需要添加的数量
+				int csn = 0;//记录需要添加的数量
+				int companyNum = 0;//记录成功添加的数量
+				int companyStockNum = 0;//记录成功添加的数据
 				for (SHData shData : list2) {
 					boolean bo = false;
 					for (Company company : list) {
@@ -159,11 +166,12 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 						}
 					}
 					
-					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("");
+					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 					String id = uuidutil.getUUID();
 					if(bo) {//存在，只添加关系数据
 						CompanyStock companyStock = companyStockMapper.selectCompanyStockByCompanyIdAndStockTypeId(companyId, stockTypeId);
 						if(companyStock == null) {
+							csn++;
 							CompanyStock companyStock1 = new CompanyStock();
 							companyStock1.setId(uuidutil.getUUID());
 							companyStock1.setCompanyId(id);
@@ -175,12 +183,12 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 							companyStock1.setInsertTime(new Date());
 							companyStock1.setInsertUserId(tokenutil.tokenToUser(token).getId());
 							companyStockMapper.insertCompanyStock(companyStock1);
+							companyStockNum++;//计数器
 						}
 						
 					}else {//不存在
-						
+						cn++;
 						Company company = new Company();
-						
 						company.setId(id);
 						company.setChName(shData.getCOMPANY_ABBR());
 						company.setChShortName(shData.getCOMPANY_ABBR());
@@ -192,6 +200,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 						company.setInsertTime(new Date());
 						company.setInsertUserId(tokenutil.tokenToUser(token).getId());
 						
+						csn++;
 						CompanyStock companyStock = new CompanyStock();
 						companyStock.setId(uuidutil.getUUID());
 						companyStock.setCompanyId(id);
@@ -204,22 +213,128 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 						companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
 						
 						companyMapper.insertCompany(company);
+						companyNum++;
 						companyStockMapper.insertCompanyStock(companyStock);
-						b = true;
-						
-						
+						companyStockNum++;
 						
 					}
 				}
 				
+				resultBean.setB(true);
+				resultBean.setResult("总数据为：" + list2.size() + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
+						"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum);
 			} catch (Exception e) {
 				e.printStackTrace();
+				resultBean.setB(false);
+				resultBean.setResult("数据处理异常");
 			}
 		}
-		return b;
+		return resultBean;
+	}
+
+
+
+	
+	
+	
+	
+	@Override
+	public ResultBean<Object> crawlingShenzhen(String type, String stockTypeId, String stockExchangeId, String token) {
+		resultUtil = new ResultBean<>();
+		if(!(StringUtils.isEmpty(type) && StringUtils.isEmpty(stockTypeId) && StringUtils.isEmpty(stockExchangeId) && StringUtils.isEmpty(token))) {
+			String path = "http://www.szse.cn/api/report/ShowReport/data";
+			String SHOWTYPE = "JSON";
+			String CATALOGID = "1110";
+			String TABKEY = "tab1";
+			String PAGENO = "1";
+			String random = "0.5098245544096867";
+			if(type.equals("B")) {
+				TABKEY = "tab2";
+				random = "0.899993813738384";
+			}
+			path += "?SHOWTYPE=" + SHOWTYPE + "&CATALOGID=" + CATALOGID + "&TABKEY=" + TABKEY + "&PAGENO=" + PAGENO + "&random=" + random;
+			
+			URL url = null;
+			try {
+				url = new URL(path);
+			} catch (MalformedURLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			HttpURLConnection httpURLConnection;
+			try {
+				httpURLConnection = (HttpURLConnection)url.openConnection();
+				httpURLConnection.addRequestProperty("Host", "www.szse.cn");
+				httpURLConnection.addRequestProperty("Connection", "keep-alive");
+				httpURLConnection.addRequestProperty("Accept", "application/json, text/javascript, */*; q=0.01");
+				httpURLConnection.addRequestProperty("X-Request-Type", "ajax");
+				httpURLConnection.addRequestProperty("X-Requested-With", "XMLHttpRequest");
+				httpURLConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3538.67 Safari/537.36");
+				httpURLConnection.addRequestProperty("Content-Type", "application/json");
+				httpURLConnection.addRequestProperty("Referer", "http://www.szse.cn/market/stock/list/index.html");
+				httpURLConnection.addRequestProperty("Accept-Encoding", "gzip, deflate");
+				httpURLConnection.addRequestProperty("Accept-Language", "zh-CN,zh;q=0.9");
+				
+				httpURLConnection.connect();
+				
+				// 定义BufferedReader输入流来读取URL的响应
+	            BufferedReader br = new BufferedReader(new InputStreamReader(httpURLConnection.getInputStream() , "UTF-8"));
+	            String result = "";
+	            String line;
+	            while ((line = br.readLine()) != null) {
+	                result += line;
+	            }
+	            System.err.println(result);
+	            
+	            
+	            
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		return null;
 	}
 
 	
+	
+	public void SZparsingStorage(String result , String type, String stockTypeId , String stockExchangeId , String token) {
+		if(!StringUtils.isEmpty(result)) {
+			JSONArray jsonArray = null;
+	        if(type.equals("B")) {
+	        	jsonArray = JSON.parseArray(result).getJSONObject(1).getJSONArray("data");
+	        }else {
+	        	jsonArray = JSON.parseArray(result).getJSONObject(0).getJSONArray("data");
+			}
+	        
+	        try {
+	        	List<Company> list = companyMapper.selectAllCompany();
+	        	
+	        	List<SZData> list2 = new ArrayList<>();
+		        for (Object object : jsonArray) {
+		        	list2.add((SZData)object);
+				}
+	        	
+		        for (SZData szData : list2) {
+					for (Company company : list) {
+//						if(szData.)
+					}
+				}
+	        	
+				
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
+	        
+	        
+	        
+	        
+		}
+		
+		
+	}
 	
 	
 	
