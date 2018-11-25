@@ -403,19 +403,6 @@ function importData(){
     let type = $('.importPal .type').val();
     add = add.split(';');
     type = type.split(';');
-    let url = '';
-    switch(add[1]){
-    	case '上海证券交易所':
-    		url = '/crawlingShanghai';
-    		break;
-    	case '':
-    		url = '/';
-    		break;
-    	case '':
-    		url = '/';
-    		break;
-    	
-    }
     let t = '';
     switch(type[1]){
         case 'A 股':
@@ -428,11 +415,12 @@ function importData(){
     }
 
     $.ajax({
-        url: url,
+        url: "/crawlingCompany",
         type: 'POST',
         data: {
             type: t,
             stockTypeId: type[0],
+            stockExchangeName: add[1],
             stockExchangeId: add[0],
             token: token
         },
