@@ -64,16 +64,75 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	 * @param token
 	 * @return
 	 */
+	@SuppressWarnings("rawtypes")
 	@Override
 	public ResultBean<Object> crawlingCompany(String type, String stockTypeId, String stockExchangeName,
 			String stockExchangeId, String token) {
 		
-		return null;
+		int pageNo = 1;//爬取的页数
+		int count = 0;//总数据
+		int cn = 0;//记录需要添加企业的数量
+		int csn = 0;//记录需要添加证券的数量
+		int companyNum = 0;//记录成功添加的数量
+		int companyStockNum = 0;//记录成功添加的数据
+		ResultBean resultBean = null;
+		if("上海证券交易所".equals(stockExchangeName.trim())) {
+			//调取上海爬虫爬取数据
+			boolean b = true;
+			while (b) {
+				resultBean = this.crawlingShanghai(type, stockTypeId, stockExchangeId, token, pageNo);
+				if("0".equals(resultBean.getResult())) {
+					//获取数据完毕
+					b = false;
+				}else {
+					String[] strs = ((String)resultBean.getResult()).split(";");
+					count += Integer.valueOf(strs[0]);
+					cn += Integer.valueOf(strs[1]);
+					companyNum += Integer.valueOf(strs[2]);
+					csn += Integer.valueOf(strs[3]);
+					companyStockNum += Integer.valueOf(strs[4]);
+				}
+				pageNo++;
+			}
+			
+		}else if ("深圳证券交易所".equals(stockExchangeName.trim())) {
+			//调取深圳爬虫爬取数据
+			boolean b = true;
+			while (b) {
+				resultBean = this.crawlingShenzhen(type, stockTypeId, stockExchangeId, token, pageNo);
+				if("0".equals(resultBean.getResult())) {
+					//获取数据完毕
+					b = false;
+				}else {
+					String[] strs = ((String)resultBean.getResult()).split(";");
+					count += Integer.valueOf(strs[0]);
+					cn += Integer.valueOf(strs[1]);
+					companyNum += Integer.valueOf(strs[2]);
+					csn += Integer.valueOf(strs[3]);
+					companyStockNum += Integer.valueOf(strs[4]);
+				}
+				pageNo++;
+			}
+		}
+		
+		resultUtil = new ResultBean<>();
+		resultUtil.setB(resultBean.getB());
+		resultUtil.setResult("总数据为：" + count + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
+				"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum + "条");
+		return resultUtil;
 	}
 	
 	
-	
-	public ResultBean<Object> crawlingShanghai(String type , String stockTypeId , String stockExchangeId , String token) {
+	/**
+	 * 
+	 *    爬取上海股票数据
+	 * @param type 数据类型A/B
+	 * @param stockTypeId
+	 * @param stockExchangeId
+	 * @param token
+	 * 
+	 */
+	public ResultBean<Object> crawlingShanghai(String type , String stockTypeId , String stockExchangeId , String token, int pageNo) {
 		resultUtil = new ResultBean<>();
 		
 		String path = "http://query.sse.com.cn/security/stock/getStockListData2.do";
@@ -84,9 +143,10 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 		String areaName = "";
 		String stockType = "1";
 		String pageHelpCacheSize = "1";
-		String pageHelpBeginPage = "1";
-		String pageHelpPageSize = "20";
-		String pageHelpPageNo = "1";
+		String pageHelpBeginPage = String.valueOf(pageNo);
+		String pageHelpPageSize = "25";
+		String pageHelpPageNo = String.valueOf(pageNo);
+		String pageHelpEndPage = String.valueOf((pageNo * 10) + 1);
 		Long num = new Date().getTime();
 
 		if(type.equals("B")) {
@@ -96,7 +156,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 		
 		path += "?&jsonCallBack=" + jsonCallBack + "&isPagination=" + isPagination + "&stockCode=" + stockCode + "&csrcCode=" + csrcCode +
 				"&areaName=" + areaName + "&stockType=" + stockType + "&pageHelp.cacheSize=" + pageHelpCacheSize + "&pageHelp.beginPage=" + pageHelpBeginPage + 
-				"&pageHelp.pageSize=" + pageHelpPageSize + "&pageHelp.pageNo" + pageHelpPageNo + "&_=" + num;
+				"&pageHelp.pageSize=" + pageHelpPageSize + "&pageHelp.pageNo" + pageHelpPageNo + "&pageHelp.endPage=" + pageHelpEndPage + "&_=" + num;
 		
 		URL url = null;
 		try {
@@ -135,7 +195,6 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		
 		return resultUtil;
 	}
@@ -218,126 +277,135 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 			try {
 				List<Company> list = companyMapper.selectAllCompany();
 				
-				
 				//添加数据
 				JSONArray jsonArray = JSON.parseObject(result).getJSONArray("result");
 				list2 = jsonArray.toJavaList(SHData.class);
 	
-				for (SHData shData : list2) {
-					SHCompanyInfo shCompanyInfo = null;
-					String stockCode = "";
-					//获取企业详情数据
-					if("B".equals(type)) {
-						shCompanyInfo = this.SHcrawlingCompanyInfo(type, shData.getSECURITY_CODE_B());
-						stockCode = shData.getSECURITY_CODE_B();
-					}else {
-						shCompanyInfo = this.SHcrawlingCompanyInfo(type, shData.getSECURITY_CODE_A());
-						stockCode = shData.getSECURITY_CODE_A();
-					}
-					
-					
-					SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-					
-					if(0 == list.size()) {
-						String id = uuidutil.getUUID();
-						//不存在数据
-						cn++;
-						Company company1 = new Company();
-						company1.setId(id);
-						company1.setChName(shCompanyInfo.getFULLNAME());
-						company1.setChShortName(shCompanyInfo.getCOMPANY_ABBR());
-						company1.setEnName(shCompanyInfo.getFULL_NAME_IN_ENGLISH());
-						company1.setEnShortName(shCompanyInfo.getENGLISH_ABBR());
-						company1.setRegisterTime(null);
-						company1.setUrl(shCompanyInfo.getWWW_ADDRESS());
-						company1.setDel("0");
-						company1.setInsertTime(new Date());
-						company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
+				if(list2.size() > 0) {
+					for (SHData shData : list2) {
+						SHCompanyInfo shCompanyInfo = null;
+						String stockCode = "";
+						//获取企业详情数据
+						if("B".equals(type)) {
+							shCompanyInfo = this.SHcrawlingCompanyInfo(type, shData.getSECURITY_CODE_B());
+							stockCode = shData.getSECURITY_CODE_B();
+						}else {
+							shCompanyInfo = this.SHcrawlingCompanyInfo(type, shData.getSECURITY_CODE_A());
+							stockCode = shData.getSECURITY_CODE_A();
+						}
 						
-						csn++;
-						CompanyStock companyStock = new CompanyStock();
-						companyStock.setId(uuidutil.getUUID());
-						companyStock.setCompanyId(id);
-						companyStock.setStockCode(stockCode);
-						companyStock.setStockTypeId(stockTypeId);
-						companyStock.setStockExchangeId(stockExchangeId);
-						companyStock.setListingTime(simpleDateFormat.parse(shData.getLISTING_DATE()));
-						companyStock.setDel("0");
-						companyStock.setInsertTime(new Date());
-						companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
 						
-						companyMapper.insertCompany(company1);
-						companyNum++;
-						companyStockMapper.insertCompanyStock(companyStock);
-						companyStockNum++;
-						continue;
-					}
-					
-					boolean a = true;
-					boolean b = true;
-					Company company = null;
-					for (Company company1 : list) {
-						//判断是否存在
-						if(company1.getChName().equals(shCompanyInfo.getFULLNAME())) {
-							//存在数据，只添加其他数据
-							a = false;
-							company = company1;
+						SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+						
+						if(0 == list.size()) {
+							String id = uuidutil.getUUID();
+							//不存在数据
+							cn++;
+							Company company1 = new Company();
+							company1.setId(id);
+							company1.setChName(shCompanyInfo.getFULLNAME());
+							company1.setChShortName(shCompanyInfo.getCOMPANY_ABBR());
+							company1.setEnName(shCompanyInfo.getFULL_NAME_IN_ENGLISH());
+							company1.setEnShortName(shCompanyInfo.getENGLISH_ABBR());
+							company1.setRegisterTime(null);
+							company1.setUrl(shCompanyInfo.getWWW_ADDRESS());
+							company1.setDel("0");
+							company1.setInsertTime(new Date());
+							company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
 							
-							CompanyStock companyStock = companyStockMapper.selectCompanyStockByCompanyIdAndStockTypeId(company1.getId(), stockTypeId);
-							if(companyStock != null) {
-								b = false;
+							csn++;
+							CompanyStock companyStock = new CompanyStock();
+							companyStock.setId(uuidutil.getUUID());
+							companyStock.setCompanyId(id);
+							companyStock.setStockCode(stockCode);
+							companyStock.setStockTypeId(stockTypeId);
+							companyStock.setStockExchangeId(stockExchangeId);
+							companyStock.setListingTime(simpleDateFormat.parse(shData.getLISTING_DATE()));
+							companyStock.setDel("0");
+							companyStock.setInsertTime(new Date());
+							companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							
+							companyMapper.insertCompany(company1);
+							companyNum++;
+							companyStockMapper.insertCompanyStock(companyStock);
+							companyStockNum++;
+							continue;
+						}
+						
+						boolean a = true;
+						boolean b = true;
+						Company company = null;
+						for (Company company1 : list) {
+							//判断是否存在
+							if(company1.getChName().equals(shCompanyInfo.getFULLNAME())) {
+								//存在数据，只添加其他数据
+								a = false;
+								company = company1;
+								
+								CompanyStock companyStock = companyStockMapper.selectCompanyStockByCompanyIdAndStockTypeId(company1.getId(), stockTypeId);
+								if(companyStock != null) {
+									b = false;
+									break;
+								}
 								break;
+								
 							}
-							break;
 							
 						}
 						
+						if(a) {//企业数据不存在
+							cn++;
+							Company company1 = new Company();
+							company1.setId(uuidutil.getUUID());
+							company1.setChName(shCompanyInfo.getFULLNAME());
+							company1.setChShortName(shCompanyInfo.getCOMPANY_ABBR());
+							company1.setEnName(shCompanyInfo.getFULL_NAME_IN_ENGLISH());
+							company1.setEnShortName(shCompanyInfo.getENGLISH_ABBR());
+							company1.setRegisterTime(null);
+							company1.setUrl(shCompanyInfo.getWWW_ADDRESS());
+							company1.setDel("0");
+							company1.setInsertTime(new Date());
+							company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							companyMapper.insertCompany(company1);
+							company = company1;
+							companyNum++;
+						}
+						
+						if(b) {
+							csn++;
+							CompanyStock companyStock = new CompanyStock();
+							companyStock.setId(uuidutil.getUUID());
+							companyStock.setCompanyId(company.getId());
+							companyStock.setStockCode(stockCode);
+							companyStock.setStockTypeId(stockTypeId);
+							companyStock.setStockExchangeId(stockExchangeId);
+							companyStock.setListingTime(simpleDateFormat.parse(shData.getLISTING_DATE()));
+							companyStock.setDel("0");
+							companyStock.setInsertTime(new Date());
+							companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							companyStockMapper.insertCompanyStock(companyStock);
+							companyStockNum++;//计数器
+						}
+						
+						
 					}
-					
-					if(a) {//企业数据不存在
-						cn++;
-						Company company1 = new Company();
-						company1.setId(uuidutil.getUUID());
-						company1.setChName(shCompanyInfo.getFULLNAME());
-						company1.setChShortName(shCompanyInfo.getCOMPANY_ABBR());
-						company1.setEnName(shCompanyInfo.getFULL_NAME_IN_ENGLISH());
-						company1.setEnShortName(shCompanyInfo.getENGLISH_ABBR());
-						company1.setRegisterTime(null);
-						company1.setUrl(shCompanyInfo.getWWW_ADDRESS());
-						company1.setDel("0");
-						company1.setInsertTime(new Date());
-						company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
-						companyMapper.insertCompany(company1);
-						company = company1;
-						companyNum++;
-					}
-					
-					if(b) {
-						csn++;
-						CompanyStock companyStock = new CompanyStock();
-						companyStock.setId(uuidutil.getUUID());
-						companyStock.setCompanyId(company.getId());
-						companyStock.setStockCode(stockCode);
-						companyStock.setStockTypeId(stockTypeId);
-						companyStock.setStockExchangeId(stockExchangeId);
-						companyStock.setListingTime(simpleDateFormat.parse(shData.getLISTING_DATE()));
-						companyStock.setDel("0");
-						companyStock.setInsertTime(new Date());
-						companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
-						companyStockMapper.insertCompanyStock(companyStock);
-						companyStockNum++;//计数器
-					}
-					
-					
+					resultBean.setB(true);
+					resultBean.setResult(list2.size() + ";" + cn + ";" + companyNum + ";" + csn + ";" + companyStockNum);
+//					resultBean.setResult("总数据为：" + list2.size() + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
+//							"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum + "条");
+				}else {
+					//数据请求完毕
+					resultBean.setB(true);
+					resultBean.setResult("0");
 				}
-				resultBean.setB(true);
-				resultBean.setResult("总数据为：" + list2.size() + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
-						"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum + "条");
+				
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 				resultBean.setB(false);
-				resultBean.setResult("总数据为：" + list2.size() + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
-						"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum + "条");
+				resultBean.setResult(list2.size() + ";" + cn + ";" + companyNum + ";" + csn + ";" + companyStockNum);
+//				resultBean.setResult("总数据为：" + list2.size() + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
+//						"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum + "条");
 			}
 		}
 		return resultBean;
@@ -348,13 +416,13 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	
 	
 
-	public ResultBean<Object> crawlingShenzhen(String type, String stockTypeId, String stockExchangeId, String token) {
+	public ResultBean<Object> crawlingShenzhen(String type, String stockTypeId, String stockExchangeId, String token, int pageNo) {
 		if(!(StringUtils.isEmpty(type) && StringUtils.isEmpty(stockTypeId) && StringUtils.isEmpty(stockExchangeId) && StringUtils.isEmpty(token))) {
 			String path = "http://www.szse.cn/api/report/ShowReport/data";
 			String SHOWTYPE = "JSON";
 			String CATALOGID = "1110";
 			String TABKEY = "tab1";
-			String PAGENO = "1";
+			String PAGENO = String.valueOf(pageNo);
 			String random = "0.5098245544096867";
 			if(type.equals("B")) {
 				TABKEY = "tab2";
@@ -484,113 +552,121 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	        	List<Company> list = companyMapper.selectAllCompany();
 	        	list2 = jsonArray.toJavaList(SZData.class);
 	        	
-	        	for (SZData szData : list2) {
-	        		SZCompanyInfo szCompanyInfo = this.SZcrawlingCompanyInfo(type, szData.getBgdm());
-	        		
-	        		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	        		if(0 == list.size()) {
-		        		String id = uuidutil.getUUID();
-						//不存在数据
-						cn++;
-						Company company1 = new Company();
-						company1.setId(id);
-						company1.setChName(szCompanyInfo.getGsqc());
-						company1.setChShortName(szCompanyInfo.getAgjc());
-						if("B".equals(type)) {
-							company1.setChShortName(szCompanyInfo.getBgjc());
-						}
-						company1.setEnName(szCompanyInfo.getYwqc());
-						company1.setEnShortName("");
-						company1.setRegisterTime(simpleDateFormat.parse(szCompanyInfo.getBgssrq()));
-						company1.setUrl(szCompanyInfo.getHttp());
-						company1.setDel("0");
-						company1.setInsertTime(new Date());
-						company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
-						
-						csn++;
-						CompanyStock companyStock = new CompanyStock();
-						companyStock.setId(uuidutil.getUUID());
-						companyStock.setCompanyId(id);
-						companyStock.setStockCode(szData.getBgdm());
-						companyStock.setStockTypeId(stockTypeId);
-						companyStock.setStockExchangeId(stockExchangeId);
-						companyStock.setListingTime(simpleDateFormat.parse(szData.getBgssrq()));
-						companyStock.setDel("0");
-						companyStock.setInsertTime(new Date());
-						companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
-						
-						companyMapper.insertCompany(company1);
-						companyNum++;
-						companyStockMapper.insertCompanyStock(companyStock);
-						companyStockNum++;
-						continue;
-		        	}
-	        		
-	        		boolean a = true;
-					boolean b = true;
-					Company company = null;
-					for (Company company1 : list) {
-						//判断是否存在
-						if(company1.getChName().equals(szCompanyInfo.getGsqc())) {
-							//存在数据，只添加其他数据
-							a = false;
-							company = company1;
+	        	if(list2.size() > 0) {
+	        		for (SZData szData : list2) {
+		        		SZCompanyInfo szCompanyInfo = this.SZcrawlingCompanyInfo(type, szData.getBgdm());
+		        		
+		        		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		        		if(0 == list.size()) {
+			        		String id = uuidutil.getUUID();
+							//不存在数据
+							cn++;
+							Company company1 = new Company();
+							company1.setId(id);
+							company1.setChName(szCompanyInfo.getGsqc());
+							company1.setChShortName(szCompanyInfo.getAgjc());
+							if("B".equals(type)) {
+								company1.setChShortName(szCompanyInfo.getBgjc());
+							}
+							company1.setEnName(szCompanyInfo.getYwqc());
+							company1.setEnShortName("");
+							company1.setRegisterTime(simpleDateFormat.parse(szCompanyInfo.getBgssrq()));
+							company1.setUrl(szCompanyInfo.getHttp());
+							company1.setDel("0");
+							company1.setInsertTime(new Date());
+							company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
 							
-							CompanyStock companyStock = companyStockMapper.selectCompanyStockByCompanyIdAndStockTypeId(company1.getId(), stockTypeId);
-							if(companyStock != null) {
-								b = false;
+							csn++;
+							CompanyStock companyStock = new CompanyStock();
+							companyStock.setId(uuidutil.getUUID());
+							companyStock.setCompanyId(id);
+							companyStock.setStockCode(szData.getBgdm());
+							companyStock.setStockTypeId(stockTypeId);
+							companyStock.setStockExchangeId(stockExchangeId);
+							companyStock.setListingTime(simpleDateFormat.parse(szData.getBgssrq()));
+							companyStock.setDel("0");
+							companyStock.setInsertTime(new Date());
+							companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							
+							companyMapper.insertCompany(company1);
+							companyNum++;
+							companyStockMapper.insertCompanyStock(companyStock);
+							companyStockNum++;
+							continue;
+			        	}
+		        		
+		        		boolean a = true;
+						boolean b = true;
+						Company company = null;
+						for (Company company1 : list) {
+							//判断是否存在
+							if(company1.getChName().equals(szCompanyInfo.getGsqc())) {
+								//存在数据，只添加其他数据
+								a = false;
+								company = company1;
+								
+								CompanyStock companyStock = companyStockMapper.selectCompanyStockByCompanyIdAndStockTypeId(company1.getId(), stockTypeId);
+								if(companyStock != null) {
+									b = false;
+									break;
+								}
 								break;
 							}
-							break;
 						}
-					}
 
-					if(a) {//企业数据不存在
-						cn++;
-						Company company1 = new Company();
-						company1.setId(uuidutil.getUUID());
-						company1.setChName(szCompanyInfo.getGsqc());
-						company1.setChShortName(szCompanyInfo.getAgjc());
-						if("B".equals(type)) {
-							company1.setChShortName(szCompanyInfo.getBgjc());
+						if(a) {//企业数据不存在
+							cn++;
+							Company company1 = new Company();
+							company1.setId(uuidutil.getUUID());
+							company1.setChName(szCompanyInfo.getGsqc());
+							company1.setChShortName(szCompanyInfo.getAgjc());
+							if("B".equals(type)) {
+								company1.setChShortName(szCompanyInfo.getBgjc());
+							}
+							company1.setEnName(szCompanyInfo.getYwqc());
+							company1.setEnShortName("");
+							company1.setRegisterTime(simpleDateFormat.parse(szCompanyInfo.getBgssrq()));
+							company1.setUrl(szCompanyInfo.getHttp());
+							company1.setDel("0");
+							company1.setInsertTime(new Date());
+							company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							companyMapper.insertCompany(company1);
+							company = company1;
+							companyNum++;
 						}
-						company1.setEnName(szCompanyInfo.getYwqc());
-						company1.setEnShortName("");
-						company1.setRegisterTime(simpleDateFormat.parse(szCompanyInfo.getBgssrq()));
-						company1.setUrl(szCompanyInfo.getHttp());
-						company1.setDel("0");
-						company1.setInsertTime(new Date());
-						company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
-						companyMapper.insertCompany(company1);
-						company = company1;
-						companyNum++;
+						
+						if(b) {
+							csn++;
+							CompanyStock companyStock = new CompanyStock();
+							companyStock.setId(uuidutil.getUUID());
+							companyStock.setCompanyId(company.getId());
+							companyStock.setStockCode(szData.getBgdm());
+							companyStock.setStockTypeId(stockTypeId);
+							companyStock.setStockExchangeId(stockExchangeId);
+							companyStock.setListingTime(simpleDateFormat.parse(szData.getBgssrq()));
+							companyStock.setDel("0");
+							companyStock.setInsertTime(new Date());
+							companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							companyStockMapper.insertCompanyStock(companyStock);
+							companyStockNum++;//计数器
+						}
+						
+						
 					}
-					
-					if(b) {
-						csn++;
-						CompanyStock companyStock = new CompanyStock();
-						companyStock.setId(uuidutil.getUUID());
-						companyStock.setCompanyId(company.getId());
-						companyStock.setStockCode(szData.getBgdm());
-						companyStock.setStockTypeId(stockTypeId);
-						companyStock.setStockExchangeId(stockExchangeId);
-						companyStock.setListingTime(simpleDateFormat.parse(szData.getBgssrq()));
-						companyStock.setDel("0");
-						companyStock.setInsertTime(new Date());
-						companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
-						companyStockMapper.insertCompanyStock(companyStock);
-						companyStockNum++;//计数器
-					}
-					
-					
+					resultBean.setB(true);
+					resultBean.setResult(list2.size() + ";" + cn + ";" + companyNum + ";" + csn + ";" + companyStockNum);
+//					resultBean.setResult("总数据为：" + list2.size() + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
+//							"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum + "条");
+		        	
+	        	}else {
+	        		resultBean.setB(true);
+					resultBean.setResult("0");
 				}
-				resultBean.setB(true);
-				resultBean.setResult("总数据为：" + list2.size() + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
-						"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum + "条");
-	        	
 				
 			} catch (Exception e) {
 				e.printStackTrace();
+				resultBean.setB(false);
+				resultBean.setResult(list2.size() + ";" + cn + ";" + companyNum + ";" + csn + ";" + companyStockNum);
 			}
 		}
 		return resultBean;

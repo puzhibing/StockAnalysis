@@ -14,18 +14,20 @@ public class CrawlingCompanyDateController {
 	@Autowired
 	private CrawlingCompanyDate crawlingCompanyDateImpl;
 	
-	private ResultBean<Object> resultBean;
-	
 	
 	
 	/**
-	 * 导入数据
+	 * 爬取数据
 	 * @param type
+	 * @param stockTypeId
+	 * @param stockExchangeName
+	 * @param stockExchangeId
 	 * @param token
 	 * @return
 	 */
-	@RequestMapping(value = "/crawlingShanghai")
-	public ResultBean<Object> crawlingShanghai(String type , String stockTypeId,String stockExchangeName, String stockExchangeId , String token){
-		return resultBean = crawlingCompanyDateImpl.crawlingCompany(type, stockTypeId, stockExchangeName, stockExchangeId, token);
+	@RequestMapping(value = "/crawlingCompany")
+	public ResultBean<Object> crawlingCompany(String type, String stockTypeId, String stockExchangeName,
+			String stockExchangeId, String token){
+		return crawlingCompanyDateImpl.crawlingCompany(type, stockTypeId, stockExchangeName, stockExchangeId, token);
 	}
 }
