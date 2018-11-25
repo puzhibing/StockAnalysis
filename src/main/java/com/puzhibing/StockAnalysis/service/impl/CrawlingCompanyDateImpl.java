@@ -22,6 +22,7 @@ import com.puzhibing.StockAnalysis.dao.mapper.CompanyStockMapper;
 import com.puzhibing.StockAnalysis.pojo.Company;
 import com.puzhibing.StockAnalysis.pojo.CompanyStock;
 import com.puzhibing.StockAnalysis.pojo.ResultBean;
+import com.puzhibing.StockAnalysis.pojo.User;
 import com.puzhibing.StockAnalysis.pojo.reptileBean.SHCompanyInfo;
 import com.puzhibing.StockAnalysis.pojo.reptileBean.SHData;
 import com.puzhibing.StockAnalysis.pojo.reptileBean.SZCompanyInfo;
@@ -53,6 +54,8 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	
 	private ResultBean<Object> resultUtil;
 	
+	private User user;
+	
 
 	
 	
@@ -70,6 +73,11 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	public ResultBean<Object> crawlingCompany(String type, String stockTypeId, String stockExchangeName,
 			String stockExchangeId, String token) {
 		
+		try {
+			user = tokenutil.tokenToUser(token);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		int pageNo = 1;//爬取的页数
 		int count = 0;//总数据
 		int cn = 0;//记录需要添加企业的数量
@@ -81,7 +89,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 			//调取上海爬虫爬取数据
 			boolean b = true;
 			while (b) {
-				resultBean = this.crawlingShanghai(type, stockTypeId, stockExchangeId, token, pageNo);
+				resultBean = this.crawlingShanghai(type, stockTypeId, stockExchangeId, pageNo);
 				if("0".equals(resultBean.getResult())) {
 					//获取数据完毕
 					b = false;
@@ -100,7 +108,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 			//调取深圳爬虫爬取数据
 			boolean b = true;
 			while (b) {
-				resultBean = this.crawlingShenzhen(type, stockTypeId, stockExchangeId, token, pageNo);
+				resultBean = this.crawlingShenzhen(type, stockTypeId, stockExchangeId, pageNo);
 				if("0".equals(resultBean.getResult())) {
 					//获取数据完毕
 					b = false;
@@ -133,7 +141,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	 * @param token
 	 * 
 	 */
-	public ResultBean<Object> crawlingShanghai(String type , String stockTypeId , String stockExchangeId , String token, int pageNo) {
+	public ResultBean<Object> crawlingShanghai(String type , String stockTypeId , String stockExchangeId, int pageNo) {
 		resultUtil = new ResultBean<>();
 		
 		String path = "http://query.sse.com.cn/security/stock/getStockListData2.do";
@@ -189,9 +197,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
             
 			result = result.substring(result.indexOf("(") + 1, result.lastIndexOf(")"));
 			
-			System.err.println(result);
-			
-			resultUtil = SHparsingStorage(type, result, stockTypeId, stockExchangeId, token);
+			resultUtil = SHparsingStorage(type, result, stockTypeId, stockExchangeId);
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -267,9 +273,9 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	 * @return
 	 */
 	@Transactional//开启事务
-	public ResultBean<Object> SHparsingStorage(String type, String result , String stockTypeId , String stockExchangeId , String token) {
+	public ResultBean<Object> SHparsingStorage(String type, String result , String stockTypeId , String stockExchangeId) {
 		ResultBean<Object> resultBean = new ResultBean<>();
-		if(!(StringUtils.isEmpty(result) && StringUtils.isEmpty(stockTypeId) && StringUtils.isEmpty(stockExchangeId) && StringUtils.isEmpty(token))) {
+		if(!(StringUtils.isEmpty(result) && StringUtils.isEmpty(stockTypeId) && StringUtils.isEmpty(stockExchangeId))) {
 			List<SHData> list2 = null;
 			int cn = 0;//记录需要添加企业的数量
 			int csn = 0;//记录需要添加证券的数量
@@ -281,7 +287,6 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 				//添加数据
 				JSONArray jsonArray = JSON.parseObject(result).getJSONArray("result");
 				list2 = jsonArray.toJavaList(SHData.class);
-	
 				if(list2.size() > 0) {
 					for (SHData shData : list2) {
 						SHCompanyInfo shCompanyInfo = null;
@@ -312,7 +317,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 							company1.setUrl(shCompanyInfo.getWWW_ADDRESS());
 							company1.setDel("0");
 							company1.setInsertTime(new Date());
-							company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							company1.setInsertUserId(user.getId());
 							
 							csn++;
 							CompanyStock companyStock = new CompanyStock();
@@ -321,10 +326,15 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 							companyStock.setStockCode(stockCode);
 							companyStock.setStockTypeId(stockTypeId);
 							companyStock.setStockExchangeId(stockExchangeId);
-							companyStock.setListingTime(simpleDateFormat.parse(shData.getLISTING_DATE()));
+							String date = shData.getLISTING_DATE();
+							if(date.matches("\\d{2,4}-{1}\\d{1,2}-{1}\\d{1,2}")) {
+								companyStock.setListingTime(simpleDateFormat.parse(date));
+							}else {
+								companyStock.setListingTime(null);
+							}
 							companyStock.setDel("0");
 							companyStock.setInsertTime(new Date());
-							companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							companyStock.setInsertUserId(user.getId());
 							
 							companyMapper.insertCompany(company1);
 							companyNum++;
@@ -366,7 +376,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 							company1.setUrl(shCompanyInfo.getWWW_ADDRESS());
 							company1.setDel("0");
 							company1.setInsertTime(new Date());
-							company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							company1.setInsertUserId(user.getId());
 							companyMapper.insertCompany(company1);
 							company = company1;
 							companyNum++;
@@ -380,10 +390,15 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 							companyStock.setStockCode(stockCode);
 							companyStock.setStockTypeId(stockTypeId);
 							companyStock.setStockExchangeId(stockExchangeId);
-							companyStock.setListingTime(simpleDateFormat.parse(shData.getLISTING_DATE()));
+							String date = shData.getLISTING_DATE();
+							if(date.matches("\\d{2,4}-{1}\\d{1,2}-{1}\\d{1,2}")) {
+								companyStock.setListingTime(simpleDateFormat.parse(date));
+							}else {
+								companyStock.setListingTime(null);
+							}
 							companyStock.setDel("0");
 							companyStock.setInsertTime(new Date());
-							companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							companyStock.setInsertUserId(user.getId());
 							companyStockMapper.insertCompanyStock(companyStock);
 							companyStockNum++;//计数器
 						}
@@ -392,8 +407,6 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 					}
 					resultBean.setB(true);
 					resultBean.setResult(list2.size() + ";" + cn + ";" + companyNum + ";" + csn + ";" + companyStockNum);
-//					resultBean.setResult("总数据为：" + list2.size() + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
-//							"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum + "条");
 				}else {
 					//数据请求完毕
 					resultBean.setB(true);
@@ -405,8 +418,6 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 				e.printStackTrace();
 				resultBean.setB(false);
 				resultBean.setResult(list2.size() + ";" + cn + ";" + companyNum + ";" + csn + ";" + companyStockNum);
-//				resultBean.setResult("总数据为：" + list2.size() + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
-//						"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum + "条");
 			}
 		}
 		return resultBean;
@@ -417,8 +428,8 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	
 	
 
-	public ResultBean<Object> crawlingShenzhen(String type, String stockTypeId, String stockExchangeId, String token, int pageNo) {
-		if(!(StringUtils.isEmpty(type) && StringUtils.isEmpty(stockTypeId) && StringUtils.isEmpty(stockExchangeId) && StringUtils.isEmpty(token))) {
+	public ResultBean<Object> crawlingShenzhen(String type, String stockTypeId, String stockExchangeId, int pageNo) {
+		if(!(StringUtils.isEmpty(type) && StringUtils.isEmpty(stockTypeId) && StringUtils.isEmpty(stockExchangeId))) {
 			String path = "http://www.szse.cn/api/report/ShowReport/data";
 			String SHOWTYPE = "JSON";
 			String CATALOGID = "1110";
@@ -461,9 +472,8 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	            while ((line = br.readLine()) != null) {
 	                result += line;
 	            }
-	            System.err.println(result);
 	            
-	            resultUtil = this.SZparsingStorage(result, type, stockTypeId, stockExchangeId, token);
+	            resultUtil = this.SZparsingStorage(result, type, stockTypeId, stockExchangeId);
 	            
 				
 			} catch (IOException e) {
@@ -534,9 +544,9 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	 * @param stockExchangeId
 	 * @param token
 	 */
-	public ResultBean<Object> SZparsingStorage(String result , String type, String stockTypeId , String stockExchangeId , String token) {
+	public ResultBean<Object> SZparsingStorage(String result , String type, String stockTypeId , String stockExchangeId) {
 		ResultBean<Object> resultBean = new ResultBean<>();
-		if(!(StringUtils.isEmpty(result) && StringUtils.isEmpty(stockTypeId) && StringUtils.isEmpty(stockExchangeId) && StringUtils.isEmpty(token))) {
+		if(!(StringUtils.isEmpty(result) && StringUtils.isEmpty(stockTypeId) && StringUtils.isEmpty(stockExchangeId))) {
 			JSONArray jsonArray = null;
 			List<SZData> list2 = null;
 			int cn = 0;//记录需要添加企业的数量
@@ -575,7 +585,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 							company1.setUrl(szCompanyInfo.getHttp());
 							company1.setDel("0");
 							company1.setInsertTime(new Date());
-							company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							company1.setInsertUserId(user.getId());
 							
 							csn++;
 							CompanyStock companyStock = new CompanyStock();
@@ -587,7 +597,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 							companyStock.setListingTime(simpleDateFormat.parse(szData.getBgssrq()));
 							companyStock.setDel("0");
 							companyStock.setInsertTime(new Date());
-							companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							companyStock.setInsertUserId(user.getId());
 							
 							companyMapper.insertCompany(company1);
 							companyNum++;
@@ -630,7 +640,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 							company1.setUrl(szCompanyInfo.getHttp());
 							company1.setDel("0");
 							company1.setInsertTime(new Date());
-							company1.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							company1.setInsertUserId(user.getId());
 							companyMapper.insertCompany(company1);
 							company = company1;
 							companyNum++;
@@ -647,7 +657,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 							companyStock.setListingTime(simpleDateFormat.parse(szData.getBgssrq()));
 							companyStock.setDel("0");
 							companyStock.setInsertTime(new Date());
-							companyStock.setInsertUserId(tokenutil.tokenToUser(token).getId());
+							companyStock.setInsertUserId(user.getId());
 							companyStockMapper.insertCompanyStock(companyStock);
 							companyStockNum++;//计数器
 						}
@@ -656,8 +666,6 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 					}
 					resultBean.setB(true);
 					resultBean.setResult(list2.size() + ";" + cn + ";" + companyNum + ";" + csn + ";" + companyStockNum);
-//					resultBean.setResult("总数据为：" + list2.size() + "条；需要添加企业数量：" + cn + "条；成功添加企业数量：" + companyNum +
-//							"条；需要添加证券数量：" + csn + "条；成功添加证券数量：" + companyStockNum + "条");
 		        	
 	        	}else {
 	        		resultBean.setB(true);
