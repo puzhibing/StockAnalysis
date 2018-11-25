@@ -55,6 +55,7 @@ public class CrawlingCompanyDateImpl implements CrawlingCompanyDate {
 	
 
 	
+	
 	/**
 	 * 爬取企业数据
 	 * @param type
