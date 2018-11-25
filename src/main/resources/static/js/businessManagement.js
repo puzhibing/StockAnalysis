@@ -429,9 +429,9 @@ function importData(){
         },
         success: function (res) {
             if(res.b){
-                alert(res.result);
+                alert("导入数据成功...<br>" + res.result);
             }else{
-                alert(res.result);
+                alert("数据导入发生异常...<br>" + res.result);
             }
         },
         complete: function () {
