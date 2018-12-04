@@ -14,7 +14,7 @@ public class CurrentLiabilitiesSql {
 	 */
 	public String insertCurrentLiabilities(CurrentLiabilities currentLiabilities) {
 		return new SQL() {{
-			INSERT_INTO("t_currentLiabilities");
+			INSERT_INTO("t_currentliabilities");
 			INTO_COLUMNS("id , companyStockId , dataTime , stl , tfl , billsPayable , accountsPayable , advancePayment , payrollPayable");
 			INTO_COLUMNS("taxesPayable , interestPayable , dividendPayable , otherPayables , nldwoy , ocl , tcl");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
@@ -33,7 +33,7 @@ public class CurrentLiabilitiesSql {
 	 */
 	public String updateCurrentLiabilities(CurrentLiabilities currentLiabilities) {
 		return new SQL() {{
-			UPDATE("t_currentLiabilities");
+			UPDATE("t_currentliabilities");
 			SET("dataTime = #{dataTime} , stl = #{stl} , tfl = #{tfl} , billsPayable = #{billsPayable} , accountsPayable = #{accountsPayable}");
 			SET("advancePayment = #{advancePayment} , payrollPayable = #{payrollPayable} , taxesPayable = #{taxesPayable} , interestPayable = #{interestPayable}");
 			SET("dividendPayable = #{dividendPayable} , otherPayables = #{otherPayables} , nldwoy = #{nldwoy} , ocl = #{ocl} , tcl = #{tcl}");
@@ -51,7 +51,7 @@ public class CurrentLiabilitiesSql {
 	 */
 	public String deleteCurrentLiabilities(CurrentLiabilities currentLiabilities) {
 		return new SQL() {{
-			UPDATE("t_currentLiabilities");
+			UPDATE("t_currentliabilities");
 			SET("del = '-1' , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -68,7 +68,7 @@ public class CurrentLiabilitiesSql {
 			SELECT("id , companyStockId , dataTime , stl , tfl , billsPayable , accountsPayable , advancePayment , payrollPayable");
 			SELECT("taxesPayable , interestPayable , dividendPayable , otherPayables , nldwoy , ocl , tcl");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_currentLiabilities");
+			FROM("t_currentliabilities");
 			WHERE("del = '0' and companyStockId = #{companyStockId}");
 			ORDER_BY("dataTime DESC");
 		}}.toString();

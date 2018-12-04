@@ -15,7 +15,7 @@ public class CurrentAssetsSql {
 	 */
 	public String insertCurrentAssets(CurrentAssets currentAssets) {
 		return new SQL() {{
-			INSERT_INTO("t_currentAssets");
+			INSERT_INTO("t_currentassets");
 			INTO_COLUMNS("id , companyStockId , dataTime , moneyFunds , tfa , billReceivable , accountsReceivable , prepayments");
 			INTO_COLUMNS("interestReceivable , dividendReceivable , otherReceivables , stock , ncadwoy , oca , tca");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
@@ -36,7 +36,7 @@ public class CurrentAssetsSql {
 	 */
 	public String updateCurrentAssets(CurrentAssets currentAssets) {
 		return new SQL() {{
-			UPDATE("t_currentAssets");
+			UPDATE("t_currentassets");
 			SET("companyStockId = #{companyStockId} , dataTime = #{dataTime} , moneyFunds = #{moneyFunds} , tfa = #{tfa}");
 			SET("billReceivable = #{billReceivable} , accountsReceivable = #{accountsReceivable} , prepayments = #{prepayments} , interestReceivable = #{interestReceivable}");
 			SET("dividendReceivable = #{dividendReceivable} , otherReceivables = #{otherReceivables} , stock = #{stock} , ncadwoy = #{ncadwoy}");
@@ -54,7 +54,7 @@ public class CurrentAssetsSql {
 	 */
 	public String deleteCurrentAssets(CurrentAssets currentAssets) {
 		return new SQL() {{
-			UPDATE("t_currentAssets");
+			UPDATE("t_currentassets");
 			SET("del = '-1' , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -72,7 +72,7 @@ public class CurrentAssetsSql {
 			SELECT("id , companyStockId , dataTime , moneyFunds , tfa , billReceivable , accountsReceivable , prepayments");
 			SELECT("interestReceivable , dividendReceivable , otherReceivables , stock , ncadwoy , oca , tca");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_currentAssets");
+			FROM("t_currentassets");
 			WHERE("del = '0' and companyStockId = #{companyStockId}");
 			ORDER_BY("dataTime DESC");
 		}}.toString();

@@ -15,7 +15,7 @@ public class CompanyStockSql {
 	 */
 	public String insertCompanyStock(CompanyStock companyStock) {
 		return new SQL() {{
-			INSERT_INTO("t_companyStock");
+			INSERT_INTO("t_companystock");
 			INTO_COLUMNS("id , companyId , stockCode , stockTypeId , listingTime , stockExchangeId , del");
 			INTO_COLUMNS("insertUserId , insertTime , updateUserId , updateTime");
 			INTO_VALUES("#{id} , #{companyId} , #{stockCode} , #{stockTypeId} , #{listingTime} , #{stockExchangeId}");
@@ -34,7 +34,7 @@ public class CompanyStockSql {
 	 */
 	public String deleteCompanyStock(CompanyStock companyStock) {
 		return new SQL() {{
-			UPDATE("t_companyStock");
+			UPDATE("t_companystock");
 			SET("del = '-1' , updateTime = #{updateTime} , updateUserId = #{updateUserId}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -51,7 +51,7 @@ public class CompanyStockSql {
 		return new SQL() {{
 			SELECT("id , companyId , stockCode , stockTypeId , listingTime , stockExchangeId , del");
 			SELECT("insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_companyStock");
+			FROM("t_companystock");
 			WHERE("del = '0' and companyId = #{companyId}");
 		}}.toString();
 	}
@@ -65,7 +65,7 @@ public class CompanyStockSql {
 	 */
 	public String updateCompanyStock(CompanyStock companyStock){
 		return new SQL() {{
-			UPDATE("t_companyStock");
+			UPDATE("t_companystock");
 			SET("stockCode = #{stockCode} , stockTypeId = #{stockTypeId} , listingTime = #{listingTime}");
 			SET("stockExchangeId = #{stockExchangeId} , updateTime = #{updateTime} , updateUserId = #{updateUserId}");
 			WHERE("id = #{id}");
@@ -82,7 +82,7 @@ public class CompanyStockSql {
 		return new SQL() {{
 			SELECT("id , companyId , stockCode , stockTypeId , listingTime , stockExchangeId , del");
 			SELECT("insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_companyStock");
+			FROM("t_companystock");
 			WHERE("id = #{id}");
 		}}.toString();
 	}
@@ -98,7 +98,7 @@ public class CompanyStockSql {
 		return new SQL() {{
 			SELECT("id , companyId , stockCode , stockTypeId , listingTime , stockExchangeId , del");
 			SELECT("insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_companyStock");
+			FROM("t_companystock");
 			WHERE("stockCode like #{stockCode} and del = '0'");
 		}}.toString();
 	}
@@ -115,7 +115,7 @@ public class CompanyStockSql {
 		return new SQL() {{
 			SELECT("id , companyId , stockCode , stockTypeId , listingTime , stockExchangeId , del");
 			SELECT("insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_companyStock");
+			FROM("t_companystock");
 			WHERE("companyId = #{param1} and stockTypeId = #{param2}");
 		}}.toString();
 	}

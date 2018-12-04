@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 80013
+Source Server         : 127.0.0.1
+Source Server Version : 50637
 Source Host           : localhost:3306
 Source Database       : stock_analysis
 
 Target Server Type    : MYSQL
-Target Server Version : 80013
+Target Server Version : 50637
 File Encoding         : 65001
 
-Date: 2018-10-31 23:43:30
+Date: 2018-12-04 14:20:48
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,8 +20,8 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `t_cashflow`;
 CREATE TABLE `t_cashflow` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `companyStockId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
+  `companyStockId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `dataTime` date DEFAULT NULL,
   `crfsogas` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `ort` varchar(20) COLLATE utf8_bin DEFAULT NULL,
@@ -53,58 +53,75 @@ CREATE TABLE `t_cashflow` (
   `poocrtfa` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `cfoofa` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `ncfgbfra` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `np` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `aip` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `dofagadadopba` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `aoia` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `aoltpe` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `loiffaiaaolta` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `losofa` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `lofvc` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `fc` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `ll` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `ditad` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `iiiditl` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `lr` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `diori` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `iiopi` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `other` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `ncffoac` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `dtc` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `scbdwoy` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `flofa` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `cateotp` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `iboc` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `eboce` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `iboce` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `teoerfocace` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `niicace` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `caceatboty` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `bocaceaeot` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `niicace` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `teoerfocace` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `insertTime` datetime DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Table structure for t_cashflowstatement
+-- ----------------------------
+DROP TABLE IF EXISTS `t_cashflowstatement`;
+CREATE TABLE `t_cashflowstatement` (
+  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `companyStockId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `dataTime` date DEFAULT NULL,
+  `np` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `aip` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `dofagadadopba` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `aoia` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `aoltpe` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `loiffaiaaolta` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `losofa` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `lofvc` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `fc` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `ll` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `ditad` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `iiiditl` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `lr` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `diori` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `iiopi` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `other` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `ncffoac` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `dtc` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `scbdwoy` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `flofa` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `cateotp` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `iboc` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `eboce` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `iboce` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `niicace` varchar(20) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
   `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_company
 -- ----------------------------
 DROP TABLE IF EXISTS `t_company`;
 CREATE TABLE `t_company` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `chName` varchar(30) COLLATE utf8_bin DEFAULT NULL,
-  `chShortName` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `enName` varchar(30) COLLATE utf8_bin DEFAULT NULL,
-  `enShortName` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
+  `chName` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `chShortName` varchar(30) COLLATE utf8_bin DEFAULT NULL,
+  `enName` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `enShortName` varchar(100) COLLATE utf8_bin DEFAULT NULL,
   `registerTime` date DEFAULT NULL,
-  `url` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `url` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
-  `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -114,16 +131,16 @@ CREATE TABLE `t_company` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_companystock`;
 CREATE TABLE `t_companystock` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
   `companyId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `stockCode` varchar(10) COLLATE utf8_bin DEFAULT NULL,
   `stockTypeId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `listingTime` date DEFAULT NULL,
   `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
   `stockExchangeId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
-  `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
-  `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -133,7 +150,7 @@ CREATE TABLE `t_companystock` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_currentassets`;
 CREATE TABLE `t_currentassets` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
   `companyStockId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `dataTime` date DEFAULT NULL,
   `moneyFunds` varchar(20) COLLATE utf8_bin DEFAULT NULL,
@@ -161,8 +178,8 @@ CREATE TABLE `t_currentassets` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_currentliabilities`;
 CREATE TABLE `t_currentliabilities` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `companyStockId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
+  `companyStockId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `dataTime` date DEFAULT NULL,
   `stl` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `tfl` varchar(20) COLLATE utf8_bin DEFAULT NULL,
@@ -177,20 +194,36 @@ CREATE TABLE `t_currentliabilities` (
   `nldwoy` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `ocl` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `tcl` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `insertTime` datetime DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
+  `updateTime` datetime DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- ----------------------------
+-- Table structure for t_industry
+-- ----------------------------
+DROP TABLE IF EXISTS `t_industry`;
+CREATE TABLE `t_industry` (
+  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `code` varchar(20) DEFAULT NULL,
+  `name` varchar(20) DEFAULT NULL,
   `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
   `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Table structure for t_noncurrentassets
 -- ----------------------------
 DROP TABLE IF EXISTS `t_noncurrentassets`;
 CREATE TABLE `t_noncurrentassets` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
   `companyStockId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `dataTime` date DEFAULT NULL,
   `afsfa` varchar(20) COLLATE utf8_bin DEFAULT NULL,
@@ -211,10 +244,10 @@ CREATE TABLE `t_noncurrentassets` (
   `dta` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `onca` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `tnca` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
-  `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -224,8 +257,8 @@ CREATE TABLE `t_noncurrentassets` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_noncurrentliabilities`;
 CREATE TABLE `t_noncurrentliabilities` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `companyStockId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
+  `companyStockId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `dataTime` date DEFAULT NULL,
   `ltl` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `bondsPayable` varchar(20) COLLATE utf8_bin DEFAULT NULL,
@@ -235,10 +268,10 @@ CREATE TABLE `t_noncurrentliabilities` (
   `ditl` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `dncl` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `tncl` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
-  `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -248,8 +281,8 @@ CREATE TABLE `t_noncurrentliabilities` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_ownersequity`;
 CREATE TABLE `t_ownersequity` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `companyStockId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
+  `companyStockId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `dataTime` date DEFAULT NULL,
   `pic` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `capitalReserve` varchar(20) COLLATE utf8_bin DEFAULT NULL,
@@ -257,10 +290,10 @@ CREATE TABLE `t_ownersequity` (
   `surplusReserve` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `undistributedProfit` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `toe` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
-  `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -270,8 +303,8 @@ CREATE TABLE `t_ownersequity` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_ownersequitychange`;
 CREATE TABLE `t_ownersequitychange` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `companyStockId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
+  `companyStockId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `dataTime` date DEFAULT NULL,
   `yebateoly` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `apc` varchar(20) COLLATE utf8_bin DEFAULT NULL,
@@ -298,10 +331,10 @@ CREATE TABLE `t_ownersequitychange` (
   `sstmufl` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `other4` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `bateoty` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
-  `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -311,8 +344,8 @@ CREATE TABLE `t_ownersequitychange` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_profit`;
 CREATE TABLE `t_profit` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `companyStockId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
+  `companyStockId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `dataTime` date DEFAULT NULL,
   `businessIncome` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `operatingCost` varchar(20) COLLATE utf8_bin DEFAULT NULL,
@@ -337,10 +370,10 @@ CREATE TABLE `t_profit` (
   `eps` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `beps` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `deps` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
-  `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -350,13 +383,13 @@ CREATE TABLE `t_profit` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_stockexchange`;
 CREATE TABLE `t_stockexchange` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
   `name` varchar(20) COLLATE utf8_bin DEFAULT NULL,
-  `url` varchar(200) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `url` varchar(200) COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
-  `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -366,12 +399,12 @@ CREATE TABLE `t_stockexchange` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_stocktype`;
 CREATE TABLE `t_stocktype` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
   `name` varchar(10) COLLATE utf8_bin DEFAULT NULL,
-  `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
-  `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
@@ -381,13 +414,13 @@ CREATE TABLE `t_stocktype` (
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
-  `id` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `id` varchar(50) COLLATE utf8_bin NOT NULL,
   `username` varchar(20) COLLATE utf8_bin DEFAULT NULL,
   `password` varchar(30) COLLATE utf8_bin DEFAULT NULL,
-  `del` varchar(2) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
-  `insertUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `del` varchar(2) COLLATE utf8_bin DEFAULT NULL,
+  `insertUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `insertTime` datetime DEFAULT NULL,
-  `updateUserId` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
+  `updateUserId` varchar(50) COLLATE utf8_bin DEFAULT NULL,
   `updateTime` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;

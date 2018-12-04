@@ -14,7 +14,7 @@ public class NonCurrentAssetsSql {
 	 */
 	public String insertNonCurrentAssets(NonCurrentAssets nonCurrentAssets) {
 		return new SQL() {{
-			INSERT_INTO("t_nonCurrentAssets");
+			INSERT_INTO("t_noncurrentassets");
 			INTO_COLUMNS("id , companyStockId , dataTime , afsfa , haei , ltr , ltbi , ire , fixedAssets , cap , engineerMaterial");
 			INTO_COLUMNS("fac , pba , gasolineAssets , intangibleAssets , de , goodwill , ltpe , dta , onca , tnca");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
@@ -37,7 +37,7 @@ public class NonCurrentAssetsSql {
 	 */
 	public String updateNonCurrentAssets(NonCurrentAssets nonCurrentAssets) {
 		return new SQL() {{
-			UPDATE("t_nonCurrentAssets");
+			UPDATE("t_noncurrentassets");
 			SET("companyStockId = #{companyStockId} , dataTime = #{dataTime} , afsfa = #{afsfa} , haei = #{haei} , ltr = #{ltr} , ltbi = #{ltbi}");
 			SET("ire = #{ire} , fixedAssets = #{fixedAssets} , cap = #{cap} , engineerMaterial = #{engineerMaterial} , fac = #{fac} , pba = #{pba}");
 			SET("gasolineAssets = #{gasolineAssets} , intangibleAssets = #{intangibleAssets} , de = #{de} , goodwill = #{goodwill} , ltpe = #{ltpe} , dta = #{dta} , onca = #{onca} , tnca = #{tnca}");
@@ -57,7 +57,7 @@ public class NonCurrentAssetsSql {
 	 */
 	public String deleteNonCurrentAssets(NonCurrentAssets nonCurrentAssets) {
 		return new SQL() {{
-			UPDATE("t_nonCurrentAssets");
+			UPDATE("t_noncurrentassets");
 			SET("del = '-1' , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -78,7 +78,7 @@ public class NonCurrentAssetsSql {
 			SELECT("id , companyStockId , dataTime , afsfa , haei , ltr , ltbi , ire , fixedAssets , cap , engineerMaterial");
 			SELECT("fac , pba , gasolineAssets , intangibleAssets , de , goodwill , ltpe , dta , onca , tnca");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_nonCurrentAssets");
+			FROM("t_noncurrentassets");
 			WHERE("del = '0'");
 			ORDER_BY("dataTime DESC");
 		}}.toString();

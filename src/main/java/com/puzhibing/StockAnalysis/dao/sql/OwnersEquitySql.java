@@ -19,7 +19,7 @@ public class OwnersEquitySql {
 	 */
 	public String insertOwnersEquity(OwnersEquity ownersEquity) {
 		return new SQL() {{
-			INSERT_INTO("t_ownersEquity");
+			INSERT_INTO("t_ownersequity");
 			INTO_COLUMNS("id , companyStockId , dataTime , pic , capitalReserve , lts , surplusReserve , undistributedProfit , toe");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
@@ -39,7 +39,7 @@ public class OwnersEquitySql {
 		return new SQL() {{
 			SELECT("id , companyStockId , dataTime , pic , capitalReserve , lts , surplusReserve , undistributedProfit , toe");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_ownersEquity");
+			FROM("t_ownersequity");
 			WHERE("companyStockId = #{companyStockId} and del = '0'");
 		}}.toString();
 	}

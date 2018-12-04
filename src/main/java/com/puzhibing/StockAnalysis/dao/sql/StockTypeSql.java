@@ -14,7 +14,7 @@ public class StockTypeSql {
 	 */
 	public String insertStockType(StockType stockType) {
 		return new SQL() {{
-			INSERT_INTO("t_stockType");
+			INSERT_INTO("t_stocktype");
 			INTO_COLUMNS("id , name , del , insertUserId , insertTime , updateUserId , updateTime");
 			INTO_VALUES("#{id} , #{name} , #{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
@@ -29,7 +29,7 @@ public class StockTypeSql {
 	 */
 	public String updateStockType(StockType stockType){
 		return new SQL() {{
-			UPDATE("t_stockType");
+			UPDATE("t_stocktype");
 			SET("name = #{name} , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -44,7 +44,7 @@ public class StockTypeSql {
 	 */
 	public String deleteStockType(StockType stockType){
 		return new SQL() {{
-			UPDATE("t_stockType");
+			UPDATE("t_stocktype");
 			SET("del = '-1' , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -60,7 +60,7 @@ public class StockTypeSql {
 	public String selectStockTypeById(String id) {
 		return new SQL() {{
 			SELECT("id , name , del , insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_stockType");
+			FROM("t_stocktype");
 			WHERE("del = '0' and id = #{id}");
 		}}.toString();
 	}
@@ -74,7 +74,7 @@ public class StockTypeSql {
 	public String selectAllStockType(){
 		return new SQL() {{
 			SELECT("id , name , del , insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_stockType");
+			FROM("t_stocktype");
 			WHERE("del = '0'");
 			ORDER_BY("name");
 		}}.toString();

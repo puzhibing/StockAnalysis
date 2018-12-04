@@ -14,7 +14,7 @@ public class NonCurrentLiabilitiesSql {
 	 */
 	public String insertNonCurrentLiabilities(NonCurrentLiabilities nonCurrentLiabilities) {
 		return new SQL() {{
-			INSERT_INTO("t_nonCurrentLiabilities");
+			INSERT_INTO("t_noncurrentliabilities");
 			INTO_COLUMNS("id , companyStockId , dataTime , ltl , bondsPayable , ltp , specialPayable , estimatedLiabilities , ditl , dncl , tncl");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
@@ -34,7 +34,7 @@ public class NonCurrentLiabilitiesSql {
 	 */
 	public String updateNonCurrentLiabilities(NonCurrentLiabilities nonCurrentLiabilities) {
 		return new SQL() {{
-			UPDATE("t_nonCurrentLiabilities");
+			UPDATE("t_noncurrentliabilities");
 			SET("dataTime = #{dataTime} , ltl = #{ltl} , bondsPayable = #{bondsPayable} , ltp = #{ltp} , specialPayable = #{specialPayable}");
 			SET("estimatedLiabilities = #{estimatedLiabilities} , ditl = #{ditl} , dncl = #{dncl} , tncl = #{tncl}");
 			SET("updateUserId = #{updateUserId} , updateTime = #{updateTime}");
@@ -54,7 +54,7 @@ public class NonCurrentLiabilitiesSql {
 	 */
 	public String deleteNonCurrentLiabilities(NonCurrentLiabilities nonCurrentLiabilities) {
 		return new SQL() {{
-			UPDATE("t_nonCurrentLiabilities");
+			UPDATE("t_noncurrentliabilities");
 			SET("del = '-1' , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -72,7 +72,7 @@ public class NonCurrentLiabilitiesSql {
 		return new SQL() {{
 			SELECT("id , companyStockId , dataTime , ltl , bondsPayable , ltp , specialPayable , estimatedLiabilities , ditl , dncl , tncl");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_nonCurrentLiabilities");
+			FROM("t_noncurrentliabilities");
 			WHERE("del = '0' and companyStockId = #{companyStockId}");
 		}}.toString();
 	}

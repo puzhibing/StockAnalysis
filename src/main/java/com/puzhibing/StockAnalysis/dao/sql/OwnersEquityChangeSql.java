@@ -14,7 +14,7 @@ public class OwnersEquityChangeSql {
 	
 	public String insertOwnersEquityChange(OwnersEquityChange ownersEquityChange) {
 		return new SQL() {{
-			INSERT_INTO("t_ownersEquityChange");
+			INSERT_INTO("t_ownersequitychange");
 			INTO_COLUMNS("id , companyStockId , dataTime , yebateoly , apc , eec , batboty , aoioditcy , np , galdiioe , ncifvoafsfa , tiociooraioiuuem");
 			INTO_COLUMNS("itrtoei , other1 , oiarc , cibo , taospiitoe , other2 , pd , esr , dooos , other3 , itooe , csicocs , ssticocs , sstmufl , other4 , bateoty");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
@@ -38,7 +38,7 @@ public class OwnersEquityChangeSql {
 			SELECT("id , companyStockId , dataTime , yebateoly , apc , eec , batboty , aoioditcy , np , galdiioe , ncifvoafsfa , tiociooraioiuuem");
 			SELECT("itrtoei , other1 , oiarc , cibo , taospiitoe , other2 , pd , esr , dooos , other3 , itooe , csicocs , ssticocs , sstmufl , other4 , bateoty");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
-			FROM("t_ownersEquityChange");
+			FROM("t_ownersequitychange");
 			WHERE("companyStockId = #{companyStockId} and del = '0'");
 		}}.toString();
 	}
