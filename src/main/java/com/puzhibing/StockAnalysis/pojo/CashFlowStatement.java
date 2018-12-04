@@ -52,227 +52,219 @@ public class CashFlowStatement extends StockDataBean {
     private String eboce;//现金等价物的期末余额
 
     private String iboce;//现金等价物的期初余额
+    
+    private String niicace;//现金及现金等价物净增加额
+
+	public String getNp() {
+		return np;
+	}
+
+	public void setNp(String np) {
+		this.np = np;
+	}
+
+	public String getAip() {
+		return aip;
+	}
+
+	public void setAip(String aip) {
+		this.aip = aip;
+	}
+
+	public String getDofagadadopba() {
+		return dofagadadopba;
+	}
+
+	public void setDofagadadopba(String dofagadadopba) {
+		this.dofagadadopba = dofagadadopba;
+	}
+
+	public String getAoia() {
+		return aoia;
+	}
+
+	public void setAoia(String aoia) {
+		this.aoia = aoia;
+	}
+
+	public String getAoltpe() {
+		return aoltpe;
+	}
+
+	public void setAoltpe(String aoltpe) {
+		this.aoltpe = aoltpe;
+	}
+
+	public String getLoiffaiaaolta() {
+		return loiffaiaaolta;
+	}
+
+	public void setLoiffaiaaolta(String loiffaiaaolta) {
+		this.loiffaiaaolta = loiffaiaaolta;
+	}
+
+	public String getLosofa() {
+		return losofa;
+	}
+
+	public void setLosofa(String losofa) {
+		this.losofa = losofa;
+	}
+
+	public String getLofvc() {
+		return lofvc;
+	}
+
+	public void setLofvc(String lofvc) {
+		this.lofvc = lofvc;
+	}
+
+	public String getFc() {
+		return fc;
+	}
+
+	public void setFc(String fc) {
+		this.fc = fc;
+	}
+
+	public String getLl() {
+		return ll;
+	}
+
+	public void setLl(String ll) {
+		this.ll = ll;
+	}
+
+	public String getDitad() {
+		return ditad;
+	}
+
+	public void setDitad(String ditad) {
+		this.ditad = ditad;
+	}
+
+	public String getIiiditl() {
+		return iiiditl;
+	}
+
+	public void setIiiditl(String iiiditl) {
+		this.iiiditl = iiiditl;
+	}
+
+	public String getLr() {
+		return lr;
+	}
+
+	public void setLr(String lr) {
+		this.lr = lr;
+	}
+
+	public String getDiori() {
+		return diori;
+	}
+
+	public void setDiori(String diori) {
+		this.diori = diori;
+	}
+
+	public String getIiopi() {
+		return iiopi;
+	}
+
+	public void setIiopi(String iiopi) {
+		this.iiopi = iiopi;
+	}
+
+	public String getOther() {
+		return other;
+	}
+
+	public void setOther(String other) {
+		this.other = other;
+	}
+
+	public String getNcffoac() {
+		return ncffoac;
+	}
+
+	public void setNcffoac(String ncffoac) {
+		this.ncffoac = ncffoac;
+	}
+
+	public String getDtc() {
+		return dtc;
+	}
+
+	public void setDtc(String dtc) {
+		this.dtc = dtc;
+	}
+
+	public String getScbdwoy() {
+		return scbdwoy;
+	}
+
+	public void setScbdwoy(String scbdwoy) {
+		this.scbdwoy = scbdwoy;
+	}
+
+	public String getFlofa() {
+		return flofa;
+	}
+
+	public void setFlofa(String flofa) {
+		this.flofa = flofa;
+	}
+
+	public String getCateotp() {
+		return cateotp;
+	}
+
+	public void setCateotp(String cateotp) {
+		this.cateotp = cateotp;
+	}
+
+	public String getIboc() {
+		return iboc;
+	}
+
+	public void setIboc(String iboc) {
+		this.iboc = iboc;
+	}
+
+	public String getEboce() {
+		return eboce;
+	}
+
+	public void setEboce(String eboce) {
+		this.eboce = eboce;
+	}
+
+	public String getIboce() {
+		return iboce;
+	}
+
+	public void setIboce(String iboce) {
+		this.iboce = iboce;
+	}
+
+	public String getNiicace() {
+		return niicace;
+	}
+
+	public void setNiicace(String niicace) {
+		this.niicace = niicace;
+	}
+
+	@Override
+	public String toString() {
+		return "CashFlowStatement [np=" + np + ", aip=" + aip + ", dofagadadopba=" + dofagadadopba + ", aoia=" + aoia
+				+ ", aoltpe=" + aoltpe + ", loiffaiaaolta=" + loiffaiaaolta + ", losofa=" + losofa + ", lofvc=" + lofvc
+				+ ", fc=" + fc + ", ll=" + ll + ", ditad=" + ditad + ", iiiditl=" + iiiditl + ", lr=" + lr + ", diori="
+				+ diori + ", iiopi=" + iiopi + ", other=" + other + ", ncffoac=" + ncffoac + ", dtc=" + dtc
+				+ ", scbdwoy=" + scbdwoy + ", flofa=" + flofa + ", cateotp=" + cateotp + ", iboc=" + iboc + ", eboce="
+				+ eboce + ", iboce=" + iboce + ", niicace=" + niicace + "]";
+	}
 
 
-    public String getNp() {
-        return np;
-    }
-
-    public void setNp(String np) {
-        this.np = np;
-    }
-
-    public String getAip() {
-        return aip;
-    }
-
-    public void setAip(String aip) {
-        this.aip = aip;
-    }
-
-    public String getDofagadadopba() {
-        return dofagadadopba;
-    }
-
-    public void setDofagadadopba(String dofagadadopba) {
-        this.dofagadadopba = dofagadadopba;
-    }
-
-    public String getAoia() {
-        return aoia;
-    }
-
-    public void setAoia(String aoia) {
-        this.aoia = aoia;
-    }
-
-    public String getAoltpe() {
-        return aoltpe;
-    }
-
-    public void setAoltpe(String aoltpe) {
-        this.aoltpe = aoltpe;
-    }
-
-    public String getLoiffaiaaolta() {
-        return loiffaiaaolta;
-    }
-
-    public void setLoiffaiaaolta(String loiffaiaaolta) {
-        this.loiffaiaaolta = loiffaiaaolta;
-    }
-
-    public String getLosofa() {
-        return losofa;
-    }
-
-    public void setLosofa(String losofa) {
-        this.losofa = losofa;
-    }
-
-    public String getLofvc() {
-        return lofvc;
-    }
-
-    public void setLofvc(String lofvc) {
-        this.lofvc = lofvc;
-    }
-
-    public String getFc() {
-        return fc;
-    }
-
-    public void setFc(String fc) {
-        this.fc = fc;
-    }
-
-    public String getLl() {
-        return ll;
-    }
-
-    public void setLl(String ll) {
-        this.ll = ll;
-    }
-
-    public String getDitad() {
-        return ditad;
-    }
-
-    public void setDitad(String ditad) {
-        this.ditad = ditad;
-    }
-
-    public String getIiiditl() {
-        return iiiditl;
-    }
-
-    public void setIiiditl(String iiiditl) {
-        this.iiiditl = iiiditl;
-    }
-
-    public String getLr() {
-        return lr;
-    }
-
-    public void setLr(String lr) {
-        this.lr = lr;
-    }
-
-    public String getDiori() {
-        return diori;
-    }
-
-    public void setDiori(String diori) {
-        this.diori = diori;
-    }
-
-    public String getIiopi() {
-        return iiopi;
-    }
-
-    public void setIiopi(String iiopi) {
-        this.iiopi = iiopi;
-    }
-
-    public String getOther() {
-        return other;
-    }
-
-    public void setOther(String other) {
-        this.other = other;
-    }
-
-    public String getNcffoac() {
-        return ncffoac;
-    }
-
-    public void setNcffoac(String ncffoac) {
-        this.ncffoac = ncffoac;
-    }
-
-    public String getDtc() {
-        return dtc;
-    }
-
-    public void setDtc(String dtc) {
-        this.dtc = dtc;
-    }
-
-    public String getScbdwoy() {
-        return scbdwoy;
-    }
-
-    public void setScbdwoy(String scbdwoy) {
-        this.scbdwoy = scbdwoy;
-    }
-
-    public String getFlofa() {
-        return flofa;
-    }
-
-    public void setFlofa(String flofa) {
-        this.flofa = flofa;
-    }
-
-    public String getCateotp() {
-        return cateotp;
-    }
-
-    public void setCateotp(String cateotp) {
-        this.cateotp = cateotp;
-    }
-
-    public String getIboc() {
-        return iboc;
-    }
-
-    public void setIboc(String iboc) {
-        this.iboc = iboc;
-    }
-
-    public String getEboce() {
-        return eboce;
-    }
-
-    public void setEboce(String eboce) {
-        this.eboce = eboce;
-    }
-
-    public String getIboce() {
-        return iboce;
-    }
-
-    public void setIboce(String iboce) {
-        this.iboce = iboce;
-    }
-
-    @Override
-    public String toString() {
-        return "CashFlowStatement{" +
-                "np='" + np + '\'' +
-                ", aip='" + aip + '\'' +
-                ", dofagadadopba='" + dofagadadopba + '\'' +
-                ", aoia='" + aoia + '\'' +
-                ", aoltpe='" + aoltpe + '\'' +
-                ", loiffaiaaolta='" + loiffaiaaolta + '\'' +
-                ", losofa='" + losofa + '\'' +
-                ", lofvc='" + lofvc + '\'' +
-                ", fc='" + fc + '\'' +
-                ", ll='" + ll + '\'' +
-                ", ditad='" + ditad + '\'' +
-                ", iiiditl='" + iiiditl + '\'' +
-                ", lr='" + lr + '\'' +
-                ", diori='" + diori + '\'' +
-                ", iiopi='" + iiopi + '\'' +
-                ", other='" + other + '\'' +
-                ", ncffoac='" + ncffoac + '\'' +
-                ", dtc='" + dtc + '\'' +
-                ", scbdwoy='" + scbdwoy + '\'' +
-                ", flofa='" + flofa + '\'' +
-                ", cateotp='" + cateotp + '\'' +
-                ", iboc='" + iboc + '\'' +
-                ", eboce='" + eboce + '\'' +
-                ", iboce='" + iboce + '\'' +
-                '}';
-    }
+    
 }

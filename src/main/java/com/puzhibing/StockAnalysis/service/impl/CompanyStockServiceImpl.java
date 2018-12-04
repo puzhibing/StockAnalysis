@@ -55,6 +55,9 @@ public class CompanyStockServiceImpl implements CompanyStockService {
 	
 	@Autowired
 	private OwnersEquityChangeService ownersEquityChangeServiceImpl;
+	
+	@Autowired
+	private CashFlowStatementService cashFlowStatementServiceImpl;
 
 	
 	
@@ -208,6 +211,7 @@ public class CompanyStockServiceImpl implements CompanyStockService {
 				ResultBean<Object> resultBean7 = profitServiceImpl.selectProfitByCompanyStockId(companyStock.getId());
 				ResultBean<Object> resultBean8 = cashFlowServiceImpl.selectCashFlowByCompanyStockId(companyStock.getId());
 				ResultBean<Object> resultBean9 = ownersEquityChangeServiceImpl.selectOwnersEquityChangeByCompanyStockId(companyStock.getId());
+				ResultBean<Object> resultBean10 = cashFlowStatementServiceImpl.selectCashFlowStatementByCompanyStockId(companyStock.getId());
 				map.put("currentAssets", resultBean2.getResult());
 				map.put("nonCurrentAssets", resultBean3.getResult());
 				map.put("currentLiabilities", resultBean4.getResult());
@@ -216,6 +220,7 @@ public class CompanyStockServiceImpl implements CompanyStockService {
 				map.put("profit", resultBean7.getResult());
 				map.put("cashFlow", resultBean8.getResult());
 				map.put("ownersEquityChange", resultBean9.getResult());
+				map.put("cashFlowStatement", resultBean10.getResult());
 				
 				resultBean.setB(true);
 				resultBean.setResult(map);

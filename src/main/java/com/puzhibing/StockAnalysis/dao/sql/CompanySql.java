@@ -18,9 +18,9 @@ public class CompanySql {
 	public String insertCompany(Company company) {
 		return new SQL() {{
 			INSERT_INTO("t_company");
-			INTO_COLUMNS("id , chName , chShortName , enName , enShortName , registerTime , url , del");
-			INTO_COLUMNS("insertUserId , insertTime , updateUserId , updateTime");
-			INTO_VALUES("#{id} , #{chName} , #{chShortName} , #{enName} , #{enShortName} , #{registerTime}");
+			INTO_COLUMNS("id , chName , chShortName , enName , enShortName , registerTime , industry");
+			INTO_COLUMNS("url , del , insertUserId , insertTime , updateUserId , updateTime");
+			INTO_VALUES("#{id} , #{chName} , #{chShortName} , #{enName} , #{enShortName} , #{registerTime} , #{industry}");
 			INTO_VALUES("#{url} , #{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}
@@ -37,7 +37,7 @@ public class CompanySql {
 		return new SQL() {{
 			UPDATE("t_company");
 			SET("chName = #{chName} , chShortName = #{chShortName} , enName = #{enName} , enShortName = #{enShortName}");
-			SET("registerTime = #{registerTime} , url = #{url} , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
+			SET("registerTime = #{registerTime} , industry = #{industry} , url = #{url} , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
 	}
@@ -67,7 +67,7 @@ public class CompanySql {
 	 */
 	public String selectAllCompany() {
 		return new SQL() {{
-			SELECT("id , chName , chShortName , enName , enShortName , registerTime , url , del");
+			SELECT("id , chName , chShortName , enName , enShortName , registerTime , industry , url , del");
 			SELECT("insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_company");
 			WHERE("del = '0'");
@@ -84,7 +84,7 @@ public class CompanySql {
 	 */
 	public String selectCompanyById(String id) {
 		return new SQL() {{
-			SELECT("id , chName , chShortName , enName , enShortName , registerTime , url , del");
+			SELECT("id , chName , chShortName , enName , enShortName , registerTime , industry , url , del");
 			SELECT("insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_company");
 			WHERE("del = '0' and id = #{id}");
@@ -102,7 +102,7 @@ public class CompanySql {
 	 */
 	public String selectCompanyLikeName(String name) {
 		return new SQL() {{
-			SELECT("id , chName , chShortName , enName , enShortName , registerTime , url , del");
+			SELECT("id , chName , chShortName , enName , enShortName , registerTime , industry , url , del");
 			SELECT("insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_company");
 			

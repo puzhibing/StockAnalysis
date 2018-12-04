@@ -20,6 +20,8 @@ public class Company extends TotalBean {
 	
 	private Date registerTime;//注册日期
 	
+	private Object industry;//所属行业
+	
 	private String url;//网址
 	
 	private Object companyStocks;//公司股票
@@ -64,6 +66,14 @@ public class Company extends TotalBean {
 		this.registerTime = registerTime;
 	}
 
+	public Object getIndustry() {
+		return industry;
+	}
+
+	public void setIndustry(Object industry) {
+		this.industry = industry;
+	}
+
 	public String getUrl() {
 		return url;
 	}
@@ -83,10 +93,11 @@ public class Company extends TotalBean {
 	@Override
 	public String toString() {
 		return "Company [chName=" + chName + ", chShortName=" + chShortName + ", enName=" + enName + ", enShortName="
-				+ enShortName + ", registerTime=" + registerTime + ", url=" + url + ", companyStocks=" + companyStocks
-				+ "]";
+				+ enShortName + ", registerTime=" + registerTime + ", industry=" + industry + ", url=" + url
+				+ ", companyStocks=" + companyStocks + "]";
 	}
 
+	
 	
 	
 	

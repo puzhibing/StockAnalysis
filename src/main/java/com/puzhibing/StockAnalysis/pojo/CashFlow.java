@@ -76,318 +76,292 @@ public class CashFlow extends StockDataBean {
 
     private String bocaceaeot;//期末现金及现金等价物余额
 
-
-
-
-    public String getCrfsogas() {
-        return crfsogas;
-    }
-
-    public void setCrfsogas(String crfsogas) {
-        this.crfsogas = crfsogas;
-    }
-
-    public String getOrt() {
-        return ort;
-    }
-
-    public void setOrt(String ort) {
-        this.ort = ort;
-    }
-
-    public String getCortbar() {
-        return cortbar;
-    }
-
-    public void setCortbar(String cortbar) {
-        this.cortbar = cortbar;
-    }
-
-    public String getCiioa() {
-        return ciioa;
-    }
-
-    public void setCiioa(String ciioa) {
-        this.ciioa = ciioa;
-    }
-
-    public String getCpfgas() {
-        return cpfgas;
-    }
-
-    public void setCpfgas(String cpfgas) {
-        this.cpfgas = cpfgas;
-    }
-
-    public String getPoatot() {
-        return poatot;
-    }
-
-    public void setPoatot(String poatot) {
-        this.poatot = poatot;
-    }
-
-    public String getPoocrtba() {
-        return poocrtba;
-    }
-
-    public void setPoocrtba(String poocrtba) {
-        this.poocrtba = poocrtba;
-    }
-
-    public String getCffoa() {
-        return cffoa;
-    }
-
-    public void setCffoa(String cffoa) {
-        this.cffoa = cffoa;
-    }
-
-    public String getNcffoa() {
-        return ncffoa;
-    }
-
-    public void setNcffoa(String ncffoa) {
-        this.ncffoa = ncffoa;
-    }
-
-    public String getCrfir() {
-        return crfir;
-    }
-
-    public void setCrfir(String crfir) {
-        this.crfir = crfir;
-    }
-
-    public String getCrfii() {
-        return crfii;
-    }
-
-    public void setCrfii(String crfii) {
-        this.crfii = crfii;
-    }
-
-    public String getNcidofaiaaoaitpp() {
-        return ncidofaiaaoaitpp;
-    }
-
-    public void setNcidofaiaaoaitpp(String ncidofaiaaoaitpp) {
-        this.ncidofaiaaoaitpp = ncidofaiaaoaitpp;
-    }
-
-    public String getNcrfdosaobu() {
-        return ncrfdosaobu;
-    }
-
-    public void setNcrfdosaobu(String ncrfdosaobu) {
-        this.ncrfdosaobu = ncrfdosaobu;
-    }
-
-    public String getOcrtiahbr() {
-        return ocrtiahbr;
-    }
-
-    public void setOcrtiahbr(String ocrtiahbr) {
-        this.ocrtiahbr = ocrtiahbr;
-    }
-
-    public String getCioia() {
-        return cioia;
-    }
-
-    public void setCioia(String cioia) {
-        this.cioia = cioia;
-    }
-
-    public String getCofaiaaocpfpi() {
-        return cofaiaaocpfpi;
-    }
-
-    public void setCofaiaaocpfpi(String cofaiaaocpfpi) {
-        this.cofaiaaocpfpi = cofaiaaocpfpi;
-    }
-
-    public String getCpfi() {
-        return cpfi;
-    }
-
-    public void setCpfi(String cpfi) {
-        this.cpfi = cpfi;
-    }
-
-    public String getNcpbsaobu() {
-        return ncpbsaobu;
-    }
-
-    public void setNcpbsaobu(String ncpbsaobu) {
-        this.ncpbsaobu = ncpbsaobu;
-    }
-
-    public String getPoocrtia() {
-        return poocrtia;
-    }
-
-    public void setPoocrtia(String poocrtia) {
-        this.poocrtia = poocrtia;
-    }
-
-    public String getCfooia() {
-        return cfooia;
-    }
-
-    public void setCfooia(String cfooia) {
-        this.cfooia = cfooia;
-    }
-
-    public String getNcffia() {
-        return ncffia;
-    }
-
-    public void setNcffia(String ncffia) {
-        this.ncffia = ncffia;
-    }
-
-    public String getCrfi() {
-        return crfi;
-    }
-
-    public void setCrfi(String crfi) {
-        this.crfi = crfi;
-    }
-
-    public String getCrfb() {
-        return crfb;
-    }
-
-    public void setCrfb(String crfb) {
-        this.crfb = crfb;
-    }
-
-    public String getOcrtfar() {
-        return ocrtfar;
-    }
-
-    public void setOcrtfar(String ocrtfar) {
-        this.ocrtfar = ocrtfar;
-    }
-
-    public String getCiofa() {
-        return ciofa;
-    }
-
-    public void setCiofa(String ciofa) {
-        this.ciofa = ciofa;
-    }
-
-    public String getCfdr() {
-        return cfdr;
-    }
-
-    public void setCfdr(String cfdr) {
-        this.cfdr = cfdr;
-    }
-
-    public String getCpfdpoip() {
-        return cpfdpoip;
-    }
-
-    public void setCpfdpoip(String cpfdpoip) {
-        this.cpfdpoip = cpfdpoip;
-    }
-
-    public String getPoocrtfa() {
-        return poocrtfa;
-    }
-
-    public void setPoocrtfa(String poocrtfa) {
-        this.poocrtfa = poocrtfa;
-    }
-
-    public String getCfoofa() {
-        return cfoofa;
-    }
-
-    public void setCfoofa(String cfoofa) {
-        this.cfoofa = cfoofa;
-    }
-
-    public String getNcfgbfra() {
-        return ncfgbfra;
-    }
-
-    public void setNcfgbfra(String ncfgbfra) {
-        this.ncfgbfra = ncfgbfra;
-    }
-
-    public String getCaceatboty() {
-        return caceatboty;
-    }
-
-    public void setCaceatboty(String caceatboty) {
-        this.caceatboty = caceatboty;
-    }
-
-    public String getBocaceaeot() {
-        return bocaceaeot;
-    }
-
-    public void setBocaceaeot(String bocaceaeot) {
-        this.bocaceaeot = bocaceaeot;
-    }
-
-    public String getNiicace() {
-        return niicace;
-    }
-
-    public void setNiicace(String niicace) {
-        this.niicace = niicace;
-    }
-
-    public String getTeoerfocace() {
-        return teoerfocace;
-    }
-
-    public void setTeoerfocace(String teoerfocace) {
-        this.teoerfocace = teoerfocace;
-    }
-
-    @Override
-    public String toString() {
-        return "CashFlow{" +
-                "crfsogas='" + crfsogas + '\'' +
-                ", ort='" + ort + '\'' +
-                ", cortbar='" + cortbar + '\'' +
-                ", ciioa='" + ciioa + '\'' +
-                ", cpfgas='" + cpfgas + '\'' +
-                ", poatot='" + poatot + '\'' +
-                ", poocrtba='" + poocrtba + '\'' +
-                ", cffoa='" + cffoa + '\'' +
-                ", ncffoa='" + ncffoa + '\'' +
-                ", crfir='" + crfir + '\'' +
-                ", crfii='" + crfii + '\'' +
-                ", ncidofaiaaoaitpp='" + ncidofaiaaoaitpp + '\'' +
-                ", ncrfdosaobu='" + ncrfdosaobu + '\'' +
-                ", ocrtiahbr='" + ocrtiahbr + '\'' +
-                ", cioia='" + cioia + '\'' +
-                ", cofaiaaocpfpi='" + cofaiaaocpfpi + '\'' +
-                ", cpfi='" + cpfi + '\'' +
-                ", ncpbsaobu='" + ncpbsaobu + '\'' +
-                ", poocrtia='" + poocrtia + '\'' +
-                ", cfooia='" + cfooia + '\'' +
-                ", ncffia='" + ncffia + '\'' +
-                ", crfi='" + crfi + '\'' +
-                ", crfb='" + crfb + '\'' +
-                ", ocrtfar='" + ocrtfar + '\'' +
-                ", ciofa='" + ciofa + '\'' +
-                ", cfdr='" + cfdr + '\'' +
-                ", cpfdpoip='" + cpfdpoip + '\'' +
-                ", poocrtfa='" + poocrtfa + '\'' +
-                ", cfoofa='" + cfoofa + '\'' +
-                ", ncfgbfra='" + ncfgbfra + '\'' +
-                ", caceatboty='" + caceatboty + '\'' +
-                ", bocaceaeot='" + bocaceaeot + '\'' +
-                ", niicace='" + niicace + '\'' +
-                ", teoerfocace='" + teoerfocace + '\'' +
-                '}';
-    }
+	public String getCrfsogas() {
+		return crfsogas;
+	}
+
+	public void setCrfsogas(String crfsogas) {
+		this.crfsogas = crfsogas;
+	}
+
+	public String getOrt() {
+		return ort;
+	}
+
+	public void setOrt(String ort) {
+		this.ort = ort;
+	}
+
+	public String getCortbar() {
+		return cortbar;
+	}
+
+	public void setCortbar(String cortbar) {
+		this.cortbar = cortbar;
+	}
+
+	public String getCiioa() {
+		return ciioa;
+	}
+
+	public void setCiioa(String ciioa) {
+		this.ciioa = ciioa;
+	}
+
+	public String getCpfgas() {
+		return cpfgas;
+	}
+
+	public void setCpfgas(String cpfgas) {
+		this.cpfgas = cpfgas;
+	}
+
+	public String getPoatot() {
+		return poatot;
+	}
+
+	public void setPoatot(String poatot) {
+		this.poatot = poatot;
+	}
+
+	public String getPoocrtba() {
+		return poocrtba;
+	}
+
+	public void setPoocrtba(String poocrtba) {
+		this.poocrtba = poocrtba;
+	}
+
+	public String getCffoa() {
+		return cffoa;
+	}
+
+	public void setCffoa(String cffoa) {
+		this.cffoa = cffoa;
+	}
+
+	public String getNcffoa() {
+		return ncffoa;
+	}
+
+	public void setNcffoa(String ncffoa) {
+		this.ncffoa = ncffoa;
+	}
+
+	public String getCrfir() {
+		return crfir;
+	}
+
+	public void setCrfir(String crfir) {
+		this.crfir = crfir;
+	}
+
+	public String getCrfii() {
+		return crfii;
+	}
+
+	public void setCrfii(String crfii) {
+		this.crfii = crfii;
+	}
+
+	public String getNcidofaiaaoaitpp() {
+		return ncidofaiaaoaitpp;
+	}
+
+	public void setNcidofaiaaoaitpp(String ncidofaiaaoaitpp) {
+		this.ncidofaiaaoaitpp = ncidofaiaaoaitpp;
+	}
+
+	public String getNcrfdosaobu() {
+		return ncrfdosaobu;
+	}
+
+	public void setNcrfdosaobu(String ncrfdosaobu) {
+		this.ncrfdosaobu = ncrfdosaobu;
+	}
+
+	public String getOcrtiahbr() {
+		return ocrtiahbr;
+	}
+
+	public void setOcrtiahbr(String ocrtiahbr) {
+		this.ocrtiahbr = ocrtiahbr;
+	}
+
+	public String getCioia() {
+		return cioia;
+	}
+
+	public void setCioia(String cioia) {
+		this.cioia = cioia;
+	}
+
+	public String getCofaiaaocpfpi() {
+		return cofaiaaocpfpi;
+	}
+
+	public void setCofaiaaocpfpi(String cofaiaaocpfpi) {
+		this.cofaiaaocpfpi = cofaiaaocpfpi;
+	}
+
+	public String getCpfi() {
+		return cpfi;
+	}
+
+	public void setCpfi(String cpfi) {
+		this.cpfi = cpfi;
+	}
+
+	public String getNcpbsaobu() {
+		return ncpbsaobu;
+	}
+
+	public void setNcpbsaobu(String ncpbsaobu) {
+		this.ncpbsaobu = ncpbsaobu;
+	}
+
+	public String getPoocrtia() {
+		return poocrtia;
+	}
+
+	public void setPoocrtia(String poocrtia) {
+		this.poocrtia = poocrtia;
+	}
+
+	public String getCfooia() {
+		return cfooia;
+	}
+
+	public void setCfooia(String cfooia) {
+		this.cfooia = cfooia;
+	}
+
+	public String getNcffia() {
+		return ncffia;
+	}
+
+	public void setNcffia(String ncffia) {
+		this.ncffia = ncffia;
+	}
+
+	public String getCrfi() {
+		return crfi;
+	}
+
+	public void setCrfi(String crfi) {
+		this.crfi = crfi;
+	}
+
+	public String getCrfb() {
+		return crfb;
+	}
+
+	public void setCrfb(String crfb) {
+		this.crfb = crfb;
+	}
+
+	public String getOcrtfar() {
+		return ocrtfar;
+	}
+
+	public void setOcrtfar(String ocrtfar) {
+		this.ocrtfar = ocrtfar;
+	}
+
+	public String getCiofa() {
+		return ciofa;
+	}
+
+	public void setCiofa(String ciofa) {
+		this.ciofa = ciofa;
+	}
+
+	public String getCfdr() {
+		return cfdr;
+	}
+
+	public void setCfdr(String cfdr) {
+		this.cfdr = cfdr;
+	}
+
+	public String getCpfdpoip() {
+		return cpfdpoip;
+	}
+
+	public void setCpfdpoip(String cpfdpoip) {
+		this.cpfdpoip = cpfdpoip;
+	}
+
+	public String getPoocrtfa() {
+		return poocrtfa;
+	}
+
+	public void setPoocrtfa(String poocrtfa) {
+		this.poocrtfa = poocrtfa;
+	}
+
+	public String getCfoofa() {
+		return cfoofa;
+	}
+
+	public void setCfoofa(String cfoofa) {
+		this.cfoofa = cfoofa;
+	}
+
+	public String getNcfgbfra() {
+		return ncfgbfra;
+	}
+
+	public void setNcfgbfra(String ncfgbfra) {
+		this.ncfgbfra = ncfgbfra;
+	}
+
+	public String getTeoerfocace() {
+		return teoerfocace;
+	}
+
+	public void setTeoerfocace(String teoerfocace) {
+		this.teoerfocace = teoerfocace;
+	}
+
+	public String getNiicace() {
+		return niicace;
+	}
+
+	public void setNiicace(String niicace) {
+		this.niicace = niicace;
+	}
+
+	public String getCaceatboty() {
+		return caceatboty;
+	}
+
+	public void setCaceatboty(String caceatboty) {
+		this.caceatboty = caceatboty;
+	}
+
+	public String getBocaceaeot() {
+		return bocaceaeot;
+	}
+
+	public void setBocaceaeot(String bocaceaeot) {
+		this.bocaceaeot = bocaceaeot;
+	}
+
+	@Override
+	public String toString() {
+		return "CashFlow [crfsogas=" + crfsogas + ", ort=" + ort + ", cortbar=" + cortbar + ", ciioa=" + ciioa
+				+ ", cpfgas=" + cpfgas + ", poatot=" + poatot + ", poocrtba=" + poocrtba + ", cffoa=" + cffoa
+				+ ", ncffoa=" + ncffoa + ", crfir=" + crfir + ", crfii=" + crfii + ", ncidofaiaaoaitpp="
+				+ ncidofaiaaoaitpp + ", ncrfdosaobu=" + ncrfdosaobu + ", ocrtiahbr=" + ocrtiahbr + ", cioia=" + cioia
+				+ ", cofaiaaocpfpi=" + cofaiaaocpfpi + ", cpfi=" + cpfi + ", ncpbsaobu=" + ncpbsaobu + ", poocrtia="
+				+ poocrtia + ", cfooia=" + cfooia + ", ncffia=" + ncffia + ", crfi=" + crfi + ", crfb=" + crfb
+				+ ", ocrtfar=" + ocrtfar + ", ciofa=" + ciofa + ", cfdr=" + cfdr + ", cpfdpoip=" + cpfdpoip
+				+ ", poocrtfa=" + poocrtfa + ", cfoofa=" + cfoofa + ", ncfgbfra=" + ncfgbfra + ", teoerfocace="
+				+ teoerfocace + ", niicace=" + niicace + ", caceatboty=" + caceatboty + ", bocaceaeot=" + bocaceaeot
+				+ "]";
+	}
+
+
+    
 }
