@@ -507,9 +507,6 @@ function resetNonCurrentLiabilities(){
 
 
 
-
-
-
 //保存所有者权益
 function saveOwnersEquity(){
     let div = $('.saveOwnersEquity').parents("#ownersEquity");
@@ -573,8 +570,6 @@ function resetOwnersEquity(){
     div.find(".undistributedProfit").val('');//未分配利润
     div.find(".TOE").val('');//所有者权益合计
 }
-
-
 
 
 //保存利润
@@ -691,9 +686,6 @@ function resetProfit(){
 }
 
 
-
-
-
 //保存现金流
 function saveCashFlow(){
     let div = $('.saveCashFlow').parents("#cashFlow")
@@ -732,13 +724,9 @@ function saveCashFlow(){
     let CFOOFA = div.find(".CFOOFA").val();//筹资活动现金流出小计
     let NCFGBFRA = div.find(".NCFGBFRA").val();//筹资活动产生的现金流量净额
     let TEOERFOCACE = div.find(".TEOERFOCACE").val();//汇率变动对现金及现金等价物的影响
-    let CATEOTP = div.find(".CATEOTP").val();//现金的期末余额
-    let IBOC = div.find(".IBOC").val();//现金的期初余额
-    let EBOCE = div.find(".EBOCE").val();//现金等价物的期末余额
-    let IBOCE = div.find(".IBOCE").val();//现金等价物的期初余额
+    let NIICACE = div.find('.NIICACE');//现金及现金等价物净增加额
     let CACEATBOTY = div.find(".CACEATBOTY").val();//期初现金及现金等价物余额
     let BOCACEAEOT = div.find(".BOCACEAEOT").val();//期末现金及现金等价物余额
-    let NIICACE = div.find(".NIICACE").val();//现金及现金等价物净增加额
 
     if(companyStockId == "" || dataTime ==""){
         alert('数据录入异常');
@@ -781,14 +769,9 @@ function saveCashFlow(){
     formData.append('cfoofa', CFOOFA);
     formData.append('ncfgbfra', NCFGBFRA);
     formData.append('teoerfocace', TEOERFOCACE);
-    formData.append('cateotp', CATEOTP);
-    formData.append('iboc', IBOC);
-    formData.append('eboce', EBOCE);
-    formData.append('iboce', IBOCE);
+    formData.append('niicace', NIICACE);
     formData.append('caceatboty', CACEATBOTY);
     formData.append('bocaceaeot', BOCACEAEOT);
-    formData.append('niicace', NIICACE);
-    formData.append('token', token);
     formData.append('token', token);
 
 
@@ -847,21 +830,15 @@ function resetCashFlow(){
     div.find(".CFOOFA").val('');//筹资活动现金流出小计
     div.find(".NCFGBFRA").val('');//筹资活动产生的现金流量净额
     div.find(".TEOERFOCACE").val('');//汇率变动对现金及现金等价物的影响
-    div.find(".CATEOTP").val('');//现金的期末余额
-    div.find(".IBOC").val('');//现金的期初余额
-    div.find(".EBOCE").val('');//现金等价物的期末余额
-    div.find(".IBOCE").val('');//现金等价物的期初余额
+    div.find(".NIICACE").val('');//现金及现金等价物净增加额
     div.find(".CACEATBOTY").val('');//期初现金及现金等价物余额
     div.find(".BOCACEAEOT").val('');//期末现金及现金等价物余额
-    div.find(".NIICACE").val('');//现金及现金等价物净增加额
 }
-
-
 
 
 //保存现金流附注
 function saveCashFlowStatement(){
-    let div = $('.saveCashFlow').parents("#cashFlow")
+    let div = $('.saveCashFlowStatement').parents("#cashFlowStatement")
     let id = div.find(".id").val();//数据id
     let companyStockId = $(".companyStockId").val();//企业证券id
     let dataTime = div.find(".dataTime").val();//数据日期
@@ -886,8 +863,11 @@ function saveCashFlowStatement(){
     let DTC = div.find(".DTC").val();//债务转为资本
     let SCBDWOY = div.find(".SCBDWOY").val();//一年内到期的可转换公司债券
     let FLOFA = div.find(".FLOFA").val();//融资租入固定资产
-
-
+    let CATEOTP = div.find(".CATEOTP").val();//现金的期末余额
+    let IBOC = div.find(".IBOC").val();//现金的期初余额
+    let EBOCE = div.find(".EBOCE").val();//现金等价物的期末余额
+    let IBOCE = div.find(".IBOCE").val();//现金等价物的期初余额
+    let NIICACE = div.find(".NIICACE").val();//现金及现金等价物净增加额
 
     if(companyStockId == "" || dataTime ==""){
         alert('数据录入异常');
@@ -919,10 +899,16 @@ function saveCashFlowStatement(){
     formData.append('dtc', DTC);
     formData.append('scbdwoy', SCBDWOY);
     formData.append('flofa', FLOFA);
+    formData.append('cateotp', CATEOTP);
+    formData.append('iboc', IBOC);
+    formData.append('eboce', EBOCE);
+    formData.append('iboce', IBOCE);
+    formData.append('niicace', NIICACE);
+    formData.append('token', token);
 
 
     $.ajax({
-        url: '/insertCashFlow',
+        url: '/insertCashFlowStatement',
         type: 'POST',
         processData: false,
         contentType: false,
@@ -939,7 +925,7 @@ function saveCashFlowStatement(){
 
 //重置现金流附注
 function resetCashFlowStatement(){
-    let div = $('.saveCashFlow').parents("#cashFlow")
+    let div = $('.saveCashFlowStatement').parents("#cashFlowStatement")
     div.find(".id").val('');//数据id
     $(".companyStockId").val('');//企业证券id
     div.find(".dataTime").val('');//数据日期
@@ -965,9 +951,12 @@ function resetCashFlowStatement(){
     div.find(".DTC").val('');//债务转为资本
     div.find(".SCBDWOY").val('');//一年内到期的可转换公司债券
     div.find(".FLOFA").val('');//融资租入固定资产
+    div.find(".CATEOTP").val('');//现金的期末余额
+    div.find(".IBOC").val('');//现金的期初余额
+    div.find(".EBOCE").val('');//现金等价物的期末余额
+    div.find(".IBOCE").val('');//现金等价物的期初余额
+    div.find('/.NIICACE').val('');///现金及现金等价物净增加额
 }
-
-
 
 
 

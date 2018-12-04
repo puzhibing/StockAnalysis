@@ -125,9 +125,10 @@ function selectAllSecuritiesDataById(td){
     $('.currentLiabilities .data table').html('');
     $('.nonCurrentLiabilities .data table').html('');
     $('.ownersEquity .data table').html('');
+    $('.ownersEquityChange .data table').html('');
     $('.profit .data table').html();
     $('.cashFlow .data table').html();
-    $('.ownersEquityChange .data table').html('');
+    $('.cashFlowStatement .data table').html();
 
     td = $(td);
     let id = td.attr('id');
@@ -158,9 +159,10 @@ function analysisResult(data){
     let currentLiabilities = JSON.parse(data.currentLiabilities);
     let nonCurrentLiabilities = JSON.parse(data.nonCurrentLiabilities);
     let ownersEquity = data.ownersEquity;
+    let ownersEquityChange = data.ownersEquityChange;
     let profit = data.profit;
     let cashFlow = data.cashFlow;
-    let ownersEquityChange = data.ownersEquityChange;
+    let cashFlowStatement = data.cashFlowStatement;
 
     let str1 = '<tr>' +
         '<th>序号</th><th>数据日期</th><th>货币资金</th><th>交易性金融资产</th><th>应收票据</th><th>应收账款</th><th>预付账款</th><th>应收利息</th>' +
@@ -246,10 +248,7 @@ function analysisResult(data){
         '<th>支付其他与经营活动有关的现金</th><th>经营活动现金流出小计</th><th>经营活动产生的现金流净额</th><th>收回投资收到的现金</th><th>取得投资收益收到的现金</th><th>处置固定资产、无形资产和其他上期资产收回的现金净额</th><th>处置子公司及其他营业单位收到的现金净额</th><th>收到其他与投资活动相关的现金</th>' +
         '<th>投资活动现金流入小计</th><th>构建固定资产、无形资产和其他上期投资支付的现金</th><th>投资支付的现金</th><th>取得子公司及其他营业单位支付的现金净额</th><th>支付其他与投资活动有关的现金</th><th>投资活动现金流出小计</th><th>投资活动产生的现金流净额</th><th>吸收投资收到的现金</th>' +
         '<th>取得借款收到的现金</th><th>收到其他与筹资活动有关的现金</th><th>筹资活动现金流入小计</th><th>偿还债务支出的现金</th><th>分配股利、利润或偿付利息支付的现金</th><th>支付其他与筹资活动有关的现金</th><th>筹资活动现金流出小计</th><th>筹资活动产生的现金流量净额</th>' +
-        '<th>净利润</th><th>资产减值准备</th><th>固定资产折旧、汽油资产拆耗、生产性生物资产折旧</th><th>无形资产摊销</th><th>长期待摊费用摊销</th><th>处置固定资产、无形资产和其他长期资产的损失（收益）</th><th>固定资产报废损失</th><th>公允值变动损失</th>' +
-        '<th>财务费用</th><th>投资损失</th><th>递延所得税资产减少</th><th>递延所得税负债增加</th><th>存货的减少</th><th>经营性应收项目的减少</th><th>经营性应付项目的增加</th><th>其他</th>' +
-        '<th>经营活动产生的现金流量净额</th><th>债务转为资本</th><th>一年内到期的可转换公司债券</th><th>融资租入固定资产</th><th>现金的期末余额</th><th>现金的期初余额</th><th>现金等价物的期末余额</th><th>现金等价物的期初余额</th>' +
-        '<th>期初现金及现金等价物余额</th><th>期末现金及现金等价物余额</th><th>现金及现金等价物净增加额</th><th>汇率变动对现金及现金等价物的影响</th>' +
+        '<th>汇率变动对现金及现金等价物的影响</th><th>现金及现金等价物净增加额</th><th>期初现金及现金等价物余额</th><th>期末现金及现金等价物余额</th>' +
         '</tr>';
     for(var i = 0 ; i < cashFlow.length ; i++){
         str7 += '<tr>' +
@@ -260,14 +259,8 @@ function analysisResult(data){
             '<td>' + cashFlow[i].cofaiaaocpfpi + '</td><td>' + cashFlow[i].cpfi + '</td><td>' + cashFlow[i].ncpbsaobu + '</td><td>' + cashFlow[i].poocrtia + '</td>' +
             '<td>' + cashFlow[i].cfooia + '</td><td>' + cashFlow[i].ncffia + '</td><td>' + cashFlow[i].crfi + '</td><td>' + cashFlow[i].crfb + '</td>' +
             '<td>' + cashFlow[i].ocrtfar + '</td><td>' + cashFlow[i].ciofa + '</td><td>' + cashFlow[i].cfdr + '</td><td>' + cashFlow[i].cpfdpoip + '</td>' +
-            '<td>' + cashFlow[i].poocrtfa + '</td><td>' + cashFlow[i].cfoofa + '</td><td>' + cashFlow[i].ncfgbfra + '</td><td>' + cashFlow[i].np + '</td>' +
-            '<td>' + cashFlow[i].aip + '</td><td>' + cashFlow[i].dofagadadopba + '</td><td>' + cashFlow[i].aoia + '</td><td>' + cashFlow[i].aoltpe + '</td>' +
-            '<td>' + cashFlow[i].loiffaiaaolta + '</td><td>' + cashFlow[i].losofa + '</td><td>' + cashFlow[i].lofvc + '</td><td>' + cashFlow[i].fc + '</td>' +
-            '<td>' + cashFlow[i].ll + '</td><td>' + cashFlow[i].ditad + '</td><td>' + cashFlow[i].iiiditl + '</td><td>' + cashFlow[i].lr + '</td>' +
-            '<td>' + cashFlow[i].diori + '</td><td>' + cashFlow[i].iiopi + '</td><td>' + cashFlow[i].other + '</td><td>' + cashFlow[i].ncffoac + '</td>' +
-            '<td>' + cashFlow[i].dtc + '</td><td>' + cashFlow[i].scbdwoy + '</td><td>' + cashFlow[i].flofa + '</td><td>' + cashFlow[i].cateotp + '</td>' +
-            '<td>' + cashFlow[i].iboc + '</td><td>' + cashFlow[i].eboce + '</td><td>' + cashFlow[i].iboce + '</td><td>' + cashFlow[i].caceatboty + '</td>' +
-            '<td>' + cashFlow[i].bocaceaeot + '</td><td>' + cashFlow[i].niicace + '</td><td>' + cashFlow[i].teoerfocace + '</td>' +
+            '<td>' + cashFlow[i].poocrtfa + '</td><td>' + cashFlow[i].cfoofa + '</td><td>' + cashFlow[i].ncfgbfra + '</td><td>' + cashFlow[i].teoerfocace + '</td>' +
+            '<td>' + cashFlow[i].niicace + '</td><td>' + cashFlow[i].caceatboty + '</td><td>' + cashFlow[i].bocaceaeot + '</td>' +
             '</tr>';
     }
 
@@ -290,6 +283,25 @@ function analysisResult(data){
     }
 
 
+    let str9 = '<tr>' +
+        '<th>序号</th><th>数据日期</th><th>净利润</th><th>资产减值准备</th><th>固定资产折旧、汽油资产拆耗、生产性生物资产折旧</th><th>无形资产摊销</th><th>长期待摊费用摊销</th><th>处置固定资产、无形资产和其他长期资产的损失（收益）</th>' +
+        '<th>固定资产报废损失</th><th>公允值变动损失</th><th>财务费用</th><th>投资损失</th><th>递延所得税资产减少</th><th>递延所得税负债增加</th><th>存货的减少</th><th>经营性应收项目的减少</th><th>经营性应付项目的增加</th><th>其他</th>' +
+        '<th>经营活动产生的现金流量净额</th><th>债务转为资本</th><th>一年内到期的可转换公司债券</th><th>融资租入固定资产</th><th>现金的期末余额</th><th>减：现金的期初余额</th><th>加：现金等价物的期末余额</th><th>减：现金等价物的期初余额</th>' +
+        '<th>现金及现金等价物净增加额</th>' +
+        '</tr>';
+    for(var i = 0 ; i < cashFlowStatement.length ; i++){
+        str9 += '<tr>' +
+            '<td>' + (i + 1) + '</td><td>' + cashFlowStatement[i].dataTime + '</td><td>' + cashFlowStatement[i].np + '</td>' +
+            '<td>' + cashFlowStatement[i].aip + '</td><td>' + cashFlowStatement[i].dofagadadopba + '</td><td>' + cashFlowStatement[i].aoia + '</td><td>' + cashFlowStatement[i].aoltpe + '</td>' +
+            '<td>' + cashFlowStatement[i].loiffaiaaolta + '</td><td>' + cashFlowStatement[i].losofa + '</td><td>' + cashFlowStatement[i].lofvc + '</td><td>' + cashFlowStatement[i].fc + '</td>' +
+            '<td>' + cashFlowStatement[i].ll + '</td><td>' + cashFlowStatement[i].ditad + '</td><td>' + cashFlowStatement[i].iiiditl + '</td><td>' + cashFlowStatement[i].lr + '</td>' +
+            '<td>' + cashFlowStatement[i].diori + '</td><td>' + cashFlowStatement[i].iiopi + '</td><td>' + cashFlowStatement[i].other + '</td><td>' + cashFlowStatement[i].ncffoac + '</td>' +
+            '<td>' + cashFlowStatement[i].dtc + '</td><td>' + cashFlowStatement[i].scbdwoy + '</td><td>' + cashFlowStatement[i].flofa + '</td><td>' + cashFlowStatement[i].cateotp + '</td>' +
+            '<td>' + cashFlowStatement[i].iboc + '</td><td>' + cashFlowStatement[i].eboce + '</td><td>' + cashFlowStatement[i].iboce + '</td><td>' + cashFlowStatement[i].niicace + '</td>' +
+            '</tr>';
+    }
+
+
 
     $('.currentAssets .data table').html(str1);
     $('.nonCurrentAssets .data table').html(str2);
@@ -299,4 +311,5 @@ function analysisResult(data){
     $('.profit .data table').html(str6);
     $('.cashFlow .data table').html(str7);
     $('.ownersEquityChange .data table').html(str8);
+    $('.cashFlowStatement .data table').html(str9);
 }

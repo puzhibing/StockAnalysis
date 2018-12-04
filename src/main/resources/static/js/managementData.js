@@ -45,4 +45,8 @@ $(function () {
         $(".iframe").attr("src" , "stockExchange.html?token=" + token);
     });
 
+    $(".industry").click(function () {
+        $(".iframe").attr("src" , "industry.html?token=" + token);
+    });
+
 });
