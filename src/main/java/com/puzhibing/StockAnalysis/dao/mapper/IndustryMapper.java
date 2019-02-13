@@ -14,12 +14,12 @@ public interface IndustryMapper {
 
 	
 	/**
-	 * 根据id查询数据
-	 * @param id
+	 * 根据code查询数据
+	 * @param code
 	 * @return
 	 */
-	@SelectProvider(type = IndustrySql.class , method = "selectIndustryById")
-	Industry selectIndustryById(String id);
+	@SelectProvider(type = IndustrySql.class , method = "selectIndustryByCode")
+	Industry selectIndustryByCode(String code);
 	
 	
 	/**

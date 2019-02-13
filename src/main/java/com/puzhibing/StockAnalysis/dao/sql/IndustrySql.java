@@ -21,15 +21,15 @@ public class IndustrySql {
 	
 	
 	/**
-	 * 根据id查询数据
-	 * @param id
+	 * 根据code查询数据
+	 * @param code
 	 * @return
 	 */
-	public String selectIndustryById(String id) {
+	public String selectIndustryByCode(String code) {
 		return new SQL() {{
 			SELECT("id , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_industry");
-			WHERE("id = #{id} and del = '0'");
+			WHERE("code = #{code} and del = '0'");
 		}}.toString();
 	}
 	
@@ -75,6 +75,7 @@ public class IndustrySql {
 			SELECT("id , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_industry");
 			WHERE("del = '0'");
+			ORDER_BY("code");
 		}}.toString();
 	}
 }

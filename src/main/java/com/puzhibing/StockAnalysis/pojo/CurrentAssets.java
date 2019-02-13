@@ -9,8 +9,14 @@ package com.puzhibing.StockAnalysis.pojo;
 public class CurrentAssets extends StockDataBean {
 	
 	private String moneyFunds;//货币资金
+
+	private String wof;//拆出资金
 	
 	private String tfa;//交易性金融资产
+
+	private String dfa;//衍生金融资产
+
+	private String bbrfa;//买入返售金融资产
 	
 	private String billReceivable;//应收票据
 	
@@ -40,12 +46,36 @@ public class CurrentAssets extends StockDataBean {
 		this.moneyFunds = moneyFunds;
 	}
 
+	public String getWof() {
+		return wof;
+	}
+
+	public void setWof(String wof) {
+		this.wof = wof;
+	}
+
 	public String getTfa() {
 		return tfa;
 	}
 
 	public void setTfa(String tfa) {
 		this.tfa = tfa;
+	}
+
+	public String getDfa() {
+		return dfa;
+	}
+
+	public void setDfa(String dfa) {
+		this.dfa = dfa;
+	}
+
+	public String getBbrfa() {
+		return bbrfa;
+	}
+
+	public void setBbrfa(String bbrfa) {
+		this.bbrfa = bbrfa;
 	}
 
 	public String getBillReceivable() {
@@ -130,13 +160,22 @@ public class CurrentAssets extends StockDataBean {
 
 	@Override
 	public String toString() {
-		return "CurrentAssets [moneyFunds=" + moneyFunds + ", tfa=" + tfa + ", billReceivable=" + billReceivable
-				+ ", accountsReceivable=" + accountsReceivable + ", prepayments=" + prepayments
-				+ ", interestReceivable=" + interestReceivable + ", dividendReceivable=" + dividendReceivable
-				+ ", otherReceivables=" + otherReceivables + ", stock=" + stock + ", ncadwoy=" + ncadwoy + ", oca="
-				+ oca + ", tca=" + tca + "]";
+		return "CurrentAssets{" +
+				"moneyFunds='" + moneyFunds + '\'' +
+				", wof='" + wof + '\'' +
+				", tfa='" + tfa + '\'' +
+				", dfa='" + dfa + '\'' +
+				", bbrfa='" + bbrfa + '\'' +
+				", billReceivable='" + billReceivable + '\'' +
+				", accountsReceivable='" + accountsReceivable + '\'' +
+				", prepayments='" + prepayments + '\'' +
+				", interestReceivable='" + interestReceivable + '\'' +
+				", dividendReceivable='" + dividendReceivable + '\'' +
+				", otherReceivables='" + otherReceivables + '\'' +
+				", stock='" + stock + '\'' +
+				", ncadwoy='" + ncadwoy + '\'' +
+				", oca='" + oca + '\'' +
+				", tca='" + tca + '\'' +
+				'}';
 	}
-
-	
-	
 }

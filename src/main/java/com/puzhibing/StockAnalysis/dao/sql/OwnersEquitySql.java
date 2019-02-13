@@ -20,10 +20,10 @@ public class OwnersEquitySql {
 	public String insertOwnersEquity(OwnersEquity ownersEquity) {
 		return new SQL() {{
 			INSERT_INTO("t_ownersequity");
-			INTO_COLUMNS("id , companyStockId , dataTime , pic , capitalReserve , lts , surplusReserve , undistributedProfit , toe");
+			INTO_COLUMNS("id , companyStockId , dataTime , pic , capitalReserve , lts , surplusReserve , grp , undistributedProfit , toe");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
-			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{pic} , #{capitalReserve} , #{lts} , #{surplusReserve} , #{undistributedProfit} , #{toe}");
+			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{pic} , #{capitalReserve} , #{lts} , #{surplusReserve} , #{grp} , #{undistributedProfit} , #{toe}");
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}
@@ -37,7 +37,7 @@ public class OwnersEquitySql {
 	 */
 	public String selectOwnersEquityByCompanyStockId(String companyStockId) {
 		return new SQL() {{
-			SELECT("id , companyStockId , dataTime , pic , capitalReserve , lts , surplusReserve , undistributedProfit , toe");
+			SELECT("id , companyStockId , dataTime , pic , capitalReserve , lts , surplusReserve , grp , undistributedProfit , toe");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_ownersequity");
 			WHERE("companyStockId = #{companyStockId} and del = '0'");

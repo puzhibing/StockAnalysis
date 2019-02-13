@@ -36,11 +36,10 @@ function selectAllIndustry(){
 
 //解析处理结果
 function analysisResult(list){
-    list = JSON.parse(list);
     $('.table table').html('');
     let str = '<tr><th>序号</th><th>行业名称</th><th>编号</th><th>操作</th></tr>';
     for(let i = 0 ; i < list.length ; i++){
-        str += '<tr id="' + list[i].id + '"><td>' + (i + 1) + '</td><td>' + list[i].name + '<td>' + list[i].url + '</td>' +
+        str += '<tr id="' + list[i].id + '"><td>' + (i + 1) + '</td><td>' + list[i].name + '<td>' + list[i].code + '</td>' +
             '<td><button data="' + list[i].id + ';' + list[i].name + ';' + list[i].code +  '" onclick="updateIndustry(this)">编辑</button>' +
             '<button onclick="deleteIndustry(\'' + list[i].id + '\')">删除</button></td></tr>';
     }
@@ -107,7 +106,7 @@ function updateIndustry(b){
     let arr = v.split(';');
     $('#id').val(arr[0]);
     $('#name').val(arr[1]);
-    $('#url').val(arr[2]);
+    $('#code').val(arr[2]);
 }
 
 

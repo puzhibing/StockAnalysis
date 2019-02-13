@@ -16,11 +16,11 @@ public class CurrentAssetsSql {
 	public String insertCurrentAssets(CurrentAssets currentAssets) {
 		return new SQL() {{
 			INSERT_INTO("t_currentassets");
-			INTO_COLUMNS("id , companyStockId , dataTime , moneyFunds , tfa , billReceivable , accountsReceivable , prepayments");
+			INTO_COLUMNS("id , companyStockId , dataTime , moneyFunds , wof , tfa , dfa , bbrfa , billReceivable , accountsReceivable , prepayments");
 			INTO_COLUMNS("interestReceivable , dividendReceivable , otherReceivables , stock , ncadwoy , oca , tca");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
-			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{moneyFunds} , #{tfa} , #{billReceivable} , #{accountsReceivable} , #{prepayments}");
+			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{moneyFunds} , #{wof} , #{tfa} , #{dfa} , #{bbrfa} , #{billReceivable} , #{accountsReceivable} , #{prepayments}");
 			INTO_VALUES("#{interestReceivable} , #{dividendReceivable} , #{otherReceivables} , #{stock} , #{ncadwoy} , #{oca} , #{tca}");
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
@@ -37,7 +37,7 @@ public class CurrentAssetsSql {
 	public String updateCurrentAssets(CurrentAssets currentAssets) {
 		return new SQL() {{
 			UPDATE("t_currentassets");
-			SET("companyStockId = #{companyStockId} , dataTime = #{dataTime} , moneyFunds = #{moneyFunds} , tfa = #{tfa}");
+			SET("companyStockId = #{companyStockId} , dataTime = #{dataTime} , moneyFunds = #{moneyFunds} , wof = #{wof} , tfa = #{tfa} , dfa = #{dfa} , bbrfa = #{bbrfa}");
 			SET("billReceivable = #{billReceivable} , accountsReceivable = #{accountsReceivable} , prepayments = #{prepayments} , interestReceivable = #{interestReceivable}");
 			SET("dividendReceivable = #{dividendReceivable} , otherReceivables = #{otherReceivables} , stock = #{stock} , ncadwoy = #{ncadwoy}");
 			SET("oca = #{oca} , tca = #{tca} , updateUserId = #{updateUserId} , updateTime = #{updateTime}");
@@ -69,7 +69,7 @@ public class CurrentAssetsSql {
 	 */
 	public String selectCurrentAssetsBycompanyStockId(String companyStockId) {
 		return new SQL() {{
-			SELECT("id , companyStockId , dataTime , moneyFunds , tfa , billReceivable , accountsReceivable , prepayments");
+			SELECT("id , companyStockId , dataTime , moneyFunds , wof , tfa , dfa , bbrfa , billReceivable , accountsReceivable , prepayments");
 			SELECT("interestReceivable , dividendReceivable , otherReceivables , stock , ncadwoy , oca , tca");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_currentassets");

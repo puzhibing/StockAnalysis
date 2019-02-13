@@ -164,7 +164,10 @@ function saveCurrentAssets(){
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
     let moneyFunds = div.find(".moneyFunds").val();//货币资金
+    let WOF = div.find(".WOF").val();//拆出资金
     let TFA = div.find(".TFA").val();//交易性金融资产
+    let DFA = div.find(".DFA").val();//衍生金融资产
+    let BBRFA = div.find(".BBRFA").val();//买入返售金融资产
     let billReceivable = div.find(".billReceivable").val();//应收票据
     let accountsReceivable = div.find(".accountsReceivable").val();//应收账款
     let prepayments = div.find(".prepayments").val();//预付账款
@@ -187,7 +190,10 @@ function saveCurrentAssets(){
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('moneyFunds', moneyFunds);
+    formData.append('wof', WOF);
     formData.append('tfa', TFA);
+    formData.append('dfa', DFA);
+    formData.append('bbrfa', BBRFA);
     formData.append('billReceivable', billReceivable);
     formData.append('accountsReceivable', accountsReceivable);
     formData.append('prepayments', prepayments);
@@ -226,7 +232,10 @@ function resetCurrentAssets(){
     div.find(".currencyUnit").val("1");//单位
     div.find(".currencyUnit").children('option:first').attr('selected' , 'selected');
     div.find(".moneyFunds").val("");//货币资金
+    div.find(".WOF").val("");//拆出资金
     div.find(".TFA").val("");//交易性金融资产
+    div.find(".DFA").val("");//衍生金融资产
+    div.find(".BBRFA").val("");//买入返售金融资产
     div.find(".billReceivable").val("");//应收票据
     div.find(".accountsReceivable").val("");//应收账款
     div.find(".prepayments").val("");//预付账款
@@ -355,7 +364,10 @@ function saveCurrentLiabilities(){
     let dataTime = div.find(".dataTime").val();//数据日期
     let currencyUnit = div.find(".currencyUnit").val();//单位
     let STL = div.find(".STL").val();//短期借款
+    let UF = div.find(".UF").val();//拆入资金
     let TFL = div.find(".TFL").val();//交易性金融负债
+    let DFL = div.find(".DFL").val();//衍生金融负债
+    let SRFA = div.find(".SRFA").val();//卖出回购金融资产款
     let billsPayable = div.find(".billsPayable").val();//应付票据
     let accountsPayable = div.find(".accountsPayable").val();//应付账款
     let advancePayment = div.find(".advancePayment").val();//预收款项
@@ -379,7 +391,10 @@ function saveCurrentLiabilities(){
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('stl', STL);
+    formData.append('uf', UF);
     formData.append('tfl', TFL);
+    formData.append('dfl', DFL);
+    formData.append('srfa', SRFA);
     formData.append('billsPayable', billsPayable);
     formData.append('accountsPayable', accountsPayable);
     formData.append('advancePayment', advancePayment);
@@ -419,7 +434,10 @@ function resetCurrentLiabilities(){
     div.find(".currencyUnit").val("1");//单位
     div.find(".currencyUnit").children('option:first').attr('selected','selected');
     div.find(".STL").val('');//短期借款
+    div.find(".UF").val('');//拆入资金
     div.find(".TFL").val('');//交易性金融负债
+    div.find(".DFL").val('');//衍生金融负债
+    div.find(".SRFA").val('');//卖出回购金融资产款
     div.find(".billsPayable").val('');//应付票据
     div.find(".accountsPayable").val('');//应付账款
     div.find(".advancePayment").val('');//预收款项
@@ -518,6 +536,7 @@ function saveOwnersEquity(){
     let capitalReserve = div.find(".capitalReserve").val();//资本公积
     let LTS = div.find(".LTS").val();//减：库存股
     let surplusReserve = div.find(".surplusReserve").val();//盈余公积
+    let GRP = div.find(".GRP").val();//一般风险准备
     let undistributedProfit = div.find(".undistributedProfit").val();//未分配利润
     let TOE = div.find(".TOE").val();//所有者权益合计
 
@@ -535,6 +554,7 @@ function saveOwnersEquity(){
     formData.append('capitalReserve', capitalReserve);
     formData.append('lts', LTS);
     formData.append('surplusReserve', surplusReserve);
+    formData.append('grp', GRP);
     formData.append('undistributedProfit', undistributedProfit);
     formData.append('toe', TOE);
     formData.append('token', token);
@@ -567,6 +587,7 @@ function resetOwnersEquity(){
     div.find(".capitalReserve").val('');//资本公积
     div.find(".LTS").val('');//减：库存股
     div.find(".surplusReserve").val('');//盈余公积
+    div.find(".GRP").val('');//未分配利润
     div.find(".undistributedProfit").val('');//未分配利润
     div.find(".TOE").val('');//所有者权益合计
 }
@@ -1102,15 +1123,15 @@ function calculation(){
                     if(elemtns.length == 0){
                         b = false;
                     }
-                    let str = 0;
+                    let str = 0.00;
                     for (let j = 0 ; j < elemtns.length ; j++){
                         if($(elemtns[j]).val() != ""){
                             str += parseFloat($(elemtns[j]).val());
                         }else{
-                            str += 0;
+                            str += 0.00;
                         }
                     }
-                    $('#' + tagv).val(str);
+                    $('#' + tagv).val(str.toFixed(2));
                     obj = $('#' + tagv);
                 }
             });

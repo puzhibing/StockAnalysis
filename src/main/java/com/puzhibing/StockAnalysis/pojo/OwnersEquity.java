@@ -15,6 +15,8 @@ public class OwnersEquity extends StockDataBean {
 	private String lts;//减：库存股
 	
 	private String surplusReserve;//盈余公积
+
+	private String grp;//一般风险准备
 	
 	private String undistributedProfit;//未分配利润
 
@@ -60,6 +62,14 @@ public class OwnersEquity extends StockDataBean {
 		this.undistributedProfit = undistributedProfit;
 	}
 
+	public String getGrp() {
+		return grp;
+	}
+
+	public void setGrp(String grp) {
+		this.grp = grp;
+	}
+
 	public String getToe() {
 		return toe;
 	}
@@ -75,6 +85,7 @@ public class OwnersEquity extends StockDataBean {
 				", capitalReserve='" + capitalReserve + '\'' +
 				", lts='" + lts + '\'' +
 				", surplusReserve='" + surplusReserve + '\'' +
+				", grp='" + grp + '\'' +
 				", undistributedProfit='" + undistributedProfit + '\'' +
 				", toe='" + toe + '\'' +
 				'}';

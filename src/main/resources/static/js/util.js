@@ -16,7 +16,7 @@ function StringToDate(strDate){
         }
         return date;
     }
-    return null;
+    return new Date();
 }
 
 

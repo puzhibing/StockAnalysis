@@ -103,7 +103,7 @@ public class IndustryServiceImpl implements IndustryService {
 		industry.setUpdateTime(new Date());
 		industry.setUpdateUserId(user.getId());
 		try {
-			industryMapper.updateIndustry(industry);
+			industryMapper.deleteIndustry(industry);
 			resultUtil.setB(true);
 		} catch (Exception e) {
 			throw e;

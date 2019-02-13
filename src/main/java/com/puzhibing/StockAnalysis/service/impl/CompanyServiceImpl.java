@@ -95,6 +95,7 @@ public class CompanyServiceImpl implements CompanyService {
 			try {
 				companyMapper.updateCompany(company);
 				resultUtil.setB(true);
+				resultUtil.setResult(JSON.toJSONString(company));
 			} catch (Exception e) {
 				throw e;
 			}

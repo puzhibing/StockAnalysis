@@ -18,13 +18,14 @@ body{
 }
 
 .title{
-    height: 30px;
+    height: 29px;
     border-bottom: 1px solid #BCBCBC;
 }
 
-.title>span:first-of-type{
+.title div>span:first-of-type{
     margin-left: 20px;
     color: #547576;
+    line-height: 25px;
 }
 
 .title div{
@@ -44,6 +45,7 @@ body{
     border: 1px solid #547576;
     z-index: 100;
     position: absolute;
+    overflow: auto;
 }
 
 .title .text .selectionPanel ul{

@@ -165,13 +165,13 @@ function analysisResult(data){
     let cashFlowStatement = data.cashFlowStatement;
 
     let str1 = '<tr>' +
-        '<th>序号</th><th>数据日期</th><th>货币资金</th><th>交易性金融资产</th><th>应收票据</th><th>应收账款</th><th>预付账款</th><th>应收利息</th>' +
+        '<th>序号</th><th>数据日期</th><th>货币资金</th><th>拆出资金</th><th>交易性金融资产</th><th>衍生金融资产</th><th>买入返售金融资产</th><th>应收票据</th><th>应收账款</th><th>预付账款</th><th>应收利息</th>' +
         '<th>应收股利</th><th>其他应收款</th><th>存货</th><th>一年内到期的非流动资产</th><th>其他流动资产</th><th>流动资产合计</th>' +
         '</tr>';
     for(var i = 0 ; i < currentAssets.length ; i++){
         str1 += '<tr>' +
-            '<td>' + (i + 1) + '</td><td>' + currentAssets[i].dataTime + '</td><td>' + currentAssets[i].moneyFunds + '</td><td>' + currentAssets[i].tfa + '</td><td>' + currentAssets[i].billReceivable + '</td>' +
-            '<td>' + currentAssets[i].accountsReceivable + '</td><td>' + currentAssets[i].prepayments + '</td><td>' + currentAssets[i].interestReceivable + '</td><td>' + currentAssets[i].dividendReceivable + '</td>' +
+            '<td>' + (i + 1) + '</td><td>' + currentAssets[i].dataTime + '</td><td>' + currentAssets[i].moneyFunds + '</td><td>' + currentAssets[i].wof + '</td><td>' + currentAssets[i].tfa + '</td><td>' + currentAssets[i].dfa + '</td><td>' + currentAssets[i].bbrfa + '</td>' +
+            '<td>' + currentAssets[i].billReceivable + '</td><td>' + currentAssets[i].accountsReceivable + '</td><td>' + currentAssets[i].prepayments + '</td><td>' + currentAssets[i].interestReceivable + '</td><td>' + currentAssets[i].dividendReceivable + '</td>' +
             '<td>' + currentAssets[i].otherReceivables + '</td><td>' + currentAssets[i].stock + '</td><td>' + currentAssets[i].ncadwoy + '</td><td>' + currentAssets[i].oca + '</td><td>' + currentAssets[i].tca + '</td>' +
             '</tr>';
     }
@@ -192,13 +192,13 @@ function analysisResult(data){
     }
 
     let str3 = '<tr>' +
-        '<th>序号</th><th>数据日期</th><th>短期借款</th><th>交易性金融负债</th><th>应付票据</th><th>应付账款</th><th>预收款项</th><th>应付职工薪酬</th>' +
+        '<th>序号</th><th>数据日期</th><th>短期借款</th><th>拆入资金</th><th>交易性金融负债</th><th>衍生金融负债</th><th>卖出回购金融资产款</th><th>应付票据</th><th>应付账款</th><th>预收款项</th><th>应付职工薪酬</th>' +
         '<th>应交税费</th><th>应付利息</th><th>应付股利</th><th>其他应付款</th><th>一年内到期的非流动负债</th><th>其他流动负债</th><th>流动负债合计</th>' +
         '</tr>';
     for(var i = 0 ; i < currentLiabilities.length ; i++){
         str3 += '<tr>' +
-            '<td>' + (i + 1) + '</td><td>' + currentLiabilities[i].dataTime + '</td><td>' + currentLiabilities[i].stl + '</td><td>' + currentLiabilities[i].tfl + '</td><td>' + currentLiabilities[i].billsPayable + '</td>' +
-            '<td>' + currentLiabilities[i].accountsPayable + '</td><td>' + currentLiabilities[i].advancePayment + '</td><td>' + currentLiabilities[i].payrollPayable + '</td><td>' + currentLiabilities[i].taxesPayable + '</td>' +
+            '<td>' + (i + 1) + '</td><td>' + currentLiabilities[i].dataTime + '</td><td>' + currentLiabilities[i].stl + '</td><td>' + currentLiabilities[i].uf + '</td><td>' + currentLiabilities[i].tfl + '</td><td>' + currentLiabilities[i].dfl + '</td><td>' + currentLiabilities[i].srfa + '</td>' +
+            '<td>' + currentLiabilities[i].billsPayable + '</td><td>' + currentLiabilities[i].accountsPayable + '</td><td>' + currentLiabilities[i].advancePayment + '</td><td>' + currentLiabilities[i].payrollPayable + '</td><td>' + currentLiabilities[i].taxesPayable + '</td>' +
             '<td>' + currentLiabilities[i].interestPayable + '</td><td>' + currentLiabilities[i].dividendPayable + '</td><td>' + currentLiabilities[i].otherPayables + '</td><td>' + currentLiabilities[i].nldwoy + '</td>' +
             '<td>' + currentLiabilities[i].ocl + '</td><td>' + currentLiabilities[i].tcl + '</td>' +
             '</tr>';
@@ -217,12 +217,12 @@ function analysisResult(data){
     }
 
     let str5 = '<tr>' +
-        '<th>序号</th><th>数据日期</th><th>实收资本</th><th>资本公积</th><th>减：库存股</th><th>盈余公积</th><th>未分配利润</th><th>所有者权益合计</th>' +
+        '<th>序号</th><th>数据日期</th><th>实收资本</th><th>资本公积</th><th>减：库存股</th><th>盈余公积</th><th>一般风险准备</th><th>未分配利润</th><th>所有者权益合计</th>' +
         '</tr>';
     for(var i = 0 ; i < ownersEquity.length ; i++){
         str5 += '<tr>' +
             '<td>' + (i + 1) + '</td><td>' + ownersEquity[i].dataTime + '</td><td>' + ownersEquity[i].pic + '</td><td>' + ownersEquity[i].capitalReserve + '</td><td>' + ownersEquity[i].lts + '</td>' +
-            '<td>' + ownersEquity[i].surplusReserve + '</td><td>' + ownersEquity[i].undistributedProfit + '</td><td>' + ownersEquity[i].toe + '</td>' +
+            '<td>' + ownersEquity[i].surplusReserve + '</td><td>' + ownersEquity[i].grp + '</td><td>' + ownersEquity[i].undistributedProfit + '</td><td>' + ownersEquity[i].toe + '</td>' +
             '</tr>';
     }
 

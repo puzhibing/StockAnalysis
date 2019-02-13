@@ -18,6 +18,25 @@ $(document).ready(function () {
 
     selectAllStockExchange('1');
 
+    selectAllIndustry();
+
+    //绑定表单值发生变化处理函数
+    $('.securitiesNumber').bind('input propertychange', function() {
+        fuzzyAcquisition(this);
+    });
+
+    $(document).click(function () {
+        let se = $('.text .selectionPanel');
+        if(se.css('display') == 'block'){
+            se.hide();
+        }
+    });
+
+    $('.search').bind('click',function () {
+        selectCompanyInfoById();
+    })
+
+
     $(".save").click(function () {
         saveData();
     });
@@ -42,7 +61,7 @@ $(document).ready(function () {
 
     $('.importData').click(function () {
         importData();
-    })
+    });
 
 });
 
@@ -69,6 +88,27 @@ function initStyle(){
         'height': '225px',
         'top': (height - 325) / 2,
         'left': (width - 225) / 2,
+    });
+}
+
+
+//获取所有行业数据
+function selectAllIndustry(){
+    $.ajax({
+        url: '/selectAllIndustry',
+        type: 'POST',
+        success: function (res){
+            $('.industry').html('<span>所属行业：</span>');
+            var str = '<span>所属行业：</span><select><option value=""></option>';
+            if(res.b){
+                var data = res.result;
+                for(var i = 0 ; i < data.length ; i++){
+                    str += '<option value="' + data[i].code + '">' + data[i].name + '</option>';
+                }
+                str += '</select>';
+                $('.industry').html(str);
+            }
+        }
     });
 }
 
@@ -142,6 +182,7 @@ function saveData(){
     let enShortName = $(".enShortName").val();
     let registerTime = StringToDate($(".registerTime").val()).toString();
     let url = $(".url").val();
+    let industry = $(".industry select").val();
 
     if(chName == ''){
         alert('请填写正确的数据');
@@ -156,6 +197,7 @@ function saveData(){
     formData.append("enShortName", enShortName);
     formData.append("registerTime", registerTime);
     formData.append("url", url);
+    formData.append("industry", industry);
     formData.append("token", token);
 
     let u = "/updateCompany";
@@ -181,6 +223,9 @@ function saveData(){
                 $(".enShortName").val(company.enShortName);
                 $(".registerTime").val(longToDate(company.registerTime));
                 $(".url").val(company.url);
+                let industry = company.industry;
+                $('.industry select option').removeAttr('selected');
+                $('.industry').find('option[value="' + industry + '"]').attr('selected',true);
 
                 $(".other button").removeAttr("disabled");
                 $(".other input").removeAttr("disabled");
@@ -265,7 +310,7 @@ function findAllCompany(){
                 let result = res.result;
                 let str = '<tr><th>序号</th><th>企业名称</th><th>网址</th><th>操作</th></tr>';
                 for (let i = 0 ; i < result.length ; i++){
-                    str += '<tr id="' + result[i].id + '" onclick="selected(this)" data="' + result[i].id + ';' + result[i].chName + ';' + result[i].chShortName + ';' + result[i].enName + ';' + result[i].enShortName + ';' + result[i].registerTime + ';' + result[i].url + ';' + '">' +
+                    str += '<tr id="' + result[i].id + '" onclick="selected(this)" data="' + result[i].id + ';' + result[i].chName + ';' + result[i].chShortName + ';' + result[i].enName + ';' + result[i].enShortName + ';' + result[i].registerTime + ';' + result[i].url + ';' + result[i].industry + '">' +
                         '<td>' + (i + 1) + '</td><td>' + result[i].chName + '</td></td><td>' + result[i].url + '</td><td><button onclick="deleteCompany(\'' + result[i].id + '\')">删除</button></td></tr>';
                 }
                 $('.CompanyData table').html(str);
@@ -279,7 +324,7 @@ function findAllCompany(){
 function selected(tr){
     tr = $(tr);
     tr.css({
-        'background-color':'#E5E5E5'
+        'background-color':'#ADCED0'
     });
     tr.siblings('tr').css({
         'background-color':'#FFFFFF'
@@ -294,6 +339,10 @@ function selected(tr){
     $(".enShortName").val(arr[4]);
     $(".registerTime").val(longToDate(arr[5]));
     $(".url").val(arr[6]);
+    let industry = arr[7];
+    $('.industry select option').removeAttr('selected');
+    $('.industry').find('option[value="' + industry + '"]').attr('selected',true);
+
 
     $(".other button").removeAttr("disabled");
     $(".other input").removeAttr("disabled");
@@ -329,7 +378,7 @@ function selectCompanyStock(){
                         '<td>' + result[i].stockCode + '</td>' +
                         '<td>' + longToDate(result[i].listingTime) + '</td>' +
                         '<td>' + result[i].stockExchangeId[0].name + '</td>' +
-                        '<td><button class="edit" onclick="updateCompanyStock(this)" data="' + result[i].id + '' + result[i].stockTypeId[0].id + ';' + result[i].stockCode + ';' + result[i].listingTime + ';' + result[i].stockExchangeId[0].id + '">编辑</button>' +
+                        '<td><button class="edit" onclick="updateCompanyStock(this)" data="' + result[i].id + ';' + result[i].stockTypeId[0].id + ';' + result[i].stockCode + ';' + result[i].listingTime + ';' + result[i].stockExchangeId[0].id + '">编辑</button>' +
                         '<button class="del" onclick="removeRow(\'' + result[i].id + '\')">删除</button></td>' +
                         '</tr>';
                 }
@@ -347,7 +396,7 @@ function updateCompanyStock(bj){
 
     $(".companyStockId").val(arr[0]);
     $(".stockCode").val(arr[2]);
-    $(".listingTime").val(arr[3]);
+    $(".listingTime").val(arr[3].substring(0,arr[3].indexOf('T')));
     $('.stockType').val(arr[1]);
     $('.stockType option[value=\'' + arr[1] + '\']').attr('selected','selected');
     $('.stockExchange').val(arr[4]);
@@ -435,6 +484,81 @@ function importData(){
         },
         complete: function () {
             closeProcessing();//关闭特效
+        }
+    });
+}
+
+
+
+//动态模糊筛选获取公司数据接口
+function fuzzyAcquisition(v) {
+    $(v).siblings(".selectionPanel").show();
+    let value = $(v).val();
+    $.ajax({
+        url: "/fuzzyQueryCompany",
+        type: "POST",
+        data: {
+            value: value
+        },
+        success: function (res) {
+            $(v).siblings(".selectionPanel").html('');
+            if(res.b){
+                let list = res.result;
+                let str = '<ul>';
+                for(var i = 0; i < list.length; i++){
+                    str += '<li id="' + list[i].id +  '" name="' + list[i].chName + '" onclick="selectionPanel(this)"><span>' + list[i].chName + '</span></li>';
+                }
+                str += '</ul>';
+                $(v).siblings(".selectionPanel").html(str);
+            }
+        }
+    });
+}
+
+
+//选择面板值选中触发的事件
+function selectionPanel(li){
+    li = $(li);
+    li.parents(".selectionPanel").show();
+    let id = li.attr("id");
+    let name = li.attr("name");
+
+    $(".companyStockId").val(id);
+    li.parents(".selectionPanel").siblings(".securitiesNumber").val(name);
+    li.parents(".selectionPanel").siblings(".id").val(id);
+    li.parents(".selectionPanel").hide();
+}
+
+
+
+
+//搜索企业数据
+function selectCompanyInfoById(){
+    $(".enterpriseInfo .companyStocks table").html('');
+    $('.enterpriseInfo .company').html('');
+    let id = $('.id').val().trim();
+    if(id == ''){
+        alert('请录入有效的搜索条件');
+        return;
+    }
+    $.ajax({
+        url: '/selectCompanyInfoById',
+        type: 'POST',
+        data: {
+            id: id
+        },
+        success: function (res) {
+
+            if(res.b){
+                let result = res.result;
+                let str = '<tr><th>序号</th><th>企业名称</th><th>网址</th><th>操作</th></tr>' +
+                    '<tr id="' + result.id + '" onclick="selected(this)" data="' + result.id + ';' + result.chName + ';' + result.chShortName + ';' + result.enName + ';' + result.enShortName + ';' + result.registerTime + ';' + result.url + ';' + result.industry + '">' +
+                    '<td>1</td><td>' + result.chName + '</td></td><td>' + result.url + '</td><td><button onclick="deleteCompany(\'' + result.id + '\')">删除</button></td></tr>';;
+
+                $('.CompanyData table').html(str);
+                $('.CompanyData .text .securitiesNumber').val('');
+                $('.CompanyData .text .id').val('');
+            }
         }
     });
 }

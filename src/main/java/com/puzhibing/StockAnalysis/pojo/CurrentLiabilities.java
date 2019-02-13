@@ -10,7 +10,13 @@ public class CurrentLiabilities extends StockDataBean {
 
 	private String stl;//短期借款
 	
+	private String uf;//拆入资金
+
 	private String tfl;//交易性金融负债
+
+	private String dfl;//衍生金融负债
+
+	private String srfa;//卖出回购金融资产款
 	
 	private String billsPayable;//应付票据
 	
@@ -34,7 +40,6 @@ public class CurrentLiabilities extends StockDataBean {
 
 	private String tcl;//流动负债合计
 
-
 	public String getStl() {
 		return stl;
 	}
@@ -43,12 +48,36 @@ public class CurrentLiabilities extends StockDataBean {
 		this.stl = stl;
 	}
 
+	public String getUf() {
+		return uf;
+	}
+
+	public void setUf(String uf) {
+		this.uf = uf;
+	}
+
 	public String getTfl() {
 		return tfl;
 	}
 
 	public void setTfl(String tfl) {
 		this.tfl = tfl;
+	}
+
+	public String getDfl() {
+		return dfl;
+	}
+
+	public void setDfl(String dfl) {
+		this.dfl = dfl;
+	}
+
+	public String getSrfa() {
+		return srfa;
+	}
+
+	public void setSrfa(String srfa) {
+		this.srfa = srfa;
 	}
 
 	public String getBillsPayable() {
@@ -144,7 +173,10 @@ public class CurrentLiabilities extends StockDataBean {
 	public String toString() {
 		return "CurrentLiabilities{" +
 				"stl='" + stl + '\'' +
+				", uf='" + uf + '\'' +
 				", tfl='" + tfl + '\'' +
+				", dfl='" + dfl + '\'' +
+				", srfa='" + srfa + '\'' +
 				", billsPayable='" + billsPayable + '\'' +
 				", accountsPayable='" + accountsPayable + '\'' +
 				", advancePayment='" + advancePayment + '\'' +
