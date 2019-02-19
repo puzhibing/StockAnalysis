@@ -10,6 +10,14 @@ public class Profit extends StockDataBean {
 
     private String businessIncome;//营业收入
 
+    private String interestIncome;//利息收入
+
+    private String earnedPremium;//已赚保费
+
+    private String faci;//手续费及佣金收入
+
+    private String toi;//营业总收入
+
     private String operatingCost;//营业成本
 
     private String btaa;//营业税金及附加
@@ -22,6 +30,8 @@ public class Profit extends StockDataBean {
 
     private String ail;//资产减值损失
 
+    private String toc;//营业总成本
+
     private String fvci;//公允价值变动收益
     
     private String adi;//资产处置收益
@@ -32,21 +42,25 @@ public class Profit extends StockDataBean {
 
     private String oii;//其他投资收益
 
+    private String exchangeGains;//汇兑收益
+
+    private String otherIncome;//其他收益
+
     private String operatingProfit;//营业利润
 
     private String noi;//营业外收入
 
     private String noe;//营业外支出
 
-    private String paldoia;//非流动资产处置损益
-
-    private String onoe;//其他营业外支出
-
     private String totalProfit;//利润总额
 
     private String ite;//所得税费用
 
     private String netProfit;//净利润
+
+    private String natfoci;//其他综合收益的税后净额
+
+    private String tci;//综合收益总额
 
     private String eps;//每股收益
 
@@ -60,6 +74,38 @@ public class Profit extends StockDataBean {
 
     public void setBusinessIncome(String businessIncome) {
         this.businessIncome = businessIncome;
+    }
+
+    public String getInterestIncome() {
+        return interestIncome;
+    }
+
+    public void setInterestIncome(String interestIncome) {
+        this.interestIncome = interestIncome;
+    }
+
+    public String getEarnedPremium() {
+        return earnedPremium;
+    }
+
+    public void setEarnedPremium(String earnedPremium) {
+        this.earnedPremium = earnedPremium;
+    }
+
+    public String getFaci() {
+        return faci;
+    }
+
+    public void setFaci(String faci) {
+        this.faci = faci;
+    }
+
+    public String getToi() {
+        return toi;
+    }
+
+    public void setToi(String toi) {
+        this.toi = toi;
     }
 
     public String getOperatingCost() {
@@ -110,6 +156,14 @@ public class Profit extends StockDataBean {
         this.ail = ail;
     }
 
+    public String getToc() {
+        return toc;
+    }
+
+    public void setToc(String toc) {
+        this.toc = toc;
+    }
+
     public String getFvci() {
         return fvci;
     }
@@ -119,14 +173,14 @@ public class Profit extends StockDataBean {
     }
 
     public String getAdi() {
-		return adi;
-	}
+        return adi;
+    }
 
-	public void setAdi(String adi) {
-		this.adi = adi;
-	}
+    public void setAdi(String adi) {
+        this.adi = adi;
+    }
 
-	public String getIfi() {
+    public String getIfi() {
         return ifi;
     }
 
@@ -148,6 +202,22 @@ public class Profit extends StockDataBean {
 
     public void setOii(String oii) {
         this.oii = oii;
+    }
+
+    public String getExchangeGains() {
+        return exchangeGains;
+    }
+
+    public void setExchangeGains(String exchangeGains) {
+        this.exchangeGains = exchangeGains;
+    }
+
+    public String getOtherIncome() {
+        return otherIncome;
+    }
+
+    public void setOtherIncome(String otherIncome) {
+        this.otherIncome = otherIncome;
     }
 
     public String getOperatingProfit() {
@@ -174,22 +244,6 @@ public class Profit extends StockDataBean {
         this.noe = noe;
     }
 
-    public String getPaldoia() {
-        return paldoia;
-    }
-
-    public void setPaldoia(String paldoia) {
-        this.paldoia = paldoia;
-    }
-
-    public String getOnoe() {
-        return onoe;
-    }
-
-    public void setOnoe(String onoe) {
-        this.onoe = onoe;
-    }
-
     public String getTotalProfit() {
         return totalProfit;
     }
@@ -212,6 +266,22 @@ public class Profit extends StockDataBean {
 
     public void setNetProfit(String netProfit) {
         this.netProfit = netProfit;
+    }
+
+    public String getNatfoci() {
+        return natfoci;
+    }
+
+    public void setNatfoci(String natfoci) {
+        this.natfoci = natfoci;
+    }
+
+    public String getTci() {
+        return tci;
+    }
+
+    public void setTci(String tci) {
+        this.tci = tci;
     }
 
     public String getEps() {
@@ -238,15 +308,39 @@ public class Profit extends StockDataBean {
         this.deps = deps;
     }
 
-	@Override
-	public String toString() {
-		return "Profit [businessIncome=" + businessIncome + ", operatingCost=" + operatingCost + ", btaa=" + btaa
-				+ ", sellingExpenses=" + sellingExpenses + ", managementCost=" + managementCost + ", financialCost="
-				+ financialCost + ", ail=" + ail + ", fvci=" + fvci + ", adi=" + adi + ", ifi=" + ifi + ", iiojvajv="
-				+ iiojvajv + ", oii=" + oii + ", operatingProfit=" + operatingProfit + ", noi=" + noi + ", noe=" + noe
-				+ ", paldoia=" + paldoia + ", onoe=" + onoe + ", totalProfit=" + totalProfit + ", ite=" + ite
-				+ ", netProfit=" + netProfit + ", eps=" + eps + ", beps=" + beps + ", deps=" + deps + "]";
-	}
-
-    
+    @Override
+    public String toString() {
+        return "Profit{" +
+                "businessIncome='" + businessIncome + '\'' +
+                ", interestIncome='" + interestIncome + '\'' +
+                ", earnedPremium='" + earnedPremium + '\'' +
+                ", faci='" + faci + '\'' +
+                ", toi='" + toi + '\'' +
+                ", operatingCost='" + operatingCost + '\'' +
+                ", btaa='" + btaa + '\'' +
+                ", sellingExpenses='" + sellingExpenses + '\'' +
+                ", managementCost='" + managementCost + '\'' +
+                ", financialCost='" + financialCost + '\'' +
+                ", ail='" + ail + '\'' +
+                ", toc='" + toc + '\'' +
+                ", fvci='" + fvci + '\'' +
+                ", adi='" + adi + '\'' +
+                ", ifi='" + ifi + '\'' +
+                ", iiojvajv='" + iiojvajv + '\'' +
+                ", oii='" + oii + '\'' +
+                ", exchangeGains='" + exchangeGains + '\'' +
+                ", otherIncome='" + otherIncome + '\'' +
+                ", operatingProfit='" + operatingProfit + '\'' +
+                ", noi='" + noi + '\'' +
+                ", noe='" + noe + '\'' +
+                ", totalProfit='" + totalProfit + '\'' +
+                ", ite='" + ite + '\'' +
+                ", netProfit='" + netProfit + '\'' +
+                ", natfoci='" + natfoci + '\'' +
+                ", tci='" + tci + '\'' +
+                ", eps='" + eps + '\'' +
+                ", beps='" + beps + '\'' +
+                ", deps='" + deps + '\'' +
+                '}';
+    }
 }

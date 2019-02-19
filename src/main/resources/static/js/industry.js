@@ -1,4 +1,4 @@
-let token = '';
+var token = '';
 
 $(document).ready(function () {
 
@@ -26,7 +26,7 @@ function selectAllIndustry(){
         data: {},
         success: function (res) {
             if(res.b){
-                let list = res.result;
+                var list = res.result;
                 analysisResult(list);
             }
         }
@@ -37,21 +37,21 @@ function selectAllIndustry(){
 //解析处理结果
 function analysisResult(list){
     $('.table table').html('');
-    let str = '<tr><th>序号</th><th>行业名称</th><th>编号</th><th>操作</th></tr>';
-    for(let i = 0 ; i < list.length ; i++){
+    var str = '<tr><th>序号</th><th>行业名称</th><th>编号</th><th>操作</th></tr>';
+    for(var i = 0 ; i < list.length ; i++){
         str += '<tr id="' + list[i].id + '"><td>' + (i + 1) + '</td><td>' + list[i].name + '<td>' + list[i].code + '</td>' +
             '<td><button data="' + list[i].id + ';' + list[i].name + ';' + list[i].code +  '" onclick="updateIndustry(this)">编辑</button>' +
-            '<button onclick="deleteIndustry(\'' + list[i].id + '\')">删除</button></td></tr>';
+            '<button onclick="devareIndustry(\'' + list[i].id + '\')">删除</button></td></tr>';
     }
     $('.table table').html(str);
 }
 
 
 //删除数据
-function deleteIndustry(id){
+function devareIndustry(id){
     id = id.trim();
     $.ajax({
-        url: '/deleteIndustry',
+        url: '/devareIndustry',
         type: 'POST',
         data: {
             id: id,
@@ -69,14 +69,14 @@ function deleteIndustry(id){
 
 //添加或修改数据
 function saveIndustry(){
-    let id = $('#id').val().trim();
-    let name = $('#name').val().trim();
-    let code = $('#code').val().trim();
+    var id = $('#id').val().trim();
+    var name = $('#name').val().trim();
+    var code = $('#code').val().trim();
     if(name == ''){
         alert('无效内容');
         return;
     }
-    let url = '/updateIndustry';
+    var url = '/updateIndustry';
     if(id == ''){
         url = '/insertIndustry';
     }
@@ -102,8 +102,8 @@ function saveIndustry(){
 
 //修改数据
 function updateIndustry(b){
-    let v = $(b).attr('data');
-    let arr = v.split(';');
+    var v = $(b).attr('data');
+    var arr = v.split(';');
     $('#id').val(arr[0]);
     $('#name').val(arr[1]);
     $('#code').val(arr[2]);

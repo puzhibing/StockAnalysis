@@ -1,5 +1,5 @@
 
-let url = "http://localhost:8888";
+var url = "http://localhost:8888";
 
 //将字符串日期转换为日期对象1900-01-01 00:00:00
 function StringToDate(strDate){
@@ -22,8 +22,8 @@ function StringToDate(strDate){
 
 //将long类型的时间转换成日期
 function longToDate(long){
-    let date = new Date(long);
-    let str = date.getFullYear() + '-' ;
+    var date = new Date(long);
+    var str = date.getFullYear() + '-' ;
         if(date.getMonth() < 10){
             str += '0' + date.getMonth() + '-';
         }else{
@@ -42,13 +42,13 @@ function longToDate(long){
 
 //解析url获取参数
 function getURLParameters(key){
-    let value = '';
-    let url = window.location.href.trim();
-    let arr = url.split('?');
+    var value = '';
+    var url = window.location.href.trim();
+    var arr = url.split('?');
     if(arr[1].indexOf('&') != 0){
-        let parameters = arr[1].split('&');
-        for(let i = 0 ; i < parameters.length ; i++){
-            let v = parameters[i].split('=');
+        var parameters = arr[1].split('&');
+        for(var i = 0 ; i < parameters.length ; i++){
+            var v = parameters[i].split('=');
             if(v[0].trim() == key.trim()){
                 value = v[1].trim();
                 break;
@@ -62,14 +62,14 @@ function getURLParameters(key){
 
 //定义处理提示效果
 function processing(){
-    let str = '<div class="processing" style="position:fixed;top: 0px;left: 0px;z-index: 900;width: 100vw;height: 100vh;background-color:rgba(140,140,140,0.1);">' +
+    var str = '<div class="processing" style="position:fixed;top: 0px;left: 0px;z-index: 900;width: 100vw;height: 100vh;background-color:rgba(140,140,140,0.1);">' +
         '<i class="fa fa-spinner fa-pulse"></i>'+
         '</div>';
 
     $('body').append(str);
 
-    let width = $(document.body).outerWidth(true);
-    let height = $(document.body).outerHeight(true);
+    var width = $(document.body).outerWidth(true);
+    var height = $(document.body).outerHeight(true);
     $('.processing i').css({
         'font-size': '36px',
         'color': '#547576',

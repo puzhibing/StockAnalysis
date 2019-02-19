@@ -53,7 +53,7 @@ public class CashFlowStatementServiceImpl implements CashFlowStatementService {
 		if(null != cashFlowStatement && !(StringUtils.isEmpty(currencyUnit) 
 				&& StringUtils.isEmpty(token))) {
 			cashFlowStatement = (CashFlowStatement)unitCalculationUtil.calculation(currencyUnit 
-					, cashFlowStatement , CashFlow.class);
+					, cashFlowStatement , CashFlowStatement.class);
 			
 			user = tokenutil.tokenToUser(token);
 			cashFlowStatement.setId(uuidutil.getUUID());

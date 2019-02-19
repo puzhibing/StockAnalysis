@@ -24,8 +24,8 @@ $(document).ready(function () {
 
 //登录
 function login(){
-    let username = $('.formCeontent .username').val().trim();
-    let password = $('.formCeontent .password').val().trim();
+    var username = $('.formCeontent .username').val().trim();
+    var password = $('.formCeontent .password').val().trim();
     if(username == ''){
         alert('用户名无效');
         return;
@@ -44,7 +44,7 @@ function login(){
         },
         success: function (res) {
             if(res.b){
-                let token = res.result;
+                var token = res.result;
                 window.location.href = 'home.html?token=' + token;
             }else{
                 alert(res.result);
@@ -84,9 +84,9 @@ function switchLogin() {
 
 //注册
 function register(){
-    let username = $('.registerPal .username').val().trim();
-    let password = $('.registerPal .password').val().trim();
-    let phone = $('.registerPal .phone').val().trim();
+    var username = $('.registerPal .username').val().trim();
+    var password = $('.registerPal .password').val().trim();
+    var phone = $('.registerPal .phone').val().trim();
 
     if(username == ''){
         alert('用户名不能为空');

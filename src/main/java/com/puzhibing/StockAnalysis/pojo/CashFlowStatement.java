@@ -257,14 +257,32 @@ public class CashFlowStatement extends StockDataBean {
 
 	@Override
 	public String toString() {
-		return "CashFlowStatement [np=" + np + ", aip=" + aip + ", dofagadadopba=" + dofagadadopba + ", aoia=" + aoia
-				+ ", aoltpe=" + aoltpe + ", loiffaiaaolta=" + loiffaiaaolta + ", losofa=" + losofa + ", lofvc=" + lofvc
-				+ ", fc=" + fc + ", ll=" + ll + ", ditad=" + ditad + ", iiiditl=" + iiiditl + ", lr=" + lr + ", diori="
-				+ diori + ", iiopi=" + iiopi + ", other=" + other + ", ncffoac=" + ncffoac + ", dtc=" + dtc
-				+ ", scbdwoy=" + scbdwoy + ", flofa=" + flofa + ", cateotp=" + cateotp + ", iboc=" + iboc + ", eboce="
-				+ eboce + ", iboce=" + iboce + ", niicace=" + niicace + "]";
+		return "CashFlowStatement{" +
+				"np='" + np + '\'' +
+				", aip='" + aip + '\'' +
+				", dofagadadopba='" + dofagadadopba + '\'' +
+				", aoia='" + aoia + '\'' +
+				", aoltpe='" + aoltpe + '\'' +
+				", loiffaiaaolta='" + loiffaiaaolta + '\'' +
+				", losofa='" + losofa + '\'' +
+				", lofvc='" + lofvc + '\'' +
+				", fc='" + fc + '\'' +
+				", ll='" + ll + '\'' +
+				", ditad='" + ditad + '\'' +
+				", iiiditl='" + iiiditl + '\'' +
+				", lr='" + lr + '\'' +
+				", diori='" + diori + '\'' +
+				", iiopi='" + iiopi + '\'' +
+				", other='" + other + '\'' +
+				", ncffoac='" + ncffoac + '\'' +
+				", dtc='" + dtc + '\'' +
+				", scbdwoy='" + scbdwoy + '\'' +
+				", flofa='" + flofa + '\'' +
+				", cateotp='" + cateotp + '\'' +
+				", iboc='" + iboc + '\'' +
+				", eboce='" + eboce + '\'' +
+				", iboce='" + iboce + '\'' +
+				", niicace='" + niicace + '\'' +
+				'}';
 	}
-
-
-    
 }

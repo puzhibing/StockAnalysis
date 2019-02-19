@@ -245,12 +245,16 @@ public class CompanyStockServiceImpl implements CompanyStockService {
 		List<Map<String, Object>> list = new ArrayList<>();
 		try{
 			List<CompanyStock> companyStocks = companyStockMapper.selectAllDataLikeCode("%" + stockCode + "%");
+			List<Company> companys = companyMapper.selectAllCompany();
 			for(CompanyStock companyStock : companyStocks){
-				Company company = companyMapper.selectCompanyById(companyStock.getCompanyId());
-				Map<String, Object> map = new HashMap<>();
-				map.put("company" , company);
-				map.put("companyStock" , companyStock);
-				list.add(map);
+				for (Company company : companys) {
+					if(companyStock.getCompanyId().equals(company.getId())){
+						Map<String, Object> map = new HashMap<>();
+						map.put("company" , company);
+						map.put("companyStock" , companyStock);
+						list.add(map);
+					}
+				}
 			}
 			resultBean.setB(true);
 			resultBean.setResult(list);

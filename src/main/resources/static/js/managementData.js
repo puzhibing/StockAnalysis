@@ -1,7 +1,7 @@
 
-let token = '';
-let height;
-let width;
+var token = '';
+var height;
+var width;
 
 $(function () {
     height = $(document.body).outerHeight(true);
@@ -97,7 +97,7 @@ function diaplayTitle(){
             "height": height - 42,
             "width" : width - 30
         });
-        $(".con iframe").attr('src' , $(".con iframe").attr('src'));
+
         elementsclick();
     }else{
         str += '<div class="menu">\n' +
@@ -126,7 +126,7 @@ function diaplayTitle(){
             "height": height - 42,
             "width" : width - 221
         });
-        $(".con iframe").attr('src' , $(".con iframe").attr('src'));
+        
         elementsclick();
     }
 }

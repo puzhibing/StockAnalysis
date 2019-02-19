@@ -1,4 +1,4 @@
-let token = '';
+var token = '';
 
 $(document).ready(function () {
 	
@@ -26,7 +26,7 @@ function selectAllStockExchange(){
         data: {},
         success: function (res) {
             if(res.b){
-                let list = res.result;
+                var list = res.result;
                 analysisResult(list);
             }
         }
@@ -38,21 +38,21 @@ function selectAllStockExchange(){
 function analysisResult(list){
 	list = JSON.parse(list);
     $('.table table').html('');
-    let str = '<tr><th>序号</th><th>交易所名称</th><th>交易所网址</th><th>操作</th></tr>';
-    for(let i = 0 ; i < list.length ; i++){
+    var str = '<tr><th>序号</th><th>交易所名称</th><th>交易所网址</th><th>操作</th></tr>';
+    for(var i = 0 ; i < list.length ; i++){
         str += '<tr id="' + list[i].id + '"><td>' + (i + 1) + '</td><td>' + list[i].name + '<td>' + list[i].url + '</td>' +
             '<td><button data="' + list[i].id + ';' + list[i].name + ';' + list[i].url +  '" onclick="updateStockExchange(this)">编辑</button>' +
-            '<button onclick="deleteStockExchange(\'' + list[i].id + '\')">删除</button></td></tr>';
+            '<button onclick="devareStockExchange(\'' + list[i].id + '\')">删除</button></td></tr>';
     }
     $('.table table').html(str);
 }
 
 
 //删除数据
-function deleteStockExchange(id){
+function devareStockExchange(id){
 	id = id.trim();
     $.ajax({
-        url: '/deleteStockExchange',
+        url: '/devareStockExchange',
         type: 'POST',
         data: {
             id: id,
@@ -70,14 +70,14 @@ function deleteStockExchange(id){
 
 //添加或修改数据
 function saveStockExchange(){
-    let id = $('#id').val().trim();
-    let name = $('#name').val().trim();
-    let address = $('#url').val().trim();
+    var id = $('#id').val().trim();
+    var name = $('#name').val().trim();
+    var address = $('#url').val().trim();
     if(name == ''){
         alert('无效内容');
         return;
     }
-    let url = '/updateStockExchange';
+    var url = '/updateStockExchange';
     if(id == ''){
         url = '/insertStockExchange';
     }
@@ -103,8 +103,8 @@ function saveStockExchange(){
 
 //修改数据
 function updateStockExchange(b){
-    let v = $(b).attr('data');
-    let arr = v.split(';');
+    var v = $(b).attr('data');
+    var arr = v.split(';');
     $('#id').val(arr[0]);
     $('#name').val(arr[1]);
     $('#url').val(arr[2]);

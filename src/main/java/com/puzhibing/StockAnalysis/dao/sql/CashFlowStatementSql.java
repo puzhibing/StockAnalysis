@@ -14,7 +14,7 @@ public class CashFlowStatementSql {
 			INTO_COLUMNS("cateotp , iboc , eboce , iboce , niicace");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
-			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} #{np} , #{aip} , #{dofagadadopba} , #{aoia} , #{aoltpe} , #{loiffaiaaolta}");
+			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{np} , #{aip} , #{dofagadadopba} , #{aoia} , #{aoltpe} , #{loiffaiaaolta}");
 			INTO_VALUES("#{losofa} , #{lofvc} , #{fc} , #{ll} , #{ditad} , #{iiiditl} , #{lr} , #{diori} , #{iiopi} , #{other}");
 			INTO_VALUES("#{ncffoac} , #{dtc} , #{scbdwoy} , #{flofa} , #{cateotp} , #{iboc} , #{eboce} , #{iboce} , #{niicace}");
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");

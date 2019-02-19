@@ -41,7 +41,7 @@ public class CompanyStockController {
 	
 	/**
 	 * 删除数据
-	 * @param companyStock
+	 * @param id
 	 * @param token
 	 * @return
 	 */
