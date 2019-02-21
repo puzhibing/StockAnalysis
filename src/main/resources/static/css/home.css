@@ -48,7 +48,7 @@ body{
 }
 
 .head .headCon ul li:hover{
-    border-bottom: 3px solid #5E8586;
+    border-bottom: 3px solid #FFFFFF;
     color: #FFFFFF;
     cursor: pointer;
 }

@@ -103,10 +103,12 @@ function selectCompanyInfoById(){
 
                 var str = "<tr><th>证券名称</th><th>证券编号</th><th>上市时间</th><th>上市地址</th></tr>";
                 for(var i in data.companyStocks){
+                    var date = data.companyStocks[i].listingTime;
+                    date = date.substring(0 , date.indexOf('T'));
                     str += '<tr id="' + data.companyStocks[i].id + '" onclick="selectAllSecuritiesDataById(this)">' +
                         '<td>' + data.companyStocks[i].stockTypeId[0].name + '</td>' +
                         '<td>' + data.companyStocks[i].stockCode + '</td>' +
-                        '<td>' + data.companyStocks[i].listingTime + '</td>' +
+                        '<td>' + date + '</td>' +
                         '<td>' + data.companyStocks[i].stockExchangeId[0].name + '</td>' +
                         '</tr>';
                 }
@@ -205,46 +207,46 @@ function analysisResult(data){
     }
 
     var str4 = '<tr>' +
-        '<th>序号</th><th>数据日期</th><th>长期借款</th><th>应付债券</th><th>长期应付款</th><th>专项应付款</th><th>预计负债</th><th>递延所得税负债</th>' +
+        '<th>序号</th><th>数据日期</th><th>长期借款</th><th>应付债券</th><th>长期应付款</th><th>专项应付款</th><th>预计负债</th><th>递延收益</th><th>递延所得税负债</th>' +
         '<th>其他非流动负债</th><th>非流动负债合计</th>' +
         '</tr>';
     for(var i = 0 ; i < nonCurrentLiabilities.length ; i++){
         str4 += '<tr>' +
             '<td>' + (i + 1) + '</td><td>' + nonCurrentLiabilities[i].dataTime + '</td><td>' + nonCurrentLiabilities[i].ltl + '</td><td>' + nonCurrentLiabilities[i].bondsPayable + '</td><td>' + nonCurrentLiabilities[i].ltp + '</td>' +
-            '<td>' + nonCurrentLiabilities[i].specialPayable + '</td><td>' + nonCurrentLiabilities[i].estimatedLiabilities + '</td><td>' + nonCurrentLiabilities[i].ditl + '</td><td>' + nonCurrentLiabilities[i].dncl + '</td>' +
+            '<td>' + nonCurrentLiabilities[i].specialPayable + '</td><td>' + nonCurrentLiabilities[i].estimatedLiabilities + '</td><td>' + nonCurrentLiabilities[i].deferredIncome + '</td><td>' + nonCurrentLiabilities[i].ditl + '</td><td>' + nonCurrentLiabilities[i].dncl + '</td>' +
             '<td>' + nonCurrentLiabilities[i].tncl + '</td>' +
             '</tr>';
     }
 
     var str5 = '<tr>' +
-        '<th>序号</th><th>数据日期</th><th>实收资本</th><th>资本公积</th><th>减：库存股</th><th>盈余公积</th><th>一般风险准备</th><th>未分配利润</th><th>所有者权益合计</th>' +
+        '<th>序号</th><th>数据日期</th><th>股本</th><th>其他权益工具</th><th>资本公积</th><th>其他综合收益</th><th>减：库存股</th><th>专项储备</th><th>盈余公积</th><th>一般风险准备</th><th>未分配利润</th><th>归属于母公司所有者权益合计</th><th>少数股东权益</th><th>所有者权益合计</th>' +
         '</tr>';
     for(var i = 0 ; i < ownersEquity.length ; i++){
         str5 += '<tr>' +
-            '<td>' + (i + 1) + '</td><td>' + ownersEquity[i].dataTime + '</td><td>' + ownersEquity[i].pic + '</td><td>' + ownersEquity[i].capitalReserve + '</td><td>' + ownersEquity[i].lts + '</td>' +
-            '<td>' + ownersEquity[i].surplusReserve + '</td><td>' + ownersEquity[i].grp + '</td><td>' + ownersEquity[i].undistributedProfit + '</td><td>' + ownersEquity[i].toe + '</td>' +
+            '<td>' + (i + 1) + '</td><td>' + ownersEquity[i].dataTime + '</td><td>' + ownersEquity[i].pic + '</td><td>' + ownersEquity[i].oei + '</td><td>' + ownersEquity[i].capitalReserve + '</td><td>' + ownersEquity[i].oci + '</td><td>' + ownersEquity[i].lts + '</td>' +
+            '<td>' + ownersEquity[i].specialReserves + '</td><td>' + ownersEquity[i].surplusReserve + '</td><td>' + ownersEquity[i].grp + '</td><td>' + ownersEquity[i].undistributedProfit + '</td><td>' + ownersEquity[i].toeattpc + '</td><td>' + ownersEquity[i].mse + '</td><td>' + ownersEquity[i].toe + '</td>' +
             '</tr>';
     }
 
     var str6 = '<tr>' +
-        '<th>序号</th><th>数据日期</th><th>营业收入</th><th>营业成本</th><th>营业税金及附加</th><th>销售费用</th><th>管理费用</th><th>财务费用</th>' +
-        '<th>资产减值损失</th><th>公允价值变动收益</th><th>资产处置收益</th><th>投资收益</th><th>联营企业和合营企业投资收益</th><th>其他投资收益</th><th>营业利润</th><th>营业外收入</th>' +
-        '<th>营业外支出</th><th>非流动资产处置损益</th><th>其他营业外支出</th><th>利润总额</th><th>所得税费用</th><th>净利润</th><th>每股收益</th><th>基本每股收益</th>' +
+        '<th>序号</th><th>数据日期</th><th>营业收入</th><th>利息收入</th><th>已赚保费</th><th>手续费及佣金收入</th><th>营业总收入</th><th>营业成本</th><th>营业税金及附加</th><th>销售费用</th><th>管理费用</th><th>财务费用</th>' +
+        '<th>资产减值损失</th><th>营业总成本</th><th>公允价值变动收益</th><th>资产处置收益</th><th>投资收益</th><th>联营企业和合营企业投资收益</th><th>其他投资收益</th><th>汇兑收益</th><th>其他收益</th><th>营业利润</th><th>营业外收入</th>' +
+        '<th>营业外支出</th><th>利润总额</th><th>所得税费用</th><th>净利润</th><th>其他综合收益的税后净额</th><th>综合收益总额</th><th>每股收益</th><th>基本每股收益</th>' +
         '<th>稀释每股收益</th>' +
         '</tr>';
     for(var i = 0 ; i < profit.length ; i++){
         str6 += '<tr>' +
-            '<td>' + (i + 1) + '</td><td>' + profit[i].dataTime + '</td><td>' + profit[i].businessIncome + '</td><td>' + profit[i].operatingCost + '</td><td>' + [i].btaa + '</td>' +
-            '<td>' + profit[i].sellingExpenses + '</td><td>' + profit[i].managementCost + '</td><td>' + profit[i].financialCost + '</td><td>' + profit[i].ail + '</td>' +
-            '<td>' + profit[i].fvci + '</td><td>' + profit[i].adi + '</td><td>' + profit[i].ifi + '</td><td>' + profit[i].iiojvajv + '</td><td>' + profit[i].oii + '</td>' +
-            '<td>' + profit[i].operatingProfit + '</td><td>' + profit[i].noi + '</td><td>' + profit[i].noe + '</td><td>' + profit[i].paldoia + '</td>' +
-            '<td>' + profit[i].onoe + '</td><td>' + profit[i].totalProfit + '</td><td>' + profit[i].ite + '</td><td>' + profit[i].netProfit + '</td>' +
+            '<td>' + (i + 1) + '</td><td>' + profit[i].dataTime + '</td><td>' + profit[i].businessIncome + '</td><td>' + profit[i].interestIncome + '</td><td>' + profit[i].earnedPremium + '</td><td>' + profit[i].faci + '</td><td>' + profit[i].toi + '</td><td>' + profit[i].operatingCost + '</td><td>' + profit[i].btaa + '</td>' +
+            '<td>' + profit[i].sellingExpenses + '</td><td>' + profit[i].managementCost + '</td><td>' + profit[i].financialCost + '</td><td>' + profit[i].ail + '</td><td>' + profit[i].toc + '</td>' +
+            '<td>' + profit[i].fvci + '</td><td>' + profit[i].adi + '</td><td>' + profit[i].ifi + '</td><td>' + profit[i].iiojvajv + '</td><td>' + profit[i].oii + '</td><td>' + profit[i].exchangeGains + '</td><td>' + profit[i].otherIncome + '</td>' +
+            '<td>' + profit[i].operatingProfit + '</td><td>' + profit[i].noi + '</td><td>' + profit[i].noe + '</td>' +
+            '<td>' + profit[i].totalProfit + '</td><td>' + profit[i].ite + '</td><td>' + profit[i].netProfit + '</td><td>' + profit[i].natfoci + '</td><td>' + profit[i].tci + '</td>' +
             '<td>' + profit[i].eps + '</td><td>' + profit[i].beps + '</td><td>' + profit[i].deps + '</td>' +
             '</tr>';
     }
 
     var str7 = '<tr>' +
-        '<th>序号</th><th>数据日期</th><th>销售商品、提供劳务收到的现金</th><th>收到的税费返还</th><th>收到的其他与经营活动相关的现金</th><th>经营活动现金流入小计</th><th>购买商品、接受劳务支付的现金</th><th>支付的各项税费</th>' +
+        '<th>序号</th><th>数据日期</th><th>销售商品、提供劳务收到的现金</th><th>收到的税费返还</th><th>收到的其他与经营活动相关的现金</th><th>经营活动现金流入小计</th><th>购买商品、接受劳务支付的现金</th><th>支付给职工以及为职工支付的现金</th><th>支付的各项税费</th>' +
         '<th>支付其他与经营活动有关的现金</th><th>经营活动现金流出小计</th><th>经营活动产生的现金流净额</th><th>收回投资收到的现金</th><th>取得投资收益收到的现金</th><th>处置固定资产、无形资产和其他上期资产收回的现金净额</th><th>处置子公司及其他营业单位收到的现金净额</th><th>收到其他与投资活动相关的现金</th>' +
         '<th>投资活动现金流入小计</th><th>构建固定资产、无形资产和其他上期投资支付的现金</th><th>投资支付的现金</th><th>取得子公司及其他营业单位支付的现金净额</th><th>支付其他与投资活动有关的现金</th><th>投资活动现金流出小计</th><th>投资活动产生的现金流净额</th><th>吸收投资收到的现金</th>' +
         '<th>取得借款收到的现金</th><th>收到其他与筹资活动有关的现金</th><th>筹资活动现金流入小计</th><th>偿还债务支出的现金</th><th>分配股利、利润或偿付利息支付的现金</th><th>支付其他与筹资活动有关的现金</th><th>筹资活动现金流出小计</th><th>筹资活动产生的现金流量净额</th>' +
@@ -253,7 +255,7 @@ function analysisResult(data){
     for(var i = 0 ; i < cashFlow.length ; i++){
         str7 += '<tr>' +
             '<td>' + (i + 1) + '</td><td>' + cashFlow[i].dataTime + '</td><td>' + cashFlow[i].crfsogas + '</td><td>' + cashFlow[i].ort + '</td><td>' + cashFlow[i].cortbar + '</td>' +
-            '<td>' + cashFlow[i].ciioa + '</td><td>' + cashFlow[i].cpfgas + '</td><td>' + cashFlow[i].poatot + '</td><td>' + cashFlow[i].poocrtba + '</td>'+
+            '<td>' + cashFlow[i].ciioa + '</td><td>' + cashFlow[i].cpfgas + '</td><td>' + cashFlow[i].cpteapte + '</td><td>' + cashFlow[i].poatot + '</td><td>' + cashFlow[i].poocrtba + '</td>'+
             '<td>' + cashFlow[i].cffoa + '</td><td>' + cashFlow[i].ncffoa + '</td><td>' + cashFlow[i].crfir + '</td><td>' + cashFlow[i].crfii + '</td>' +
             '<td>' + cashFlow[i].ncidofaiaaoaitpp + '</td><td>' + cashFlow[i].ncrfdosaobu + '</td><td>' + cashFlow[i].ocrtiahbr + '</td><td>' + cashFlow[i].cioia + '</td>' +
             '<td>' + cashFlow[i].cofaiaaocpfpi + '</td><td>' + cashFlow[i].cpfi + '</td><td>' + cashFlow[i].ncpbsaobu + '</td><td>' + cashFlow[i].poocrtia + '</td>' +

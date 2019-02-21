@@ -15,10 +15,10 @@ public class NonCurrentLiabilitiesSql {
 	public String insertNonCurrentLiabilities(NonCurrentLiabilities nonCurrentLiabilities) {
 		return new SQL() {{
 			INSERT_INTO("t_noncurrentliabilities");
-			INTO_COLUMNS("id , companyStockId , dataTime , ltl , bondsPayable , ltp , specialPayable , estimatedLiabilities , ditl , dncl , tncl");
+			INTO_COLUMNS("id , companyStockId , dataTime , ltl , bondsPayable , ltp , specialPayable , estimatedLiabilities , deferredIncome , ditl , dncl , tncl");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
-			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{ltl} , #{bondsPayable} , #{ltp} , #{specialPayable} , #{estimatedLiabilities} , #{ditl} , #{dncl} , #{tncl}");
+			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{ltl} , #{bondsPayable} , #{ltp} , #{specialPayable} , #{estimatedLiabilities} , #{deferredIncome} , #{ditl} , #{dncl} , #{tncl}");
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}
@@ -36,7 +36,7 @@ public class NonCurrentLiabilitiesSql {
 		return new SQL() {{
 			UPDATE("t_noncurrentliabilities");
 			SET("dataTime = #{dataTime} , ltl = #{ltl} , bondsPayable = #{bondsPayable} , ltp = #{ltp} , specialPayable = #{specialPayable}");
-			SET("estimatedLiabilities = #{estimatedLiabilities} , ditl = #{ditl} , dncl = #{dncl} , tncl = #{tncl}");
+			SET("estimatedLiabilities = #{estimatedLiabilities} , deferredIncome = #{deferredIncome} , ditl = #{ditl} , dncl = #{dncl} , tncl = #{tncl}");
 			SET("updateUserId = #{updateUserId} , updateTime = #{updateTime}");
 			WHERE("id = #{id}");
 		}}.toString();
@@ -70,7 +70,7 @@ public class NonCurrentLiabilitiesSql {
 	 */
 	public String selectNonCurrentLiabilitiesByCompanyStockId(String companyStockId) {
 		return new SQL() {{
-			SELECT("id , companyStockId , dataTime , ltl , bondsPayable , ltp , specialPayable , estimatedLiabilities , ditl , dncl , tncl");
+			SELECT("id , companyStockId , dataTime , ltl , bondsPayable , ltp , specialPayable , estimatedLiabilities , deferredIncome , ditl , dncl , tncl");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_noncurrentliabilities");
 			WHERE("del = '0' and companyStockId = #{companyStockId}");

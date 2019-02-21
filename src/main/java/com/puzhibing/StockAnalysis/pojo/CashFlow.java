@@ -18,6 +18,8 @@ public class CashFlow extends StockDataBean {
 
     private String cpfgas;//购买商品、接受劳务支付的现金
 
+	private String cpteapte;//支付给职工以及为职工支付的现金
+
     private String poatot;//支付的各项税费
 
     private String poocrtba;//支付其他与经营活动有关的现金
@@ -114,6 +116,14 @@ public class CashFlow extends StockDataBean {
 
 	public void setCpfgas(String cpfgas) {
 		this.cpfgas = cpfgas;
+	}
+
+	public String getCpteapte() {
+		return cpteapte;
+	}
+
+	public void setCpteapte(String cpteapte) {
+		this.cpteapte = cpteapte;
 	}
 
 	public String getPoatot() {
@@ -350,18 +360,42 @@ public class CashFlow extends StockDataBean {
 
 	@Override
 	public String toString() {
-		return "CashFlow [crfsogas=" + crfsogas + ", ort=" + ort + ", cortbar=" + cortbar + ", ciioa=" + ciioa
-				+ ", cpfgas=" + cpfgas + ", poatot=" + poatot + ", poocrtba=" + poocrtba + ", cffoa=" + cffoa
-				+ ", ncffoa=" + ncffoa + ", crfir=" + crfir + ", crfii=" + crfii + ", ncidofaiaaoaitpp="
-				+ ncidofaiaaoaitpp + ", ncrfdosaobu=" + ncrfdosaobu + ", ocrtiahbr=" + ocrtiahbr + ", cioia=" + cioia
-				+ ", cofaiaaocpfpi=" + cofaiaaocpfpi + ", cpfi=" + cpfi + ", ncpbsaobu=" + ncpbsaobu + ", poocrtia="
-				+ poocrtia + ", cfooia=" + cfooia + ", ncffia=" + ncffia + ", crfi=" + crfi + ", crfb=" + crfb
-				+ ", ocrtfar=" + ocrtfar + ", ciofa=" + ciofa + ", cfdr=" + cfdr + ", cpfdpoip=" + cpfdpoip
-				+ ", poocrtfa=" + poocrtfa + ", cfoofa=" + cfoofa + ", ncfgbfra=" + ncfgbfra + ", teoerfocace="
-				+ teoerfocace + ", niicace=" + niicace + ", caceatboty=" + caceatboty + ", bocaceaeot=" + bocaceaeot
-				+ "]";
+		return "CashFlow{" +
+				"crfsogas='" + crfsogas + '\'' +
+				", ort='" + ort + '\'' +
+				", cortbar='" + cortbar + '\'' +
+				", ciioa='" + ciioa + '\'' +
+				", cpfgas='" + cpfgas + '\'' +
+				", cpteapte='" + cpteapte + '\'' +
+				", poatot='" + poatot + '\'' +
+				", poocrtba='" + poocrtba + '\'' +
+				", cffoa='" + cffoa + '\'' +
+				", ncffoa='" + ncffoa + '\'' +
+				", crfir='" + crfir + '\'' +
+				", crfii='" + crfii + '\'' +
+				", ncidofaiaaoaitpp='" + ncidofaiaaoaitpp + '\'' +
+				", ncrfdosaobu='" + ncrfdosaobu + '\'' +
+				", ocrtiahbr='" + ocrtiahbr + '\'' +
+				", cioia='" + cioia + '\'' +
+				", cofaiaaocpfpi='" + cofaiaaocpfpi + '\'' +
+				", cpfi='" + cpfi + '\'' +
+				", ncpbsaobu='" + ncpbsaobu + '\'' +
+				", poocrtia='" + poocrtia + '\'' +
+				", cfooia='" + cfooia + '\'' +
+				", ncffia='" + ncffia + '\'' +
+				", crfi='" + crfi + '\'' +
+				", crfb='" + crfb + '\'' +
+				", ocrtfar='" + ocrtfar + '\'' +
+				", ciofa='" + ciofa + '\'' +
+				", cfdr='" + cfdr + '\'' +
+				", cpfdpoip='" + cpfdpoip + '\'' +
+				", poocrtfa='" + poocrtfa + '\'' +
+				", cfoofa='" + cfoofa + '\'' +
+				", ncfgbfra='" + ncfgbfra + '\'' +
+				", teoerfocace='" + teoerfocace + '\'' +
+				", niicace='" + niicace + '\'' +
+				", caceatboty='" + caceatboty + '\'' +
+				", bocaceaeot='" + bocaceaeot + '\'' +
+				'}';
 	}
-
-
-    
 }

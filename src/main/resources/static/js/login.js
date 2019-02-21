@@ -87,6 +87,7 @@ function register(){
     var username = $('.registerPal .username').val().trim();
     var password = $('.registerPal .password').val().trim();
     var phone = $('.registerPal .phone').val().trim();
+
     if(username == ''){
         alert('用户名不能为空');
     }

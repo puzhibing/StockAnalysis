@@ -1,5 +1,6 @@
 
 var token = "";
+var data = '';
 
 $(function () {
 	
@@ -14,7 +15,7 @@ $(function () {
 
     //绑定表单值发生变化处理函数
     $('.securitiesNumber').bind('input propertychange', function() {
-        fuzzyAcquisition(this);
+        var b = fuzzyAcquisition(this);
     });
 
 
@@ -38,8 +39,6 @@ $(function () {
     $('.selectionPanel').bind('click',function(e){
         stopPropagation(e);
     });
-
-
 
 
     //保存流动资产
@@ -87,7 +86,6 @@ $(function () {
         saveOwnersEquityChange();
     });
 
-
 });
 
 //定义切换窗口的效果
@@ -107,6 +105,8 @@ function switchNav(nav){
     var id = $(nav).attr("class");
     $("#" + id).show();
 }
+
+
 
 
 
@@ -465,6 +465,7 @@ function saveNonCurrentLiabilities(){
     var LTP = div.find(".LTP").val();//长期应付款
     var specialPayable = div.find(".specialPayable").val();//专项应付款
     var estimatedLiabilities = div.find(".estimatedLiabilities").val();//预计负债
+    var deferredIncome = div.find(".deferredIncome").val();//递延收益
     var DITL = div.find(".DITL").val();//递延所得税负债
     var ONCL = div.find(".ONCL").val();//其他非流动负债
     var TNCL = div.find(".TNCL").val();//非流动负债合计
@@ -484,6 +485,7 @@ function saveNonCurrentLiabilities(){
     formData.append('ltp', LTP);
     formData.append('specialPayable', specialPayable);
     formData.append('estimatedLiabilities', estimatedLiabilities);
+    formData.append('deferredIncome', deferredIncome);
     formData.append('ditl', DITL);
     formData.append('dncl', ONCL);
     formData.append('tncl', TNCL);
@@ -532,12 +534,17 @@ function saveOwnersEquity(){
     var companyStockId = $(".companyStockId").val();//企业证券id
     var dataTime = div.find(".dataTime").val();//数据日期
     var currencyUnit = div.find(".currencyUnit").val();//单位
-    var PIC = div.find(".PIC").val();//实收资本
+    var PIC = div.find(".PIC").val();//股本
+    var OEI = div.find(".OEI").val();//其他权益工具
     var capitalReserve = div.find(".capitalReserve").val();//资本公积
+    var OCI = div.find(".OCI").val();//其他综合收益
     var LTS = div.find(".LTS").val();//减：库存股
+    var specialReserves = div.find(".specialReserves").val();//专项储备
     var surplusReserve = div.find(".surplusReserve").val();//盈余公积
     var GRP = div.find(".GRP").val();//一般风险准备
     var undistributedProfit = div.find(".undistributedProfit").val();//未分配利润
+    var TOEATTPC = div.find(".TOEATTPC").val();//归属于母公司所有者权益合计
+    var MSE = div.find(".MSE").val();//少数股东权益
     var TOE = div.find(".TOE").val();//所有者权益合计
 
     if(companyStockId == "" || dataTime ==""){
@@ -551,11 +558,16 @@ function saveOwnersEquity(){
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('pic', PIC);
+    formData.append('oei', OEI);
     formData.append('capitalReserve', capitalReserve);
+    formData.append('oci', OCI);
     formData.append('lts', LTS);
+    formData.append('specialReserves', specialReserves);
     formData.append('surplusReserve', surplusReserve);
     formData.append('grp', GRP);
     formData.append('undistributedProfit', undistributedProfit);
+    formData.append('toeattpc', TOEATTPC);
+    formData.append('mse', MSE);
     formData.append('toe', TOE);
     formData.append('token', token);
 
@@ -583,12 +595,17 @@ function resetOwnersEquity(){
     div.find(".dataTime").val('');//数据日期
     div.find(".currencyUnit").val("1");//单位
     div.find(".currencyUnit").children('option:first').attr('selected','selected');
-    div.find(".PIC").val('');//实收资本
+    div.find(".PIC").val('');//股本
+    div.find(".OEI").val('');//其他权益工具
     div.find(".capitalReserve").val('');//资本公积
+    div.find(".OCI").val('');//其他综合收益
     div.find(".LTS").val('');//减：库存股
+    div.find(".specialReserves").val('');//专项储备
     div.find(".surplusReserve").val('');//盈余公积
-    div.find(".GRP").val('');//未分配利润
+    div.find(".GRP").val('');//一般风险准备
     div.find(".undistributedProfit").val('');//未分配利润
+    div.find(".TOEATTPC").val('');//归属于母公司所有者权益合计
+    div.find(".MSE").val('');//少数股东权益
     div.find(".TOE").val('');//所有者权益合计
 }
 
@@ -601,25 +618,32 @@ function saveProfit(){
     var dataTime = div.find(".dataTime").val();//数据日期
     var currencyUnit = div.find(".currencyUnit").val();//单位
     var businessIncome = div.find(".businessIncome").val();//营业收入
+    var interestIncome = div.find(".interestIncome").val();//利息收入
+    var earnedPremium = div.find(".earnedPremium").val();//已赚保费
+    var FACI = div.find(".FACI").val();//手续费及佣金收入
+    var TOI = div.find(".TOI").val();//营业总收入
     var operatingCost = div.find(".operatingCost").val();//营业成本
     var BTAA = div.find(".BTAA").val();//营业税金及附加
     var sellingExpenses = div.find(".sellingExpenses").val();//销售费用
     var managementCost = div.find(".managementCost").val();//管理费用
     var financialCost = div.find(".financialCost").val();//财务费用
     var AIL = div.find(".AIL").val();//资产减值损失
+    var TOC = div.find(".TOC").val();//营业总成本
     var FVCI = div.find(".FVCI").val();//公允价值变动收益
     var ADI = div.find(".ADI").val();//资产处置收益
     var IFI = div.find(".IFI").val();//投资收益
     var IIOJVAJV = div.find(".IIOJVAJV").val();//联营企业和合营企业投资收益
     var OII = div.find(".OII").val();//其他投资收益
+    var exchangeGains = div.find(".exchangeGains").val();//汇兑收益
+    var otherIncome = div.find(".otherIncome").val();//其他收益
     var operatingProfit = div.find(".operatingProfit").val();//营业利润
     var NOI = div.find(".NOI").val();//营业外收入
     var NOE = div.find(".NOE").val();//营业外支出
-    var PALDOIA = div.find(".PALDOIA").val();//非流动资产处置损益
-    var ONOE = div.find(".ONOE").val();//其他营业外支出
     var totalProfit = div.find(".totalProfit").val();//利润总额
     var ITE = div.find(".ITE").val();//所得税费用
     var netProfit = div.find(".netProfit").val();//净利润
+    var NATFOCI = div.find(".NATFOCI").val();//其他综合收益的税后净额
+    var TCI = div.find(".TCI").val();//综合收益总额
     var EPS = div.find(".EPS").val();//每股收益
     var BEPS = div.find(".BEPS").val();//基本每股收益
     var DEPS = div.find(".DEPS").val();//稀释每股收益
@@ -635,25 +659,32 @@ function saveProfit(){
     formData.append('dataTime', dataTime);
     formData.append('currencyUnit', currencyUnit);
     formData.append('businessIncome', businessIncome);
+    formData.append('interestIncome', interestIncome);
+    formData.append('earnedPremium', earnedPremium);
+    formData.append('faci', FACI);
+    formData.append('toi', TOI);
     formData.append('operatingCost', operatingCost);
     formData.append('btaa', BTAA);
     formData.append('sellingExpenses', sellingExpenses);
     formData.append('managementCost', managementCost);
     formData.append('financialCost', financialCost);
     formData.append('ail', AIL);
+    formData.append('toc', TOC);
     formData.append('fvci', FVCI);
     formData.append('adi', ADI);
     formData.append('ifi', IFI);
     formData.append('iiojvajv', IIOJVAJV);
     formData.append('oii', OII);
+    formData.append('exchangeGains', exchangeGains);
+    formData.append('otherIncome', otherIncome);
     formData.append('operatingProfit', operatingProfit);
     formData.append('noi', NOI);
     formData.append('noe', NOE);
-    formData.append('paldoia', PALDOIA);
-    formData.append('onoe', ONOE);
     formData.append('totalProfit', totalProfit);
     formData.append('ite', ITE);
     formData.append('netProfit', netProfit);
+    formData.append('natfoci', NATFOCI);
+    formData.append('tci', TCI);
     formData.append('eps', EPS);
     formData.append('beps', BEPS);
     formData.append('deps', DEPS);
@@ -683,24 +714,32 @@ function resetProfit(){
     div.find(".currencyUnit").val("1");//单位
     div.find(".currencyUnit").children('option:first').attr('selected','selected');
     div.find(".businessIncome").val('');//营业收入
+    div.find(".interestIncome").val('');//利息收入
+    div.find(".earnedPremium").val('');//已赚保费
+    div.find(".FACI").val('');//手续费及佣金收入
+    div.find(".TOI").val('');//营业总收入
     div.find(".operatingCost").val('');//营业成本
     div.find(".BTAA").val('');//营业税金及附加
     div.find(".sellingExpenses").val('');//销售费用
     div.find(".managementCost").val('');//管理费用
     div.find(".financialCost").val('');//财务费用
     div.find(".AIL").val('');//资产减值损失
+    div.find(".TOC").val('');//营业总成本
     div.find(".FVCI").val('');//公允价值变动收益
+    div.find(".ADI").val('');//资产处置收益
     div.find(".IFI").val('');//投资收益
     div.find(".IIOJVAJV").val('');//联营企业和合营企业投资收益
     div.find(".OII").val('');//其他投资收益
+    div.find(".exchangeGains").val('');//汇兑收益
+    div.find(".otherIncome").val('');//其他收益
     div.find(".operatingProfit").val('');//营业利润
     div.find(".NOI").val('');//营业外收入
     div.find(".NOE").val('');//营业外支出
-    div.find(".PALDOIA").val('');//非流动资产处置损益
-    div.find(".ONOE").val('');//其他营业外支出
     div.find(".totalProfit").val('');//利润总额
     div.find(".ITE").val('');//所得税费用
     div.find(".netProfit").val('');//净利润
+    div.find(".NATFOCI").val('');//其他综合收益的税后净额
+    div.find(".TCI").val('');//综合收益总额
     div.find(".EPS").val('');//每股收益
     div.find(".BEPS").val('');//基本每股收益
     div.find(".DEPS").val('');//稀释每股收益
@@ -719,6 +758,7 @@ function saveCashFlow(){
     var OCRTBAR = div.find(".OCRTBAR").val();//收到的其他与经营活动相关的现金
     var CIIOA = div.find(".CIIOA").val();//经营活动现金流入小计
     var CPFGAS = div.find(".CPFGAS").val();//购买商品、接受劳务支付的现金
+    var CPTEAPTE = div.find(".CPTEAPTE").val();//支付给职工以及为职工支付的现金
     var POATOT = div.find(".POATOT").val();//支付的各项税费
     var POOCRTBA = div.find(".POOCRTBA").val();//支付其他与经营活动有关的现金
     var CFFOA = div.find(".CFFOA").val();//经营活动现金流出小计
@@ -745,7 +785,7 @@ function saveCashFlow(){
     var CFOOFA = div.find(".CFOOFA").val();//筹资活动现金流出小计
     var NCFGBFRA = div.find(".NCFGBFRA").val();//筹资活动产生的现金流量净额
     var TEOERFOCACE = div.find(".TEOERFOCACE").val();//汇率变动对现金及现金等价物的影响
-    var NIICACE = div.find('.NIICACE');//现金及现金等价物净增加额
+    var NIICACE = div.find('.NIICACE').val();//现金及现金等价物净增加额
     var CACEATBOTY = div.find(".CACEATBOTY").val();//期初现金及现金等价物余额
     var BOCACEAEOT = div.find(".BOCACEAEOT").val();//期末现金及现金等价物余额
 
@@ -764,6 +804,7 @@ function saveCashFlow(){
     formData.append('cortbar', OCRTBAR);
     formData.append('ciioa', CIIOA);
     formData.append('cpfgas', CPFGAS);
+    formData.append('cpteapte', CPTEAPTE);
     formData.append('poatot', POATOT);
     formData.append('poocrtba', POOCRTBA);
     formData.append('cffoa', CFFOA);
@@ -825,6 +866,7 @@ function resetCashFlow(){
     div.find(".OCRTBAR").val('');//收到的其他与经营活动相关的现金
     div.find(".CIIOA").val('');//经营活动现金流入小计
     div.find(".CPFGAS").val('');//购买商品、接受劳务支付的现金
+    div.find(".CPTEAPTE").val('');//支付给职工以及为职工支付的现金
     div.find(".POATOT").val('');//支付的各项税费
     div.find(".POOCRTBA").val('');//支付其他与经营活动有关的现金
     div.find(".CFFOA").val('');//经营活动现金流出小计
@@ -976,7 +1018,7 @@ function resetCashFlowStatement(){
     div.find(".IBOC").val('');//现金的期初余额
     div.find(".EBOCE").val('');//现金等价物的期末余额
     div.find(".IBOCE").val('');//现金等价物的期初余额
-    div.find('/.NIICACE').val('');///现金及现金等价物净增加额
+    div.find(".NIICACE").val('');///现金及现金等价物净增加额
 }
 
 

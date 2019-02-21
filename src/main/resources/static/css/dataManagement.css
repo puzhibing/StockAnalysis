@@ -70,7 +70,7 @@ body{
     height: 20px;
     border-radius: 3px;
     border: 1px solid #5E8586;
-    padding-left: 10px;
+    padding-left: 5px;
 }
 
 .title button{
@@ -166,7 +166,7 @@ body{
     font-weight: 500;
     height: 35px;
     border:  1px solid #F0F0F0;
-    padding: 0px 10px;
+    text-indent: 5px;
 }
 
 .content .data{
@@ -197,8 +197,8 @@ body{
     font-size: 13px;
     font-weight: 500;
     height: 25px;
-    border:  1px solid #F0F0F0;
-    padding: 0px 10px;
+    border:  1px solid #E5E5E5;
+    text-indent: 5px;
 }
 
 /*.content .data table{*/

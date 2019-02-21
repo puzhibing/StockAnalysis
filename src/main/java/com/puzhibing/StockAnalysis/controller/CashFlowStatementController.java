@@ -29,7 +29,7 @@ public class CashFlowStatementController {
 	public ResultBean<Object> insertCashFlowStatement(CashFlowStatement cashFlowStatement
 			, String currencyUnit, String token){
 		try {
-			cashFlowStatementServiceImpl.insertCashFlowStatement(cashFlowStatement
+			resultBean = cashFlowStatementServiceImpl.insertCashFlowStatement(cashFlowStatement
 					, currencyUnit, token);
 		} catch (Exception e) {
 			e.printStackTrace();

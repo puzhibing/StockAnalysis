@@ -212,31 +212,19 @@ public class CompanyServiceImpl implements CompanyService {
 			if(m.find()) {//编号查询
 				try {
 					List<Company> companies = new ArrayList<>();
-					Company company = null;
 					List<Object> list = (List)companyStockServiceImpl.selectCompanyStockLikeCode(value).getResult();
+					List<Company> list1 = companyMapper.selectAllCompany();
 					for (Object object : list) {
-						if(companies.size() == 0){
-							company = companyMapper.selectCompanyInfoById(((CompanyStock)object).getCompanyId());
-							companies.add(company);
-						}else{
-							boolean b = false;
-							for (Company company1: companies) {
-								if(((CompanyStock)object).getCompanyId().equals(company1.getId())){
-									b = true;
-								}
+						CompanyStock companyStock = (CompanyStock)object;
+						for (Company c: list1) {
+							if(companyStock.getCompanyId().equals(c.getId())){
+								companies.add(c);
+								break;
 							}
-							if(!b){
-								company = companyMapper.selectCompanyInfoById(((CompanyStock)object).getCompanyId());
-								companies.add(company);
-							}
-
 						}
-
 					}
-					
 					resultBean.setB(true);
 					resultBean.setResult(companies);
-					
 				} catch (Exception e) {
 					throw e;
 				}
@@ -244,7 +232,6 @@ public class CompanyServiceImpl implements CompanyService {
 			}else {//名称查询
 				try {
 					List<Company> list = companyMapper.selectCompanyLikeName("%" + value + "%");
-					
 					resultBean.setB(true);
 					resultBean.setResult(list);
 				} catch (Exception e) {

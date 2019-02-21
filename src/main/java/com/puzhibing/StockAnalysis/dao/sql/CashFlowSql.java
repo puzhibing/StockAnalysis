@@ -21,13 +21,13 @@ public class CashFlowSql {
 	public String insertCashFlow(CashFlow cashFlow) {
 		return new SQL() {{
 			INSERT_INTO("t_cashflow");
-			INTO_COLUMNS("id , companyStockId , dataTime , crfsogas , ort , cortbar , ciioa , cpfgas , poatot , poocrtba , cffoa , ncffoa");
+			INTO_COLUMNS("id , companyStockId , dataTime , crfsogas , ort , cortbar , ciioa , cpfgas , cpteapte , poatot , poocrtba , cffoa , ncffoa");
 			INTO_COLUMNS("crfir , crfii , ncidofaiaaoaitpp , ncrfdosaobu , ocrtiahbr , cioia , cofaiaaocpfpi , cpfi , ncpbsaobu , poocrtia");
 			INTO_COLUMNS("cfooia , ncffia , crfi , crfb , ocrtfar , ciofa , cfdr , cpfdpoip , poocrtfa , cfoofa , ncfgbfra , teoerfocace");
 			INTO_COLUMNS("niicace , caceatboty , bocaceaeot");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
-			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{crfsogas} , #{ort} , #{cortbar} , #{ciioa} , #{cpfgas} , #{poatot} , #{poocrtba} , #{cffoa} , #{ncffoa}");
+			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{crfsogas} , #{ort} , #{cortbar} , #{ciioa} , #{cpfgas} , #{cpteapte} , #{poatot} , #{poocrtba} , #{cffoa} , #{ncffoa}");
 			INTO_VALUES("#{crfir} , #{crfii} , #{ncidofaiaaoaitpp} , #{ncrfdosaobu} , #{ocrtiahbr} , #{cioia} , #{cofaiaaocpfpi} , #{cpfi} , #{ncpbsaobu} , #{poocrtia}");
 			INTO_VALUES("#{cfooia} , #{ncffia} , #{crfi} , #{crfb} , #{ocrtfar} , #{ciofa} , #{cfdr} , #{cpfdpoip} , #{poocrtfa} , #{cfoofa} , #{ncfgbfra} , #{teoerfocace}");
 			INTO_VALUES("#{niicace} , #{caceatboty} , #{bocaceaeot}");
@@ -46,7 +46,7 @@ public class CashFlowSql {
 	 */
 	public String selectCashFlowByCompanyStockId(String companyStockId) {
 		return new SQL() {{
-			SELECT("id , companyStockId , dataTime , crfsogas , ort , cortbar , ciioa , cpfgas , poatot , poocrtba , cffoa , ncffoa");
+			SELECT("id , companyStockId , dataTime , crfsogas , ort , cortbar , ciioa , cpfgas , cpteapte , poatot , poocrtba , cffoa , ncffoa");
 			SELECT("crfir , crfii , ncidofaiaaoaitpp , ncrfdosaobu , ocrtiahbr , cioia , cofaiaaocpfpi , cpfi , ncpbsaobu , poocrtia");
 			SELECT("cfooia , ncffia , crfi , crfb , ocrtfar , ciofa , cfdr , cpfdpoip , poocrtfa , cfoofa , ncfgbfra , teoerfocace");
 			SELECT("niicace , caceatboty , bocaceaeot");

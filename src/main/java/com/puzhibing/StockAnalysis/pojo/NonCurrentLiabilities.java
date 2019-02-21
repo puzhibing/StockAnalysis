@@ -17,6 +17,8 @@ public class NonCurrentLiabilities extends StockDataBean {
 	private String specialPayable;//专项应付款
 	
 	private String estimatedLiabilities;//预计负债
+
+	private String deferredIncome;//递延收益
 	
 	private String ditl;//递延所得税负债
 	
@@ -64,6 +66,14 @@ public class NonCurrentLiabilities extends StockDataBean {
 		this.estimatedLiabilities = estimatedLiabilities;
 	}
 
+	public String getDeferredIncome() {
+		return deferredIncome;
+	}
+
+	public void setDeferredIncome(String deferredIncome) {
+		this.deferredIncome = deferredIncome;
+	}
+
 	public String getDitl() {
 		return ditl;
 	}
@@ -96,6 +106,7 @@ public class NonCurrentLiabilities extends StockDataBean {
 				", ltp='" + ltp + '\'' +
 				", specialPayable='" + specialPayable + '\'' +
 				", estimatedLiabilities='" + estimatedLiabilities + '\'' +
+				", deferredIncome='" + deferredIncome + '\'' +
 				", ditl='" + ditl + '\'' +
 				", dncl='" + dncl + '\'' +
 				", tncl='" + tncl + '\'' +
