@@ -79,6 +79,7 @@ body{
 .content .data .dataType tr td{
     height: 60px;
     text-align: right;
+    position: relative;
 }
 
 .content .data .dataType tr td:nth-child(1){
@@ -134,12 +135,12 @@ body{
 .content .data .dataType .selectionPanel{
     overflow: auto;
     display: none;
-    width: 200px;
+    width: 195px;
     height: 80px;
     background-color: #F8F8F8;
     border: 1px solid #547576;
-    z-index: 100;
     position: absolute;
+    z-index: 100;
 }
 
 .content .data .dataType .selectionPanel ul{

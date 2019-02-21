@@ -16,11 +16,13 @@ public class OwnersEquityChangeSql {
 		return new SQL() {{
 			INSERT_INTO("t_ownersequitychange");
 			INTO_COLUMNS("id , companyStockId , dataTime , yebateoly , apc , eec , batboty , aoioditcy , np , galdiioe , ncifvoafsfa , tiociooraioiuuem");
-			INTO_COLUMNS("itrtoei , other1 , oiarc , cibo , taospiitoe , other2 , pd , esr , dooos , other3 , itooe , csicocs , ssticocs , sstmufl , other4 , bateoty");
+			INTO_COLUMNS("itrtoei , other1 , oiarc , cibo , oeihi , taospiitoe , other2 , pd , esr , egrp , dooos , other3 , itooe , csicocs , ssticocs , sstmufl , other4");
+			INTO_COLUMNS("specialReserves , currentExtraction , currentUse , other5 , bateoty");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
 			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{yebateoly} , #{apc} , #{eec} , #{batboty} , #{aoioditcy} , #{np} , #{galdiioe} , #{ncifvoafsfa} , #{tiociooraioiuuem}");
-			INTO_VALUES("#{itrtoei} , #{other1} , #{oiarc} , #{cibo} , #{taospiitoe} , #{other2} , #{pd} , #{esr} , #{dooos} , #{other3} , #{itooe} , #{csicocs} , #{ssticocs} , #{sstmufl} , #{other4} , #{bateoty}");
+			INTO_VALUES("#{itrtoei} , #{other1} , #{oiarc} , #{cibo} , #{oeihi} , #{taospiitoe} , #{other2} , #{pd} , #{esr} , #{egrp} , #{dooos} , #{other3} , #{itooe} , #{csicocs} , #{ssticocs} , #{sstmufl} , #{other4}");
+			INTO_VALUES("#{specialReserves} , #{currentExtraction} , #{currentUse} , #{other5} , #{bateoty}");
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
 	}
@@ -36,7 +38,8 @@ public class OwnersEquityChangeSql {
 	public String selectOwnersEquityChangeByCompanyStockId(String companyStockId) {
 		return new SQL() {{
 			SELECT("id , companyStockId , dataTime , yebateoly , apc , eec , batboty , aoioditcy , np , galdiioe , ncifvoafsfa , tiociooraioiuuem");
-			SELECT("itrtoei , other1 , oiarc , cibo , taospiitoe , other2 , pd , esr , dooos , other3 , itooe , csicocs , ssticocs , sstmufl , other4 , bateoty");
+			SELECT("itrtoei , other1 , oiarc , cibo , oeihi , taospiitoe , other2 , pd , esr , egrp , dooos , other3 , itooe , csicocs , ssticocs , sstmufl , other4");
+			SELECT("specialReserves , currentExtraction , currentUse , other5 , bateoty");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_ownersequitychange");
 			WHERE("companyStockId = #{companyStockId} and del = '0'");

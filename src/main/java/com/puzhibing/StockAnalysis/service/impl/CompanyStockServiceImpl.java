@@ -253,6 +253,7 @@ public class CompanyStockServiceImpl implements CompanyStockService {
 						map.put("company" , company);
 						map.put("companyStock" , companyStock);
 						list.add(map);
+						break;
 					}
 				}
 			}

@@ -42,6 +42,10 @@ $(document).ready(function () {
 function fuzzyAcquisition(v) {
     $(v).siblings(".selectionPanel").show();
     var value = $(v).val();
+    if(value.length < 5){
+        return;
+    }
+
     $.ajax({
         url: "/fuzzyQueryCompany",
         type: "POST",
@@ -267,20 +271,20 @@ function analysisResult(data){
     }
 
     var str8 = '<tr>' +
-        '<th>序号</th><th>数据日期</th><th>上年年末余额</th><th>会计政策变更</th><th>前期差错更正</th><th>本年年初余额</th><th>本年增减变动金额</th><th>净利润</th>' +
-        '<th>直接计入所有者权益的利得和损失</th><th>可供出售金融资产公允值变动净额</th><th>权益法下被投资单位其他所有者权益变动的影响</th><th>与计入所有者权益项目相关的所得税影响</th><th>其他</th><th>所有者投入和减少资本</th><th>所有者投入资本</th><th>股份支付计入所有者权益的金额</th>' +
-        '<th>其他</th><th>利润分配</th><th>提取盈余公积</th><th>对所有者（或股东）的分配</th><th>其他</th><th>所有者权益内部结转</th><th>资本公积转增资本（或股本）</th><th>盈余公积转增资本（或股本）</th>' +
-        '<th>盈余公积弥补亏损</th><th>其他</th><th>本年年末余额</th>' +
+        '<th>序号</th><th>数据日期</th><th>上年年末余额</th><th>会计政策变更</th><th>前期差错更正</th><th>本年年初余额</th><th>本年增减变动金额</th><th>总和收益总额</th>' +
+        '<th>直接计入所有者权益的利得和损失</th><th>可供出售金融资产公允值变动净额</th><th>权益法下被投资单位其他所有者权益变动的影响</th><th>与计入所有者权益项目相关的所得税影响</th><th>其他</th><th>所有者投入和减少资本</th><th>所有者投入资本</th><th>其他权益工具持有者投入</th><th>股份支付计入所有者权益的金额</th>' +
+        '<th>其他</th><th>利润分配</th><th>提取盈余公积</th><th>提取一般风险准备</th><th>对所有者（或股东）的分配</th><th>其他</th><th>所有者权益内部结转</th><th>资本公积转增资本（或股本）</th><th>盈余公积转增资本（或股本）</th>' +
+        '<th>盈余公积弥补亏损</th><th>其他</th><th>专项储备</th><th>本期提取</th><th>本期使用</th><th>其他</th><th>本年年末余额</th>' +
         '</tr>';
     for(var i = 0 ; i < ownersEquityChange.length ; i++){
         str8 += '<tr>' +
             '<td>' + (i + 1) + '</td><td>' + ownersEquityChange[i].dataTime + '</td><td>' + ownersEquityChange[i].yebateoly + '</td><td>' + ownersEquityChange[i].apc + '</td><td>' + ownersEquityChange[i].eec + '</td>' +
             '<td>' + ownersEquityChange[i].batboty + '</td><td>' + ownersEquityChange[i].aoioditcy + '</td><td>' + ownersEquityChange[i].np + '</td><td>' + ownersEquityChange[i].galdiioe + '</td>'+
             '<td>' + ownersEquityChange[i].ncifvoafsfa + '</td><td>' + ownersEquityChange[i].tiociooraioiuuem + '</td><td>' + ownersEquityChange[i].itrtoei + '</td><td>' + ownersEquityChange[i].other1 + '</td>'+
-            '<td>' + ownersEquityChange[i].oiarc + '</td><td>' + ownersEquityChange[i].cibo + '</td><td>' + ownersEquityChange[i].taospiitoe + '</td><td>' + ownersEquityChange[i].other2 + '</td>'+
-            '<td>' + ownersEquityChange[i].pd + '</td><td>' + ownersEquityChange[i].esr + '</td><td>' + ownersEquityChange[i].dooos + '</td><td>' + ownersEquityChange[i].other3 + '</td>'+
+            '<td>' + ownersEquityChange[i].oiarc + '</td><td>' + ownersEquityChange[i].cibo + '</td><td>' + ownersEquityChange[i].oeihi + '</td><td>' + ownersEquityChange[i].taospiitoe + '</td><td>' + ownersEquityChange[i].other2 + '</td>'+
+            '<td>' + ownersEquityChange[i].pd + '</td><td>' + ownersEquityChange[i].esr + '</td><td>' + ownersEquityChange[i].egrp + '</td><td>' + ownersEquityChange[i].dooos + '</td><td>' + ownersEquityChange[i].other3 + '</td>'+
             '<td>' + ownersEquityChange[i].itooe + '</td><td>' + ownersEquityChange[i].csicocs + '</td><td>' + ownersEquityChange[i].ssticocs + '</td><td>' + ownersEquityChange[i].sstmufl + '</td>'+
-            '<td>' + ownersEquityChange[i].other4 + '</td><td>' + ownersEquityChange[i].bateoty + '</td>'+
+            '<td>' + ownersEquityChange[i].other4 + '</td><td>' + ownersEquityChange[i].specialReserves + '</td><td>' + ownersEquityChange[i].currentExtraction + '</td><td>' + ownersEquityChange[i].currentUse + '</td><td>' + ownersEquityChange[i].other5 + '</td><td>' + ownersEquityChange[i].bateoty + '</td>'+
             '</tr>';
     }
 

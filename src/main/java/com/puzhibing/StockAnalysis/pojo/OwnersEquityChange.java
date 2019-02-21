@@ -34,6 +34,8 @@ public class OwnersEquityChange extends StockDataBean {
 
     private String cibo;//所有者投入资本
 
+    private String oeihi;//其他权益工具持有者投入
+
     private String taospiitoe;//股份支付计入所有者权益的金额
 
     private String other2;//其他
@@ -41,6 +43,8 @@ public class OwnersEquityChange extends StockDataBean {
     private String pd;//利润分配
 
     private String esr;//提取盈余公积
+
+    private String egrp;//提取一般风险准备
 
     private String dooos;//对所有者（或股东）的分配
 
@@ -55,6 +59,14 @@ public class OwnersEquityChange extends StockDataBean {
     private String sstmufl;//盈余公积弥补亏损
 
     private String other4;//其他
+
+    private String specialReserves;//专项储备
+
+    private String currentExtraction;//本期提取
+
+    private String currentUse;//本期使用
+
+    private String other5;//其他
 
     private String bateoty;//本年年末余额
 
@@ -162,6 +174,14 @@ public class OwnersEquityChange extends StockDataBean {
         this.cibo = cibo;
     }
 
+    public String getOeihi() {
+        return oeihi;
+    }
+
+    public void setOeihi(String oeihi) {
+        this.oeihi = oeihi;
+    }
+
     public String getTaospiitoe() {
         return taospiitoe;
     }
@@ -192,6 +212,14 @@ public class OwnersEquityChange extends StockDataBean {
 
     public void setEsr(String esr) {
         this.esr = esr;
+    }
+
+    public String getEgrp() {
+        return egrp;
+    }
+
+    public void setEgrp(String egrp) {
+        this.egrp = egrp;
     }
 
     public String getDooos() {
@@ -250,6 +278,38 @@ public class OwnersEquityChange extends StockDataBean {
         this.other4 = other4;
     }
 
+    public String getSpecialReserves() {
+        return specialReserves;
+    }
+
+    public void setSpecialReserves(String specialReserves) {
+        this.specialReserves = specialReserves;
+    }
+
+    public String getCurrentExtraction() {
+        return currentExtraction;
+    }
+
+    public void setCurrentExtraction(String currentExtraction) {
+        this.currentExtraction = currentExtraction;
+    }
+
+    public String getCurrentUse() {
+        return currentUse;
+    }
+
+    public void setCurrentUse(String currentUse) {
+        this.currentUse = currentUse;
+    }
+
+    public String getOther5() {
+        return other5;
+    }
+
+    public void setOther5(String other5) {
+        this.other5 = other5;
+    }
+
     public String getBateoty() {
         return bateoty;
     }
@@ -274,10 +334,12 @@ public class OwnersEquityChange extends StockDataBean {
                 ", other1='" + other1 + '\'' +
                 ", oiarc='" + oiarc + '\'' +
                 ", cibo='" + cibo + '\'' +
+                ", oeihi='" + oeihi + '\'' +
                 ", taospiitoe='" + taospiitoe + '\'' +
                 ", other2='" + other2 + '\'' +
                 ", pd='" + pd + '\'' +
                 ", esr='" + esr + '\'' +
+                ", egrp='" + egrp + '\'' +
                 ", dooos='" + dooos + '\'' +
                 ", other3='" + other3 + '\'' +
                 ", itooe='" + itooe + '\'' +
@@ -285,6 +347,10 @@ public class OwnersEquityChange extends StockDataBean {
                 ", ssticocs='" + ssticocs + '\'' +
                 ", sstmufl='" + sstmufl + '\'' +
                 ", other4='" + other4 + '\'' +
+                ", specialReserves='" + specialReserves + '\'' +
+                ", currentExtraction='" + currentExtraction + '\'' +
+                ", currentUse='" + currentUse + '\'' +
+                ", other5='" + other5 + '\'' +
                 ", bateoty='" + bateoty + '\'' +
                 '}';
     }

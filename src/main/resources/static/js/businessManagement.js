@@ -494,6 +494,10 @@ function importData(){
 function fuzzyAcquisition(v) {
     $(v).siblings(".selectionPanel").show();
     var value = $(v).val();
+    if(value.length < 5){
+        return;
+    }
+
     $.ajax({
         url: "/fuzzyQueryCompany",
         type: "POST",

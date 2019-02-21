@@ -1,6 +1,5 @@
 
 var token = "";
-var data = '';
 
 $(function () {
 	
@@ -15,7 +14,7 @@ $(function () {
 
     //绑定表单值发生变化处理函数
     $('.securitiesNumber').bind('input propertychange', function() {
-        var b = fuzzyAcquisition(this);
+        fuzzyAcquisition(this);
     });
 
 
@@ -114,6 +113,10 @@ function switchNav(nav){
 function fuzzyAcquisition(v) {
     $(v).siblings(".selectionPanel").show();
     var value = $(v).val();
+    if(value.length < 5){
+        return;
+    }
+
     $.ajax({
         url: "/selectAllDataLikeCode",
         type: "POST",
@@ -1043,10 +1046,12 @@ function saveOwnersEquityChange(){
     var other1 = div.find(".other1").val();//其他
     var OIARC = div.find(".OIARC").val();//所有者投入和减少资本
     var CIBO = div.find(".CIBO").val();//所有者投入资本
+    var OEIHI = div.find(".OEIHI").val();//其他权益工具持有者投入
     var TAOSPIITOE = div.find(".TAOSPIITOE").val();//股份支付计入所有者权益的金额
     var other2 = div.find(".other2").val();//其他
     var PD = div.find(".PD").val();//利润分配
     var ESR = div.find(".ESR").val();//提取盈余公积
+    var EGRP = div.find(".EGRP").val();//提取一般风险准备
     var DOOOS = div.find(".DOOOS").val();//对所有者（或股东）的分配
     var other3 = div.find(".other3").val();//其他
     var ITOOE = div.find(".ITOOE").val();//所有者权益内部结转
@@ -1054,6 +1059,10 @@ function saveOwnersEquityChange(){
     var SSTICOCS = div.find(".SSTICOCS").val();//盈余公积转增资本（或股本）
     var SSTMUFL = div.find(".SSTMUFL").val();//盈余公积弥补亏损
     var other4 = div.find(".other4").val();//其他
+    var specialReserves = div.find(".specialReserves").val();//专项储备
+    var currentExtraction = div.find(".currentExtraction").val();//本期提取
+    var currentUse = div.find(".currentUse").val();//本期使用
+    var other5 = div.find(".other5").val();//其他
     var BATEOTY = div.find(".BATEOTY").val();//本年年末余额
 
     if(companyStockId == "" || dataTime ==""){
@@ -1079,10 +1088,12 @@ function saveOwnersEquityChange(){
     formData.append('other1', other1);
     formData.append('oiarc', OIARC);
     formData.append('cibo', CIBO);
+    formData.append('oeihi', OEIHI);
     formData.append('taospiitoe', TAOSPIITOE);
     formData.append('other2', other2);
     formData.append('pd', PD);
     formData.append('esr', ESR);
+    formData.append('egrp', EGRP);
     formData.append('dooos', DOOOS);
     formData.append('other3', other3);
     formData.append('itooe', ITOOE);
@@ -1090,6 +1101,10 @@ function saveOwnersEquityChange(){
     formData.append('ssticocs', SSTICOCS);
     formData.append('sstmufl', SSTMUFL);
     formData.append('other4', other4);
+    formData.append('specialReserves', specialReserves);
+    formData.append('currentExtraction', currentExtraction);
+    formData.append('currentUse', currentUse);
+    formData.append('other5', other5);
     formData.append('bateoty', BATEOTY);
     formData.append('token', token);
 
@@ -1130,10 +1145,12 @@ function resetOwnersEquityChange(){
     div.find(".other1").val('');//其他
     div.find(".OIARC").val('');//所有者投入和减少资本
     div.find(".CIBO").val('');//所有者投入资本
+    div.find(".OEIHI").val('');//其他权益工具持有者投入
     div.find(".TAOSPIITOE").val('');//股份支付计入所有者权益的金额
     div.find(".other2").val('');//其他
     div.find(".PD").val('');//利润分配
     div.find(".ESR").val('');//提取盈余公积
+    div.find(".EGRP").val('');//提取一般风险准备
     div.find(".DOOOS").val('');//对所有者（或股东）的分配
     div.find(".other3").val('');//其他
     div.find(".ITOOE").val('');//所有者权益内部结转
@@ -1141,6 +1158,10 @@ function resetOwnersEquityChange(){
     div.find(".SSTICOCS").val('');//盈余公积转增资本（或股本）
     div.find(".SSTMUFL").val('');//盈余公积弥补亏损
     div.find(".other4").val('');//其他
+    div.find(".specialReserves").val('');//专项储备
+    div.find(".currentExtraction").val('');//本期提取
+    div.find(".currentUse").val('');//本期使用
+    div.find(".other5").val('');//其他
     div.find(".BATEOTY").val('');//本年年末余额
 }
 
