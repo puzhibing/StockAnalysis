@@ -482,7 +482,7 @@ function importData(){
                 alert("数据导入发生异常...\r\n" + res.result);
             }
         },
-        compvare: function () {
+        complete: function () {
             closeProcessing();//关闭特效
         }
     });
