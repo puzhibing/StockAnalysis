@@ -1,5 +1,5 @@
 
-let token = '';
+var token = '';
 
 $(document).ready(function () {
 	
@@ -26,7 +26,7 @@ function obtainAllData(){
         data: {},
         success: function (res) {
             if(res.b){
-                let list = res.result;
+                var list = res.result;
                 analysisResult(list);
             }
         }
@@ -38,21 +38,21 @@ function obtainAllData(){
 function analysisResult(list){
 	list = JSON.parse(list);
     $('.table table').html('');
-    let str = '<tr><th>序号</th><th>证券类型名称</th><th>操作</th></tr>';
-    for(let i = 0 ; i < list.length ; i++){
+    var str = '<tr><th>序号</th><th>证券类型名称</th><th>操作</th></tr>';
+    for(var i = 0 ; i < list.length ; i++){
         str += '<tr id="' + list[i].id + '"><td>' + (i + 1) + '</td><td>' + list[i].name + '</td>' +
             '<td><button data="' + list[i].id + ';' + list[i].name + '" onclick="updateStockType(this)">编辑</button>' +
-            '<button onclick="deleteStockType(\'' + list[i].id + '\')" ">删除</button></td></tr>';
+            '<button onclick="devareStockType(\'' + list[i].id + '\')" ">删除</button></td></tr>';
     }
     $('.table table').html(str);
 }
 
 
 //点击删除处理函数
-function deleteStockType(id){
+function devareStockType(id){
 	id = id.trim();
     $.ajax({
-        url: '/deleteStockType',
+        url: '/devareStockType',
         type: 'POST',
         data: {
             id: id,
@@ -69,13 +69,13 @@ function deleteStockType(id){
 
 //添加数据
 function insertStockType(){
-    let name = $('#name').val().trim();
-    let id = $('#id').val().trim();
+    var name = $('#name').val().trim();
+    var id = $('#id').val().trim();
     if(name == ''){
         alert('无效的内容');
         return;
     }
-    let url = '/updateStockType';
+    var url = '/updateStockType';
     if(id == ''){
         url = '/insertStockType'
     }
@@ -100,8 +100,8 @@ function insertStockType(){
 
 //修改数据
 function updateStockType(b){
-    let v = $(b).attr('data');
-    let arr = v.split(';');
+    var v = $(b).attr('data');
+    var arr = v.split(';');
     $('#id').val(arr[0]);
     $('#name').val(arr[1]);
 }

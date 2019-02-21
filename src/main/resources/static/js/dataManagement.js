@@ -1,5 +1,5 @@
 
-let token = '';
+var token = '';
 
 $(document).ready(function () {
 
@@ -10,7 +10,7 @@ $(document).ready(function () {
     });
 
     $(document).click(function () {
-        let se = $('.text .selectionPanel');
+        var se = $('.text .selectionPanel');
         if(se.css('display') == 'block'){
             se.hide();
         }
@@ -41,7 +41,7 @@ $(document).ready(function () {
 //动态模糊筛选获取公司数据接口
 function fuzzyAcquisition(v) {
     $(v).siblings(".selectionPanel").show();
-    let value = $(v).val();
+    var value = $(v).val();
     $.ajax({
         url: "/fuzzyQueryCompany",
         type: "POST",
@@ -51,8 +51,8 @@ function fuzzyAcquisition(v) {
         success: function (res) {
             $(v).siblings(".selectionPanel").html('');
             if(res.b){
-                let list = res.result;
-                let str = '<ul>';
+                var list = res.result;
+                var str = '<ul>';
                 for(var i = 0; i < list.length; i++){
                     str += '<li id="' + list[i].id +  '" name="' + list[i].chName + '" onclick="selectionPanel(this)"><span>' + list[i].chName + '</span></li>';
                 }
@@ -68,8 +68,8 @@ function fuzzyAcquisition(v) {
 function selectionPanel(li){
     li = $(li);
     li.parents(".selectionPanel").show();
-    let id = li.attr("id");
-    let name = li.attr("name");
+    var id = li.attr("id");
+    var name = li.attr("name");
 
     $(".companyStockId").val(id);
     li.parents(".selectionPanel").siblings(".securitiesNumber").val(name);
@@ -82,7 +82,7 @@ function selectionPanel(li){
 
 //搜索企业数据
 function selectCompanyInfoById(){
-    let id = $('.companyId').val().trim();
+    var id = $('.companyId').val().trim();
     if(id == ''){
         alert('请录入有效的搜索条件');
         return;
@@ -97,11 +97,11 @@ function selectCompanyInfoById(){
             $(".enterpriseInfo .companyStocks table").html('');
             $('.enterpriseInfo .company').html('');
             if(res.b){
-                let data = res.result;
-                let com = '<span>企业名称：' + data.chName + '</span><span>中文简称：' + data.chShortName + '</span><span>英文名称：' + data.enName + '</span><span>英文简称：' + data.enShortName + '</span><span>网址：' + data.url + '</span>';
+                var data = res.result;
+                var com = '<span>企业名称：' + data.chName + '</span><span>中文简称：' + data.chShortName + '</span><span>英文名称：' + data.enName + '</span><span>英文简称：' + data.enShortName + '</span><span>网址：' + data.url + '</span>';
                 $('.enterpriseInfo .company').html(com);
 
-                let str = "<tr><th>证券名称</th><th>证券编号</th><th>上市时间</th><th>上市地址</th></tr>";
+                var str = "<tr><th>证券名称</th><th>证券编号</th><th>上市时间</th><th>上市地址</th></tr>";
                 for(var i in data.companyStocks){
                     str += '<tr id="' + data.companyStocks[i].id + '" onclick="selectAllSecuritiesDataById(this)">' +
                         '<td>' + data.companyStocks[i].stockTypeId[0].name + '</td>' +
@@ -131,7 +131,7 @@ function selectAllSecuritiesDataById(td){
     $('.cashFlowStatement .data table').html();
 
     td = $(td);
-    let id = td.attr('id');
+    var id = td.attr('id');
     if(id == ''){
         alert('数据异常');
         return;
@@ -154,17 +154,17 @@ function selectAllSecuritiesDataById(td){
 
 //解析所有证券数据结果
 function analysisResult(data){
-    let currentAssets = JSON.parse(data.currentAssets);
-    let nonCurrentAssets = JSON.parse(data.nonCurrentAssets);
-    let currentLiabilities = JSON.parse(data.currentLiabilities);
-    let nonCurrentLiabilities = JSON.parse(data.nonCurrentLiabilities);
-    let ownersEquity = data.ownersEquity;
-    let ownersEquityChange = data.ownersEquityChange;
-    let profit = data.profit;
-    let cashFlow = data.cashFlow;
-    let cashFlowStatement = data.cashFlowStatement;
+    var currentAssets = JSON.parse(data.currentAssets);
+    var nonCurrentAssets = JSON.parse(data.nonCurrentAssets);
+    var currentLiabilities = JSON.parse(data.currentLiabilities);
+    var nonCurrentLiabilities = JSON.parse(data.nonCurrentLiabilities);
+    var ownersEquity = data.ownersEquity;
+    var ownersEquityChange = data.ownersEquityChange;
+    var profit = data.profit;
+    var cashFlow = data.cashFlow;
+    var cashFlowStatement = data.cashFlowStatement;
 
-    let str1 = '<tr>' +
+    var str1 = '<tr>' +
         '<th>序号</th><th>数据日期</th><th>货币资金</th><th>拆出资金</th><th>交易性金融资产</th><th>衍生金融资产</th><th>买入返售金融资产</th><th>应收票据</th><th>应收账款</th><th>预付账款</th><th>应收利息</th>' +
         '<th>应收股利</th><th>其他应收款</th><th>存货</th><th>一年内到期的非流动资产</th><th>其他流动资产</th><th>流动资产合计</th>' +
         '</tr>';
@@ -176,7 +176,7 @@ function analysisResult(data){
             '</tr>';
     }
 
-    let str2 = '<tr>' +
+    var str2 = '<tr>' +
         '<th>序号</th><th>数据日期</th><th>可供出售金融资产</th><th>持有到期投资</th><th>长期应收款</th><th>长期股权投资</th><th>投资性房地产</th><th>固定资产</th>' +
         '<th>在建工程</th><th>工程物资</th><th>固定资产清理</th><th>生产性生物资产</th><th>汽油资产</th><th>无形资产</th><th>开发支出</th><th>商誉</th><th>长期待摊费用</th>' +
         '<th>递延所得税资产</th><th>其他非流动资产</th><th>非流动资产合计</th>' +
@@ -191,7 +191,7 @@ function analysisResult(data){
             '</tr>';
     }
 
-    let str3 = '<tr>' +
+    var str3 = '<tr>' +
         '<th>序号</th><th>数据日期</th><th>短期借款</th><th>拆入资金</th><th>交易性金融负债</th><th>衍生金融负债</th><th>卖出回购金融资产款</th><th>应付票据</th><th>应付账款</th><th>预收款项</th><th>应付职工薪酬</th>' +
         '<th>应交税费</th><th>应付利息</th><th>应付股利</th><th>其他应付款</th><th>一年内到期的非流动负债</th><th>其他流动负债</th><th>流动负债合计</th>' +
         '</tr>';
@@ -204,7 +204,7 @@ function analysisResult(data){
             '</tr>';
     }
 
-    let str4 = '<tr>' +
+    var str4 = '<tr>' +
         '<th>序号</th><th>数据日期</th><th>长期借款</th><th>应付债券</th><th>长期应付款</th><th>专项应付款</th><th>预计负债</th><th>递延所得税负债</th>' +
         '<th>其他非流动负债</th><th>非流动负债合计</th>' +
         '</tr>';
@@ -216,7 +216,7 @@ function analysisResult(data){
             '</tr>';
     }
 
-    let str5 = '<tr>' +
+    var str5 = '<tr>' +
         '<th>序号</th><th>数据日期</th><th>实收资本</th><th>资本公积</th><th>减：库存股</th><th>盈余公积</th><th>一般风险准备</th><th>未分配利润</th><th>所有者权益合计</th>' +
         '</tr>';
     for(var i = 0 ; i < ownersEquity.length ; i++){
@@ -226,7 +226,7 @@ function analysisResult(data){
             '</tr>';
     }
 
-    let str6 = '<tr>' +
+    var str6 = '<tr>' +
         '<th>序号</th><th>数据日期</th><th>营业收入</th><th>营业成本</th><th>营业税金及附加</th><th>销售费用</th><th>管理费用</th><th>财务费用</th>' +
         '<th>资产减值损失</th><th>公允价值变动收益</th><th>资产处置收益</th><th>投资收益</th><th>联营企业和合营企业投资收益</th><th>其他投资收益</th><th>营业利润</th><th>营业外收入</th>' +
         '<th>营业外支出</th><th>非流动资产处置损益</th><th>其他营业外支出</th><th>利润总额</th><th>所得税费用</th><th>净利润</th><th>每股收益</th><th>基本每股收益</th>' +
@@ -243,7 +243,7 @@ function analysisResult(data){
             '</tr>';
     }
 
-    let str7 = '<tr>' +
+    var str7 = '<tr>' +
         '<th>序号</th><th>数据日期</th><th>销售商品、提供劳务收到的现金</th><th>收到的税费返还</th><th>收到的其他与经营活动相关的现金</th><th>经营活动现金流入小计</th><th>购买商品、接受劳务支付的现金</th><th>支付的各项税费</th>' +
         '<th>支付其他与经营活动有关的现金</th><th>经营活动现金流出小计</th><th>经营活动产生的现金流净额</th><th>收回投资收到的现金</th><th>取得投资收益收到的现金</th><th>处置固定资产、无形资产和其他上期资产收回的现金净额</th><th>处置子公司及其他营业单位收到的现金净额</th><th>收到其他与投资活动相关的现金</th>' +
         '<th>投资活动现金流入小计</th><th>构建固定资产、无形资产和其他上期投资支付的现金</th><th>投资支付的现金</th><th>取得子公司及其他营业单位支付的现金净额</th><th>支付其他与投资活动有关的现金</th><th>投资活动现金流出小计</th><th>投资活动产生的现金流净额</th><th>吸收投资收到的现金</th>' +
@@ -264,7 +264,7 @@ function analysisResult(data){
             '</tr>';
     }
 
-    let str8 = '<tr>' +
+    var str8 = '<tr>' +
         '<th>序号</th><th>数据日期</th><th>上年年末余额</th><th>会计政策变更</th><th>前期差错更正</th><th>本年年初余额</th><th>本年增减变动金额</th><th>净利润</th>' +
         '<th>直接计入所有者权益的利得和损失</th><th>可供出售金融资产公允值变动净额</th><th>权益法下被投资单位其他所有者权益变动的影响</th><th>与计入所有者权益项目相关的所得税影响</th><th>其他</th><th>所有者投入和减少资本</th><th>所有者投入资本</th><th>股份支付计入所有者权益的金额</th>' +
         '<th>其他</th><th>利润分配</th><th>提取盈余公积</th><th>对所有者（或股东）的分配</th><th>其他</th><th>所有者权益内部结转</th><th>资本公积转增资本（或股本）</th><th>盈余公积转增资本（或股本）</th>' +
@@ -283,7 +283,7 @@ function analysisResult(data){
     }
 
 
-    let str9 = '<tr>' +
+    var str9 = '<tr>' +
         '<th>序号</th><th>数据日期</th><th>净利润</th><th>资产减值准备</th><th>固定资产折旧、汽油资产拆耗、生产性生物资产折旧</th><th>无形资产摊销</th><th>长期待摊费用摊销</th><th>处置固定资产、无形资产和其他长期资产的损失（收益）</th>' +
         '<th>固定资产报废损失</th><th>公允值变动损失</th><th>财务费用</th><th>投资损失</th><th>递延所得税资产减少</th><th>递延所得税负债增加</th><th>存货的减少</th><th>经营性应收项目的减少</th><th>经营性应付项目的增加</th><th>其他</th>' +
         '<th>经营活动产生的现金流量净额</th><th>债务转为资本</th><th>一年内到期的可转换公司债券</th><th>融资租入固定资产</th><th>现金的期末余额</th><th>减：现金的期初余额</th><th>加：现金等价物的期末余额</th><th>减：现金等价物的期初余额</th>' +

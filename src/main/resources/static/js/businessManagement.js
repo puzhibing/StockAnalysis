@@ -1,5 +1,5 @@
 
-let token = '';
+var token = '';
 
 //初始化
 $(document).ready(function () {
@@ -26,7 +26,7 @@ $(document).ready(function () {
     });
 
     $(document).click(function () {
-        let se = $('.text .selectionPanel');
+        var se = $('.text .selectionPanel');
         if(se.css('display') == 'block'){
             se.hide();
         }
@@ -75,8 +75,8 @@ function initStyle(){
         "cursor":"not-allowed"
     });
 
-    let width = $(document.body).outerWidth(true);
-    let height = $(document.body).outerHeight(true);
+    var width = $(document.body).outerWidth(true);
+    var height = $(document.body).outerHeight(true);
 
     $('.content .CompanyData').css({
         'max-width':width-785,
@@ -122,16 +122,16 @@ function selectAllStockType(hj){
         success: function (res) {
             $('.stockType').html('');
             $('.importPal .type').html('');
-            let str = '';
+            var str = '';
             if(res.b){
-                let types = JSON.parse(res.result);
+                var types = JSON.parse(res.result);
                 if(hj == '1'){
-                	for (let i = 0 ; i < types.length ; i++){
+                	for (var i = 0 ; i < types.length ; i++){
                         str += '<option value="' + types[i].id + '">' + types[i].name + '</option>';
                     }
                     $('.stockType').html(str);
                 }else if(hj == '2'){
-                	for (let i = 0 ; i < types.length ; i++){
+                	for (var i = 0 ; i < types.length ; i++){
                         str += '<option value="' + types[i].id + ';' + types[i].name + '">' + types[i].name + '</option>';
                     }
                     $('.importPal .type').html(str);
@@ -153,16 +153,16 @@ function selectAllStockExchange(hj){
         success: function (res) {
             $('.stockExchange').html('');
             $('.importPal .add').html('');
-            let str = '';
+            var str = '';
             if(res.b){
-                let types = JSON.parse(res.result);
+                var types = JSON.parse(res.result);
                 if(hj == '1'){
-                	for (let i = 0 ; i < types.length ; i++){
+                	for (var i = 0 ; i < types.length ; i++){
                         str += '<option value="' + types[i].id + '">' + types[i].name + '</option>';
                     }
                     $('.stockExchange').html(str);
                 }else if(hj == '2'){
-                	for (let i = 0 ; i < types.length ; i++){
+                	for (var i = 0 ; i < types.length ; i++){
                         str += '<option value="' + types[i].id + ';' + types[i].name + '">' + types[i].name + '</option>';
                     }
                 	$('.importPal .add').html(str);
@@ -175,21 +175,21 @@ function selectAllStockExchange(hj){
 
 //保存基础数据
 function saveData(){
-    let companyId = $(".companyId").val();
-    let chName = $(".chName").val();
-    let chShortName = $(".chShortName").val();
-    let enName = $(".enName").val();
-    let enShortName = $(".enShortName").val();
-    let registerTime = StringToDate($(".registerTime").val()).toString();
-    let url = $(".url").val();
-    let industry = $(".industry select").val();
+    var companyId = $(".companyId").val();
+    var chName = $(".chName").val();
+    var chShortName = $(".chShortName").val();
+    var enName = $(".enName").val();
+    var enShortName = $(".enShortName").val();
+    var registerTime = StringToDate($(".registerTime").val()).toString();
+    var url = $(".url").val();
+    var industry = $(".industry select").val();
 
     if(chName == ''){
         alert('请填写正确的数据');
         return;
     }
 
-    let formData =  new FormData();
+    var formData =  new FormData();
     formData.append("id", companyId);
     formData.append("chName", chName);
     formData.append("chShortName", chShortName);
@@ -200,7 +200,7 @@ function saveData(){
     formData.append("industry", industry);
     formData.append("token", token);
 
-    let u = "/updateCompany";
+    var u = "/updateCompany";
     if("" == companyId){
         u = "/insertCompany";
     }
@@ -215,7 +215,7 @@ function saveData(){
         success: function (data) {
             if(data.b){
                 alert("保存成功");
-                let company = JSON.parse(data.result);
+                var company = JSON.parse(data.result);
                 $(".companyId").val(company.id);
                 $(".chName").val(company.chName);
                 $(".chShortName").val(company.chShortName);
@@ -223,7 +223,7 @@ function saveData(){
                 $(".enShortName").val(company.enShortName);
                 $(".registerTime").val(longToDate(company.registerTime));
                 $(".url").val(company.url);
-                let industry = company.industry;
+                var industry = company.industry;
                 $('.industry select option').removeAttr('selected');
                 $('.industry').find('option[value="' + industry + '"]').attr('selected',true);
 
@@ -252,14 +252,14 @@ function resetData(){
 
 //保存公司证券数据
 function saveCompanyStock(){
-    let companyStockId = $(".companyStockId").val();
-    let companyId = $(".companyId").val();
-    let stockType = $(".stockType").val();
-    let stockCode = $(".stockCode").val();
-    let listingTime = StringToDate($(".listingTime").val()).toString();
-    let stockExchange = $(".stockExchange").val();
+    var companyStockId = $(".companyStockId").val();
+    var companyId = $(".companyId").val();
+    var stockType = $(".stockType").val();
+    var stockCode = $(".stockCode").val();
+    var listingTime = StringToDate($(".listingTime").val()).toString();
+    var stockExchange = $(".stockExchange").val();
 
-    let formData = new FormData();
+    var formData = new FormData();
     formData.append("id", companyStockId);
     formData.append("companyId", companyId);
     formData.append("stockCode", stockCode);
@@ -267,7 +267,7 @@ function saveCompanyStock(){
     formData.append("listingTime", listingTime);
     formData.append("stockExchangeId", stockExchange);
     formData.append("token", token);
-    let u;
+    var u;
     if("" == companyStockId){
         u = "/insertCompanyStock";
     }else{
@@ -307,11 +307,11 @@ function findAllCompany(){
         data: {},
         success: function (res) {
             if(res.b){
-                let result = res.result;
-                let str = '<tr><th>序号</th><th>企业名称</th><th>网址</th><th>操作</th></tr>';
-                for (let i = 0 ; i < result.length ; i++){
+                var result = res.result;
+                var str = '<tr><th>序号</th><th>企业名称</th><th>网址</th><th>操作</th></tr>';
+                for (var i = 0 ; i < result.length ; i++){
                     str += '<tr id="' + result[i].id + '" onclick="selected(this)" data="' + result[i].id + ';' + result[i].chName + ';' + result[i].chShortName + ';' + result[i].enName + ';' + result[i].enShortName + ';' + result[i].registerTime + ';' + result[i].url + ';' + result[i].industry + '">' +
-                        '<td>' + (i + 1) + '</td><td>' + result[i].chName + '</td></td><td>' + result[i].url + '</td><td><button onclick="deleteCompany(\'' + result[i].id + '\')">删除</button></td></tr>';
+                        '<td>' + (i + 1) + '</td><td>' + result[i].chName + '</td></td><td>' + result[i].url + '</td><td><button onclick="devareCompany(\'' + result[i].id + '\')">删除</button></td></tr>';
                 }
                 $('.CompanyData table').html(str);
             }
@@ -329,8 +329,8 @@ function selected(tr){
     tr.siblings('tr').css({
         'background-color':'#FFFFFF'
     });
-    let data = tr.attr('data');
-    let arr = data.split(';');
+    var data = tr.attr('data');
+    var arr = data.split(';');
 
     $(".companyId").val(arr[0]);
     $(".chName").val(arr[1]);
@@ -339,7 +339,7 @@ function selected(tr){
     $(".enShortName").val(arr[4]);
     $(".registerTime").val(longToDate(arr[5]));
     $(".url").val(arr[6]);
-    let industry = arr[7];
+    var industry = arr[7];
     $('.industry select option').removeAttr('selected');
     $('.industry').find('option[value="' + industry + '"]').attr('selected',true);
 
@@ -360,7 +360,7 @@ function selected(tr){
 
 //查询公司证券数据
 function selectCompanyStock(){
-    let companyId = $(".companyId").val();
+    var companyId = $(".companyId").val();
     $.ajax({
         url: "/selectCompanyStockByCompanyId",
         type: "POST",
@@ -370,7 +370,7 @@ function selectCompanyStock(){
         success: function (data) {
             $(".other>table").html('');
             if(data.b){
-                let result = data.result;
+                var result = data.result;
                 var str = "<tr><th>证券名称</th><th>证券编号</th><th>上市时间</th><th>上市地址</th><th>操作</th></tr>";
                 for(var i in result){
                     str += '<tr id="' + result[i].id + '">' +
@@ -408,7 +408,7 @@ function updateCompanyStock(bj){
 function removeRow(id){
     id = id.trim();
     $.ajax({
-        url: '/deleteCompanyStock',
+        url: '/devareCompanyStock',
         type: 'POST',
         data: {
             id: id,
@@ -425,10 +425,10 @@ function removeRow(id){
 
 
 
-function deleteCompany(id){
+function devareCompany(id){
     id = id.trim();
     $.ajax({
-        url: '/deleteCompany',
+        url: '/devareCompany',
         type: 'POST',
         data: {
             id: id,
@@ -447,11 +447,11 @@ function deleteCompany(id){
 
 //导入数据
 function importData(){
-    let add = $('.importPal .add').val();
-    let type = $('.importPal .type').val();
+    var add = $('.importPal .add').val();
+    var type = $('.importPal .type').val();
     add = add.split(';');
     type = type.split(';');
-    let t = '';
+    var t = '';
     switch(type[1]){
         case 'A 股':
             t = 'A';
@@ -482,7 +482,7 @@ function importData(){
                 alert("数据导入发生异常...\r\n" + res.result);
             }
         },
-        complete: function () {
+        compvare: function () {
             closeProcessing();//关闭特效
         }
     });
@@ -493,7 +493,7 @@ function importData(){
 //动态模糊筛选获取公司数据接口
 function fuzzyAcquisition(v) {
     $(v).siblings(".selectionPanel").show();
-    let value = $(v).val();
+    var value = $(v).val();
     $.ajax({
         url: "/fuzzyQueryCompany",
         type: "POST",
@@ -503,8 +503,8 @@ function fuzzyAcquisition(v) {
         success: function (res) {
             $(v).siblings(".selectionPanel").html('');
             if(res.b){
-                let list = res.result;
-                let str = '<ul>';
+                var list = res.result;
+                var str = '<ul>';
                 for(var i = 0; i < list.length; i++){
                     str += '<li id="' + list[i].id +  '" name="' + list[i].chName + '" onclick="selectionPanel(this)"><span>' + list[i].chName + '</span></li>';
                 }
@@ -520,8 +520,8 @@ function fuzzyAcquisition(v) {
 function selectionPanel(li){
     li = $(li);
     li.parents(".selectionPanel").show();
-    let id = li.attr("id");
-    let name = li.attr("name");
+    var id = li.attr("id");
+    var name = li.attr("name");
 
     $(".companyStockId").val(id);
     li.parents(".selectionPanel").siblings(".securitiesNumber").val(name);
@@ -536,7 +536,7 @@ function selectionPanel(li){
 function selectCompanyInfoById(){
     $(".enterpriseInfo .companyStocks table").html('');
     $('.enterpriseInfo .company').html('');
-    let id = $('.id').val().trim();
+    var id = $('.id').val().trim();
     if(id == ''){
         alert('请录入有效的搜索条件');
         return;
@@ -550,10 +550,10 @@ function selectCompanyInfoById(){
         success: function (res) {
 
             if(res.b){
-                let result = res.result;
-                let str = '<tr><th>序号</th><th>企业名称</th><th>网址</th><th>操作</th></tr>' +
+                var result = res.result;
+                var str = '<tr><th>序号</th><th>企业名称</th><th>网址</th><th>操作</th></tr>' +
                     '<tr id="' + result.id + '" onclick="selected(this)" data="' + result.id + ';' + result.chName + ';' + result.chShortName + ';' + result.enName + ';' + result.enShortName + ';' + result.registerTime + ';' + result.url + ';' + result.industry + '">' +
-                    '<td>1</td><td>' + result.chName + '</td></td><td>' + result.url + '</td><td><button onclick="deleteCompany(\'' + result.id + '\')">删除</button></td></tr>';;
+                    '<td>1</td><td>' + result.chName + '</td></td><td>' + result.url + '</td><td><button onclick="devareCompany(\'' + result.id + '\')">删除</button></td></tr>';;
 
                 $('.CompanyData table').html(str);
                 $('.CompanyData .text .securitiesNumber').val('');

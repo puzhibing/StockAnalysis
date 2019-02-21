@@ -1,7 +1,7 @@
 
-let token = '';
-let height;
-let width;
+var token = '';
+var height;
+var width;
 
 $(function () {
     height = $(document.body).outerHeight(true);
