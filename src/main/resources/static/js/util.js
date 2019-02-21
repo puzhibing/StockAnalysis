@@ -6,12 +6,13 @@ function StringToDate(strDate){
     strDate = $.trim(strDate);
     if(null != strDate && strDate.length > 0){
         var date;
+        var d;
         if(strDate.indexOf(" ") != -1){
-            var d = strDate.substring(0 , strDate.indexOf(" ")).split("-");
+            d = strDate.substring(0 , strDate.indexOf(" ")).split("-");
             var m = strDate.substring(strDate.indexOf(" ") + 1 , strDate.length).split(":");
             date = new Date(parseInt(d[0]) , parseInt(d[1]) , parseInt(d[2]) , parseInt(m[0]) , parseInt(m[1]) , parseInt(m[2]));
         }else{
-            var d = strDate.split("-");
+            d = strDate.split("-");
             date = new Date(parseInt(d[0]) , parseInt(d[1]) , parseInt(d[2]));
         }
         return date;
@@ -45,7 +46,7 @@ function getURLParameters(key){
     var value = '';
     var url = window.location.href.trim();
     var arr = url.split('?');
-    if(arr[1].indexOf('&') != 0){
+    if(arr[1].indexOf('&') >= 0){
         var parameters = arr[1].split('&');
         for(var i = 0 ; i < parameters.length ; i++){
             var v = parameters[i].split('=');
