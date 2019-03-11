@@ -51,7 +51,7 @@ function analysisResult(list){
 function devareIndustry(id){
     id = id.trim();
     $.ajax({
-        url: '/devareIndustry',
+        url: '/deleteIndustry',
         type: 'POST',
         data: {
             id: id,
