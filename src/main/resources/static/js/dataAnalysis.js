@@ -44,12 +44,13 @@ $(function () {
 //点击菜单获取对应页面中的节点
 function getPageHtml(a) {
     var node = $(a).attr('node');
-    $.ajax({
-        url: 'reportTemplate.html',
-        type: 'GET',
-        success: function (res) {
-            var doms = $.parseHTML(res);//解析Html串
-            var imgs = $(doms).find('div').length;//children()方法：查找元素
-        }
-    });
+    var url = '';
+    switch (node) {
+        case 'stdtar':
+            url = 'stdtar.html';
+            break;
+        default:
+            break;
+    }
+    $('.content').load(url);//获取页面
 }
