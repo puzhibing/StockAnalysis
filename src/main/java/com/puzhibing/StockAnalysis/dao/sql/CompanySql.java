@@ -90,10 +90,23 @@ public class CompanySql {
 			WHERE("del = '0' and id = #{id}");
 		}}.toString();
 	}
-	
-	
-	
-	
+
+
+	/**
+	 * 根据行业id查询数据
+	 * @param industry
+	 * @return
+	 */
+	public String selectCompanyByIndustry(String industry) {
+		return new SQL() {{
+			SELECT("id , chName , chShortName , enName , enShortName , registerTime , industry , url , del");
+			SELECT("insertUserId , insertTime , updateUserId , updateTime");
+			FROM("t_company");
+			WHERE("del = '0' and industry = #{industry}");
+		}}.toString();
+	}
+
+
 	
 	/**
 	 * 根据名称动态查询英文名称或中文名称

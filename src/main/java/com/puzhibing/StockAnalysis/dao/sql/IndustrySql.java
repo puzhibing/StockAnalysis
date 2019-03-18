@@ -32,10 +32,21 @@ public class IndustrySql {
 			WHERE("code = #{code} and del = '0'");
 		}}.toString();
 	}
-	
-	
-	
-	
+
+	/**
+	 * 根据id查询数据
+	 * @param id
+	 * @return
+	 */
+	public String selectIndustryById(String id) {
+		return new SQL() {{
+			SELECT("id , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
+			FROM("t_industry");
+			WHERE("id = #{id} and del = '0'");
+		}}.toString();
+	}
+
+
 	/**
 	 * 修改数据
 	 * @param industry

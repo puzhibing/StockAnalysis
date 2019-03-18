@@ -1,5 +1,6 @@
 package com.puzhibing.StockAnalysis.dao.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.InsertProvider;
@@ -45,5 +46,5 @@ public interface CurrentAssetsMapper {
 	 * @return
 	 */
 	@SelectProvider(type = CurrentAssetsSql.class , method = "selectCurrentAssetsBycompanyStockId")
-	List<CurrentAssets> selectCurrentAssetsBycompanyStockId(String companyStockId);
+	List<CurrentAssets> selectCurrentAssetsBycompanyStockId(String companyStockId , Date startTime , Date endTime);
 }

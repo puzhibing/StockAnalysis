@@ -4,6 +4,8 @@ import org.apache.ibatis.jdbc.SQL;
 
 import com.puzhibing.StockAnalysis.pojo.NonCurrentLiabilities;
 
+import java.util.Date;
+
 public class NonCurrentLiabilitiesSql {
 
 	
@@ -68,12 +70,16 @@ public class NonCurrentLiabilitiesSql {
 	 * @param companyStockId
 	 * @return
 	 */
-	public String selectNonCurrentLiabilitiesByCompanyStockId(String companyStockId) {
+	public String selectNonCurrentLiabilitiesByCompanyStockId(String companyStockId , Date startTime , Date endTime) {
 		return new SQL() {{
 			SELECT("id , companyStockId , dataTime , ltl , bondsPayable , ltp , specialPayable , estimatedLiabilities , deferredIncome , ditl , dncl , tncl");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_noncurrentliabilities");
-			WHERE("del = '0' and companyStockId = #{companyStockId}");
+			if(null != startTime && null != endTime){
+				WHERE("del = '0' and companyStockId = #{param1} and dataTime BETWEEN #{param2} AND #{param3}");
+			}else {
+				WHERE("del = '0' and companyStockId = #{companyStockId}");
+			}
 		}}.toString();
 	}
 	

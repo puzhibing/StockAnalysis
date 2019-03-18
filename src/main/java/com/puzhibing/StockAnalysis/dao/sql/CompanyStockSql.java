@@ -119,4 +119,22 @@ public class CompanyStockSql {
 			WHERE("companyId = #{param1} and stockTypeId = #{param2}");
 		}}.toString();
 	}
+
+
+	/**
+	 * 根据行业id和证券类型id查询数据
+	 * @param IndustryId
+	 * @param stockTypeId
+	 * @return
+	 */
+	public String selectCompanyStockByIndustryAndStockTypeId(String IndustryId , String stockTypeId){
+		return new SQL() {{
+			SELECT("id , companyId , stockCode , stockTypeId , listingTime , stockExchangeId , del");
+			SELECT("insertUserId , insertTime , updateUserId , updateTime");
+			FROM("t_companystock  AS a");
+			WHERE("a.del = '0' AND stockTypeId = #{stockTypeId} AND a.companyId IN (" +
+					"SELECT id FROM t_company AS b WHERE b.industry = #{IndustryId} AND b.del = '0'" +
+					")");
+		}}.toString();
+	}
 }

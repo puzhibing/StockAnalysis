@@ -140,7 +140,7 @@ public class CurrentAssetsServiceImpl implements CurrentAssetsService {
 		resultBean = new ResultBean<>();
 		if(!StringUtils.isEmpty(companyStockId)) {
 			try {
-				list = currentAssetsMapper.selectCurrentAssetsBycompanyStockId(companyStockId);
+				list = currentAssetsMapper.selectCurrentAssetsBycompanyStockId(companyStockId , null , null);
 				resultBean.setResult(JSON.toJSONString(list));
 			} catch (Exception e) {
 				throw e;

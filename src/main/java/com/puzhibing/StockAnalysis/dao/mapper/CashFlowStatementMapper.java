@@ -13,7 +13,7 @@ public interface CashFlowStatementMapper {
 	
 	/**
 	 * 添加数据
-	 * @param cashFlow
+	 * @param cashFlowStatement
 	 */
 	@InsertProvider(type = CashFlowStatementSql.class , method = "insertCashFlowStatement")
 	void insertCashFlowStatement(CashFlowStatement cashFlowStatement);

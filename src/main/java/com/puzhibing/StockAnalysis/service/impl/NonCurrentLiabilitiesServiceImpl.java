@@ -133,7 +133,7 @@ public class NonCurrentLiabilitiesServiceImpl implements NonCurrentLiabilitiesSe
 		resultBean = new ResultBean<>();
 		if (!StringUtils.isEmpty(companyStockId)) {
 			try {
-				list = nonCurrentLiabilitiesMapper.selectNonCurrentLiabilitiesByCompanyStockId(companyStockId);
+				list = nonCurrentLiabilitiesMapper.selectNonCurrentLiabilitiesByCompanyStockId(companyStockId , null , null);
 				resultBean.setB(true);
 				resultBean.setResult(JSON.toJSONString(list));
 			} catch (Exception e) {

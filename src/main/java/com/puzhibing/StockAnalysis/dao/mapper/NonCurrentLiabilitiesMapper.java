@@ -1,5 +1,6 @@
 package com.puzhibing.StockAnalysis.dao.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.InsertProvider;
@@ -47,6 +48,6 @@ public interface NonCurrentLiabilitiesMapper {
 	 * @return
 	 */
 	@SelectProvider(type = NonCurrentLiabilitiesSql.class , method = "selectNonCurrentLiabilitiesByCompanyStockId")
-	List<NonCurrentLiabilities> selectNonCurrentLiabilitiesByCompanyStockId(String companyStockId);
+	List<NonCurrentLiabilities> selectNonCurrentLiabilitiesByCompanyStockId(String companyStockId , Date startTime , Date endTime);
 	
 }

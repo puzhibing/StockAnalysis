@@ -140,7 +140,7 @@ public class CurrentLiabilitiesServiceImpl implements CurrentLiabilitiesService 
 		resultBean = new ResultBean<>();
 		if(!StringUtils.isEmpty(companyStockId)) {
 			try {
-				list = currentLiabilitiesMapper.selectCurrentLiabilities(companyStockId);
+				list = currentLiabilitiesMapper.selectCurrentLiabilities(companyStockId , null , null);
 				resultBean.setResult(JSON.toJSONString(list));
 			} catch (Exception e) {
 				throw e;

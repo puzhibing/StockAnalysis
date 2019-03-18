@@ -20,6 +20,15 @@ public interface IndustryMapper {
 	 */
 	@SelectProvider(type = IndustrySql.class , method = "selectIndustryByCode")
 	Industry selectIndustryByCode(String code);
+
+
+	/**
+	 * 根据id查询数据
+	 * @param id
+	 * @return
+	 */
+	@SelectProvider(type = IndustrySql.class , method = "selectIndustryById")
+	Industry selectIndustryById(String id);
 	
 	
 	/**

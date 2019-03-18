@@ -93,4 +93,13 @@ public interface CompanyMapper {
 	 */
 	@SelectProvider(type = CompanySql.class , method = "selectCompanyById")
 	Company selectCompanyById(String id);
+
+
+	/**
+	 * 根据行业id查询数据
+	 * @param industry
+	 * @return
+	 */
+	@SelectProvider(type = CompanySql.class , method = "selectCompanyByIndustry")
+	List<Company> selectCompanyByIndustry(String industry);
 }

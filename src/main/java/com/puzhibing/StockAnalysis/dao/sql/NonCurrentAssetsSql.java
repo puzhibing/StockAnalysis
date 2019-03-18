@@ -4,6 +4,8 @@ import org.apache.ibatis.jdbc.SQL;
 
 import com.puzhibing.StockAnalysis.pojo.NonCurrentAssets;
 
+import java.util.Date;
+
 public class NonCurrentAssetsSql {
 
 	
@@ -73,13 +75,17 @@ public class NonCurrentAssetsSql {
 	 * @param companyStockId
 	 * @return
 	 */
-	public String selectNonCurrentAssetsByCompanyStockId(String companyStockId) {
+	public String selectNonCurrentAssetsByCompanyStockId(String companyStockId , Date startTime , Date endTime) {
 		return new SQL() {{
 			SELECT("id , companyStockId , dataTime , afsfa , haei , ltr , ltbi , ire , fixedAssets , cap , engineerMaterial");
 			SELECT("fac , pba , gasolineAssets , intangibleAssets , de , goodwill , ltpe , dta , onca , tnca");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_noncurrentassets");
-			WHERE("del = '0'");
+			if(null != startTime && null != endTime){
+				WHERE("del = '0' and companyStockId = #{param1} and dataTime BETWEEN #{param2} AND #{param3}");
+			}else {
+				WHERE("del = '0' and companyStockId = #{companyStockId}");
+			}
 			ORDER_BY("dataTime DESC");
 		}}.toString();
 	} 

@@ -1,17 +1,44 @@
 package com.puzhibing.StockAnalysis.service;
 
-import com.puzhibing.StockAnalysis.pojo.ResultBean;
+import com.puzhibing.StockAnalysis.utils.ResultBeanUtil;
 
 public interface DataAnalysisService {
 
     /**
-     * 短期负债资产比
+     * 资产/负债比
      * @param startTime
      * @param endTime
-     * @param IndustryId
+     * @param industryId
+     * @param companyStockId
      * @param value
      * @return
      * @throws Exception
      */
-    ResultBean<Object> stdtar(String startTime , String endTime , String IndustryId , String value) throws Exception;
+    ResultBeanUtil<Object> assetLiabilityRatio(String startTime , String endTime , String industryId , String companyStockId , String value) throws Exception;
+
+
+    /**
+     * 流动资产/非流动资产比
+     * @param startTime
+     * @param endTime
+     * @param industryId
+     * @param companyStockId
+     * @param value
+     * @return
+     * @throws Exception
+     */
+    ResultBeanUtil<Object> cancar(String startTime , String endTime , String industryId , String companyStockId , String value) throws Exception;
+
+
+    /**
+     * 流动负债/非流动负债比
+     * @param startTime
+     * @param endTime
+     * @param industryId
+     * @param companyStockId
+     * @param value
+     * @return
+     * @throws Exception
+     */
+    ResultBeanUtil<Object> clnclr(String startTime , String endTime , String industryId , String companyStockId , String value) throws Exception;
 }

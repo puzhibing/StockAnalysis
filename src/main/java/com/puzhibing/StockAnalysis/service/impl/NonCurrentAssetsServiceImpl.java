@@ -136,7 +136,7 @@ public class NonCurrentAssetsServiceImpl implements NonCurrentAssetsService {
 		resultBean = new ResultBean<>();
 		if(!StringUtils.isEmpty(companyStockId)) {
 			try {
-				list = nonCurrentAssetsMapper.selectNonCurrentAssetsByCompanyStockId(companyStockId);
+				list = nonCurrentAssetsMapper.selectNonCurrentAssetsByCompanyStockId(companyStockId , null , null);
 				resultBean.setB(true);
 				resultBean.setResult(JSON.toJSONString(list));
 			} catch (Exception e) {

@@ -46,8 +46,14 @@ function getPageHtml(a) {
     var node = $(a).attr('node');
     var url = '';
     switch (node) {
-        case 'stdtar':
-            url = 'stdtar.html';
+        case 'assetLiabilityRatio':
+            url = 'assetLiabilityRatio.html';
+            break;
+        case 'cancar':
+            url = 'cancar.html';
+            break;
+        case 'clnclr':
+            url = 'clnclr.html';
             break;
         default:
             break;

@@ -1,0 +1,58 @@
+<!DOCTYPE html> <!- 资产/负债比 ->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/assetLiabilityRatio.css"/>
+</head>
+<body>
+    <div class="stdtar-home">
+        <div class="stdtar-content">
+            <div class="stdtar-queryConditions">
+                <div>
+                    <label for="start">开始日期</label>
+                    <input type="month" id="start" class="star-time">
+                </div>
+                <div>
+                    <label for="end">结束日期</label>
+                    <input type="month" id="end" class="end-time">
+                </div>
+                <div>
+                    <label for="industry">所属行业</label>
+                    <select id="industry" class="industry">
+
+                    </select>
+                </div>
+                <div>
+                    <label for="stockType">证券类型</label>
+                    <select class="stockType" id="stockType">
+
+                    </select>
+                </div>
+                <div>
+                    <label for="enterprise">企业</label>
+                    <input type="text" id="enterprise" class="enterprise">
+                    <div class="selectionPanel">
+                    </div>
+                </div>
+                <div>
+                    <button class="submit">查询</button>
+                    <button class="reset">重置</button>
+                </div>
+            </div>
+            <div class="stdtar-curve">
+                <div id="container1"></div>
+            </div>
+            <div class="stdtar-curve">
+                <div id="container2"></div>
+            </div>
+            <div class="stdtar-curve">
+                <div id="container3"></div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="../Highcharts-6.2.0/highcharts.js"></script>
+<script type="text/javascript" src="../js/assetLiabilityRatio.js"></script>
+</html>

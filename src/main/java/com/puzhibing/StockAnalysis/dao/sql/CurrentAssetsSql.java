@@ -4,6 +4,8 @@ import org.apache.ibatis.jdbc.SQL;
 
 import com.puzhibing.StockAnalysis.pojo.CurrentAssets;
 
+import java.util.Date;
+
 public class CurrentAssetsSql {
 
 	
@@ -67,13 +69,17 @@ public class CurrentAssetsSql {
 	 * @param companyStockId
 	 * @return
 	 */
-	public String selectCurrentAssetsBycompanyStockId(String companyStockId) {
+	public String selectCurrentAssetsBycompanyStockId(String companyStockId , Date startTime , Date endTime) {
 		return new SQL() {{
 			SELECT("id , companyStockId , dataTime , moneyFunds , wof , tfa , dfa , bbrfa , billReceivable , accountsReceivable , prepayments");
 			SELECT("interestReceivable , dividendReceivable , otherReceivables , stock , ncadwoy , oca , tca");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_currentassets");
-			WHERE("del = '0' and companyStockId = #{companyStockId}");
+			if(null != startTime && null != endTime){
+				WHERE("del = '0' and companyStockId = #{param1} and dataTime BETWEEN #{param2} AND #{param3}");
+			}else {
+				WHERE("del = '0' and companyStockId = #{companyStockId}");
+			}
 			ORDER_BY("dataTime DESC");
 		}}.toString();
 	}

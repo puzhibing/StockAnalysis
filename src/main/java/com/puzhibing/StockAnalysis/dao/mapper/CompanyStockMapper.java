@@ -3,12 +3,7 @@ package com.puzhibing.StockAnalysis.dao.mapper;
 
 import java.util.List;
 
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.One;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.SelectProvider;
-import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.annotations.*;
 
 import com.puzhibing.StockAnalysis.dao.sql.CompanyStockSql;
 import com.puzhibing.StockAnalysis.pojo.CompanyStock;
@@ -125,4 +120,14 @@ public interface CompanyStockMapper {
 	 */
 	@SelectProvider(type = CompanyStockSql.class , method = "selectCompanyStockByCompanyIdAndStockTypeId")
 	CompanyStock selectCompanyStockByCompanyIdAndStockTypeId(String companyId , String stockTypeId);
+
+
+	/**
+	 * 根据行业id和证券类型id查询数据
+	 * @param IndustryId
+	 * @param stockTypeId
+	 * @return
+	 */
+	@SelectProvider(type = CompanyStockSql.class , method = "selectCompanyStockByIndustryAndStockTypeId")
+	List<CompanyStock> selectCompanyStockByIndustryAndStockTypeId(String IndustryId , String stockTypeId);
 }
