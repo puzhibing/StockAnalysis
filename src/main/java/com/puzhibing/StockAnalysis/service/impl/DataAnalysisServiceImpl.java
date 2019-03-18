@@ -6,9 +6,9 @@ import com.puzhibing.StockAnalysis.service.DataAnalysisService;
 import com.puzhibing.StockAnalysis.utils.DateUtilEnum;
 import com.puzhibing.StockAnalysis.utils.DateUtils;
 import com.puzhibing.StockAnalysis.utils.ResultBeanUtil;
+import com.puzhibing.StockAnalysis.utils.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -60,10 +60,10 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
         Map<String , Object> _map_ = new HashMap<>();
         try {
             List<CompanyStock> companyStocks = null;
-            if(!StringUtils.isEmpty(industryId)){
+            if(StringUtils.isNotEmpty(industryId)){
                 companyStocks = companyStockMapper.selectCompanyStockByIndustryAndStockTypeId(industryId , stockTypeId);
 
-            }else if(!StringUtils.isEmpty(companyId)){
+            }else if(StringUtils.isNotEmpty(companyId)){
                 companyStocks = new ArrayList<>();
                 CompanyStock companyStock =
                     companyStockMapper.selectCompanyStockByCompanyIdAndStockTypeId(companyId , stockTypeId);
@@ -81,9 +81,15 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                 Map<String , Object> map2 = new HashMap<>();
                 Map<String , Object> map3 = new HashMap<>();
                 Company company = companyMapper.selectCompanyById(c.getCompanyId());
-                map1.put("name" , company.getChName() + " ( " + c.getStockCode() + ")");
-                map2.put("name" , company.getChName() + " ( " + c.getStockCode() + ")");
-                map3.put("name" , company.getChName() + " ( " + c.getStockCode() + ")");
+                String name = "";
+                if(StringUtils.isNotEmpty(company.getChShortName())){
+                    name = company.getChShortName();
+                }else{
+                    name = company.getChName();
+                }
+                map1.put("name" , name + "(" + c.getStockCode() + ")");
+                map2.put("name" , name + "(" + c.getStockCode() + ")");
+                map3.put("name" , name + "(" + c.getStockCode() + ")");
 
                 //获取基础数据
                 List<CurrentAssets> currentAssets =
@@ -224,7 +230,13 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
             for (CompanyStock c : companyStocks) {
                 Map<String, Object> map1 = new HashMap<>();
                 Company company = companyMapper.selectCompanyById(c.getCompanyId());
-                map1.put("name", company.getChName() + " ( " + c.getStockCode() + ")");
+                String name = "";
+                if(StringUtils.isNotEmpty(company.getChShortName())){
+                    name = company.getChShortName();
+                }else{
+                    name = company.getChName();
+                }
+                map1.put("name", name + "(" + c.getStockCode() + ")");
 
                 //获取基础数据
                 List<CurrentAssets> currentAssets =
@@ -308,7 +320,13 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
             for (CompanyStock c : companyStocks) {
                 Map<String, Object> map1 = new HashMap<>();
                 Company company = companyMapper.selectCompanyById(c.getCompanyId());
-                map1.put("name", company.getChName() + " ( " + c.getStockCode() + ")");
+                String name = "";
+                if(StringUtils.isNotEmpty(company.getChShortName())){
+                    name = company.getChShortName();
+                }else{
+                    name = company.getChName();
+                }
+                map1.put("name", name + "(" + c.getStockCode() + ")");
 
                 //获取基础数据
                 List<CurrentLiabilities> currentLiabilities =
