@@ -132,8 +132,8 @@ public class CompanyStockSql {
 			SELECT("id , companyId , stockCode , stockTypeId , listingTime , stockExchangeId , del");
 			SELECT("insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_companystock  AS a");
-			WHERE("a.del = '0' AND stockTypeId = #{stockTypeId} AND a.companyId IN (" +
-					"SELECT id FROM t_company AS b WHERE b.industry = #{IndustryId} AND b.del = '0'" +
+			WHERE("a.del = '0' AND stockTypeId = #{param2} AND a.companyId IN (" +
+					"SELECT id FROM t_company AS b WHERE b.industry = #{param1} AND b.del = '0'" +
 					")");
 		}}.toString();
 	}

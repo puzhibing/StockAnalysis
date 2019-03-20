@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.puzhibing.StockAnalysis.pojo.Industry;
 import com.puzhibing.StockAnalysis.pojo.ResultBean;
+import com.puzhibing.StockAnalysis.utils.ResultBeanUtil;
 
 public interface IndustryService {
 
@@ -30,12 +31,12 @@ public interface IndustryService {
 	
 	/**
 	 * 删除数据
-	 * @param industry
+	 * @param id
 	 * @param token
 	 * @return
 	 * @throws Exception
 	 */
-	ResultBean<Object> deleteIndustry(Industry industry, String token) throws Exception;
+	ResultBean<Object> deleteIndustry(String id, String token) throws Exception;
 	
 	
 	/**
@@ -44,4 +45,13 @@ public interface IndustryService {
 	 * @throws Exception
 	 */
 	ResultBean<List<Industry>> selectAllIndustry() throws Exception;
+
+
+	/**
+	 * 根据父类id查询数据
+	 * @param parentId
+	 * @return
+	 * @throws Exception
+	 */
+	ResultBeanUtil<List<Industry>> selectDataByParentId(String parentId) throws Exception;
 }

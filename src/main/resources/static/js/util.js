@@ -25,9 +25,9 @@ function longToDate(long){
     var date = new Date(long);
     var str = date.getFullYear() + '-' ;
         if(date.getMonth() < 10){
-            str += '0' + date.getMonth() + '-';
+            str += '0' + (date.getMonth() + 1) + '-';
         }else{
-            str += date.getMonth() + '-';
+            str += (date.getMonth() + 1) + '-';
         }
 
     if(date.getDate() < 10){

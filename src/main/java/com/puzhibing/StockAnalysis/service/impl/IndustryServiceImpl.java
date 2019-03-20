@@ -3,6 +3,7 @@ package com.puzhibing.StockAnalysis.service.impl;
 import java.util.Date;
 import java.util.List;
 
+import com.puzhibing.StockAnalysis.utils.ResultBeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +35,8 @@ public class IndustryServiceImpl implements IndustryService {
 	private User user;
 	
 	private ResultBean<Object> resultUtil;
+
+	private ResultBeanUtil<List<Industry>> resultBeanList;
 
 	
 	/**
@@ -90,19 +93,20 @@ public class IndustryServiceImpl implements IndustryService {
 	
 	/**
 	 * 删除数据
-	 * @param industry
+	 * @param id
 	 * @param token
 	 * @return
 	 * @throws Exception
 	 */
 	@Override
-	public ResultBean<Object> deleteIndustry(Industry industry, String token) throws Exception {
+	public ResultBean<Object> deleteIndustry(String id, String token) throws Exception {
 		resultUtil = new ResultBean<Object>();
 		user = tokenutil.tokenToUser(token);
-		industry.setDel("-1");
-		industry.setUpdateTime(new Date());
-		industry.setUpdateUserId(user.getId());
 		try {
+			Industry industry = industryMapper.selectIndustryById(id);
+			industry.setDel("-1");
+			industry.setUpdateTime(new Date());
+			industry.setUpdateUserId(user.getId());
 			industryMapper.deleteIndustry(industry);
 			resultUtil.setB(true);
 		} catch (Exception e) {
@@ -130,6 +134,25 @@ public class IndustryServiceImpl implements IndustryService {
 			throw e;
 		}
 		return resultBean;
+	}
+
+
+	/**
+	 * 根据父类id查询数据
+	 * @param parentId
+	 * @return
+	 * @throws Exception
+	 */
+	@Override
+	public ResultBeanUtil<List<Industry>> selectDataByParentId(String parentId) throws Exception {
+		try {
+			List<Industry> industries =
+				industryMapper.selectDataByParentId(parentId);
+			resultBeanList = ResultBeanUtil.getResultBeanUtil("查询成功" , true , industries);
+		}catch (Exception e){
+			throw e;
+		}
+		return resultBeanList;
 	}
 
 }

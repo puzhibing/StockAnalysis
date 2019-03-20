@@ -47,7 +47,6 @@ $(document).ready(function() {
         getData();
     });
 
-
     $('.stdtar-home .stdtar-queryConditions .industry').click(function () {
         $('.selectionPanelIndustry .table .condition').html('');
         getDataLi('.selectionPanelIndustry .table .condition' , "0");
@@ -65,7 +64,6 @@ $(document).ready(function() {
     $('.selectionPanelIndustry .table').css({
         'left': (width - 500) / 2,
     });
-
 });
 
 
@@ -143,7 +141,7 @@ function getData() {
     var end = $('.end-time').val();
     var stockType = $('.stockType').val();
     $.ajax({
-        url: '/DataAnalysis/assetLiabilityRatio',
+        url: '/DataAnalysis/managementCapacity',
         type: 'POST',
         data: {
             startTime: start,
@@ -155,9 +153,7 @@ function getData() {
         success: function (res) {
             if(res.b){
                 var list = res.result;
-                constructionCurve1(list[0].date , list[0].value);
-                constructionCurve2(list[1].date , list[1].value);
-                constructionCurve3(list[2].date , list[2].value);
+                constructionCurve1(list.date , list.value);
             }
         }
     });
@@ -168,7 +164,7 @@ function getData() {
 //构建曲线图
 function constructionCurve1(xAxis , series) {
     var title = {
-        text: '短期资产/负债比'
+        text: '营收比（营业收入/营业支出）'
     };
     var xAxis = {
         categories: xAxis
@@ -206,100 +202,8 @@ function constructionCurve1(xAxis , series) {
     json.series = series;
     json.credits = credits;
 
-    $('#container1').highcharts(json);
+    $('#container').highcharts(json);
 }
-
-
-
-function constructionCurve2(xAxis , series) {
-    var title = {
-        text: '长期资产/负债比'
-    };
-    var xAxis = {
-        categories: xAxis
-    };
-    var yAxis = {
-        title: {
-            text: '比例'
-        },
-        plotLines: [{
-            value: 0,
-            width: 1,
-            color: '#808080'
-        }]
-    };
-
-    var legend = {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        borderWidth: 0
-    };
-
-    var series =  series;
-
-    var credits = {
-        enabled: false
-    };
-
-    var json = {};
-
-    json.title = title;
-    json.xAxis = xAxis;
-    json.yAxis = yAxis;
-    json.legend = legend;
-    json.series = series;
-    json.credits = credits;
-
-    $('#container2').highcharts(json);
-}
-
-
-
-function constructionCurve3(xAxis , series) {
-    var title = {
-        text: '综合资产/负债比'
-    };
-    var xAxis = {
-        categories: xAxis
-    };
-    var yAxis = {
-        title: {
-            text: '比例'
-        },
-        plotLines: [{
-            value: 0,
-            width: 1,
-            color: '#808080'
-        }]
-    };
-
-    var legend = {
-        layout: 'vertical',
-        align: 'right',
-        verticalAlign: 'middle',
-        borderWidth: 0
-    };
-
-    var series =  series;
-
-    var credits = {
-        enabled: false
-    };
-
-    var json = {};
-
-    json.title = title;
-    json.xAxis = xAxis;
-    json.yAxis = yAxis;
-    json.legend = legend;
-    json.series = series;
-    json.credits = credits;
-
-    $('#container3').highcharts(json);
-}
-
-
 
 
 /**

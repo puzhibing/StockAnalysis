@@ -14,8 +14,8 @@ public class IndustrySql {
 	public String insertIndustry(Industry industry) {
 		return new SQL() {{
 			INSERT_INTO("t_industry");
-			INTO_COLUMNS("id , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
-			INTO_VALUES("#{id}, #{code}, #{name}, #{del}, #{insertUserId}, #{insertTime}, #{updateUserId}, #{updateTime}");
+			INTO_COLUMNS("id , parentId , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
+			INTO_VALUES("#{id} , #{parentId} , #{code}, #{name}, #{del}, #{insertUserId}, #{insertTime}, #{updateUserId}, #{updateTime}");
 		}}.toString();
 	}
 	
@@ -27,7 +27,7 @@ public class IndustrySql {
 	 */
 	public String selectIndustryByCode(String code) {
 		return new SQL() {{
-			SELECT("id , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
+			SELECT("id , parentId , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_industry");
 			WHERE("code = #{code} and del = '0'");
 		}}.toString();
@@ -40,7 +40,7 @@ public class IndustrySql {
 	 */
 	public String selectIndustryById(String id) {
 		return new SQL() {{
-			SELECT("id , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
+			SELECT("id , parentId , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_industry");
 			WHERE("id = #{id} and del = '0'");
 		}}.toString();
@@ -83,9 +83,24 @@ public class IndustrySql {
 	 */
 	public String selectAllIndustry() {
 		return new SQL() {{
-			SELECT("id , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
+			SELECT("id , parentId , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_industry");
 			WHERE("del = '0'");
+			ORDER_BY("code");
+		}}.toString();
+	}
+
+
+	/**
+	 * 根据父类id查询数据
+	 * @param parentId
+	 * @return
+	 */
+	public String selectDataByParentId(String parentId) {
+		return new SQL() {{
+			SELECT("id , parentId , code , name , del , insertUserId , insertTime , updateUserId , updateTime");
+			FROM("t_industry");
+			WHERE("del = '0' and parentId = #{parentId}");
 			ORDER_BY("code");
 		}}.toString();
 	}

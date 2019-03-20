@@ -1,5 +1,6 @@
 package com.puzhibing.StockAnalysis.dao.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.InsertProvider;
@@ -31,5 +32,5 @@ public interface ProfitMapper {
 	 * @return
 	 */
 	@SelectProvider(type = ProfitSql.class , method = "selectProfitByCompanyStockId")
-	List<Profit> selectProfitByCompanyStockId(String companyStockId);
+	List<Profit> selectProfitByCompanyStockId(String companyStockId , Date startTime , Date endTime);
 }

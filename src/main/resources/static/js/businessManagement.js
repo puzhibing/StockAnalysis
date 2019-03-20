@@ -1,5 +1,6 @@
 
 var token = '';
+var industryId = '';
 
 //初始化
 $(document).ready(function () {
@@ -18,7 +19,6 @@ $(document).ready(function () {
 
     selectAllStockExchange('1');
 
-    selectAllIndustry();
 
     //绑定表单值发生变化处理函数
     $('.securitiesNumber').bind('input propertychange', function() {
@@ -62,6 +62,20 @@ $(document).ready(function () {
     $('.importData').click(function () {
         importData();
     });
+    
+    $('.content .data .industry').click(function () {
+        $('.selectionPanelIndustry .table .condition').html('');
+        getData('.selectionPanelIndustry .table .condition' , "0");
+        $('.selectionPanelIndustry').show();
+    });
+
+    $('.selectionPanelIndustry .table .title i').click(function () {
+        $('.selectionPanelIndustry').hide();
+    });
+
+    $('.selectionPanelIndustry .table .foot button').click(function () {
+        doubleClickLi();
+    });
 
 });
 
@@ -89,28 +103,13 @@ function initStyle(){
         'top': (height - 325) / 2,
         'left': (width - 225) / 2,
     });
-}
 
-
-//获取所有行业数据
-function selectAllIndustry(){
-    $.ajax({
-        url: '/selectAllIndustry',
-        type: 'POST',
-        success: function (res){
-            $('.industry').html('<span>所属行业：</span>');
-            var str = '<span>所属行业：</span><select><option value=""></option>';
-            if(res.b){
-                var data = res.result;
-                for(var i = 0 ; i < data.length ; i++){
-                    str += '<option value="' + data[i].code + '">' + data[i].name + '</option>';
-                }
-                str += '</select>';
-                $('.industry').html(str);
-            }
-        }
+    $('.selectionPanelIndustry .table').css({
+        'left': (width - 500) / 2,
     });
 }
+
+
 
 
 //获取所有证券类型数据
@@ -182,7 +181,6 @@ function saveData(){
     var enShortName = $(".enShortName").val();
     var registerTime = StringToDate($(".registerTime").val()).toString();
     var url = $(".url").val();
-    var industry = $(".industry select").val();
 
     if(chName == ''){
         alert('请填写正确的数据');
@@ -197,7 +195,7 @@ function saveData(){
     formData.append("enShortName", enShortName);
     formData.append("registerTime", registerTime);
     formData.append("url", url);
-    formData.append("industry", industry);
+    formData.append("industry", industryId);
     formData.append("token", token);
 
     var u = "/updateCompany";
@@ -223,9 +221,6 @@ function saveData(){
                 $(".enShortName").val(company.enShortName);
                 $(".registerTime").val(longToDate(company.registerTime));
                 $(".url").val(company.url);
-                var industry = company.industry;
-                $('.industry select option').removeAttr('selected');
-                $('.industry').find('option[value="' + industry + '"]').attr('selected',true);
 
                 $(".other button").removeAttr("disabled");
                 $(".other input").removeAttr("disabled");
@@ -244,6 +239,7 @@ function saveData(){
 //重置基础数据表单
 function resetData(){
     $(".data div table tr td input").val("");
+    industryId = '';
     $(".companyId").val("");
 }
 
@@ -310,8 +306,13 @@ function findAllCompany(){
                 var result = res.result;
                 var str = '<tr><th>序号</th><th>企业名称</th><th>网址</th><th>操作</th></tr>';
                 for (var i = 0 ; i < result.length ; i++){
-                    str += '<tr id="' + result[i].id + '" onclick="selected(this)" data="' + result[i].id + ';' + result[i].chName + ';' + result[i].chShortName + ';' + result[i].enName + ';' + result[i].enShortName + ';' + result[i].registerTime + ';' + result[i].url + ';' + result[i].industry + '">' +
-                        '<td>' + (i + 1) + '</td><td>' + result[i].chName + '</td></td><td>' + result[i].url + '</td><td><button onclick="devareCompany(\'' + result[i].id + '\')">删除</button></td></tr>';
+                    str += '<tr id="' + result[i].id + '" onclick="selected(this)" data="' + result[i].id + ';' + result[i].chName + ';' + result[i].chShortName + ';' + result[i].enName + ';' + result[i].enShortName + ';' + result[i].registerTime + ';' + result[i].url;
+                    if(null != result[i].industry && result[i].industry.length != 0){
+                        str += ';' + result[i].industry.id + ';' + result[i].industry.name + '">';
+                    }else{
+                        str += ';;">';
+                    }
+                    str += '<td>' + (i + 1) + '</td><td>' + result[i].chName + '</td></td><td>' + result[i].url + '</td><td><button onclick="devareCompany(\'' + result[i].id + '\')">删除</button></td></tr>';
                 }
                 $('.CompanyData table').html(str);
             }
@@ -339,9 +340,9 @@ function selected(tr){
     $(".enShortName").val(arr[4]);
     $(".registerTime").val(longToDate(arr[5]));
     $(".url").val(arr[6]);
-    var industry = arr[7];
-    $('.industry select option').removeAttr('selected');
-    $('.industry').find('option[value="' + industry + '"]').attr('selected',true);
+    $(".industry").val(arr[8]);
+    industryId = arr[7];
+
 
 
     $(".other button").removeAttr("disabled");
@@ -556,8 +557,13 @@ function selectCompanyInfoById(){
             if(res.b){
                 var result = res.result;
                 var str = '<tr><th>序号</th><th>企业名称</th><th>网址</th><th>操作</th></tr>' +
-                    '<tr id="' + result.id + '" onclick="selected(this)" data="' + result.id + ';' + result.chName + ';' + result.chShortName + ';' + result.enName + ';' + result.enShortName + ';' + result.registerTime + ';' + result.url + ';' + result.industry + '">' +
-                    '<td>1</td><td>' + result.chName + '</td></td><td>' + result.url + '</td><td><button onclick="devareCompany(\'' + result.id + '\')">删除</button></td></tr>';;
+                    '<tr id="' + result.id + '" onclick="selected(this)" data="' + result.id + ';' + result.chName + ';' + result.chShortName + ';' + result.enName + ';' + result.enShortName + ';' + result.registerTime + ';' + result.url;
+                    if(null != result.industry && result.industry.length != 0){
+                        str += ';' + result.industry.id + ';' + result.industry.name + '">';
+                    }else{
+                        str += ';;">';
+                    }
+                    str += '<td>1</td><td>' + result.chName + '</td></td><td>' + result.url + '</td><td><button onclick="devareCompany(\'' + result.id + '\')">删除</button></td></tr>';;
 
                 $('.CompanyData table').html(str);
                 $('.CompanyData .text .securitiesNumber').val('');
@@ -565,4 +571,73 @@ function selectCompanyInfoById(){
             }
         }
     });
+}
+
+
+
+
+/**
+ * 获取节点数据
+ * @param parentId
+ */
+function getData(parentObj , parentId){
+    $.ajax({
+        url: '/selectDataByParentId',
+        type: 'POST',
+        data: {
+            parentId: parentId
+        },
+        success: function (res) {
+            if(res.b){
+                var list = res.result;
+                var str = '<ul>';
+                for (var i = 0 ; i < list.length ; i++){
+                    str += '<li id="' + list[i].id + '">' +
+                        '   <div onclick="initLiEvent(this)">' +
+                        '       <i class="fa fa-plus-circle" aria-hidden="true"></i>' +
+                        '       <span>' + list[i].name + '</span>' +
+                        '   </div>' +
+                        '</li>';
+                }
+                str += '</ul>';
+                $(parentObj).append(str);
+            }
+        }
+    });
+}
+
+
+/**
+ * 初始化li点击事件
+ */
+function initLiEvent(div) {
+    var li = $(div).parent('li');
+    var id = li.attr('id');
+    industryId = id;
+    var clazz = $(div).children('i').attr('class');
+    if(clazz == 'fa fa-plus-circle'){
+        $(div).children('i').attr('class' , 'fa fa-minus-circle');
+        $(div).css({
+            'color':'#547576'
+        })
+        li.siblings('li').children('div').removeAttr('style');
+        li.siblings('li').children('ul').remove();
+        li.siblings('li').children('div').children('i').attr('class' , 'fa fa-plus-circle');
+        getData(li , id);
+    }else{
+        $(div).siblings('ul').remove();
+        $(div).children('i').attr('class' , 'fa fa-plus-circle');
+        $(div).removeAttr('style');
+    }
+}
+
+//点击选择处理函数
+function doubleClickLi(){
+    if('' == industryId){
+        alert('请先选择有效项');
+        return;
+    }
+    var name = $('#' + industryId).children('div').children('span').text();
+    $('.industry').val(name);
+    $('.selectionPanelIndustry').hide();
 }

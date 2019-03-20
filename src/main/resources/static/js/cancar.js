@@ -1,8 +1,10 @@
 var companyId = '';
+var industryId = '';
 
 $(document).ready(function() {
     getStockType();
-    getIndustry();
+    var width = $(document.body).outerWidth(true);
+    var height = $(document.body).outerHeight(true);
 
     $(document).click(function () {
         var se = $('.stdtar-queryConditions .selectionPanel');
@@ -47,6 +49,23 @@ $(document).ready(function() {
     });
 
 
+    $('.stdtar-home .stdtar-queryConditions .industry').click(function () {
+        $('.selectionPanelIndustry .table .condition').html('');
+        getDataLi('.selectionPanelIndustry .table .condition' , "0");
+        $('.selectionPanelIndustry').show();
+    });
+
+    $('.selectionPanelIndustry .table .title i').click(function () {
+        $('.selectionPanelIndustry').hide();
+    });
+
+    $('.selectionPanelIndustry .table .foot button').click(function () {
+        doubleClickLi();
+    });
+
+    $('.selectionPanelIndustry .table').css({
+        'left': (width - 500) / 2,
+    });
 });
 
 
@@ -56,27 +75,6 @@ function revertStyle(){
 }
 
 
-function getIndustry() {
-    $.ajax({
-        url: '/selectAllIndustry',
-        type: 'POST',
-        success: function (res) {
-            if (res.b) {
-                var list = res.result;
-                var str = '';
-                for (var i = 0; i < list.length; i++) {
-                    if (i == 0) {
-                        $('.industry').val(list[i].id);
-                        str += '<option value="' + list[i].id + '" selected="selected">' + list[i].name + '</option>';
-                    } else {
-                        str += '<option value="' + list[i].id + '">' + list[i].name + '</option>';
-                    }
-                }
-                $('.industry').append(str);
-            }
-        }
-    });
-}
 
 function getStockType() {
     $.ajax({
@@ -144,7 +142,6 @@ function selectionPanel(li){
 function getData() {
     var start = $('.star-time').val();
     var end = $('.end-time').val();
-    var industry = $('.industry').val();
     var stockType = $('.stockType').val();
     $.ajax({
         url: '/DataAnalysis/cancar',
@@ -152,7 +149,7 @@ function getData() {
         data: {
             startTime: start,
             endTime: end,
-            industryId: industry,
+            industryId: industryId,
             stockTypeId: stockType,
             companyId: companyId
         },
@@ -209,4 +206,72 @@ function constructionCurve(xAxis , series) {
     json.credits = credits;
 
     $('#container').highcharts(json);
+}
+
+
+
+/**
+ * 获取节点数据
+ * @param parentId
+ */
+function getDataLi(parentObj , parentId){
+    $.ajax({
+        url: '/selectDataByParentId',
+        type: 'POST',
+        data: {
+            parentId: parentId
+        },
+        success: function (res) {
+            if(res.b){
+                var list = res.result;
+                var str = '<ul>';
+                for (var i = 0 ; i < list.length ; i++){
+                    str += '<li id="' + list[i].id + '">' +
+                        '   <div onclick="initLiEvent(this)">' +
+                        '       <i class="fa fa-plus-circle" aria-hidden="true"></i>' +
+                        '       <span>' + list[i].name + '</span>' +
+                        '   </div>' +
+                        '</li>';
+                }
+                str += '</ul>';
+                $(parentObj).append(str);
+            }
+        }
+    });
+}
+
+
+/**
+ * 初始化li点击事件
+ */
+function initLiEvent(div) {
+    var li = $(div).parent('li');
+    var id = li.attr('id');
+    industryId = id;
+    var clazz = $(div).children('i').attr('class');
+    if(clazz == 'fa fa-plus-circle'){
+        $(div).children('i').attr('class' , 'fa fa-minus-circle');
+        $(div).css({
+            'color':'#547576'
+        })
+        li.siblings('li').children('div').removeAttr('style');
+        li.siblings('li').children('ul').remove();
+        li.siblings('li').children('div').children('i').attr('class' , 'fa fa-plus-circle');
+        getDataLi(li , id);
+    }else{
+        $(div).siblings('ul').remove();
+        $(div).children('i').attr('class' , 'fa fa-plus-circle');
+        $(div).removeAttr('style');
+    }
+}
+
+//点击选择处理函数
+function doubleClickLi(){
+    if('' == industryId){
+        alert('请先选择有效项');
+        return;
+    }
+    var name = $('#' + industryId).children('div').children('span').text();
+    $('.industry').val(name);
+    $('.selectionPanelIndustry').hide();
 }

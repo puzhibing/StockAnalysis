@@ -37,6 +37,9 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
     @Autowired
     private NonCurrentLiabilitiesMapper nonCurrentLiabilitiesMapper;
 
+    @Autowired
+    private ProfitMapper profitMapper;
+
     private ResultBeanUtil<Object> resultBeanUtilObj;
 
 
@@ -377,7 +380,97 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
     }
 
 
+    /**
+     *
+     * @param startTime
+     * @param endTime
+     * @param industryId
+     * @param stockTypeId
+     * @param companyId
+     * @return
+     * @throws Exception
+     */
+    @Override
+    public ResultBeanUtil<Object> managementCapacity(String startTime, String endTime, String industryId, String stockTypeId, String companyId) throws Exception {
+        Date start =  DateUtils.getMonth(startTime , DateUtilEnum.SHORTBAR);
+        Date end = DateUtils.getMonth(endTime , DateUtilEnum.SHORTBAR);
+        Map<String , Object> map = new HashMap<>();
+        try {
+            List<CompanyStock> companyStocks = null;
+            if(StringUtils.isNotEmpty(industryId)){
+                companyStocks = companyStockMapper.selectCompanyStockByIndustryAndStockTypeId(industryId , stockTypeId);
 
+            }else if(StringUtils.isNotEmpty(companyId)){
+                companyStocks = new ArrayList<>();
+                CompanyStock companyStock =
+                        companyStockMapper.selectCompanyStockByCompanyIdAndStockTypeId(companyId , stockTypeId);
+                companyStocks.add(companyStock);
+
+            }
+
+            List<String> dates = this.getDateByQuarter(start , end);
+
+            List<Object> list = new ArrayList<>();
+            for (CompanyStock c : companyStocks){
+                Map<String , Object> map1 = new HashMap<>();
+                Company company = companyMapper.selectCompanyById(c.getCompanyId());
+                String name = "";
+                if(StringUtils.isNotEmpty(company.getChShortName())){
+                    name = company.getChShortName();
+                }else{
+                    name = company.getChName();
+                }
+                map1.put("name" , name + "(" + c.getStockCode() + ")");
+
+                //获取基础数据
+                List<Profit> profits =
+                    profitMapper.selectProfitByCompanyStockId(c.getId() , start , end);
+
+                //解析日期，获取对应日期的数据封装进集合中
+                List<Double> datas = new ArrayList<>();
+                for (String date : dates) {
+                    double c1 = 0;
+                    for (Profit cu : profits) {
+                        if(date.equals(cu.getDataTime())){
+                            c1 = Double.valueOf(cu.getToi());
+                            break;
+                        }
+                    }
+
+                    double c2 = 0;
+                    for (Profit cu : profits) {
+                        if(date.equals(cu.getDataTime())){
+                            c2 = Double.valueOf(cu.getToc()) * -1;
+                            break;
+                        }
+                    }
+
+
+                    if(0 == c1){
+                        datas.add(c1);
+                    }else{
+                        BigDecimal b1 = new BigDecimal(c1);
+                        BigDecimal b2 = new BigDecimal(c2);
+                        double value = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
+                        datas.add(value);
+                    }
+
+
+                }
+                map1.put("data" , datas);
+                list.add(map1);
+            }
+
+            map.put("date" , dates);
+            map.put("value" , list);
+            resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("查询成功" , true , map);
+        }catch (Exception e){
+            e.printStackTrace();
+            throw e;
+        }
+
+        return resultBeanUtilObj;
+    }
 
 
     /**

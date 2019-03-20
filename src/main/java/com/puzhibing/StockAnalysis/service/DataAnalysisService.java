@@ -9,12 +9,12 @@ public interface DataAnalysisService {
      * @param startTime
      * @param endTime
      * @param industryId
-     * @param companyStockId
-     * @param value
+     * @param stockTypeId
+     * @param companyId
      * @return
      * @throws Exception
      */
-    ResultBeanUtil<Object> assetLiabilityRatio(String startTime , String endTime , String industryId , String companyStockId , String value) throws Exception;
+    ResultBeanUtil<Object> assetLiabilityRatio(String startTime, String endTime, String industryId, String stockTypeId, String companyId) throws Exception;
 
 
     /**
@@ -22,12 +22,12 @@ public interface DataAnalysisService {
      * @param startTime
      * @param endTime
      * @param industryId
-     * @param companyStockId
-     * @param value
+     * @param stockTypeId
+     * @param companyId
      * @return
      * @throws Exception
      */
-    ResultBeanUtil<Object> cancar(String startTime , String endTime , String industryId , String companyStockId , String value) throws Exception;
+    ResultBeanUtil<Object> cancar(String startTime, String endTime, String industryId, String stockTypeId, String companyId) throws Exception;
 
 
     /**
@@ -35,10 +35,23 @@ public interface DataAnalysisService {
      * @param startTime
      * @param endTime
      * @param industryId
-     * @param companyStockId
-     * @param value
+     * @param stockTypeId
+     * @param companyId
      * @return
      * @throws Exception
      */
-    ResultBeanUtil<Object> clnclr(String startTime , String endTime , String industryId , String companyStockId , String value) throws Exception;
+    ResultBeanUtil<Object> clnclr(String startTime, String endTime, String industryId, String stockTypeId, String companyId) throws Exception;
+
+
+    /**
+     * 经营能力分析
+     * @param startTime
+     * @param endTime
+     * @param industryId
+     * @param stockTypeId
+     * @param companyId
+     * @return
+     * @throws Exception
+     */
+    ResultBeanUtil<Object> managementCapacity(String startTime, String endTime, String industryId, String stockTypeId, String companyId) throws Exception;
 }

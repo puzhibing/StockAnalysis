@@ -2,6 +2,7 @@ package com.puzhibing.StockAnalysis.controller;
 
 import java.util.List;
 
+import com.puzhibing.StockAnalysis.utils.ResultBeanUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,8 @@ public class IndustryController {
 	private IndustryService industryServiceImpl;
 	
 	private ResultBean<Object> resultBean;
+
+	private ResultBeanUtil<List<Industry>> resultBeanUtilList;
 	
 	
 	
@@ -71,16 +74,16 @@ public class IndustryController {
 	
 	/**
 	 * 删除数据
-	 * @param industry
+	 * @param id
 	 * @param token
 	 * @return
 	 */
 	@RequestMapping(value = "/deleteIndustry")
-	public ResultBean<Object> deleteIndustry(Industry industry, String token){
+	public ResultBean<Object> deleteIndustry(String id, String token){
 		resultBean = new ResultBean<Object>();
-		if(null != industry && !StringUtils.isEmpty(token)) {
+		if(!StringUtils.isEmpty(id) && !StringUtils.isEmpty(token)) {
 			try {
-				resultBean = industryServiceImpl.deleteIndustry(industry, token);
+				resultBean = industryServiceImpl.deleteIndustry(id, token);
 			} catch (Exception e) {
 				e.printStackTrace();
 				resultBean.setB(false);
@@ -107,5 +110,26 @@ public class IndustryController {
 			resultBean.setB(false);
 		}
 		return resultBean;
+	}
+
+
+	/**
+	 * 根据父类id查询数据
+	 * @param parentId
+	 * @return
+	 */
+	@RequestMapping(value = "/selectDataByParentId")
+	public ResultBeanUtil<List<Industry>> selectDataByParentId(String parentId){
+		if(com.puzhibing.StockAnalysis.utils.StringUtils.isNotEmpty(parentId)){
+			try {
+				resultBeanUtilList = industryServiceImpl.selectDataByParentId(parentId);
+			}catch (Exception e){
+				e.printStackTrace();
+				resultBeanUtilList = ResultBeanUtil.getResultBeanUtil("处理逻辑异常" , false);
+			}
+		}else{
+			resultBeanUtilList = ResultBeanUtil.getResultBeanUtil("参数异常" , false);
+		}
+		return resultBeanUtilList;
 	}
 }

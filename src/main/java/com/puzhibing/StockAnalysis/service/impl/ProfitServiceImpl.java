@@ -82,7 +82,7 @@ public class ProfitServiceImpl implements ProfitService {
 		resultBean = new ResultBean<>();
 		if(!StringUtils.isEmpty(companyStockId)) {
 			try {
-				List<Profit> list = profitMapper.selectProfitByCompanyStockId(companyStockId);
+				List<Profit> list = profitMapper.selectProfitByCompanyStockId(companyStockId , null , null);
 				resultBean.setB(true);
 				resultBean.setResult(list);
 			} catch (Exception e) {

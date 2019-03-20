@@ -78,7 +78,7 @@ public class CurrentAssetsSql {
 			if(null != startTime && null != endTime){
 				WHERE("del = '0' and companyStockId = #{param1} and dataTime BETWEEN #{param2} AND #{param3}");
 			}else {
-				WHERE("del = '0' and companyStockId = #{companyStockId}");
+				WHERE("del = '0' and companyStockId = #{param1}");
 			}
 			ORDER_BY("dataTime DESC");
 		}}.toString();

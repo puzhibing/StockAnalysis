@@ -1,7 +1,10 @@
 package com.puzhibing.StockAnalysis.dao.mapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.puzhibing.StockAnalysis.pojo.CompanyStock;
+import com.puzhibing.StockAnalysis.pojo.Industry;
 import org.apache.ibatis.annotations.*;
 
 import com.puzhibing.StockAnalysis.dao.sql.CompanySql;
@@ -61,9 +64,11 @@ public interface CompanyMapper {
 		@Result(property = "enName" , column = "enName"),
 		@Result(property = "enShortName" , column = "enShortName"),
 		@Result(property = "registerTime" , column = "registerTime"),
-		@Result(property = "industry" , column = "industry"),
+		@Result(property = "industry" , column = "industry" , javaType = Industry.class, one = @One(
+				select = "com.puzhibing.StockAnalysis.dao.mapper.IndustryMapper.selectIndustryById"
+				)),
 		@Result(property = "url" , column = "url"),
-		@Result(property = "companyStocks" , column = "id" , many=@Many(
+		@Result(property = "companyStocks" , column = "id", many=@Many(
 				select = "com.puzhibing.StockAnalysis.dao.mapper.CompanyStockMapper.selectCompanyStockByCompanyId"
 				)),
 		@Result(property = "del" , column = "del"),

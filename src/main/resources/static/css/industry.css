@@ -28,44 +28,27 @@ body{
     color: #547576;
 }
 
-.title button{
-    width: 50px;
-    background-color: #75A2A5;
-    border: 1px solid #75A2A5;
-    border-radius: 3px;
-    color: #FFFFFF;
-}
-
-.title button:hover{
-    cursor: pointer;
-    background-color: #5E8586;
-}
-
-.title button:first-of-type{
-    margin-left: 80%;
-    margin-right: 20px;
-}
-
 .content{
-    margin-top: 50px;
+    margin-top: 20px;
+}
+
+.content>div{
+    float: left;
 }
 
 .content .data{
-    width: 740px;
+    width: 500px;
+    margin-right: 40px;
+    margin-left: 40px;
 }
 
-.content .data tr td{
-    height: 60px;
-    width: 320px;
-    text-align: right;
-}
-
-.content .data tr td span{
+.content .data label{
     color: #2B2B2B;
+    margin-right: 10px;
 }
 
 .content .data input{
-    width: 190px;
+    width: 300px;
     height: 30px;
     border-radius: 3px;
     border: 1px solid #5E8586;
@@ -77,74 +60,81 @@ body{
     color: #547576;
 }
 
-.content .data div{
-    width: 700px;
-    margin: 0 auto;
+.content .data>div{
+    width: 100%;
     border-top: 1px dashed #BCBCBC;
+    padding-top: 30px;
 }
+
+.content .data div div{
+    width: 400px;
+    height: 60px;
+    line-height: 60px;
+    margin: 0 auto;
+}
+
+.content .data div div button{
+    width: 100px;
+    height: 30px;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
+    border-radius: 3px;
+    color: #FFFFFF;
+    letter-spacing: 3px;
+}
+
+.content .data div div button:hover{
+    cursor: pointer;
+    background-color: #5E8586;
+}
+
+.content .data div div button:first-of-type{
+    margin-right: 177px;
+}
+
 
 
 .content .table{
-    width: 840px;
+    min-width: 500px;
+    border-left: 1px solid #BCBCBC;
     margin-top: 20px;
 }
 
-.content .table table{
-    width: 800px;
-    margin: 0 auto;
-    border-collapse: collapse;
+.content .table ul{
+    list-style-type: none;
+    margin-left: 35px;
 }
 
-.content .table table th{
-    background-color: #5E8586;
-    color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 500;
-    height: 30px;
-    border:  1px solid #D0D0D0;
+.content .table ul li{
+    min-height: 30px;
+    line-height: 30px;
 }
 
-.content .table table th:first-of-type{
-    width: 50px;
-}
-
-.content .table table th:last-of-type{
-    width: 130px;
-}
-
-.content .table table td{
-    color: #464646;
-    font-size: 14px;
-    height: 30px;
-    padding-left: 10px;
-    border:  1px solid #D0D0D0;
-}
-
-.content .table table td:first-of-type{
-    text-align: center;
-    padding-left: 0px;
-}
-
-.content .table table td:last-of-type {
-    text-align: center;
-    padding-left: 0px;
-}
-
-.content .table table td button{
-    width: 40px;
-    background-color: #C86A6A;
-    border: 1px solid #C86A6A;
-    border-radius: 3px;
-    color: #FFFFFF;
-    font-size: 12px;
-}
-
-.content .table table td button:last-of-type{
-    margin-left: 5px;
-}
-
-.content .table table td button:hover{
+.content .table ul li div:hover{
     cursor: pointer;
-    background-color: #B14141;
-    border: 1px solid #B14141;
+    color: #547576;
+}
+
+.content .table ul li div:hover span:last-of-type{
+    display: inline;
+}
+
+.content .table ul li div>i{
+    margin-right: 10px;
+}
+
+.content .table ul li span:last-of-type{
+    display: none;
+}
+
+.content .table ul li span:last-of-type i{
+    margin-left: 10px;
+}
+
+.content .table ul li span:last-of-type i:first-of-type{
+    color: #C00000;
+}
+
+.content .table ul li span:last-of-type i:last-of-type{
+    color: #0070C0;
 }

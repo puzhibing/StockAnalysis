@@ -62,4 +62,13 @@ public interface IndustryMapper {
 	 */
 	@SelectProvider(type = IndustrySql.class , method = "selectAllIndustry")
 	List<Industry> selectAllIndustry();
+
+
+	/**
+	 * 根据父类id查询数据
+	 * @param parentId
+	 * @return
+	 */
+	@SelectProvider(type = IndustrySql.class , method = "selectDataByParentId")
+	List<Industry> selectDataByParentId(String parentId);
 }

@@ -55,6 +55,9 @@ function getPageHtml(a) {
         case 'clnclr':
             url = 'clnclr.html';
             break;
+        case 'managementCapacity':
+            url = 'managementCapacity.html';
+            break;
         default:
             break;
     }

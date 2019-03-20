@@ -87,4 +87,31 @@ public class DataAnalysisController {
         }
         return resultBeanUtilObj;
     }
+
+
+
+
+
+    /**
+     * 经营能力分析
+     * @param startTime
+     * @param endTime
+     * @param industryId
+     * @param stockTypeId
+     * @param companyId
+     * @return
+     */
+    @RequestMapping(value = "/managementCapacity")
+    public ResultBeanUtil<Object> managementCapacity(String startTime, String endTime, String industryId, String stockTypeId, String companyId){
+        if(StringUtils.isNotEmpty(stockTypeId)){
+            try {
+                resultBeanUtilObj = dataAnalysisServiceImpl.managementCapacity(startTime , endTime , industryId , stockTypeId , companyId);
+            }catch (Exception e){
+                resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("逻辑处理异常" , false);
+            }
+        }else {
+            resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("请求参数异常" , false);
+        }
+        return resultBeanUtilObj;
+    }
 }

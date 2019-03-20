@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title></title>
     <link type="text/css" rel="stylesheet" href="../css/assetLiabilityRatio.css"/>
+    <link type="text/css" rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="stdtar-home">
@@ -19,9 +20,7 @@
                 </div>
                 <div>
                     <label for="industry">所属行业</label>
-                    <select id="industry" class="industry">
-
-                    </select>
+                    <input type="text" id="industry" class="industry" readonly="readonly">
                 </div>
                 <div>
                     <label for="stockType">证券类型</label>
@@ -48,6 +47,21 @@
             </div>
             <div class="stdtar-curve">
                 <div id="container3"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="selectionPanelIndustry">
+        <div class="table">
+            <div class="title">
+                <span>所属行业选择</span>
+                <i class="fa fa-remove"></i>
+            </div>
+            <div class="condition">
+
+            </div>
+            <div class="foot">
+                <button>选择</button>
             </div>
         </div>
     </div>

@@ -4,6 +4,8 @@ import org.apache.ibatis.jdbc.SQL;
 
 import com.puzhibing.StockAnalysis.pojo.Profit;
 
+import java.util.Date;
+
 
 /**
  * 利润
@@ -38,13 +40,17 @@ public class ProfitSql {
 	 * @param companyStockId
 	 * @return
 	 */
-	public String selectProfitByCompanyStockId(String companyStockId){
+	public String selectProfitByCompanyStockId(String companyStockId , Date startTime , Date endTime){
 		return new SQL() {{
 			SELECT("id , companyStockId , dataTime , businessIncome , interestIncome , earnedPremium , faci , toi , operatingCost , btaa , sellingExpenses , managementCost , financialCost");
 			SELECT("ail , toc , fvci , adi , ifi , iiojvajv , oii , exchangeGains , otherIncome , operatingProfit , noi , noe , totalProfit , ite , netProfit , natfoci , tci , eps , beps , deps");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_profit");
-			WHERE("companyStockId = #{companyStockId} and del = '0'");
+			if(null != startTime && null != endTime){
+				WHERE("del = '0' and companyStockId = #{param1} and dataTime BETWEEN #{param2} AND #{param3}");
+			}else {
+				WHERE("del = '0' and companyStockId = #{param1}");
+			}
 		}}.toString();
 	}
 }
