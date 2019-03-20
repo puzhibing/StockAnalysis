@@ -1,4 +1,7 @@
 $(function () {
+    var width = $(document.body).outerWidth(true);
+    var height = $(document.body).outerHeight(true);
+
     $('.head div ul li').mouseenter(function () {
         $('.smallMenu').show();
         var clazz = $(this).attr('class');
@@ -37,6 +40,10 @@ $(function () {
     $('.smallMenu div div ul li').click(function () {
         getPageHtml(this);
         $('.smallMenu').hide();
+    });
+
+    $('.home .content').css({
+        'height':height - 51
     });
 });
 
