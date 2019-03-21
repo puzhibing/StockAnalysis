@@ -153,8 +153,8 @@ function selectionPanel(li){
 
     $(".companyStockId").val(id);
     th.parents(".selectionPanel").siblings(".securitiesNumber").val(code);
-    th.parents("tr").siblings("tr").find(".securitiesType").val(type);
-    th.parents("tr").siblings("tr").find(".companyName").val(name);
+    th.parents("td").siblings("td").find(".securitiesType").val(type);
+    th.parents("td").siblings("td").find(".companyName").val(name);
     th.parent("ul").parent("div").hide();
 }
 

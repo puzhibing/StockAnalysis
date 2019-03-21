@@ -76,7 +76,7 @@ body{
 	margin: 0 auto;
 }
 
-.content .data .dataType tr td{
+.content .data .dataType tr td , .public td{
     height: 60px;
     text-align: right;
     position: relative;
@@ -108,6 +108,22 @@ body{
     padding-left: 5px;
 }
 
+.public table{
+    margin: 50px;
+}
+
+.public td input{
+    width: 130px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #5E8586;
+    padding-left: 5px;
+}
+
+.public td input[class = "companyName"]{
+    width: 190px;
+}
+
 .content .data .dataType hr{
 	margin: 0 auto;
 	width: 900px;
@@ -132,7 +148,7 @@ body{
 }
 
 
-.content .data .dataType .selectionPanel{
+.public .selectionPanel{
     overflow: auto;
     display: none;
     width: 195px;
@@ -143,23 +159,23 @@ body{
     z-index: 100;
 }
 
-.content .data .dataType .selectionPanel ul{
+.public .selectionPanel ul{
     list-style-type: none;
     /*min-width: 300px;*/
 }
 
 
-.content .data .dataType .selectionPanel ul li{
+.public .selectionPanel ul li{
     text-align: left;
     font-size: 12px;
     padding: 5px 5px;
 }
 
-.content .data .dataType .selectionPanel ul li:hover{
+.public .selectionPanel ul li:hover{
     cursor: pointer;
     backgroup-color: #81CBCE;
 }
 
-.content .data .dataType .selectionPanel ul li span{
+.public .selectionPanel ul li span{
     font-size: 12px;
 }
