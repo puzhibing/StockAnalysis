@@ -59,10 +59,10 @@ html , body , .stdtar-home{
 
 .stdtar-home .stdtar-queryConditions button{
     padding: 0px 10px;
-    background-color: #F8F8F8;
-    border: 1px solid #547576;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
     border-radius: 3px;
-    color: #547576;
+    color: #F8F8F8;
     height: 26px;
     width: 80px;
     letter-spacing: 3px;
@@ -72,17 +72,29 @@ html , body , .stdtar-home{
 .stdtar-home .stdtar-queryConditions button:hover{
     cursor: pointer;
     background-color: #547576;
-    color: #FFFFFF;
+    color: #F8F8F8;
 }
 
 .stdtar-home .stdtar-curve{
-    margin-top: 50px;
-    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 3px;
+    width: 95%;
+    text-align: center;
 }
 
-.stdtar-home .stdtar-curve div{
-    margin: 0 auto;
-    width: 96%;
+.stdtar-home .stdtar-curve span{
+    font-size: 15px;
+    color: #757575;
+    font-family: '微软雅黑';
+    letter-spacing: 2px;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.stdtar-home .stdtar-curve>div{
+    margin-top: 50px;
+    height: 300px;
 }
 
 
@@ -188,9 +200,9 @@ html , body , .stdtar-home{
     width: 100px;
     height: 30px;
     border-radius: 3px;
-    border: 1px solid #5E8586;
-    background-color: #F8F8F8;
-    color: #5E8586;
+    border: 1px solid #75A2A5;
+    background-color: #75A2A5;
+    color: #F8F8F8;
     margin-left: 380px;
 }
 

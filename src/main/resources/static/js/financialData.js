@@ -1168,7 +1168,7 @@ function resetOwnersEquityChange(){
 
 
 
-//编辑表达数值，触发修改合计表单中的值
+//编辑表单数值，触发修改合计表单中的值
 //将所有需要计算的标签设置class=dataBinding
 //将每组需要计算的标签设置相同的tag值
 //将每组需要接收计算结果的id值等于tag的值
@@ -1188,8 +1188,16 @@ function calculation(){
                     }
                     var str = 0.00;
                     for (var j = 0 ; j < elemtns.length ; j++){
-                        if($(elemtns[j]).val() != ""){
-                            str += parseFloat($(elemtns[j]).val());
+                        var value = $(elemtns[j]).val();
+                        //处理表单中的逗号
+                        var reg = new RegExp('\\u002c' , 'g');
+                        if(reg.test(value)){
+                            value = value.replace(reg ,'');
+                            $(elemtns[j]).val(value);
+                        }
+
+                        if(value != ""){
+                            str += parseFloat(value);
                         }else{
                             str += 0.00;
                         }

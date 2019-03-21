@@ -44,7 +44,7 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
 
     /**
-     * 资产负债比
+     * 偿债能力分析
      * @param startTime     "2010-01"
      * @param endTime       "2010-01"
      * @param industryId    "行业id"
@@ -61,6 +61,8 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
         Map<String , Object> map = new HashMap<>();
         Map<String , Object> _map = new HashMap<>();
         Map<String , Object> _map_ = new HashMap<>();
+        Map<String , Object> $map = new HashMap<>();
+        Map<String , Object> $map_ = new HashMap<>();
         try {
             List<CompanyStock> companyStocks = null;
             if(StringUtils.isNotEmpty(industryId)){
@@ -79,10 +81,14 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
             List<Object> list = new ArrayList<>();
             List<Object> list2 = new ArrayList<>();
             List<Object> list3 = new ArrayList<>();
+            List<Object> list4 = new ArrayList<>();
+            List<Object> list5 = new ArrayList<>();
             for (CompanyStock c : companyStocks){
                 Map<String , Object> map1 = new HashMap<>();
                 Map<String , Object> map2 = new HashMap<>();
                 Map<String , Object> map3 = new HashMap<>();
+                Map<String , Object> map4 = new HashMap<>();
+                Map<String , Object> map5 = new HashMap<>();
                 Company company = companyMapper.selectCompanyById(c.getCompanyId());
                 String name = "";
                 if(StringUtils.isNotEmpty(company.getChShortName())){
@@ -93,6 +99,8 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                 map1.put("name" , name + "(" + c.getStockCode() + ")");
                 map2.put("name" , name + "(" + c.getStockCode() + ")");
                 map3.put("name" , name + "(" + c.getStockCode() + ")");
+                map4.put("name" , name + "(" + c.getStockCode() + ")");
+                map5.put("name" , name + "(" + c.getStockCode() + ")");
 
                 //获取基础数据
                 List<CurrentAssets> currentAssets =
@@ -108,6 +116,8 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                 List<Double> datas = new ArrayList<>();
                 List<Double> datas2 = new ArrayList<>();
                 List<Double> datas3 = new ArrayList<>();
+                List<Double> datas4 = new ArrayList<>();
+                List<Double> datas5 = new ArrayList<>();
                 for (String date : dates) {
                     double c1 = 0;
                     for (CurrentAssets cu : currentAssets) {
@@ -124,6 +134,17 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                             break;
                         }
                     }
+
+                    double $c1 = 0;
+                    for (CurrentAssets cu : currentAssets) {
+                        if(date.equals(cu.getDataTime())){
+                            $c1 = Double.valueOf(cu.getTca()) - Double.valueOf(cu.getStock())
+                                    - Double.valueOf(cu.getPrepayments()) - Double.valueOf(cu.getAccountsReceivable());
+                            break;
+                        }
+                    }
+
+
 
                     double d1 = 0;
                     for (NonCurrentAssets cu : nonCurrentAssets) {
@@ -154,31 +175,45 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                         datas.add(value);
                     }
 
-                    if(0 == d1){
-                        datas2.add(d1);
+                    if(0 == $c1){
+                        datas2.add($c1);
                     }else{
-                        BigDecimal b1 = new BigDecimal(d1);
-                        BigDecimal b2 = new BigDecimal(d2);
+                        BigDecimal b1 = new BigDecimal($c1);
+                        BigDecimal b2 = new BigDecimal(c2);
                         double value = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
                         datas2.add(value);
                     }
 
+
+                    if(0 == d1){
+                        datas3.add(d1);
+                    }else{
+                        BigDecimal b1 = new BigDecimal(d1);
+                        BigDecimal b2 = new BigDecimal(d2);
+                        double value = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
+                        datas3.add(value);
+                    }
+
                     if(0 == e1){
-                        datas3.add(e1);
+                        datas5.add(e1);
                     }else{
                         BigDecimal b1 = new BigDecimal(e1);
                         BigDecimal b2 = new BigDecimal(e2);
                         double value = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
-                        datas3.add(value);
+                        datas5.add(value);
                     }
 
                 }
                 map1.put("data" , datas);
                 map2.put("data" , datas2);
                 map3.put("data" , datas3);
+                map4.put("data" , datas4);
+                map5.put("data" , datas5);
                 list.add(map1);
                 list2.add(map2);
                 list3.add(map3);
+                list4.add(map4);
+                list5.add(map5);
             }
 
             map.put("date" , dates);
@@ -187,9 +222,15 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
             _map.put("value" , list2);
             _map_.put("date" , dates);
             _map_.put("value" , list3);
+            $map.put("date" , dates);
+            $map.put("value" , list4);
+            $map_.put("date" , dates);
+            $map_.put("value" , list5);
             li.add(map);
             li.add(_map);
             li.add(_map_);
+            li.add($map);
+            li.add($map_);
             resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("查询成功" , true , li);
         }catch (Exception e){
             e.printStackTrace();

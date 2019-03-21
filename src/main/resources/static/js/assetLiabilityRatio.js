@@ -154,21 +154,46 @@ function getData() {
         },
         success: function (res) {
             if(res.b){
+                initDiv();
                 var list = res.result;
-                constructionCurve1(list[0].date , list[0].value);
-                constructionCurve2(list[1].date , list[1].value);
-                constructionCurve3(list[2].date , list[2].value);
+                currentRatio(list[0].date , list[0].value);
+                quickRatio(list[1].date , list[1].value);
+                // assetsAndLiabilities(list[2].date , list[2].value);
+                // constructionCurve2(list[3].date , list[3].value);
+                assetsAndLiabilities(list[4].date , list[4].value);
             }
         }
     });
 }
 
 
+function initDiv() {
+    $('.stdtar-curve').css({
+        'border': '1px solid #DFDFDF'
+    });
+    $('#currentRatio').siblings('span').text('短期偿债能力分析');
+    $('#container1').siblings('span').text('长期偿债能力分析');
+    $('#assetsAndLiabilities').siblings('span').text('综合分析');
+    $('.stdtar-curve').children('span').css({
+        'display': 'block',
+        'height': '30px',
+        'width': '100%',
+        'background-color': '#F8F8F8'
+    });
+
+}
+
 
 //构建曲线图
-function constructionCurve1(xAxis , series) {
+
+//流动比率
+function currentRatio(xAxis , series) {
     var title = {
-        text: '短期资产/负债比'
+        text: '流动比率（流动资产 / 流动负债）',
+        style: {
+            'font-size':'14px',
+            'color':'#757575'
+        }
     };
     var xAxis = {
         categories: xAxis
@@ -206,14 +231,66 @@ function constructionCurve1(xAxis , series) {
     json.series = series;
     json.credits = credits;
 
-    $('#container1').highcharts(json);
+    $('#currentRatio').highcharts(json);
 }
 
 
-
-function constructionCurve2(xAxis , series) {
+//速动比率
+function quickRatio(xAxis , series) {
     var title = {
-        text: '长期资产/负债比'
+        text: '速动比率（流动资产合计 - 存货 - 应收账款 - 预付账款） / 流动负债）',
+        style: {
+            'font-size':'14px',
+            'color':'#757575'
+        }
+    };
+    var xAxis = {
+        categories: xAxis
+    };
+    var yAxis = {
+        title: {
+            text: '比例'
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+    };
+
+    var legend = {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+    };
+
+    var series =  series;
+
+    var credits = {
+        enabled: false
+    };
+
+    var json = {};
+
+    json.title = title;
+    json.xAxis = xAxis;
+    json.yAxis = yAxis;
+    json.legend = legend;
+    json.series = series;
+    json.credits = credits;
+
+    $('#quickRatio').highcharts(json);
+}
+
+
+function assetsAndLiabilities1(xAxis , series) {
+    var title = {
+        text: '',
+        style: {
+            'font-size':'14px',
+            'color':'#757575'
+        }
     };
     var xAxis = {
         categories: xAxis
@@ -256,9 +333,13 @@ function constructionCurve2(xAxis , series) {
 
 
 
-function constructionCurve3(xAxis , series) {
+function assetsAndLiabilities(xAxis , series) {
     var title = {
-        text: '综合资产/负债比'
+        text: '资产负债率（资产总额 / 负债总额）',
+        style: {
+            'font-size':'14px',
+            'color':'#757575'
+        }
     };
     var xAxis = {
         categories: xAxis
@@ -296,7 +377,7 @@ function constructionCurve3(xAxis , series) {
     json.series = series;
     json.credits = credits;
 
-    $('#container3').highcharts(json);
+    $('#assetsAndLiabilities').highcharts(json);
 }
 
 
