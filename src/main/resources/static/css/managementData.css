@@ -100,3 +100,117 @@ body{
 .content .con iframe{
     border: none;
 }
+
+.head>div{
+    float: right;
+}
+
+.head .tools{
+    margin-right: 10px;
+}
+
+.head .tools span{
+    display: block;
+    height: 40px;
+    width: 80px;
+    text-align: center;
+    line-height: 40px;
+    font-size: 15px;
+    color: #F8F8F8;
+    background-color: #5D8485;
+}
+
+.head .tools span:hover{
+    background-color: #547576;
+    cursor: pointer;
+    color: #FFFFFF;
+    box-shadow: 0px 0px 5px #547576;
+}
+
+.head .tools div{
+    width: 80px;
+    position: absolute;
+    top: 50px;
+    background-color: #F8F8F8;
+    box-shadow: 0px 0px 8px #BBBBBB;
+    border-radius: 2px;
+    display: none;
+    z-index: 100;
+}
+
+.head .tools div ul{
+    list-style-type: none;
+}
+
+.head .tools div ul li{
+    text-align: center;
+    height: 30px;
+    color: #2B2B2B;
+    font-size: 14px;
+    line-height: 25px;
+}
+
+.head .tools div ul li:hover{
+    background-color: rgba(117,162,165,0.5);
+    cursor: pointer;
+}
+
+
+/***小工具部分-计算器****/
+.calculator{
+    width: 500px;
+    height: 150px;
+    position: absolute;
+    box-shadow: 0px 0px 5px #2B2B2B;
+    z-index: 500;
+    background-color: #FFFFFF;
+    display: none;
+}
+
+.calculator .title{
+    height: 30px;
+    background-color: #F2F2F2;
+    line-height: 30px;
+    font-size: 15px;
+    color: #2B2B2B;
+    border-bottom: 1px solid #CFCFCF;
+}
+
+.calculator .title span{
+    margin-left: 20px;
+}
+
+.calculator .title>div{
+    width: 30px;
+    height: 25px;
+    float: right;
+    line-height: 23px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.calculator input[type="number"] , .calculator select[class="computation"]{
+    width: 180px;
+    height: 30px;
+    border-radius: 2px;
+    border: 1px solid #2B2B2B;
+}
+
+.calculator select[class="computation"]{
+    width: 40px;
+    font-size: 20px;
+}
+
+.calculator .calculate{
+    width: 414px;
+    margin: 0 auto;
+}
+.calculator .calculate>div{
+    margin-top: 20px;
+}
+
+.calculator .calculate>div p{
+    margin-top: 15px;
+    font-size: 24px;
+    color: #3A76D8;
+}

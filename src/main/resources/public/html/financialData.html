@@ -26,6 +26,17 @@
                 <td><input type="text" readonly="readonly" class="securitiesType"></td>
                 <td><span>企业名称：</span></td>
                 <td><input type="text" readonly="readonly" class="companyName"></td>
+                <td>
+                    <label>单位：</label>
+                    <select class="currencyUnit">
+                        <option value="1">元</option>
+                        <option value="10000">万</option>
+                        <option value="100000">十万</option>
+                        <option value="1000000">百万</option>
+                        <option value="10000000">千万</option>
+                        <option value="100000000">亿</option>
+                    </select>
+                </td>
             </tr>
         </table>
     </div>
@@ -48,19 +59,6 @@
             <div class="dataType" id="currentAssets">
                 <input class="id" type="hidden"/>
                 <table>
-                    <tr>
-                        <td colspan="4">
-                            <span>单位：</span>
-                            <select class="currencyUnit">
-                                <option value="1">元</option>
-                                <option value="10000">万</option>
-                                <option value="100000">十万</option>
-                                <option value="1000000">百万</option>
-                                <option value="10000000">千万</option>
-                                <option value="100000000">亿</option>
-                            </select>
-                        </td>
-                    </tr>
                     <tr>
                         <td><span>货币资金：</span></td>
                         <td><input type="text" class="moneyFunds dataBinding" tag="catotle"></td>
@@ -119,19 +117,6 @@
             <div class="dataType" id="nonCurrentAssets">
                 <input class="id" type="hidden"/>
                 <table>
-                    <tr>
-                        <td colspan="4">
-                            <span>单位：</span>
-                            <select class="currencyUnit">
-                                <option value="1">元</option>
-                                <option value="10000">万</option>
-                                <option value="100000">十万</option>
-                                <option value="1000000">百万</option>
-                                <option value="10000000">千万</option>
-                                <option value="100000000">亿</option>
-                            </select>
-                        </td>
-                    </tr>
                     <tr>
                         <td><span>可供出售金融资产：</span></td>
                         <td><input type="text" class="AFSFA dataBinding" tag="ncatotle"></td>
@@ -199,19 +184,6 @@
                 <input class="id" type="hidden"/>
                 <table>
                     <tr>
-                        <td colspan="4">
-                            <span>单位：</span>
-                            <select class="currencyUnit">
-                                <option value="1">元</option>
-                                <option value="10000">万</option>
-                                <option value="100000">十万</option>
-                                <option value="1000000">百万</option>
-                                <option value="10000000">千万</option>
-                                <option value="100000000">亿</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
                         <td><span>短期借款：</span></td>
                         <td><input type="text" class="STL dataBinding" tag="cltotle"></td>
                         <td><span>拆入资金：</span></td>
@@ -272,19 +244,6 @@
                 <input class="id" type="hidden"/>
                 <table>
                     <tr>
-                        <td colspan="4">
-                            <span>单位：</span>
-                            <select class="currencyUnit">
-                                <option value="1">元</option>
-                                <option value="10000">万</option>
-                                <option value="100000">十万</option>
-                                <option value="1000000">百万</option>
-                                <option value="10000000">千万</option>
-                                <option value="100000000">亿</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
                         <td><span>长期借款：</span></td>
                         <td><input type="text" class="LTL dataBinding" tag="ncltotle"></td>
                         <td><span>应付债券：</span></td>
@@ -325,19 +284,6 @@
             <div class="dataType" id="ownersEquity">
                 <input class="id" type="hidden"/>
                 <table>
-                    <tr>
-                        <td colspan="4">
-                            <span>单位：</span>
-                            <select class="currencyUnit">
-                                <option value="1">元</option>
-                                <option value="10000">万</option>
-                                <option value="100000">十万</option>
-                                <option value="1000000">百万</option>
-                                <option value="10000000">千万</option>
-                                <option value="100000000">亿</option>
-                            </select>
-                        </td>
-                    </tr>
                     <tr>
                         <td><span>股本：</span></td>
                         <td><input type="text" class="PIC dataBinding" tag="toeattpc"></td>
@@ -386,19 +332,6 @@
             <div class="dataType" id="ownersEquityChange">
                 <input class="id" type="hidden"/>
                 <table>
-                    <tr>
-                        <td colspan="4">
-                            <span>单位：</span>
-                            <select class="currencyUnit">
-                                <option value="1">元</option>
-                                <option value="10000">万</option>
-                                <option value="100000">十万</option>
-                                <option value="1000000">百万</option>
-                                <option value="10000000">千万</option>
-                                <option value="100000000">亿</option>
-                            </select>
-                        </td>
-                    </tr>
                     <tr>
                         <td><span>上年年末余额：</span></td>
                         <td><input type="text" class="YEBATEOLY dataBinding" tag="batbotytotle"></td>
@@ -506,19 +439,6 @@
                 <input class="id" type="hidden"/>
                 <table>
                     <tr>
-                        <td colspan="4">
-                            <span>单位：</span>
-                            <select class="currencyUnit">
-                                <option value="1">元</option>
-                                <option value="10000">万</option>
-                                <option value="100000">十万</option>
-                                <option value="1000000">百万</option>
-                                <option value="10000000">千万</option>
-                                <option value="100000000">亿</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
                         <td><span>营业收入：</span></td>
                         <td><input type="text" class="businessIncome dataBinding" tag="toi"></td>
                         <td><span>利息收入：</span></td>
@@ -620,19 +540,6 @@
             <div class="dataType" id="cashFlow">
                 <input class="id" type="hidden"/>
                 <table>
-                    <tr>
-                        <td colspan="4">
-                            <span>单位：</span>
-                            <select class="currencyUnit">
-                                <option value="1">元</option>
-                                <option value="10000">万</option>
-                                <option value="100000">十万</option>
-                                <option value="1000000">百万</option>
-                                <option value="10000000">千万</option>
-                                <option value="100000000">亿</option>
-                            </select>
-                        </td>
-                    </tr>
                     <tr>
                         <td colspan="4">
                             <hr />
@@ -783,19 +690,6 @@
             <div class="dataType" id="cashFlowStatement">
                 <input class="id" type="hidden"/>
                 <table>
-                    <tr>
-                        <td colspan="4">
-                            <span>单位：</span>
-                            <select class="currencyUnit">
-                                <option value="1">元</option>
-                                <option value="10000">万</option>
-                                <option value="100000">十万</option>
-                                <option value="1000000">百万</option>
-                                <option value="10000000">千万</option>
-                                <option value="100000000">亿</option>
-                            </select>
-                        </td>
-                    </tr>
                     <tr>
                         <td colspan="4">
                             <hr />

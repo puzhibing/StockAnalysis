@@ -28,6 +28,63 @@ $(function () {
 
     elementsclick();
 
+    $('.toolInp').click(function () {
+        if($('.tool').is(':hidden')){
+            $('.tool').show();
+        }else{
+            $('.tool').hide();
+        }
+    });
+
+
+    document.onclick = function(e){
+        e = e || window.event;
+        var dom =  e.srcElement|| e.target;
+        if(dom.className !="toolInp"){
+            if(dom.className !='tool' ){
+                $('.tool').hide();
+            }
+        }
+    };
+
+    $('.head .tool li').click(function () {
+        mintools(this);
+    });
+
+
+
+    $('.calculator .title .closeDiv').mouseenter(function(){
+        $(this).css({
+            'background-color':'#E81123'
+        })
+        $(this).children('i').css({
+            'color':'#FFFFFF'
+        });
+    });
+
+    $('.calculator .title .closeDiv').mouseleave(function(){
+        $(this).removeAttr('style');
+        $(this).children('i').removeAttr('style');
+    });
+
+    $('.calculator .title .closeDiv').click(function(){
+        $('.calculator').hide();
+        $('.calculator').removeAttr('style');
+        $('.calculator input[type="number"]').val('');
+        $('.calculator p').text(0);
+        $($('.calculator select[class="computation"]').children('option')[0]).attr('selected','selected');
+        $('.calculator select[class="computation"]').val('+');
+    });
+
+    $('.calculator input[type="number"]').bind('input propertychange',function () {
+        calculate();
+    });
+
+    $('.calculator select[class="computation"]').bind('input propertychange',function () {
+        calculate();
+    });
+
+    mobileCalculator();
 });
 
 
@@ -129,4 +186,86 @@ function diaplayTitle(){
         
         elementsclick();
     }
+}
+
+
+
+function mintools(e) {
+    var id = $(e).attr('id');
+    switch (id) {
+        case 'calculator':
+            $('.' + id).show();
+            break;
+        default:
+            break;
+    }
+}
+
+
+//计算器计算函数
+function calculate() {
+    var n1 = $('.num1').val();
+    var n2 = $('.num2').val();
+    var c = $('.computation').val();
+    var r = 0;
+    n1 = ('' == n1 ? 0 : n1);
+    n2 = ('' == n2 ? 0 : n2);
+    switch (c) {
+        case '+':
+            r = parseFloat(n1) + parseFloat(n2);
+            break;
+        case '-':
+            r = parseFloat(n1) - parseFloat(n2);
+            break;
+        case '*':
+            r = parseFloat(n1) * parseFloat(n2);
+            break;
+        case '/':
+            if(0 == n2){
+                r = 0;
+                alert('被除数不能为0');
+            }else{
+                r = parseFloat(n1) / parseFloat(n2);
+            }
+            break;
+        default:
+            break;
+    }
+
+    $('.result').text(r);
+}
+
+//移动计算器div函数
+function mobileCalculator(){
+    var $x = 0;
+    var $y = 0;
+    var x_ = 0;
+    var y_ = 0;
+    var x = 0;
+    var y = 0;
+    $('.calculator .title').mousedown(function (e) {
+        $x = $('.calculator').offset().left;
+        $y = $('.calculator').offset().top;
+
+        var _x = e.originalEvent.x || e.originalEvent.layerX || 0;
+        var _y = e.originalEvent.y || e.originalEvent.layerY || 0;
+
+        x_ = _x - $x;
+        y_ = _y - $y;
+
+        $('.calculator .title').mousemove(function (ev) {
+            x = ev.originalEvent.x || ev.originalEvent.layerX || 0;
+            y = ev.originalEvent.y || ev.originalEvent.layerY || 0;
+
+            $('.calculator').css({
+                'top': y - y_,
+                'left': x - x_
+            });
+        });
+    });
+
+
+    $('.calculator .title').mouseup(function (e) {
+        $('.calculator .title').unbind('mousemove');
+    });
 }

@@ -1,6 +1,17 @@
 
 var url = "http://localhost:8888";
 
+$(function () {
+    $('input[type="number"]').bind('input propertychange',function () {
+        calculate();
+    });
+
+    $('select[class="computation"]').bind('input propertychange',function () {
+        calculate();
+    });
+});
+
+
 //将字符串日期转换为日期对象1900-01-01 00:00:00
 function StringToDate(strDate){
     strDate = $.trim(strDate);
@@ -84,4 +95,40 @@ function processing(){
 //关闭处理提示效果
 function closeProcessing(){
     $('.processing').remove();
+}
+
+
+
+
+//计算器小工具的计算函数
+function calculate() {
+    var n1 = $('.num1').val();
+    var n2 = $('.num2').val();
+    var c = $('.computation').val();
+    var r = 0;
+    n1 = ('' == n1 ? 0 : n1);
+    n2 = ('' == n2 ? 0 : n2);
+    switch (c) {
+        case '+':
+            r = parseFloat(n1) + parseFloat(n2);
+            break;
+        case '-':
+            r = parseFloat(n1) - parseFloat(n2);
+            break;
+        case '*':
+            r = parseFloat(n1) * parseFloat(n2);
+            break;
+        case '/':
+            if(0 == n2){
+                r = 0;
+                alert('被除数不能为0');
+            }else{
+                r = parseFloat(n1) / parseFloat(n2);
+            }
+            break;
+        default:
+            break;
+    }
+
+    $('.result').text(r);
 }

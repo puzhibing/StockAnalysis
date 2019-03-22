@@ -9,7 +9,15 @@
 <body>
     <div class="panl">
         <div class="head">
-
+            <div class="tools">
+                <span class="toolInp">工具</span>
+                <div class="tool">
+                    <ul>
+                        <li id="calculator">计算器</li>
+                        <li>辅助工具</li>
+                    </ul>
+                </div>
+            </div>
         </div>
         <div class="content">
             <div class="menu">
@@ -41,6 +49,29 @@
         </div>
         <div class="foot">
 
+        </div>
+    </div>
+
+    <!-- 计算器 -->
+    <div class="calculator">
+        <div class="title">
+            <span>计算器</span>
+            <div class="closeDiv">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="calculate">
+            <div>
+                <input type="number" class="num1">
+                <select class="computation">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+                <input type="number" class="num2">
+                <p class="result">0</p>
+            </div>
         </div>
     </div>
 </body>

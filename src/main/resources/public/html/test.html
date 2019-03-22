@@ -3,89 +3,182 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <style type="text/css">
-        .div{
-            border: 1px solid #3A76D8;
-            height: auto;
+        .calculator{
+            width: 500px;
+            height: 150px;
+            position: absolute;
+            z-index: 500;
+            box-shadow: 0px 0px 5px #2B2B2B;
         }
-        .div>div{
-            float: left;
+
+        .calculator .title{
+            height: 30px;
+            background-color: #F2F2F2;
+            line-height: 30px;
+            font-size: 15px;
+            color: #2B2B2B;
+            border-bottom: 1px solid #CFCFCF;
+        }
+
+        .calculator .title span{
+            margin-left: 20px;
+        }
+
+        .calculator .title>div{
+            width: 30px;
+            height: 25px;
+            float: right;
+            line-height: 23px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .calculator input[type="number"] , .calculator select[class="computation"]{
+            width: 180px;
+            height: 30px;
+            border-radius: 2px;
+            border: 1px solid #2B2B2B;
+        }
+
+        .calculator select[class="computation"]{
+            width: 40px;
+            font-size: 20px;
+        }
+
+        .calculator .calculate{
+            width: 414px;
+            margin: 0 auto;
+        }
+        .calculator .calculate>div{
+            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="div">
-		<div id="container" style="width: 550px; height: 400px;"></div>
-        <div id="container1" style="width: 550px; height: 400px;"></div>
+    <div class="calculator">
+        <div class="title">
+            <span>计算器</span>
+            <div class="closeDiv">
+                <i class="fa fa-times" aria-hidden="true"></i>
+            </div>
+        </div>
+        <div class="calculate">
+            <div>
+                <input type="number" class="num1">
+                <select class="computation">
+                    <option value="+">+</option>
+                    <option value="-">-</option>
+                    <option value="*">*</option>
+                    <option value="/">/</option>
+                </select>
+                <input type="number" class="num2">
+                <p class="result">0</p>
+            </div>
+        </div>
     </div>
 </body>
-<script language="JavaScript">
-    $(document).ready(function() {
-        var title = {
-            text: '城市平均气温'
-        };
-        var subtitle = {
-            text: 'Source: runoob.com'
-        };
-        var xAxis = {
-            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-                'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
-        };
-        var yAxis = {
-            title: {
-                text: 'Temperature (\xB0C)'
-            },
-            plotLines: [{
-                value: 0,
-                width: 1,
-                color: '#808080'
-            }]
-        };
 
-        var tooltip = {
-            valueSuffix: '\xB0C'
-        }
 
-        var legend = {
-            layout: 'vertical',
-            align: 'right',
-            verticalAlign: 'middle',
-            borderWidth: 0
-        };
+<script type="text/javascript">
+    $(function () {
 
-        var series =  [
-            {
-                name: 'Tokyo',
-                data: [7.0, 6.9, 9.5, 14.5, 18.2, 21.5, 25.2,
-                    26.5, 23.3, 18.3, 13.9, 9.6]
-            },
-            {
-                name: 'New York',
-                data: [-0.2, 0.8, 5.7, 11.3, 17.0, 22.0, 24.8,
-                    24.1, 20.1, 14.1, 8.6, 2.5]
-            },
-            {
-                name: 'London',
-                data: [3.9, 4.2, 5.7, 8.5, 11.9, 15.2, 17.0,
-                    16.6, 14.2, 10.3, 6.6, 4.8]
+        $('.calculator .title .closeDiv').mouseenter(function(){
+            $(this).css({
+                'background-color':'#E81123'
+            })
+            $(this).children('i').css({
+                'color':'#FFFFFF'
+            });
+        });
+
+        $('.calculator .title .closeDiv').mouseleave(function(){
+            $(this).removeAttr('style');
+            $(this).children('i').removeAttr('style');
+        });
+
+        $('.calculator .title .closeDiv').click(function(){
+            $('.calculator').hide();
+        });
+
+        $('input[type="number"]').bind('input propertychange',function () {
+            calculate();
+        });
+
+        $('select[class="computation"]').bind('input propertychange',function () {
+            calculate();
+        });
+
+
+
+        var $x = 0;
+        var $y = 0;
+        var x_ = 0;
+        var y_ = 0;
+        var x = 0;
+        var y = 0;
+        $('.calculator .title').mousedown(function (e) {
+            $x = $('.calculator').offset().left;
+            $y = $('.calculator').offset().top;
+
+            var _x = e.originalEvent.x || e.originalEvent.layerX || 0;
+            var _y = e.originalEvent.y || e.originalEvent.layerY || 0;
+
+            x_ = _x - $x;
+            y_ = _y - $y;
+
+            $('.calculator .title').mousemove(function (ev) {
+                x = ev.originalEvent.x || ev.originalEvent.layerX || 0;
+                y = ev.originalEvent.y || ev.originalEvent.layerY || 0;
+
+                $('.calculator').css({
+                    'top': y - y_,
+                    'left': x - x_
+                });
+            });
+        });
+
+
+        $('.calculator .title').mouseup(function (e) {
+            $('.calculator .title').unbind('mousemove');
+        });
+
+
+
+        function calculate() {
+            var n1 = $('.num1').val();
+            var n2 = $('.num2').val();
+            var c = $('.computation').val();
+            var r = 0;
+            n1 = ('' == n1 ? 0 : n1);
+            n2 = ('' == n2 ? 0 : n2);
+            switch (c) {
+                case '+':
+                    r = parseFloat(n1) + parseFloat(n2);
+                    break;
+                case '-':
+                    r = parseFloat(n1) - parseFloat(n2);
+                    break;
+                case '*':
+                    r = parseFloat(n1) * parseFloat(n2);
+                    break;
+                case '/':
+                    if(0 == n2){
+                        r = 0;
+                        alert('被除数不能为0');
+                    }else{
+                        r = parseFloat(n1) / parseFloat(n2);
+                    }
+                    break;
+                default:
+                    break;
             }
-        ];
 
-        var json = {};
-
-        json.title = title;
-        json.subtitle = subtitle;
-        json.xAxis = xAxis;
-        json.yAxis = yAxis;
-        json.tooltip = tooltip;
-        json.legend = legend;
-        json.series = series;
-
-        $('#container').highcharts(json);
-        $('#container1').highcharts(json);
+            $('.result').text(r);
+        }
     });
 </script>
-
 </html>
