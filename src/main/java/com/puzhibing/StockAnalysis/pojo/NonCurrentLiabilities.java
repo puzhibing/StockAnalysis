@@ -13,6 +13,8 @@ public class NonCurrentLiabilities extends StockDataBean {
 	private String bondsPayable;//应付债券
 	
 	private String ltp;//长期应付款
+
+	private String ltpp;//长期应付职工薪酬
 	
 	private String specialPayable;//专项应付款
 	
@@ -48,6 +50,14 @@ public class NonCurrentLiabilities extends StockDataBean {
 
 	public void setLtp(String ltp) {
 		this.ltp = ltp;
+	}
+
+	public String getLtpp() {
+		return ltpp;
+	}
+
+	public void setLtpp(String ltpp) {
+		this.ltpp = ltpp;
 	}
 
 	public String getSpecialPayable() {
@@ -104,6 +114,7 @@ public class NonCurrentLiabilities extends StockDataBean {
 				"ltl='" + ltl + '\'' +
 				", bondsPayable='" + bondsPayable + '\'' +
 				", ltp='" + ltp + '\'' +
+				", ltpp='" + ltpp + '\'' +
 				", specialPayable='" + specialPayable + '\'' +
 				", estimatedLiabilities='" + estimatedLiabilities + '\'' +
 				", deferredIncome='" + deferredIncome + '\'' +

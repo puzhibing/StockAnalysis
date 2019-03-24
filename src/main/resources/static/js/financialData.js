@@ -164,8 +164,8 @@ function saveCurrentAssets(){
     var div = $('.saveCurrentAssets').parents("#currentAssets");
     var id = div.find(".id").val();//数据id
     var companyStockId = $(".companyStockId").val();//企业证券id
-    var dataTime = div.find(".dataTime").val();//数据日期
-    var currencyUnit = div.find(".currencyUnit").val();//单位
+    var dataTime = $('.public').find(".dataTime").val();//数据日期
+    var currencyUnit = $('.public').find(".currencyUnit").val();//单位
     var moneyFunds = div.find(".moneyFunds").val();//货币资金
     var WOF = div.find(".WOF").val();//拆出资金
     var TFA = div.find(".TFA").val();//交易性金融资产
@@ -178,6 +178,7 @@ function saveCurrentAssets(){
     var dividendReceivable = div.find(".dividendReceivable").val();//应收股利
     var otherReceivables = div.find(".otherReceivables").val();//其他应收款
     var stock = div.find(".stock").val();//存货
+    var DIAHFS = div.find(".DIAHFS").val();//划分为持有待售的资产
     var NCADWOY = div.find(".NCADWOY").val();//一年内到期的非流动资产
     var OCA = div.find(".OCA").val();//其他流动资产
     var TCA = div.find(".TCA").val();//流动资产合计
@@ -204,6 +205,7 @@ function saveCurrentAssets(){
     formData.append('dividendReceivable', dividendReceivable);
     formData.append('otherReceivables', otherReceivables);
     formData.append('stock', stock);
+    formData.append('diahfs', DIAHFS);
     formData.append('ncadwoy', NCADWOY);
     formData.append('oca', OCA);
     formData.append('tca', TCA);
@@ -230,10 +232,6 @@ function saveCurrentAssets(){
 function resetCurrentAssets(){
 	var div = $('.saveCurrentAssets').parents("#currentAssets");
 	div.find(".id").val("");//数据id
-    $(".companyStockId").val("");//企业证券id
-    div.find(".dataTime").val("");//数据日期
-    div.find(".currencyUnit").val("1");//单位
-    div.find(".currencyUnit").children('option:first').attr('selected' , 'selected');
     div.find(".moneyFunds").val("");//货币资金
     div.find(".WOF").val("");//拆出资金
     div.find(".TFA").val("");//交易性金融资产
@@ -246,6 +244,7 @@ function resetCurrentAssets(){
     div.find(".dividendReceivable").val("");//应收股利
     div.find(".otherReceivables").val("");//其他应收款
     div.find(".stock").val("");//存货
+    div.find(".DIAHFS").val('');//划分为持有待售的资产
     div.find(".NCADWOY").val("");//一年内到期的非流动资产
     div.find(".OCA").val("");//其他流动资产
     div.find(".TCA").val("");//流动资产合计
@@ -261,8 +260,8 @@ function saveNonCurrentAssets(){
     var div = $('.saveNonCurrentAssets').parents("#nonCurrentAssets");
     var id = div.find(".id").val();//数据id
     var companyStockId = $(".companyStockId").val();//企业证券id
-    var dataTime = div.find(".dataTime").val();//数据日期
-    var currencyUnit = div.find(".currencyUnit").val();//单位
+    var dataTime = $('.public').find(".dataTime").val();//数据日期
+    var currencyUnit = $('.public').find(".currencyUnit").val();//单位
     var AFSFA = div.find(".AFSFA").val();//可供出售金融资产
     var HAEI = div.find(".HAEI").val();//持有到期投资
     var LTR = div.find(".LTR").val();//长期应收款
@@ -332,10 +331,6 @@ function saveNonCurrentAssets(){
 function resetNonCurrentAssets(){
 	var div = $('.saveNonCurrentAssets').parents("#nonCurrentAssets");
     div.find(".id").val('');//数据id
-    $(".companyStockId").val('');//企业证券id
-    div.find(".dataTime").val('');//数据日期
-    div.find(".currencyUnit").val("1");//单位
-    div.find(".currencyUnit").children('option:first').attr('selected','selected');
     div.find(".AFSFA").val('');//可供出售金融资产
     div.find(".HAEI").val('');//持有到期投资
     div.find(".LTR").val('');//长期应收款
@@ -364,8 +359,8 @@ function saveCurrentLiabilities(){
     var div = $('.saveCurrentLiabilities').parents("#currentLiabilities");
     var id = div.find(".id").val();//数据id
     var companyStockId = $(".companyStockId").val();//企业证券id
-    var dataTime = div.find(".dataTime").val();//数据日期
-    var currencyUnit = div.find(".currencyUnit").val();//单位
+    var dataTime = $('.public').find(".dataTime").val();//数据日期
+    var currencyUnit = $('.public').find(".currencyUnit").val();//单位
     var STL = div.find(".STL").val();//短期借款
     var UF = div.find(".UF").val();//拆入资金
     var TFL = div.find(".TFL").val();//交易性金融负债
@@ -432,10 +427,6 @@ function saveCurrentLiabilities(){
 function resetCurrentLiabilities(){
 	var div = $('.saveCurrentLiabilities').parents("#currentLiabilities");
     div.find(".id").val('');//数据id
-    $(".companyStockId").val('');//企业证券id
-    div.find(".dataTime").val('');//数据日期
-    div.find(".currencyUnit").val("1");//单位
-    div.find(".currencyUnit").children('option:first').attr('selected','selected');
     div.find(".STL").val('');//短期借款
     div.find(".UF").val('');//拆入资金
     div.find(".TFL").val('');//交易性金融负债
@@ -461,11 +452,12 @@ function saveNonCurrentLiabilities(){
     var div = $('.saveNonCurrentLiabilities').parents("#nonCurrentLiabilities");
     var id = div.find(".id").val();//数据id
     var companyStockId = $(".companyStockId").val();//企业证券id
-    var dataTime = div.find(".dataTime").val();//数据日期
-    var currencyUnit = div.find(".currencyUnit").val();//单位
+    var dataTime = $('.public').find(".dataTime").val();//数据日期
+    var currencyUnit = $('.public').find(".currencyUnit").val();//单位
     var LTL = div.find(".LTL").val();//长期借款
     var bondsPayable = div.find(".bondsPayable").val();//应付债券
     var LTP = div.find(".LTP").val();//长期应付款
+    var LTPP = div.find(".LTPP").val();//长期应付职工薪酬
     var specialPayable = div.find(".specialPayable").val();//专项应付款
     var estimatedLiabilities = div.find(".estimatedLiabilities").val();//预计负债
     var deferredIncome = div.find(".deferredIncome").val();//递延收益
@@ -486,6 +478,7 @@ function saveNonCurrentLiabilities(){
     formData.append('ltl', LTL);
     formData.append('bondsPayable', bondsPayable);
     formData.append('ltp', LTP);
+    formData.append('ltpp', LTPP);
     formData.append('specialPayable', specialPayable);
     formData.append('estimatedLiabilities', estimatedLiabilities);
     formData.append('deferredIncome', deferredIncome);
@@ -514,15 +507,13 @@ function saveNonCurrentLiabilities(){
 function resetNonCurrentLiabilities(){
 	var div = $('.saveNonCurrentLiabilities').parents("#nonCurrentLiabilities");
     div.find(".id").val('');//数据id
-    $(".companyStockId").val('');//企业证券id
-    div.find(".dataTime").val('');//数据日期
-    div.find(".currencyUnit").val("1");//单位
-    div.find(".currencyUnit").children('option:first').attr('selected','selected');
     div.find(".LTL").val('');//长期借款
     div.find(".bondsPayable").val('');//应付债券
     div.find(".LTP").val('');//长期应付款
+    div.find(".LTPP").val('');//长期应付职工薪酬
     div.find(".specialPayable").val('');//专项应付款
     div.find(".estimatedLiabilities").val('');//预计负债
+    div.find(".deferredIncome").val('');//递延收益
     div.find(".DITL").val('');//递延所得税负债
     div.find(".ONCL").val('');//其他非流动负债
     div.find(".TNCL").val('');//非流动负债合计
@@ -535,8 +526,8 @@ function saveOwnersEquity(){
     var div = $('.saveOwnersEquity').parents("#ownersEquity");
     var id = div.find(".id").val();//数据id
     var companyStockId = $(".companyStockId").val();//企业证券id
-    var dataTime = div.find(".dataTime").val();//数据日期
-    var currencyUnit = div.find(".currencyUnit").val();//单位
+    var dataTime = $('.public').find(".dataTime").val();//数据日期
+    var currencyUnit = $('.public').find(".currencyUnit").val();//单位
     var PIC = div.find(".PIC").val();//股本
     var OEI = div.find(".OEI").val();//其他权益工具
     var capitalReserve = div.find(".capitalReserve").val();//资本公积
@@ -594,10 +585,6 @@ function saveOwnersEquity(){
 function resetOwnersEquity(){
 	var div = $('.saveOwnersEquity').parents("#ownersEquity");
     div.find(".id").val('');//数据id
-    $(".companyStockId").val('');//企业证券id
-    div.find(".dataTime").val('');//数据日期
-    div.find(".currencyUnit").val("1");//单位
-    div.find(".currencyUnit").children('option:first').attr('selected','selected');
     div.find(".PIC").val('');//股本
     div.find(".OEI").val('');//其他权益工具
     div.find(".capitalReserve").val('');//资本公积
@@ -618,8 +605,8 @@ function saveProfit(){
     var div = $('.saveProfit').parents("#profit");
     var id = div.find(".id").val();//数据id
     var companyStockId = $(".companyStockId").val();//企业证券id
-    var dataTime = div.find(".dataTime").val();//数据日期
-    var currencyUnit = div.find(".currencyUnit").val();//单位
+    var dataTime = $('.public').find(".dataTime").val();//数据日期
+    var currencyUnit = $('.public').find(".currencyUnit").val();//单位
     var businessIncome = div.find(".businessIncome").val();//营业收入
     var interestIncome = div.find(".interestIncome").val();//利息收入
     var earnedPremium = div.find(".earnedPremium").val();//已赚保费
@@ -712,10 +699,6 @@ function saveProfit(){
 function resetProfit(){
 	var div = $('.saveProfit').parents("#profit");
     div.find(".id").val('');//数据id
-    $(".companyStockId").val('');//企业证券id
-    div.find(".dataTime").val('');//数据日期
-    div.find(".currencyUnit").val("1");//单位
-    div.find(".currencyUnit").children('option:first').attr('selected','selected');
     div.find(".businessIncome").val('');//营业收入
     div.find(".interestIncome").val('');//利息收入
     div.find(".earnedPremium").val('');//已赚保费
@@ -754,8 +737,8 @@ function saveCashFlow(){
     var div = $('.saveCashFlow').parents("#cashFlow")
     var id = div.find(".id").val();//数据id
     var companyStockId = $(".companyStockId").val();//企业证券id
-    var dataTime = div.find(".dataTime").val();//数据日期
-    var currencyUnit = div.find(".currencyUnit").val();//单位
+    var dataTime = $('.public').find(".dataTime").val();//数据日期
+    var currencyUnit = $('.public').find(".currencyUnit").val();//单位
     var CRFSOGAS = div.find(".CRFSOGAS").val();//销售商品、提供劳务收到的现金
     var ROT = div.find(".ROT").val();//收到的税费返还
     var OCRTBAR = div.find(".OCRTBAR").val();//收到的其他与经营活动相关的现金
@@ -780,6 +763,7 @@ function saveCashFlow(){
     var NCFFIA = div.find(".NCFFIA").val();//投资活动产生的现金流净额
     var CRFI = div.find(".CRFI").val();//吸收投资收到的现金
     var CRFB = div.find(".CRFB").val();//取得借款收到的现金
+    var CRFTIOB = div.find(".CRFTIOB").val();//发行债券收到的现金
     var OCRTFAR = div.find(".OCRTFAR").val();//收到其他与筹资活动有关的现金
     var CIOFA = div.find(".CIOFA").val();//筹资活动现金流入小计
     var CFDR = div.find(".CFDR").val();//偿还债务支出的现金
@@ -826,6 +810,7 @@ function saveCashFlow(){
     formData.append('ncffia', NCFFIA);
     formData.append('crfi', CRFI);
     formData.append('crfb', CRFB);
+    formData.append('crftiob', CRFTIOB);
     formData.append('ocrtfar', OCRTFAR);
     formData.append('ciofa', CIOFA);
     formData.append('cfdr', CFDR);
@@ -860,10 +845,6 @@ function saveCashFlow(){
 function resetCashFlow(){
 	var div = $('.saveCashFlow').parents("#cashFlow")
     div.find(".id").val('');//数据id
-    $(".companyStockId").val('');//企业证券id
-    div.find(".dataTime").val('');//数据日期
-    div.find(".currencyUnit").val("1");//单位
-    div.find(".currencyUnit").children('option:first').attr('selected','selected');
     div.find(".CRFSOGAS").val('');//销售商品、提供劳务收到的现金
     div.find(".ROT").val('');//收到的税费返还
     div.find(".OCRTBAR").val('');//收到的其他与经营活动相关的现金
@@ -888,6 +869,7 @@ function resetCashFlow(){
     div.find(".NCFFIA").val('');//投资活动产生的现金流净额
     div.find(".CRFI").val('');//吸收投资收到的现金
     div.find(".CRFB").val('');//取得借款收到的现金
+    div.find(".CRFTIOB").val('');//发行债券收到的现金
     div.find(".OCRTFAR").val('');//收到其他与筹资活动有关的现金
     div.find(".CIOFA").val('');//筹资活动现金流入小计
     div.find(".CFDR").val('');//偿还债务支出的现金
@@ -907,8 +889,8 @@ function saveCashFlowStatement(){
     var div = $('.saveCashFlowStatement').parents("#cashFlowStatement")
     var id = div.find(".id").val();//数据id
     var companyStockId = $(".companyStockId").val();//企业证券id
-    var dataTime = div.find(".dataTime").val();//数据日期
-    var currencyUnit = div.find(".currencyUnit").val();//单位
+    var dataTime = $('.public').find(".dataTime").val();//数据日期
+    var currencyUnit = $('.public').find(".currencyUnit").val();//单位
     var NP = div.find(".NP").val();//净利润
     var AIP = div.find(".AIP").val();//资产减值准备
     var DOFAGADADOPBA = div.find(".DOFAGADADOPBA").val();//固定资产折旧、汽油资产拆耗、生产性生物资产折旧
@@ -993,10 +975,6 @@ function saveCashFlowStatement(){
 function resetCashFlowStatement(){
     var div = $('.saveCashFlowStatement').parents("#cashFlowStatement")
     div.find(".id").val('');//数据id
-    $(".companyStockId").val('');//企业证券id
-    div.find(".dataTime").val('');//数据日期
-    div.find(".currencyUnit").val("1");//单位
-    div.find(".currencyUnit").children('option:first').attr('selected','selected');
     div.find(".NP").val('');//净利润
     div.find(".AIP").val('');//资产减值准备
     div.find(".DOFAGADADOPBA").val('');//固定资产折旧、汽油资产拆耗、生产性生物资产折旧
@@ -1031,8 +1009,8 @@ function saveOwnersEquityChange(){
     var div = $('.saveOwnersEquityChange').parents("#ownersEquityChange");
     var id = div.find(".id").val();//数据id
     var companyStockId = $(".companyStockId").val();//企业证券id
-    var dataTime = div.find(".dataTime").val();//数据日期
-    var currencyUnit = div.find(".currencyUnit").val();//单位
+    var dataTime = $('.public').find(".dataTime").val();//数据日期
+    var currencyUnit = $('.public').find(".currencyUnit").val();//单位
     var YEBATEOLY = div.find(".YEBATEOLY").val();//上年年末余额
     var APC = div.find(".APC").val();//会计政策变更
     var EEC = div.find(".EEC").val();//前期差错更正
@@ -1128,10 +1106,6 @@ function saveOwnersEquityChange(){
 function resetOwnersEquityChange(){
 	var div = $('.saveOwnersEquityChange').parents("#ownersEquityChange");
     div.find(".id").val('');//数据id
-    $(".companyStockId").val('');//企业证券id
-    div.find(".dataTime").val('');//数据日期
-    div.find(".currencyUnit").val("1");//单位
-    div.find(".currencyUnit").children('option:first').attr('selected','selected');
     div.find(".YEBATEOLY").val('');//上年年末余额
     div.find(".APC").val('');//会计政策变更
     div.find(".EEC").val('');//前期差错更正
@@ -1179,6 +1153,12 @@ function calculation(){
             //循环给所有需要数据绑定的标签绑定事件（表单值变化触发的事件）
             $(inputs[i]).bind('input propertychange', function() {
                 var obj = $(this);
+                //处理表单中的逗号
+                var reg = new RegExp('\\u002c' , 'g');
+                if(reg.test(obj.val())){
+                    obj.val(obj.val().replace(reg ,''));
+                }
+
                 var b = true;
                 while(b){//定义循环处理相同的情况（合计是其他合计的基数情况）
                     var tagv = obj.attr('tag');//获取当前触发事件的对象的tag属性值

@@ -31,6 +31,8 @@ public class CurrentAssets extends StockDataBean {
 	private String otherReceivables;//其他应收款
 	
 	private String stock;//存货
+
+	private String diahfs;//划分为持有待售的资产
 	
 	private String ncadwoy;//一年内到期的非流动资产
 	
@@ -134,6 +136,14 @@ public class CurrentAssets extends StockDataBean {
 		this.stock = stock;
 	}
 
+	public String getDiahfs() {
+		return diahfs;
+	}
+
+	public void setDiahfs(String diahfs) {
+		this.diahfs = diahfs;
+	}
+
 	public String getNcadwoy() {
 		return ncadwoy;
 	}
@@ -173,6 +183,7 @@ public class CurrentAssets extends StockDataBean {
 				", dividendReceivable='" + dividendReceivable + '\'' +
 				", otherReceivables='" + otherReceivables + '\'' +
 				", stock='" + stock + '\'' +
+				", diahfs='" + diahfs + '\'' +
 				", ncadwoy='" + ncadwoy + '\'' +
 				", oca='" + oca + '\'' +
 				", tca='" + tca + '\'' +

@@ -56,6 +56,8 @@ public class CashFlow extends StockDataBean {
 
     private String crfb;//取得借款收到的现金
 
+	private String crftiob;//发行债券收到的现金
+
     private String ocrtfar;//收到其他与筹资活动有关的现金
 
     private String ciofa;//筹资活动现金流入小计
@@ -270,6 +272,14 @@ public class CashFlow extends StockDataBean {
 		this.crfb = crfb;
 	}
 
+	public String getCrftiob() {
+		return crftiob;
+	}
+
+	public void setCrftiob(String crftiob) {
+		this.crftiob = crftiob;
+	}
+
 	public String getOcrtfar() {
 		return ocrtfar;
 	}
@@ -385,6 +395,7 @@ public class CashFlow extends StockDataBean {
 				", ncffia='" + ncffia + '\'' +
 				", crfi='" + crfi + '\'' +
 				", crfb='" + crfb + '\'' +
+				", crftiob='" + crftiob + '\'' +
 				", ocrtfar='" + ocrtfar + '\'' +
 				", ciofa='" + ciofa + '\'' +
 				", cfdr='" + cfdr + '\'' +
