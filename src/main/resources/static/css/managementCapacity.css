@@ -23,6 +23,7 @@ html , body , .stdtar-home{
     width: 100%;
     border-bottom: 1px solid #D6D6D6;
     background-color: #F8F8F8;
+    font-size: 10px;
 }
 
 .stdtar-home .stdtar-queryConditions>div{
@@ -34,7 +35,7 @@ html , body , .stdtar-home{
 }
 
 .stdtar-home .stdtar-queryConditions input{
-    margin-right: 10px;
+    margin-right: 12px;
     height: 26px;
     width: 160px;
     border: 1px solid #547576;
@@ -50,29 +51,32 @@ html , body , .stdtar-home{
 }
 
 .stdtar-home .stdtar-queryConditions select{
-    margin-right: 10px;
+    margin-right: 12px;
     height: 26px;
-    width: 130px;
+    width: 100px;
     border: 1px solid #547576;
     border-radius: 3px;
 }
 
 .stdtar-home .stdtar-queryConditions button{
     padding: 0px 10px;
-    background-color: #F8F8F8;
-    border: 1px solid #547576;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
     border-radius: 3px;
-    color: #547576;
+    color: #F8F8F8;
     height: 26px;
-    width: 80px;
+    width: 60px;
     letter-spacing: 3px;
-    margin-right: 20px;
+}
+
+.stdtar-home .stdtar-queryConditions button:first-of-type{
+    margin-right: 12px;
 }
 
 .stdtar-home .stdtar-queryConditions button:hover{
     cursor: pointer;
     background-color: #547576;
-    color: #FFFFFF;
+    color: #F8F8F8;
 }
 
 .stdtar-home .stdtar-curve{

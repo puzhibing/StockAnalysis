@@ -120,6 +120,27 @@ public final class DateUtils {
 
 
 
+    /**
+     * 获取给定日期向后最近的半年月份
+     * @param date
+     * @return
+     */
+    public static Integer getRecentHalfYear(Date date){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        int m = calendar.get(Calendar.MONTH) + 1;
+
+        if(m <= 6){
+            return 6;
+        }
+        if(m <= 12){
+            return 12;
+        }
+        return -1;
+    }
+
+
+
 
     /**
      * 获取包含日期的格式化对象（精确到日）

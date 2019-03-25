@@ -24,13 +24,14 @@ public class DataAnalysisController {
      * @param industryId
      * @param stockTypeId
      * @param companyId
+     * @param sm 统计方式
      * @return
      */
     @RequestMapping(value = "/assetLiabilityRatio")
-    public ResultBeanUtil<Object> assetLiabilityRatio(String startTime, String endTime, String industryId, String stockTypeId, String companyId){
-        if(StringUtils.isNotEmpty(stockTypeId)){
+    public ResultBeanUtil<Object> assetLiabilityRatio(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm){
+        if(StringUtils.isNotEmpty(stockTypeId) && StringUtils.isNotEmpty(sm)){
             try {
-                resultBeanUtilObj = dataAnalysisServiceImpl.assetLiabilityRatio(startTime , endTime , industryId , stockTypeId , companyId);
+                resultBeanUtilObj = dataAnalysisServiceImpl.assetLiabilityRatio(startTime , endTime , industryId , stockTypeId , companyId, sm);
             }catch (Exception e){
                 resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("逻辑处理异常" , false);
             }
@@ -48,13 +49,14 @@ public class DataAnalysisController {
      * @param industryId
      * @param stockTypeId
      * @param companyId
+     * @param sm 统计方式
      * @return
      */
     @RequestMapping(value = "/cancar")
-    public ResultBeanUtil<Object> cancar(String startTime, String endTime, String industryId, String stockTypeId, String companyId){
-        if(StringUtils.isNotEmpty(stockTypeId)){
+    public ResultBeanUtil<Object> cancar(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm){
+        if(StringUtils.isNotEmpty(stockTypeId) && StringUtils.isNotEmpty(sm)){
             try {
-                resultBeanUtilObj = dataAnalysisServiceImpl.cancar(startTime , endTime , industryId , stockTypeId , companyId);
+                resultBeanUtilObj = dataAnalysisServiceImpl.cancar(startTime , endTime , industryId , stockTypeId , companyId, sm);
             }catch (Exception e){
                 resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("逻辑处理异常" , false);
             }
@@ -72,13 +74,14 @@ public class DataAnalysisController {
      * @param industryId
      * @param stockTypeId
      * @param companyId
+     * @param sm 统计方式
      * @return
      */
     @RequestMapping(value = "/clnclr")
-    public ResultBeanUtil<Object> clnclr(String startTime, String endTime, String industryId, String stockTypeId, String companyId){
-        if(StringUtils.isNotEmpty(stockTypeId)){
+    public ResultBeanUtil<Object> clnclr(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm){
+        if(StringUtils.isNotEmpty(stockTypeId) && StringUtils.isNotEmpty(sm)){
             try {
-                resultBeanUtilObj = dataAnalysisServiceImpl.clnclr(startTime , endTime , industryId , stockTypeId , companyId);
+                resultBeanUtilObj = dataAnalysisServiceImpl.clnclr(startTime , endTime , industryId , stockTypeId , companyId, sm);
             }catch (Exception e){
                 resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("逻辑处理异常" , false);
             }
@@ -99,13 +102,14 @@ public class DataAnalysisController {
      * @param industryId
      * @param stockTypeId
      * @param companyId
+     * @param sm 统计方式
      * @return
      */
     @RequestMapping(value = "/managementCapacity")
-    public ResultBeanUtil<Object> managementCapacity(String startTime, String endTime, String industryId, String stockTypeId, String companyId){
-        if(StringUtils.isNotEmpty(stockTypeId)){
+    public ResultBeanUtil<Object> managementCapacity(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm){
+        if(StringUtils.isNotEmpty(stockTypeId) && StringUtils.isNotEmpty(sm)){
             try {
-                resultBeanUtilObj = dataAnalysisServiceImpl.managementCapacity(startTime , endTime , industryId , stockTypeId , companyId);
+                resultBeanUtilObj = dataAnalysisServiceImpl.managementCapacity(startTime , endTime , industryId , stockTypeId , companyId, sm);
             }catch (Exception e){
                 resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("逻辑处理异常" , false);
             }

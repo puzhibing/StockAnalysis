@@ -54,16 +54,16 @@ function getPageHtml(a) {
     var url = '';
     switch (node) {
         case 'assetLiabilityRatio':
-            url = 'assetLiabilityRatio.html';
+            url = 'report/assetLiabilityRatio.html';
             break;
         case 'cancar':
-            url = 'cancar.html';
+            url = 'report/cancar.html';
             break;
         case 'clnclr':
-            url = 'clnclr.html';
+            url = 'report/clnclr.html';
             break;
         case 'managementCapacity':
-            url = 'managementCapacity.html';
+            url = 'report/managementCapacity.html';
             break;
         default:
             break;

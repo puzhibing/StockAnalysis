@@ -142,6 +142,7 @@ function getData() {
     var start = $('.star-time').val();
     var end = $('.end-time').val();
     var stockType = $('.stockType').val();
+    var sm = $('.sm').val();
     $.ajax({
         url: '/DataAnalysis/assetLiabilityRatio',
         type: 'POST',
@@ -150,17 +151,19 @@ function getData() {
             endTime: end,
             industryId: industryId,
             stockTypeId: stockType,
-            companyId: companyId
+            companyId: companyId,
+            sm: sm
         },
         success: function (res) {
             if(res.b){
                 initDiv();
                 var list = res.result;
                 currentRatio(list[0].date , list[0].value);
-                quickRatio(list[1].date , list[1].value);
-                // assetsAndLiabilities(list[2].date , list[2].value);
-                // constructionCurve2(list[3].date , list[3].value);
+                currentRatioSM(list[1].date , list[1].value);
+                quickRatio(list[2].date , list[2].value);
+                quickRatioSM(list[3].date , list[3].value);
                 assetsAndLiabilities(list[4].date , list[4].value);
+                assetsAndLiabilitiesSM(list[5].date , list[5].value);
             }
         }
     });
@@ -171,9 +174,9 @@ function initDiv() {
     $('.stdtar-curve').css({
         'border': '1px solid #DFDFDF'
     });
-    $('#currentRatio').siblings('span').text('短期偿债能力分析');
-    $('#container1').siblings('span').text('长期偿债能力分析');
-    $('#assetsAndLiabilities').siblings('span').text('综合分析');
+    $('#currentRatio').parent('div').siblings('span').text('短期偿债能力分析');
+    $('#container1').parent('div').siblings('span').text('长期偿债能力分析');
+    $('#assetsAndLiabilities').parent('div').siblings('span').text('综合分析');
     $('.stdtar-curve').children('span').css({
         'display': 'block',
         'height': '30px',
@@ -189,7 +192,7 @@ function initDiv() {
 //流动比率
 function currentRatio(xAxis , series) {
     var title = {
-        text: '流动比率（流动资产 / 流动负债）',
+        text: '流动比率【流动资产 / 流动负债】',
         style: {
             'font-size':'14px',
             'color':'#757575'
@@ -234,11 +237,64 @@ function currentRatio(xAxis , series) {
     $('#currentRatio').highcharts(json);
 }
 
+/**
+ * 流动比率增长率
+ * @param xAxis
+ * @param series
+ */
+function currentRatioSM(xAxis , series) {
+    var title = {
+        text: '流动比率增长率【(本期 - 上期) / 上期】',
+        style: {
+            'font-size':'14px',
+            'color':'#757575'
+        }
+    };
+    var xAxis = {
+        categories: xAxis
+    };
+    var yAxis = {
+        title: {
+            text: '增长率'
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+    };
+
+    var legend = {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+    };
+
+    var series =  series;
+
+    var credits = {
+        enabled: false
+    };
+
+    var json = {};
+
+    json.title = title;
+    json.xAxis = xAxis;
+    json.yAxis = yAxis;
+    json.legend = legend;
+    json.series = series;
+    json.credits = credits;
+
+    $('#currentRatioSM').highcharts(json);
+}
+
+
 
 //速动比率
 function quickRatio(xAxis , series) {
     var title = {
-        text: '速动比率（流动资产合计 - 存货 - 应收账款 - 预付账款） / 流动负债）',
+        text: '速动比率【(流动资产合计 - 存货 - 应收账款 - 预付账款) / 流动负债】',
         style: {
             'font-size':'14px',
             'color':'#757575'
@@ -283,10 +339,10 @@ function quickRatio(xAxis , series) {
     $('#quickRatio').highcharts(json);
 }
 
-
-function assetsAndLiabilities1(xAxis , series) {
+//速动比率增长率
+function quickRatioSM(xAxis , series) {
     var title = {
-        text: '',
+        text: '速动比率增长率【(本期 - 上期) / 上期】',
         style: {
             'font-size':'14px',
             'color':'#757575'
@@ -297,7 +353,7 @@ function assetsAndLiabilities1(xAxis , series) {
     };
     var yAxis = {
         title: {
-            text: '比例'
+            text: '增长率'
         },
         plotLines: [{
             value: 0,
@@ -328,14 +384,12 @@ function assetsAndLiabilities1(xAxis , series) {
     json.series = series;
     json.credits = credits;
 
-    $('#container2').highcharts(json);
+    $('#quickRatioSM').highcharts(json);
 }
-
-
 
 function assetsAndLiabilities(xAxis , series) {
     var title = {
-        text: '资产负债率（资产总额 / 负债总额）',
+        text: '资产负债率【资产总额 / 负债总额】',
         style: {
             'font-size':'14px',
             'color':'#757575'
@@ -378,6 +432,54 @@ function assetsAndLiabilities(xAxis , series) {
     json.credits = credits;
 
     $('#assetsAndLiabilities').highcharts(json);
+}
+
+
+function assetsAndLiabilitiesSM(xAxis , series) {
+    var title = {
+        text: '资产负债率增长率【(本期 - 上期) / 上期】',
+        style: {
+            'font-size':'14px',
+            'color':'#757575'
+        }
+    };
+    var xAxis = {
+        categories: xAxis
+    };
+    var yAxis = {
+        title: {
+            text: '比例'
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+    };
+
+    var legend = {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+    };
+
+    var series =  series;
+
+    var credits = {
+        enabled: false
+    };
+
+    var json = {};
+
+    json.title = title;
+    json.xAxis = xAxis;
+    json.yAxis = yAxis;
+    json.legend = legend;
+    json.series = series;
+    json.credits = credits;
+
+    $('#assetsAndLiabilitiesSM').highcharts(json);
 }
 
 

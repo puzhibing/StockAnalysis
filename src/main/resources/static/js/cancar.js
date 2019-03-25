@@ -143,6 +143,7 @@ function getData() {
     var start = $('.star-time').val();
     var end = $('.end-time').val();
     var stockType = $('.stockType').val();
+    var sm = $('.sm').val();
     $.ajax({
         url: '/DataAnalysis/cancar',
         type: 'POST',
@@ -151,12 +152,14 @@ function getData() {
             endTime: end,
             industryId: industryId,
             stockTypeId: stockType,
-            companyId: companyId
+            companyId: companyId,
+            sm: sm
         },
         success: function (res) {
             if(res.b){
                 var list = res.result;
-                constructionCurve(list.date , list.value);
+                constructionCurve1(list[0].date , list[0].value);
+                constructionCurve2(list[1].date , list[1].value);
             }
         }
     });
@@ -165,7 +168,7 @@ function getData() {
 
 
 //构建曲线图
-function constructionCurve(xAxis , series) {
+function constructionCurve1(xAxis , series) {
     var title = {
         text: '流动资产/非流动资产比'
     };
@@ -205,7 +208,50 @@ function constructionCurve(xAxis , series) {
     json.series = series;
     json.credits = credits;
 
-    $('#container').highcharts(json);
+    $('#container1').highcharts(json);
+}
+
+function constructionCurve2(xAxis , series) {
+    var title = {
+        text: '增长率【流动资产/非流动资产比】'
+    };
+    var xAxis = {
+        categories: xAxis
+    };
+    var yAxis = {
+        title: {
+            text: '比例'
+        },
+        plotLines: [{
+            value: 0,
+            width: 1,
+            color: '#808080'
+        }]
+    };
+
+    var legend = {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle',
+        borderWidth: 0
+    };
+
+    var series =  series;
+
+    var credits = {
+        enabled: false
+    };
+
+    var json = {};
+
+    json.title = title;
+    json.xAxis = xAxis;
+    json.yAxis = yAxis;
+    json.legend = legend;
+    json.series = series;
+    json.credits = credits;
+
+    $('#container2').highcharts(json);
 }
 
 

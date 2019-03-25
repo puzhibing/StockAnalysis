@@ -1,9 +1,9 @@
-<!DOCTYPE html><!- 流动资产/非流动资产比 ->
+<!DOCTYPE html><!- 经营能力分析 ->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title></title>
-    <link type="text/css" rel="stylesheet" href="../css/cancar.css"/>
+    <link type="text/css" rel="stylesheet" href="../css/managementCapacity.css"/>
 </head>
 <body>
 <div class="stdtar-home">
@@ -34,32 +34,41 @@
                 </div>
             </div>
             <div>
+                <label for="sm">统计方式</label>
+                <select class="sm" id="sm">
+                    <option value="year">按整年</option>
+                    <option value="halfYear">按半年</option>
+                    <option value="quarter">按季度</option>
+                </select>
+            </div>
+            <div>
                 <button class="submit">查询</button>
                 <button class="reset">重置</button>
             </div>
         </div>
         <div class="stdtar-curve">
             <div id="container"></div>
+            <div id="containerSM"></div>
         </div>
     </div>
+</div>
 
-    <div class="selectionPanelIndustry">
-        <div class="table">
-            <div class="title">
-                <span>所属行业选择</span>
-                <i class="fa fa-remove"></i>
-            </div>
-            <div class="condition">
+<div class="selectionPanelIndustry">
+    <div class="table">
+        <div class="title">
+            <span>所属行业选择</span>
+            <i class="fa fa-remove"></i>
+        </div>
+        <div class="condition">
 
-            </div>
-            <div class="foot">
-                <button>选择</button>
-            </div>
+        </div>
+        <div class="foot">
+            <button>选择</button>
         </div>
     </div>
 </div>
 </body>
 <!--<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>-->
 <!--<script type="text/javascript" src="../Highcharts-6.2.0/highcharts.js"></script>-->
-<script type="text/javascript" src="../js/cancar.js"></script>
+<script type="text/javascript" src="../js/managementCapacity.js"></script>
 </html>

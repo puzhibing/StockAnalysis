@@ -35,23 +35,46 @@
                     </div>
                 </div>
                 <div>
+                    <label for="sm">统计方式</label>
+                    <select class="sm" id="sm">
+                        <option value="year">按整年</option>
+                        <option value="halfYear">按半年</option>
+                        <option value="quarter">按季度</option>
+                    </select>
+                </div>
+                <div>
                     <button class="submit">查询</button>
                     <button class="reset">重置</button>
                 </div>
             </div>
             <div class="stdtar-curve">
                 <span></span>
-                <div id="currentRatio"></div>
-                <div id="quickRatio"></div>
+                <div>
+                    <div id="currentRatio"></div>
+                    <div id="currentRatioSM"></div>
+                </div>
+                <div>
+                    <div id="quickRatio"></div>
+                    <div id="quickRatioSM"></div>
+                </div>
             </div>
             <div class="stdtar-curve">
                 <span></span>
-                <div id="container1"></div>
-                <div id="container2"></div>
+                <div>
+                    <div id="container1"></div>
+
+                </div>
+                <div>
+                    <div id="container2"></div>
+
+                </div>
             </div>
             <div class="stdtar-curve">
                 <span></span>
-                <div id="assetsAndLiabilities"></div>
+                <div>
+                    <div id="assetsAndLiabilities"></div>
+                    <div id="assetsAndLiabilitiesSM"></div>
+                </div>
             </div>
         </div>
     </div>

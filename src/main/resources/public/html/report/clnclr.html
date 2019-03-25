@@ -34,12 +34,21 @@
                 </div>
             </div>
             <div>
+                <label for="sm">统计方式</label>
+                <select class="sm" id="sm">
+                    <option value="year">按整年</option>
+                    <option value="halfYear">按半年</option>
+                    <option value="quarter">按季度</option>
+                </select>
+            </div>
+            <div>
                 <button class="submit">查询</button>
                 <button class="reset">重置</button>
             </div>
         </div>
         <div class="stdtar-curve">
             <div id="container"></div>
+            <div id="containerSM"></div>
         </div>
     </div>
 </div>

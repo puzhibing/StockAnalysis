@@ -11,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 import java.math.RoundingMode;
 import java.util.*;
 
@@ -50,19 +49,23 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
      * @param industryId    "行业id"
      * @param stockTypeId    ""
      * @param companyId
+     * @param sm 统计方式
      * @return
      * @throws Exception
      */
     @Override
-    public ResultBeanUtil<Object> assetLiabilityRatio(String startTime, String endTime, String industryId, String stockTypeId, String companyId) throws Exception {
+    public ResultBeanUtil<Object> assetLiabilityRatio(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm) throws Exception {
         Date start =  DateUtils.getMonth(startTime , DateUtilEnum.SHORTBAR);
         Date end = DateUtils.getMonth(endTime , DateUtilEnum.SHORTBAR);
         List<Object> li = new ArrayList<>();
-        Map<String , Object> map = new HashMap<>();
-        Map<String , Object> _map = new HashMap<>();
-        Map<String , Object> _map_ = new HashMap<>();
-        Map<String , Object> $map = new HashMap<>();
-        Map<String , Object> $map_ = new HashMap<>();
+
+        Map<String , Object> crMap = new HashMap<>();
+        Map<String , Object> crsmMap = new HashMap<>();
+        Map<String , Object> qrMap = new HashMap<>();
+        Map<String , Object> qrsmMap = new HashMap<>();
+        Map<String , Object> aalMap = new HashMap<>();
+        Map<String , Object> aalsmMap = new HashMap<>();
+
         try {
             List<CompanyStock> companyStocks = null;
             if(StringUtils.isNotEmpty(industryId)){
@@ -76,19 +79,39 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
             }
 
-            List<String> dates = this.getDateByQuarter(start , end);
+            List<String> dates = null;
+            switch (sm){
+                case "year":
+                    dates = this.getDateByYear(start , end);
+                    break;
+                case "halfYear":
+                    dates = this.getDateByHalfYear(start , end);
+                    break;
+                case "quarter":
+                    dates = this.getDateByQuarter(start , end);
+                    break;
+            }
 
-            List<Object> list = new ArrayList<>();
-            List<Object> list2 = new ArrayList<>();
-            List<Object> list3 = new ArrayList<>();
-            List<Object> list4 = new ArrayList<>();
-            List<Object> list5 = new ArrayList<>();
+            crMap.put("date", dates);
+            crsmMap.put("date", dates);
+            qrMap.put("date", dates);
+            qrsmMap.put("date", dates);
+
+            List crList = new ArrayList<>();
+            List crsmList = new ArrayList<>();
+            List qrList = new ArrayList<>();
+            List qrsmList = new ArrayList<>();
+            List aalList = new ArrayList<>();
+            List aalsmList = new ArrayList<>();
             for (CompanyStock c : companyStocks){
-                Map<String , Object> map1 = new HashMap<>();
-                Map<String , Object> map2 = new HashMap<>();
-                Map<String , Object> map3 = new HashMap<>();
-                Map<String , Object> map4 = new HashMap<>();
-                Map<String , Object> map5 = new HashMap<>();
+
+                Map<String, Object> crMapInfo = new HashMap<>();
+                Map<String, Object> crsmMapInfo = new HashMap<>();
+                Map<String, Object> qrMapInfo = new HashMap<>();
+                Map<String, Object> qrsmMapInfo = new HashMap<>();
+                Map<String, Object> aalMapInfo = new HashMap<>();
+                Map<String, Object> aalsmMapInfo = new HashMap<>();
+
                 Company company = companyMapper.selectCompanyById(c.getCompanyId());
                 String name = "";
                 if(StringUtils.isNotEmpty(company.getChShortName())){
@@ -96,11 +119,6 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                 }else{
                     name = company.getChName();
                 }
-                map1.put("name" , name + "(" + c.getStockCode() + ")");
-                map2.put("name" , name + "(" + c.getStockCode() + ")");
-                map3.put("name" , name + "(" + c.getStockCode() + ")");
-                map4.put("name" , name + "(" + c.getStockCode() + ")");
-                map5.put("name" , name + "(" + c.getStockCode() + ")");
 
                 //获取基础数据
                 List<CurrentAssets> currentAssets =
@@ -112,125 +130,48 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                 List<NonCurrentLiabilities> nonCurrentLiabilities =
                     nonCurrentLiabilitiesMapper.selectNonCurrentLiabilitiesByCompanyStockId(c.getId() , start , end);
 
-                //解析日期，获取对应日期的数据封装进集合中
-                List<Double> datas = new ArrayList<>();
-                List<Double> datas2 = new ArrayList<>();
-                List<Double> datas3 = new ArrayList<>();
-                List<Double> datas4 = new ArrayList<>();
-                List<Double> datas5 = new ArrayList<>();
-                for (String date : dates) {
-                    double c1 = 0;
-                    for (CurrentAssets cu : currentAssets) {
-                        if(date.equals(cu.getDataTime())){
-                            c1 = Double.valueOf(cu.getTca());
-                            break;
-                        }
-                    }
 
-                    double c2 = 0;
-                    for (CurrentLiabilities cu : currentLiabilities) {
-                        if(date.equals(cu.getDataTime())){
-                            c2 = Double.valueOf(cu.getTcl());
-                            break;
-                        }
-                    }
+                List<Object> currentRatio = this.getCurrentRatio(dates, currentAssets, currentLiabilities);
+                crMapInfo.put("name" , name + "(" + c.getStockCode() + ")");
+                crMapInfo.put("data" , currentRatio.get(0));
+                crList.add(crMapInfo);
+                crsmMapInfo.put("name" , name + "(" + c.getStockCode() + ")");
+                crsmMapInfo.put("data" , currentRatio.get(1));
+                crsmList.add(crsmMapInfo);
 
-                    double $c1 = 0;
-                    for (CurrentAssets cu : currentAssets) {
-                        if(date.equals(cu.getDataTime())){
-                            $c1 = Double.valueOf(cu.getTca()) - Double.valueOf(cu.getStock())
-                                    - Double.valueOf(cu.getPrepayments()) - Double.valueOf(cu.getAccountsReceivable());
-                            break;
-                        }
-                    }
+                List<Object> quickRatio = this.getQuickRatio(dates, currentAssets, currentLiabilities);
+                qrMapInfo.put("name" , name + "(" + c.getStockCode() + ")");
+                qrMapInfo.put("data" , quickRatio.get(0));
+                qrList.add(qrMapInfo);
+                qrsmMapInfo.put("name" , name + "(" + c.getStockCode() + ")");
+                qrsmMapInfo.put("data" , quickRatio.get(1));
+                qrsmList.add(qrsmMapInfo);
 
+                List<Object> assetsAndLiabilities = this.getAssetsAndLiabilities(dates, currentAssets, currentLiabilities,
+                        nonCurrentAssets, nonCurrentLiabilities);
+                aalMapInfo.put("name" , name + "(" + c.getStockCode() + ")");
+                aalMapInfo.put("data" , assetsAndLiabilities.get(0));
+                aalList.add(aalMapInfo);
+                aalsmMapInfo.put("name" , name + "(" + c.getStockCode() + ")");
+                aalsmMapInfo.put("data" , assetsAndLiabilities.get(1));
+                aalsmList.add(aalsmMapInfo);
 
-
-                    double d1 = 0;
-                    for (NonCurrentAssets cu : nonCurrentAssets) {
-                        if(date.equals(cu.getDataTime())){
-                            d1 = Double.valueOf(cu.getTnca());
-                            break;
-                        }
-                    }
-
-                    double d2 = 0;
-                    for (NonCurrentLiabilities cu : nonCurrentLiabilities) {
-                        if(date.equals(cu.getDataTime())){
-                            d2 = Double.valueOf(cu.getTncl());
-                            break;
-                        }
-                    }
-
-                    double e1 = c1 + d1;
-                    double e2 = c2 + d2;
-
-
-                    if(0 == c1){
-                        datas.add(c1);
-                    }else{
-                        BigDecimal b1 = new BigDecimal(c1);
-                        BigDecimal b2 = new BigDecimal(c2);
-                        double value = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
-                        datas.add(value);
-                    }
-
-                    if(0 == $c1){
-                        datas2.add($c1);
-                    }else{
-                        BigDecimal b1 = new BigDecimal($c1);
-                        BigDecimal b2 = new BigDecimal(c2);
-                        double value = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
-                        datas2.add(value);
-                    }
-
-
-                    if(0 == d1){
-                        datas3.add(d1);
-                    }else{
-                        BigDecimal b1 = new BigDecimal(d1);
-                        BigDecimal b2 = new BigDecimal(d2);
-                        double value = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
-                        datas3.add(value);
-                    }
-
-                    if(0 == e1){
-                        datas5.add(e1);
-                    }else{
-                        BigDecimal b1 = new BigDecimal(e1);
-                        BigDecimal b2 = new BigDecimal(e2);
-                        double value = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
-                        datas5.add(value);
-                    }
-
-                }
-                map1.put("data" , datas);
-                map2.put("data" , datas2);
-                map3.put("data" , datas3);
-                map4.put("data" , datas4);
-                map5.put("data" , datas5);
-                list.add(map1);
-                list2.add(map2);
-                list3.add(map3);
-                list4.add(map4);
-                list5.add(map5);
             }
+            crMap.put("value", crList);
+            li.add(crMap);
+            crsmMap.put("value", crsmList);
+            li.add(crsmMap);
 
-            map.put("date" , dates);
-            map.put("value" , list);
-            _map.put("date" , dates);
-            _map.put("value" , list2);
-            _map_.put("date" , dates);
-            _map_.put("value" , list3);
-            $map.put("date" , dates);
-            $map.put("value" , list4);
-            $map_.put("date" , dates);
-            $map_.put("value" , list5);
-            li.add(map);
-            li.add(_map);
-            li.add(_map_);
-            li.add($map);
-            li.add($map_);
+            qrMap.put("value", qrList);
+            li.add(qrMap);
+            qrsmMap.put("value", qrsmList);
+            li.add(qrsmMap);
+
+            aalMap.put("value", aalList);
+            li.add(aalMap);
+            aalsmMap.put("value", aalsmList);
+            li.add(aalsmMap);
+
             resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("查询成功" , true , li);
         }catch (Exception e){
             e.printStackTrace();
@@ -242,19 +183,225 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
 
     /**
+     * 封装流动比率及增长率数据（流动资产/流动负债）
+     * @param dates
+     * @param currentAssets
+     * @param currentLiabilities
+     * @return
+     */
+    private List<Object> getCurrentRatio(List<String> dates , List<CurrentAssets> currentAssets ,
+                                         List<CurrentLiabilities> currentLiabilities){
+        List<Object> datas = new ArrayList<>();
+        List<Double> data = new ArrayList();
+        List<Double> sm = new ArrayList<>();
+        double crsm = 0;
+        for (String date : dates) {
+            double c1 = 0;
+            for (CurrentAssets cu : currentAssets) {
+                if(date.equals(cu.getDataTime())){
+                    c1 = Double.valueOf(cu.getTca());
+                    break;
+                }
+            }
+            double c2 = 0;
+            for (CurrentLiabilities cu : currentLiabilities) {
+                if(date.equals(cu.getDataTime())){
+                    c2 = Double.valueOf(cu.getTcl());
+                    break;
+                }
+            }
+            double crVal = 0;
+            //计算基础数据
+            if(0 == c1){
+                data.add(c1);
+            }else{
+                BigDecimal b1 = new BigDecimal(c1);
+                BigDecimal b2 = new BigDecimal(c2);
+                crVal = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
+                data.add(crVal);
+            }
+
+            //计算增加率部分
+            if(0 == crVal){
+                sm.add(new Double(0));
+            }else{
+                if(0 == crsm){
+                    sm.add(new Double(1));
+                }else {
+                    BigDecimal b1 = new BigDecimal(crVal - crsm);
+                    BigDecimal b2 = new BigDecimal(crsm);
+                    sm.add(b1.divide(b2, 5, RoundingMode.HALF_EVEN).doubleValue());
+                }
+
+            }
+            crsm = crVal;
+        }
+        datas.add(data);
+        datas.add(sm);
+        return datas;
+    }
+
+
+    /**
+     * 封装速动比率及增长率数据（流动资产合计 - 存货 - 应收账款 - 预付账款） / 流动负债
+     * @param dates
+     * @param currentAssets
+     * @param currentLiabilities
+     * @return
+     */
+    private List<Object> getQuickRatio(List<String> dates , List<CurrentAssets> currentAssets ,
+                                       List<CurrentLiabilities> currentLiabilities){
+        List<Object> datas = new ArrayList<>();
+        List<Double> data = new ArrayList();
+        List<Double> sm = new ArrayList<>();
+        double crsm = 0;
+        for (String date : dates) {
+            double c1 = 0;
+            for (CurrentAssets cu : currentAssets) {
+                if(date.equals(cu.getDataTime())){
+                    c1 = Double.valueOf(cu.getTca()) - Double.valueOf(cu.getStock())
+                                    - Double.valueOf(cu.getPrepayments()) - Double.valueOf(cu.getAccountsReceivable());
+                    break;
+                }
+            }
+            double c2 = 0;
+            for (CurrentLiabilities cu : currentLiabilities) {
+                if(date.equals(cu.getDataTime())){
+                    c2 = Double.valueOf(cu.getTcl());
+                    break;
+                }
+            }
+            double crVal = 0;
+            //计算基础数据
+            if(0 == c1){
+                data.add(c1);
+            }else{
+                BigDecimal b1 = new BigDecimal(c1);
+                BigDecimal b2 = new BigDecimal(c2);
+                crVal = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
+                data.add(crVal);
+            }
+
+            //计算增加率部分
+            if(0 == crVal){
+                sm.add(new Double(0));
+            }else{
+                if(0 == crsm){
+                    sm.add(new Double(1));
+                }else {
+                    BigDecimal b1 = new BigDecimal(crVal - crsm);
+                    BigDecimal b2 = new BigDecimal(crsm);
+                    sm.add(b1.divide(b2, 5, RoundingMode.HALF_EVEN).doubleValue());
+                }
+
+            }
+            crsm = crVal;
+        }
+        datas.add(data);
+        datas.add(sm);
+        return datas;
+    }
+
+
+    /**
+     * 封装资产负债率及增长率数据【资产总额 / 负债总额】
+     * @param dates
+     * @param currentAssets
+     * @param currentLiabilities
+     * @param nonCurrentAssets
+     * @param nonCurrentLiabilities
+     * @return
+     */
+    private List<Object> getAssetsAndLiabilities(List<String> dates, List<CurrentAssets> currentAssets, List<CurrentLiabilities> currentLiabilities
+            , List<NonCurrentAssets> nonCurrentAssets, List<NonCurrentLiabilities> nonCurrentLiabilities){
+        List<Object> datas = new ArrayList<>();
+        List<Double> data = new ArrayList();
+        List<Double> sm = new ArrayList<>();
+        double crsm = 0;
+        for (String date : dates) {
+            double c1 = 0;
+            for (CurrentAssets cu : currentAssets) {
+                if(date.equals(cu.getDataTime())){
+                    c1 = Double.valueOf(cu.getTca());
+                    break;
+                }
+            }
+            double c2 = 0;
+            for (CurrentLiabilities cu : currentLiabilities) {
+                if(date.equals(cu.getDataTime())){
+                    c2 = Double.valueOf(cu.getTcl());
+                    break;
+                }
+            }
+
+            double d1 = 0;
+            for (NonCurrentAssets ncu : nonCurrentAssets) {
+                if(date.equals(ncu.getDataTime())){
+                    d1 = Double.valueOf(ncu.getTnca());
+                    break;
+                }
+            }
+
+            double d2 = 0;
+            for (NonCurrentLiabilities ncl : nonCurrentLiabilities) {
+                if(date.equals(ncl.getDataTime())){
+                    d2 = Double.valueOf(ncl.getTncl());
+                    break;
+                }
+            }
+
+            c1 = c1 + d1;
+            c2 = c2 + d2;
+
+            double crVal = 0;
+            //计算基础数据
+            if(0 == c1){
+                data.add(c1);
+            }else{
+                BigDecimal b1 = new BigDecimal(c1);
+                BigDecimal b2 = new BigDecimal(c2);
+                crVal = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
+                data.add(crVal);
+            }
+
+            //计算增加率部分
+            if(0 == crVal){
+                sm.add(new Double(0));
+            }else{
+                if(0 == crsm){
+                    sm.add(new Double(1));
+                }else {
+                    BigDecimal b1 = new BigDecimal(crVal - crsm);
+                    BigDecimal b2 = new BigDecimal(crsm);
+                    sm.add(b1.divide(b2, 5, RoundingMode.HALF_EVEN).doubleValue());
+                }
+            }
+            crsm = crVal;
+        }
+        datas.add(data);
+        datas.add(sm);
+        return datas;
+    }
+
+
+
+    /**
      * 流动资产/非流动资产比
      * @param startTime
      * @param endTime
      * @param industryId
      * @param stockTypeId
      * @param companyId
+     * @param sm 统计方式
      * @return
      * @throws Exception
      */
-    public ResultBeanUtil<Object> cancar(String startTime, String endTime, String industryId, String stockTypeId, String companyId) throws Exception {
+    public ResultBeanUtil<Object> cancar(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm) throws Exception {
         Date start =  DateUtils.getMonth(startTime , DateUtilEnum.SHORTBAR);
         Date end = DateUtils.getMonth(endTime , DateUtilEnum.SHORTBAR);
+        List<Object> ls = new ArrayList<>();
         Map<String , Object> map = new HashMap<>();
+        Map<String , Object> _map = new HashMap<>();
         try {
             List<CompanyStock> companyStocks = null;
             if(!StringUtils.isEmpty(industryId)){
@@ -268,11 +415,24 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
             }
 
-            List<String> dates = this.getDateByQuarter(start , end);
+            List<String> dates = null;
+            switch (sm){
+                case "year":
+                    dates = this.getDateByYear(start , end);
+                    break;
+                case "halfYear":
+                    dates = this.getDateByHalfYear(start , end);
+                    break;
+                case "quarter":
+                    dates = this.getDateByQuarter(start , end);
+                    break;
+            }
 
             List<Object> list = new ArrayList<>();
+            List<Object> list1 = new ArrayList<>();
             for (CompanyStock c : companyStocks) {
                 Map<String, Object> map1 = new HashMap<>();
+                Map<String, Object> map2 = new HashMap<>();
                 Company company = companyMapper.selectCompanyById(c.getCompanyId());
                 String name = "";
                 if(StringUtils.isNotEmpty(company.getChShortName())){
@@ -281,6 +441,7 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                     name = company.getChName();
                 }
                 map1.put("name", name + "(" + c.getStockCode() + ")");
+                map2.put("name", name + "(" + c.getStockCode() + ")");
 
                 //获取基础数据
                 List<CurrentAssets> currentAssets =
@@ -290,10 +451,12 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
                 //解析日期，获取对应日期的数据封装进集合中
                 List<Double> datas = new ArrayList<>();
-                for (String date : dates) {
+                List<Double> os = new ArrayList<>();
+                double o = 0;
+                for (int i = 0 ; i < dates.size() ; i++) {
                     double c1 = 0;
                     for (CurrentAssets cu : currentAssets) {
-                        if (date.equals(cu.getDataTime())) {
+                        if (dates.get(i).equals(cu.getDataTime())) {
                             c1 = Double.valueOf(cu.getTca());
                             break;
                         }
@@ -301,27 +464,50 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
                     double d1 = 0;
                     for (NonCurrentAssets cu : nonCurrentAssets) {
-                        if (date.equals(cu.getDataTime())) {
+                        if (dates.get(i).equals(cu.getDataTime())) {
                             d1 = Double.valueOf(cu.getTnca());
                             break;
                         }
                     }
 
+                    double val = 0;
                     if (0 == c1) {
                         datas.add(c1);
                     } else {
                         BigDecimal b1 = new BigDecimal(c1);
                         BigDecimal b2 = new BigDecimal(d1);
-                        double value = b1.divide(b2, 5, RoundingMode.HALF_EVEN).doubleValue();
-                        datas.add(value);
+                        val = b1.divide(b2, 5, RoundingMode.HALF_EVEN).doubleValue();
+                        datas.add(val);
                     }
+
+                    //计算增长率
+                    if(0 == val){
+                        os.add(new Double(0));
+                    }else{
+                        if(0 == o){
+                            os.add(new Double(1));
+                        }else {
+                            BigDecimal b1 = new BigDecimal(val - o);
+                            BigDecimal b2 = new BigDecimal(o);
+                            os.add(b1.divide(b2, 5, RoundingMode.HALF_EVEN).doubleValue());
+                        }
+
+                    }
+                    o = val;
                 }
                 map1.put("data", datas);
+                map2.put("data", os);
                 list.add(map1);
+                list1.add(map2);
             }
             map.put("date" , dates);
+            _map.put("date" , dates);
             map.put("value" , list);
-            resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("查询成功" , true , map);
+            _map.put("value" , list1);
+
+            ls.add(map);
+            ls.add(_map);
+            resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("查询成功" , true , ls);
         }catch (Exception e){
             e.printStackTrace();
             throw e;
@@ -338,13 +524,16 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
      * @param industryId
      * @param stockTypeId
      * @param companyId
+     * @param sm 统计方式
      * @return
      * @throws Exception
      */
-    public ResultBeanUtil<Object> clnclr(String startTime, String endTime, String industryId, String stockTypeId, String companyId) throws Exception {
+    public ResultBeanUtil<Object> clnclr(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm) throws Exception {
         Date start =  DateUtils.getMonth(startTime , DateUtilEnum.SHORTBAR);
         Date end = DateUtils.getMonth(endTime , DateUtilEnum.SHORTBAR);
+        List<Object> li = new ArrayList<>();
         Map<String , Object> map = new HashMap<>();
+        Map<String , Object> _map = new HashMap<>();
         try {
             List<CompanyStock> companyStocks = null;
             if(!StringUtils.isEmpty(industryId)){
@@ -358,11 +547,24 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
             }
 
-            List<String> dates = this.getDateByQuarter(start , end);
+            List<String> dates = null;
+            switch (sm){
+                case "year":
+                    dates = this.getDateByYear(start , end);
+                    break;
+                case "halfYear":
+                    dates = this.getDateByHalfYear(start , end);
+                    break;
+                case "quarter":
+                    dates = this.getDateByQuarter(start , end);
+                    break;
+            }
 
             List<Object> list = new ArrayList<>();
+            List<Object> list1 = new ArrayList<>();
             for (CompanyStock c : companyStocks) {
                 Map<String, Object> map1 = new HashMap<>();
+                Map<String, Object> map2 = new HashMap<>();
                 Company company = companyMapper.selectCompanyById(c.getCompanyId());
                 String name = "";
                 if(StringUtils.isNotEmpty(company.getChShortName())){
@@ -371,6 +573,7 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                     name = company.getChName();
                 }
                 map1.put("name", name + "(" + c.getStockCode() + ")");
+                map2.put("name", name + "(" + c.getStockCode() + ")");
 
                 //获取基础数据
                 List<CurrentLiabilities> currentLiabilities =
@@ -380,6 +583,8 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
                 //解析日期，获取对应日期的数据封装进集合中
                 List<Double> datas = new ArrayList<>();
+                List<Double> os = new ArrayList<>();
+                double o = 0;
                 for (String date : dates) {
                     double c2 = 0;
                     for (CurrentLiabilities cu : currentLiabilities) {
@@ -397,21 +602,44 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                         }
                     }
 
+                    double val = 0;
                     if (0 == c2) {
                         datas.add(c2);
                     } else {
                         BigDecimal b1 = new BigDecimal(c2);
                         BigDecimal b2 = new BigDecimal(d2);
-                        double value = b1.divide(b2, 5, RoundingMode.HALF_EVEN).doubleValue();
-                        datas.add(value);
+                        val = b1.divide(b2, 5, RoundingMode.HALF_EVEN).doubleValue();
+                        datas.add(val);
                     }
+
+                    //计算增长率
+                    if(0 == val){
+                        os.add(new Double(0));
+                    }else{
+                        if(0 == o){
+                            os.add(new Double(1));
+                        }else {
+                            BigDecimal b1 = new BigDecimal(val - o);
+                            BigDecimal b2 = new BigDecimal(o);
+                            os.add(b1.divide(b2, 5, RoundingMode.HALF_EVEN).doubleValue());
+                        }
+
+                    }
+                    o = val;
                 }
                 map1.put("data", datas);
+                map2.put("data", os);
                 list.add(map1);
+                list1.add(map2);
             }
             map.put("date" , dates);
             map.put("value" , list);
-            resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("查询成功" , true , map);
+            _map.put("date" , dates);
+            _map.put("value" , list1);
+
+            li.add(map);
+            li.add(_map);
+            resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("查询成功" , true , li);
         }catch (Exception e){
             e.printStackTrace();
             throw e;
@@ -422,20 +650,23 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
 
     /**
-     *
+     * 营收比例（营业收入/营业支出）
      * @param startTime
      * @param endTime
      * @param industryId
      * @param stockTypeId
      * @param companyId
+     * @param sm 统计方式
      * @return
      * @throws Exception
      */
     @Override
-    public ResultBeanUtil<Object> managementCapacity(String startTime, String endTime, String industryId, String stockTypeId, String companyId) throws Exception {
+    public ResultBeanUtil<Object> managementCapacity(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm) throws Exception {
         Date start =  DateUtils.getMonth(startTime , DateUtilEnum.SHORTBAR);
         Date end = DateUtils.getMonth(endTime , DateUtilEnum.SHORTBAR);
+        List<Object> li = new ArrayList<>();
         Map<String , Object> map = new HashMap<>();
+        Map<String , Object> _map = new HashMap<>();
         try {
             List<CompanyStock> companyStocks = null;
             if(StringUtils.isNotEmpty(industryId)){
@@ -449,11 +680,24 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
             }
 
-            List<String> dates = this.getDateByQuarter(start , end);
+            List<String> dates = null;
+            switch (sm){
+                case "year":
+                    dates = this.getDateByYear(start , end);
+                    break;
+                case "halfYear":
+                    dates = this.getDateByHalfYear(start , end);
+                    break;
+                case "quarter":
+                    dates = this.getDateByQuarter(start , end);
+                    break;
+            }
 
             List<Object> list = new ArrayList<>();
+            List<Object> list1 = new ArrayList<>();
             for (CompanyStock c : companyStocks){
                 Map<String , Object> map1 = new HashMap<>();
+                Map<String , Object> map2 = new HashMap<>();
                 Company company = companyMapper.selectCompanyById(c.getCompanyId());
                 String name = "";
                 if(StringUtils.isNotEmpty(company.getChShortName())){
@@ -462,6 +706,7 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                     name = company.getChName();
                 }
                 map1.put("name" , name + "(" + c.getStockCode() + ")");
+                map2.put("name" , name + "(" + c.getStockCode() + ")");
 
                 //获取基础数据
                 List<Profit> profits =
@@ -469,6 +714,8 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 
                 //解析日期，获取对应日期的数据封装进集合中
                 List<Double> datas = new ArrayList<>();
+                List<Double> os = new ArrayList<>();
+                double o = 0;
                 for (String date : dates) {
                     double c1 = 0;
                     for (Profit cu : profits) {
@@ -486,25 +733,45 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                         }
                     }
 
-
+                    double val = 0;
                     if(0 == c1){
                         datas.add(c1);
                     }else{
                         BigDecimal b1 = new BigDecimal(c1);
                         BigDecimal b2 = new BigDecimal(c2);
-                        double value = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
-                        datas.add(value);
+                        val = b1.divide(b2 , 5 , RoundingMode.HALF_EVEN).doubleValue();
+                        datas.add(val);
                     }
 
+                    //计算增长率
+                    if(0 == val){
+                        os.add(new Double(0));
+                    }else{
+                        if(0 == o){
+                            os.add(new Double(1));
+                        }else {
+                            BigDecimal b1 = new BigDecimal(val - o);
+                            BigDecimal b2 = new BigDecimal(o);
+                            os.add(b1.divide(b2, 5, RoundingMode.HALF_EVEN).doubleValue());
+                        }
 
+                    }
+                    o = val;
                 }
                 map1.put("data" , datas);
+                map2.put("data" , os);
                 list.add(map1);
+                list1.add(map2);
             }
 
             map.put("date" , dates);
             map.put("value" , list);
-            resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("查询成功" , true , map);
+            _map.put("date" , dates);
+            _map.put("value" , list1);
+
+            li.add(map);
+            li.add(_map);
+            resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("查询成功" , true , li);
         }catch (Exception e){
             e.printStackTrace();
             throw e;
@@ -555,6 +822,89 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
                 b = false;
             }
 
+        }
+        return dates;
+    }
+
+
+    /**
+     * 获取给定日期范围，按照半年划分后的字符串集合
+     * @param start
+     * @param end
+     * @return
+     */
+    private List<String> getDateByHalfYear(Date start , Date end){
+        //构建两个日历对象用于处理时间
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTime(start);
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(end);
+
+        /**
+         * 开始处理时间
+         */
+        List<String> dates = new ArrayList<>();
+        int sm = DateUtils.getRecentHalfYear(start);
+        long l1 = calendar1.getTimeInMillis();
+        long l2 = calendar2.getTimeInMillis();
+        if(l1 <= l2){
+            calendar1.set(Calendar.MONTH , sm);
+            calendar1.set(Calendar.DATE , 0);
+            dates.add(DateUtils.getDateToString(calendar1.getTime() , DateUtilEnum.SHORTBAR));
+        }else {
+            return dates;
+        }
+
+        boolean b = true;
+        while (b){
+            l1 = calendar1.getTimeInMillis();
+            l2 = calendar2.getTimeInMillis();
+            sm = calendar1.get(Calendar.MONTH) + 1;//新月份
+            if(l1 <= l2){
+                calendar1.set(Calendar.MONTH , sm + 6);
+                calendar1.set(Calendar.DATE , 0);
+                dates.add(DateUtils.getDateToString(calendar1.getTime() , DateUtilEnum.SHORTBAR));
+            }else {
+                b = false;
+            }
+
+        }
+        return dates;
+    }
+
+
+    /**
+     * 获取给定日期范围，按照年划分后的字符串集合
+     * @param start
+     * @param end
+     * @return
+     */
+    private List<String> getDateByYear(Date start , Date end){
+        //构建两个日历对象用于处理时间
+        Calendar calendar1 = Calendar.getInstance();
+        calendar1.setTime(start);
+        Calendar calendar2 = Calendar.getInstance();
+        calendar2.setTime(end);
+
+        /**
+         * 开始处理时间
+         */
+        List<String> dates = new ArrayList<>();
+        boolean b = true;
+        while (b){
+            calendar1.set(Calendar.MONTH , 11);
+            calendar1.set(Calendar.DATE , 31);
+
+            long l1 = calendar1.getTimeInMillis();
+            long l2 = calendar2.getTimeInMillis();
+
+            if(l1 <= l2){
+                dates.add(DateUtils.getDateToString(calendar1.getTime() , DateUtilEnum.SHORTBAR));
+            }else{
+                b = false;
+            }
+
+            calendar1.set(Calendar.YEAR , calendar1.get(Calendar.YEAR) + 1);
         }
         return dates;
     }
