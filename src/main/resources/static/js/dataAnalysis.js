@@ -2,6 +2,23 @@ $(function () {
     var width = $(document.body).outerWidth(true);
     var height = $(document.body).outerHeight(true);
 
+    $('.home .content').css({
+        'height':height - 71
+    });
+
+    //监听滚动条事件
+    $(window).scroll(function () {
+        if($(window).scrollTop() == 0){
+            //到达顶部
+            $('.head').removeAttr('style');
+        }else{
+            $('.head').css({
+                'box-shadow':'0px 3px 6px #808080'
+            });
+        }
+    });
+
+
     $('.head div ul li').mouseenter(function () {
         $('.smallMenu').show();
         var clazz = $(this).attr('class');
@@ -42,9 +59,6 @@ $(function () {
         $('.smallMenu').hide();
     });
 
-    $('.home .content').css({
-        'height':height - 51
-    });
 });
 
 

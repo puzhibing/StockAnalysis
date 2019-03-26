@@ -1,9 +1,13 @@
 var companyId = '';
 var industryId = '';
 $(document).ready(function() {
-    getStockType();
+
     var width = $(document.body).outerWidth(true);
     var height = $(document.body).outerHeight(true);
+
+    $('.selectionPanelIndustry .table').css({
+        'left': (width - 500) / 2,
+    });
 
     $(document).click(function () {
         var se = $('.stdtar-queryConditions .selectionPanel');
@@ -61,9 +65,7 @@ $(document).ready(function() {
         doubleClickLi();
     });
 
-    $('.selectionPanelIndustry .table').css({
-        'left': (width - 500) / 2,
-    });
+    getStockType();
 });
 
 

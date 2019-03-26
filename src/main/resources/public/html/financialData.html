@@ -4,813 +4,812 @@
     <meta charset="UTF-8">
     <title>财务数据</title>
     <link type="text/css" rel="stylesheet" href="../css/financialData.css">
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/financialData.js"></script>
+    <script type="text/javascript" src="../js/util.js"></script>
 </head>
 <body>
-<div class="panl">
-    <div class="title">
-        <span>财务数据</span>
-    </div>
-    <div class="public">
-        <table>
-            <tr>
-                <td><span>数据日期：</span></td>
-                <td><input type="date" class="dataTime"></td>
-                <td><span>证券编号：</span></td>
-                <td>
-                    <input type="text" class="securitiesNumber">
-                    <div class="selectionPanel">
-
-                    </div>
-                </td>
-                <td><span>证券类型：</span></td>
-                <td><input type="text" readonly="readonly" class="securitiesType"></td>
-                <td><span>企业名称：</span></td>
-                <td><input type="text" readonly="readonly" class="companyName"></td>
-                <td>
-                    <label>单位：</label>
-                    <select class="currencyUnit">
-                        <option value="1">元</option>
-                        <option value="10000">万</option>
-                        <option value="100000">十万</option>
-                        <option value="1000000">百万</option>
-                        <option value="10000000">千万</option>
-                        <option value="100000000">亿</option>
-                    </select>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div class="content">
-        <div class="menu">
-            <nav class="currentAssets">流动资产</nav>
-            <nav class="nonCurrentAssets">非流动资产</nav>
-            <nav class="currentLiabilities">流动负债</nav>
-            <nav class="nonCurrentLiabilities">非流动负债</nav>
-            <nav class="ownersEquity">所有者权益</nav>
-            <nav class="ownersEquityChange">所有者权益变动</nav>
-            <nav class="profit">利润</nav>
-            <nav class="cashFlow">现金流</nav>
-            <nav class="cashFlowStatement">现金流附注</nav>
-
+    <div class="panl">
+        <div class="title">
+            <span>财务数据</span>
         </div>
-        <input type="hidden" class="companyStockId">
-        <div class="data">
-            <!--流动资产-->
-            <div class="dataType" id="currentAssets">
-                <input class="id" type="hidden"/>
-                <table>
-                    <tr>
-                        <td><span>货币资金：</span></td>
-                        <td><input type="text" class="moneyFunds dataBinding" tag="catotle"></td>
-                        <td><span>拆出资金：</span></td>
-                        <td><input type="text" class="WOF dataBinding" tag="catotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>交易性金融资产：</span></td>
-                        <td><input type="text" class="TFA dataBinding" tag="catotle"></td>
-                        <td><span>衍生金融资产：</span></td>
-                        <td><input type="text" class="DFA dataBinding" tag="catotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>买入返售金融资产：</span></td>
-                        <td><input type="text" class="BBRFA dataBinding" tag="catotle"></td>
-                        <td><span>应收票据：</span></td>
-                        <td><input type="text" class="billReceivable dataBinding" tag="catotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>应收账款：</span></td>
-                        <td><input type="text" class="accountsReceivable dataBinding" tag="catotle"></td>
-                        <td><span>预付账款：</span></td>
-                        <td><input type="text" class="prepayments dataBinding" tag="catotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>应收利息：</span></td>
-                        <td><input type="text" class="interestReceivable dataBinding" tag="catotle"></td>
-                        <td><span>应收股利：</span></td>
-                        <td><input type="text" class="dividendReceivable dataBinding" tag="catotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>其他应收款：</span></td>
-                        <td><input type="text" class="otherReceivables dataBinding" tag="catotle"></td>
-                        <td><span>存货：</span></td>
-                        <td><input type="text" class="stock dataBinding" tag="catotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>划分为持有待售的资产：</span></td>
-                        <td><input type="text" class="DIAHFS dataBinding" tag="catotle"></td>
-                        <td><span>一年内到期的非流动资产：</span></td>
-                        <td><input type="text" class="NCADWOY dataBinding" tag="catotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>其他流动资产：</span></td>
-                        <td><input type="text"class="OCA dataBinding" tag="catotle"></td>
-                        <td class="sun"><span>流动资产合计：</span></td>
-                        <td class="sun"><input type="text"class="TCA" id="catotle"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button class="saveCurrentAssets">保存</button>
-                        </td>
-                    </tr>
-                </table>
+        <div class="public">
+            <table>
+                <tr>
+                    <td><span>数据日期：</span></td>
+                    <td><input type="date" class="dataTime"></td>
+                    <td><span>证券编号：</span></td>
+                    <td>
+                        <input type="text" class="securitiesNumber">
+                        <div class="selectionPanel">
+
+                        </div>
+                    </td>
+                    <td><span>证券类型：</span></td>
+                    <td><input type="text" readonly="readonly" class="securitiesType"></td>
+                    <td><span>企业名称：</span></td>
+                    <td><input type="text" readonly="readonly" class="companyName"></td>
+                    <td>
+                        <label>单位：</label>
+                        <select class="currencyUnit">
+                            <option value="1">元</option>
+                            <option value="10000">万</option>
+                            <option value="100000">十万</option>
+                            <option value="1000000">百万</option>
+                            <option value="10000000">千万</option>
+                            <option value="100000000">亿</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="content">
+            <div class="menu">
+                <nav class="currentAssets">流动资产</nav>
+                <nav class="nonCurrentAssets">非流动资产</nav>
+                <nav class="currentLiabilities">流动负债</nav>
+                <nav class="nonCurrentLiabilities">非流动负债</nav>
+                <nav class="ownersEquity">所有者权益</nav>
+                <nav class="ownersEquityChange">所有者权益变动</nav>
+                <nav class="profit">利润</nav>
+                <nav class="cashFlow">现金流</nav>
+                <nav class="cashFlowStatement">现金流附注</nav>
+
             </div>
+            <input type="hidden" class="companyStockId">
+            <div class="data">
+                <!--流动资产-->
+                <div class="dataType" id="currentAssets">
+                    <input class="id" type="hidden"/>
+                    <table>
+                        <tr>
+                            <td><span>货币资金：</span></td>
+                            <td><input type="text" class="moneyFunds dataBinding" tag="catotle"></td>
+                            <td><span>拆出资金：</span></td>
+                            <td><input type="text" class="WOF dataBinding" tag="catotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>交易性金融资产：</span></td>
+                            <td><input type="text" class="TFA dataBinding" tag="catotle"></td>
+                            <td><span>衍生金融资产：</span></td>
+                            <td><input type="text" class="DFA dataBinding" tag="catotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>买入返售金融资产：</span></td>
+                            <td><input type="text" class="BBRFA dataBinding" tag="catotle"></td>
+                            <td><span>应收票据：</span></td>
+                            <td><input type="text" class="billReceivable dataBinding" tag="catotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>应收账款：</span></td>
+                            <td><input type="text" class="accountsReceivable dataBinding" tag="catotle"></td>
+                            <td><span>预付账款：</span></td>
+                            <td><input type="text" class="prepayments dataBinding" tag="catotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>应收利息：</span></td>
+                            <td><input type="text" class="interestReceivable dataBinding" tag="catotle"></td>
+                            <td><span>应收股利：</span></td>
+                            <td><input type="text" class="dividendReceivable dataBinding" tag="catotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>其他应收款：</span></td>
+                            <td><input type="text" class="otherReceivables dataBinding" tag="catotle"></td>
+                            <td><span>存货：</span></td>
+                            <td><input type="text" class="stock dataBinding" tag="catotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>划分为持有待售的资产：</span></td>
+                            <td><input type="text" class="DIAHFS dataBinding" tag="catotle"></td>
+                            <td><span>一年内到期的非流动资产：</span></td>
+                            <td><input type="text" class="NCADWOY dataBinding" tag="catotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>其他流动资产：</span></td>
+                            <td><input type="text"class="OCA dataBinding" tag="catotle"></td>
+                            <td class="sun"><span>流动资产合计：</span></td>
+                            <td class="sun"><input type="text"class="TCA" id="catotle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button class="saveCurrentAssets">保存</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-            <!--非流动资产-->
-            <div class="dataType" id="nonCurrentAssets">
-                <input class="id" type="hidden"/>
-                <table>
-                    <tr>
-                        <td><span>可供出售金融资产：</span></td>
-                        <td><input type="text" class="AFSFA dataBinding" tag="ncatotle"></td>
-                        <td><span>持有到期投资：</span></td>
-                        <td><input type="text" class="HAEI dataBinding" tag="ncatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>长期应收款：</span></td>
-                        <td><input type="text" class="LTR dataBinding" tag="ncatotle"></td>
-                        <td><span>长期股权投资：</span></td>
-                        <td><input type="text" class="LTEI dataBinding" tag="ncatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>投资性房地产：</span></td>
-                        <td><input type="text" class="IRE dataBinding" tag="ncatotle"></td>
-                        <td><span>固定资产：</span></td>
-                        <td><input type="text" class="fixedAssets dataBinding" tag="ncatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>在建工程：</span></td>
-                        <td><input type="text" class="CAP dataBinding" tag="ncatotle"></td>
-                        <td><span>工程物资：</span></td>
-                        <td><input type="text" class="engineerMaterial dataBinding" tag="ncatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>固定资产清理：</span></td>
-                        <td><input type="text" class="FAC dataBinding" tag="ncatotle"></td>
-                        <td><span>生产性生物资产：</span></td>
-                        <td><input type="text" class="PBA dataBinding" tag="ncatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>汽油资产：</span></td>
-                        <td><input type="text" class="gasolineAssets dataBinding" tag="ncatotle"></td>
-                        <td><span>无形资产：</span></td>
-                        <td><input type="text" class="intangibleAssets dataBinding" tag="ncatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>开发支出：</span></td>
-                        <td><input type="text" class="DE dataBinding" tag="ncatotle"></td>
-                        <td><span>商誉：</span></td>
-                        <td><input type="text" class="goodwill dataBinding" tag="ncatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>长期待摊费用：</span></td>
-                        <td><input type="text" class="LTPE dataBinding" tag="ncatotle"></td>
-                        <td><span>递延所得税资产：</span></td>
-                        <td><input type="text" class="DTA dataBinding" tag="ncatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>其他非流动资产：</span></td>
-                        <td><input type="text" class="ONCA dataBinding" tag="ncatotle"></td>
-                        <td class="sun"><span>非流动资产合计：</span></td>
-                        <td class="sun"><input type="text" class="TNCA" id="ncatotle"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button class="saveNonCurrentAssets">保存</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                <!--非流动资产-->
+                <div class="dataType" id="nonCurrentAssets">
+                    <input class="id" type="hidden"/>
+                    <table>
+                        <tr>
+                            <td><span>可供出售金融资产：</span></td>
+                            <td><input type="text" class="AFSFA dataBinding" tag="ncatotle"></td>
+                            <td><span>持有到期投资：</span></td>
+                            <td><input type="text" class="HAEI dataBinding" tag="ncatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>长期应收款：</span></td>
+                            <td><input type="text" class="LTR dataBinding" tag="ncatotle"></td>
+                            <td><span>长期股权投资：</span></td>
+                            <td><input type="text" class="LTEI dataBinding" tag="ncatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>投资性房地产：</span></td>
+                            <td><input type="text" class="IRE dataBinding" tag="ncatotle"></td>
+                            <td><span>固定资产：</span></td>
+                            <td><input type="text" class="fixedAssets dataBinding" tag="ncatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>在建工程：</span></td>
+                            <td><input type="text" class="CAP dataBinding" tag="ncatotle"></td>
+                            <td><span>工程物资：</span></td>
+                            <td><input type="text" class="engineerMaterial dataBinding" tag="ncatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>固定资产清理：</span></td>
+                            <td><input type="text" class="FAC dataBinding" tag="ncatotle"></td>
+                            <td><span>生产性生物资产：</span></td>
+                            <td><input type="text" class="PBA dataBinding" tag="ncatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>汽油资产：</span></td>
+                            <td><input type="text" class="gasolineAssets dataBinding" tag="ncatotle"></td>
+                            <td><span>无形资产：</span></td>
+                            <td><input type="text" class="intangibleAssets dataBinding" tag="ncatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>开发支出：</span></td>
+                            <td><input type="text" class="DE dataBinding" tag="ncatotle"></td>
+                            <td><span>商誉：</span></td>
+                            <td><input type="text" class="goodwill dataBinding" tag="ncatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>长期待摊费用：</span></td>
+                            <td><input type="text" class="LTPE dataBinding" tag="ncatotle"></td>
+                            <td><span>递延所得税资产：</span></td>
+                            <td><input type="text" class="DTA dataBinding" tag="ncatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>其他非流动资产：</span></td>
+                            <td><input type="text" class="ONCA dataBinding" tag="ncatotle"></td>
+                            <td class="sun"><span>非流动资产合计：</span></td>
+                            <td class="sun"><input type="text" class="TNCA" id="ncatotle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button class="saveNonCurrentAssets">保存</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-            <!--流动负债-->
-            <div class="dataType" id="currentLiabilities">
-                <input class="id" type="hidden"/>
-                <table>
-                    <tr>
-                        <td><span>短期借款：</span></td>
-                        <td><input type="text" class="STL dataBinding" tag="cltotle"></td>
-                        <td><span>拆入资金：</span></td>
-                        <td><input type="text" class="UF dataBinding" tag="cltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>交易性金融负债：</span></td>
-                        <td><input type="text" class="TFL dataBinding" tag="cltotle"></td>
-                        <td><span>衍生金融负债：</span></td>
-                        <td><input type="text" class="DFL dataBinding" tag="cltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>卖出回购金融资产款：</span></td>
-                        <td><input type="text" class="SRFA dataBinding" tag="cltotle"></td>
-                        <td><span>应付票据：</span></td>
-                        <td><input type="text" class="billsPayable dataBinding" tag="cltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>应付账款：</span></td>
-                        <td><input type="text" class="accountsPayable dataBinding" tag="cltotle"></td>
-                        <td><span>预收款项：</span></td>
-                        <td><input type="text" class="advancePayment dataBinding" tag="cltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>应付职工薪酬：</span></td>
-                        <td><input type="text" class="payrollPayable dataBinding" tag="cltotle"></td>
-                        <td><span>应交税费：</span></td>
-                        <td><input type="text" class="taxesPayable dataBinding" tag="cltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>应付利息：</span></td>
-                        <td><input type="text" class="interestPayable dataBinding" tag="cltotle"></td>
-                        <td><span>应付股利：</span></td>
-                        <td><input type="text" class="dividendPayable dataBinding" tag="cltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>其他应付款：</span></td>
-                        <td><input type="text" class="otherPayables dataBinding" tag="cltotle"></td>
-                        <td><span>一年内到期的非流动负债：</span></td>
-                        <td><input type="text" class="NLDWOY dataBinding" tag="cltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>其他流动负债：</span></td>
-                        <td><input type="text" class="OCL dataBinding" tag="cltotle"></td>
-                        <td class="sun"><span>流动负债合计：</span></td>
-                        <td class="sun"><input type="text" class="TCL" id="cltotle"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button class="saveCurrentLiabilities">保存</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                <!--流动负债-->
+                <div class="dataType" id="currentLiabilities">
+                    <input class="id" type="hidden"/>
+                    <table>
+                        <tr>
+                            <td><span>短期借款：</span></td>
+                            <td><input type="text" class="STL dataBinding" tag="cltotle"></td>
+                            <td><span>拆入资金：</span></td>
+                            <td><input type="text" class="UF dataBinding" tag="cltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>交易性金融负债：</span></td>
+                            <td><input type="text" class="TFL dataBinding" tag="cltotle"></td>
+                            <td><span>衍生金融负债：</span></td>
+                            <td><input type="text" class="DFL dataBinding" tag="cltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>卖出回购金融资产款：</span></td>
+                            <td><input type="text" class="SRFA dataBinding" tag="cltotle"></td>
+                            <td><span>应付票据：</span></td>
+                            <td><input type="text" class="billsPayable dataBinding" tag="cltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>应付账款：</span></td>
+                            <td><input type="text" class="accountsPayable dataBinding" tag="cltotle"></td>
+                            <td><span>预收款项：</span></td>
+                            <td><input type="text" class="advancePayment dataBinding" tag="cltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>应付职工薪酬：</span></td>
+                            <td><input type="text" class="payrollPayable dataBinding" tag="cltotle"></td>
+                            <td><span>应交税费：</span></td>
+                            <td><input type="text" class="taxesPayable dataBinding" tag="cltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>应付利息：</span></td>
+                            <td><input type="text" class="interestPayable dataBinding" tag="cltotle"></td>
+                            <td><span>应付股利：</span></td>
+                            <td><input type="text" class="dividendPayable dataBinding" tag="cltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>其他应付款：</span></td>
+                            <td><input type="text" class="otherPayables dataBinding" tag="cltotle"></td>
+                            <td><span>一年内到期的非流动负债：</span></td>
+                            <td><input type="text" class="NLDWOY dataBinding" tag="cltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>其他流动负债：</span></td>
+                            <td><input type="text" class="OCL dataBinding" tag="cltotle"></td>
+                            <td class="sun"><span>流动负债合计：</span></td>
+                            <td class="sun"><input type="text" class="TCL" id="cltotle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button class="saveCurrentLiabilities">保存</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-            <!--非流动负债-->
-            <div class="dataType" id="nonCurrentLiabilities">
-                <input class="id" type="hidden"/>
-                <table>
-                    <tr>
-                        <td><span>长期借款：</span></td>
-                        <td><input type="text" class="LTL dataBinding" tag="ncltotle"></td>
-                        <td><span>应付债券：</span></td>
-                        <td><input type="text" class="bondsPayable dataBinding" tag="ncltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>长期应付款：</span></td>
-                        <td><input type="text" class="LTP dataBinding" tag="ncltotle"></td>
-                        <td><span>长期应付职工薪酬：</span></td>
-                        <td><input type="text" class="LTPP dataBinding" tag="ncltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>专项应付款：</span></td>
-                        <td><input type="text" class="specialPayable dataBinding" tag="ncltotle"></td>
-                        <td><span>预计负债：</span></td>
-                        <td><input type="text" class="estimatedLiabilities dataBinding" tag="ncltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>递延收益：</span></td>
-                        <td><input type="text" class="deferredIncome dataBinding" tag="ncltotle"></td>
-                        <td><span>递延所得税负债：</span></td>
-                        <td><input type="text" class="DITL dataBinding" tag="ncltotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>其他非流动负债：</span></td>
-                        <td><input type="text" class="ONCL dataBinding" tag="ncltotle"></td>
-                        <td class="sun"><span>非流动负债合计：</span></td>
-                        <td class="sun"><input type="text" class="TNCL" id="ncltotle"></td>
+                <!--非流动负债-->
+                <div class="dataType" id="nonCurrentLiabilities">
+                    <input class="id" type="hidden"/>
+                    <table>
+                        <tr>
+                            <td><span>长期借款：</span></td>
+                            <td><input type="text" class="LTL dataBinding" tag="ncltotle"></td>
+                            <td><span>应付债券：</span></td>
+                            <td><input type="text" class="bondsPayable dataBinding" tag="ncltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>长期应付款：</span></td>
+                            <td><input type="text" class="LTP dataBinding" tag="ncltotle"></td>
+                            <td><span>长期应付职工薪酬：</span></td>
+                            <td><input type="text" class="LTPP dataBinding" tag="ncltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>专项应付款：</span></td>
+                            <td><input type="text" class="specialPayable dataBinding" tag="ncltotle"></td>
+                            <td><span>预计负债：</span></td>
+                            <td><input type="text" class="estimatedLiabilities dataBinding" tag="ncltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>递延收益：</span></td>
+                            <td><input type="text" class="deferredIncome dataBinding" tag="ncltotle"></td>
+                            <td><span>递延所得税负债：</span></td>
+                            <td><input type="text" class="DITL dataBinding" tag="ncltotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>其他非流动负债：</span></td>
+                            <td><input type="text" class="ONCL dataBinding" tag="ncltotle"></td>
+                            <td class="sun"><span>非流动负债合计：</span></td>
+                            <td class="sun"><input type="text" class="TNCL" id="ncltotle"></td>
 
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button class="saveNonCurrentLiabilities">保存</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button class="saveNonCurrentLiabilities">保存</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-            <!--所有者权益-->
-            <div class="dataType" id="ownersEquity">
-                <input class="id" type="hidden"/>
-                <table>
-                    <tr>
-                        <td><span>股本：</span></td>
-                        <td><input type="text" class="PIC dataBinding" tag="toeattpc"></td>
-                        <td><span>其他权益工具：</span></td>
-                        <td><input type="text" class="OEI dataBinding" tag="toeattpc"></td>
-                    </tr>
-                    <tr>
-                        <td><span>资本公积：</span></td>
-                        <td><input type="text" class="capitalReserve dataBinding" tag="toeattpc"></td>
-                        <td><span>其他综合收益：</span></td>
-                        <td><input type="text" class="OCI dataBinding" tag="toeattpc"></td>
-                    </tr>
-                    <tr>
-                        <td><span>减：库存股：</span></td>
-                        <td><input type="text" class="LTS dataBinding" tag="toeattpc"></td>
-                        <td><span>专项储备：</span></td>
-                        <td><input type="text" class="specialReserves dataBinding" tag="toeattpc"></td>
-                    </tr>
-                    <tr>
-                        <td><span>盈余公积：</span></td>
-                        <td><input type="text" class="surplusReserve dataBinding" tag="toeattpc"></td>
-                        <td><span>一般风险准备：</span></td>
-                        <td><input type="text" class="GRP dataBinding" tag="toeattpc"></td>
-                    </tr>
-                    <tr>
-                        <td><span>未分配利润：</span></td>
-                        <td><input type="text" class="undistributedProfit dataBinding" tag="toeattpc"></td>
-                        <td class="sun"><span>归属于母公司所有者权益合计：</span></td>
-                        <td class="sun"><input type="text" class="TOEATTPC" id="toeattpc" tag="oetotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>少数股东权益：</span></td>
-                        <td><input type="text" class="MSE dataBinding" tag="oetotle"></td>
-                        <td class="sun"><span>所有者权益合计：</span></td>
-                        <td class="sun"><input type="text" class="TOE" id="oetotle"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button class="saveOwnersEquity">保存</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                <!--所有者权益-->
+                <div class="dataType" id="ownersEquity">
+                    <input class="id" type="hidden"/>
+                    <table>
+                        <tr>
+                            <td><span>股本：</span></td>
+                            <td><input type="text" class="PIC dataBinding" tag="toeattpc"></td>
+                            <td><span>其他权益工具：</span></td>
+                            <td><input type="text" class="OEI dataBinding" tag="toeattpc"></td>
+                        </tr>
+                        <tr>
+                            <td><span>资本公积：</span></td>
+                            <td><input type="text" class="capitalReserve dataBinding" tag="toeattpc"></td>
+                            <td><span>其他综合收益：</span></td>
+                            <td><input type="text" class="OCI dataBinding" tag="toeattpc"></td>
+                        </tr>
+                        <tr>
+                            <td><span>减：库存股：</span></td>
+                            <td><input type="text" class="LTS dataBinding" tag="toeattpc"></td>
+                            <td><span>专项储备：</span></td>
+                            <td><input type="text" class="specialReserves dataBinding" tag="toeattpc"></td>
+                        </tr>
+                        <tr>
+                            <td><span>盈余公积：</span></td>
+                            <td><input type="text" class="surplusReserve dataBinding" tag="toeattpc"></td>
+                            <td><span>一般风险准备：</span></td>
+                            <td><input type="text" class="GRP dataBinding" tag="toeattpc"></td>
+                        </tr>
+                        <tr>
+                            <td><span>未分配利润：</span></td>
+                            <td><input type="text" class="undistributedProfit dataBinding" tag="toeattpc"></td>
+                            <td class="sun"><span>归属于母公司所有者权益合计：</span></td>
+                            <td class="sun"><input type="text" class="TOEATTPC" id="toeattpc" tag="oetotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>少数股东权益：</span></td>
+                            <td><input type="text" class="MSE dataBinding" tag="oetotle"></td>
+                            <td class="sun"><span>所有者权益合计：</span></td>
+                            <td class="sun"><input type="text" class="TOE" id="oetotle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button class="saveOwnersEquity">保存</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-            <!--所有者权益变动-->
-            <div class="dataType" id="ownersEquityChange">
-                <input class="id" type="hidden"/>
-                <table>
-                    <tr>
-                        <td><span>上年年末余额：</span></td>
-                        <td><input type="text" class="YEBATEOLY dataBinding" tag="batbotytotle"></td>
-                        <td><span>会计政策变更：</span></td>
-                        <td><input type="text" class="APC dataBinding" tag="batbotytotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>前期差错更正：</span></td>
-                        <td><input type="text" class="EEC dataBinding" tag="batbotytotle"></td>
-                        <td class="sun"><span>本年年初余额：</span></td>
-                        <td class="sun"><input type="text" class="BATBOTY dataBinding" id="batbotytotle" tag="bateotytotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>本年增减变动金额：</span></td>
-                        <td class="sun"><input type="text" class="AOIODITCY dataBinding" id="aoioditcytotle" tag="bateotytotle"></td>
-                        <td><span>综合收益总额：</span></td>
-                        <td><input type="text" class="NP dataBinding" tag="aoioditcytotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>直接计入所有者权益的利得和损失：</span></td>
-                        <td class="sun"><input type="text" class="GALDIIOE dataBinding" id="galdiioetotle" tag="aoioditcytotle"></td>
-                        <td><span>可供出售金融资产公允值变动净额：</span></td>
-                        <td><input type="text" class="NCIFVOAFSFA dataBinding" tag="galdiioetotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>权益法下被投资单位其他所有者权益变动的影响：</span></td>
-                        <td><input type="text" class="TIOCIOORAIOIUUEM dataBinding" tag="galdiioetotle"></td>
-                        <td><span>与计入所有者权益项目相关的所得税影响：</span></td>
-                        <td><input type="text" class="ITRTOEI dataBinding" tag="galdiioetotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>其他：</span></td>
-                        <td><input type="text" class="other1 dataBinding" tag="galdiioetotle"></td>
-                        <td class="sun"><span>所有者投入和减少资本：</span></td>
-                        <td class="sun"><input type="text" class="OIARC dataBinding" id="oiarctotle" tag="aoioditcytotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>所有者投入资本：</span></td>
-                        <td><input type="text" class="CIBO dataBinding" tag="oiarctotle"></td>
-                        <td><span>其他权益工具持有者投入：</span></td>
-                        <td><input type="text" class="OEIHI dataBinding" tag="oiarctotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>股份支付计入所有者权益的金额：</span></td>
-                        <td><input type="text" class="TAOSPIITOE dataBinding" tag="oiarctotle"></td>
-                        <td><span>其他：</span></td>
-                        <td><input type="text" class="other2 dataBinding" tag="oiarctotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>利润分配：</span></td>
-                        <td class="sun"><input type="text" class="PD dataBinding" id="pdtotle" tag="aoioditcytotle"></td>
-                        <td><span>提取盈余公积：</span></td>
-                        <td><input type="text" class="ESR dataBinding" tag="pdtotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>提取一般风险准备：</span></td>
-                        <td><input type="text" class="EGRP dataBinding" tag="pdtotle"></td>
-                        <td><span>对所有者（或股东）的分配：</span></td>
-                        <td><input type="text" class="DOOOS dataBinding" tag="pdtotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>其他：</span></td>
-                        <td><input type="text" class="other3 dataBinding" tag="pdtotle"></td>
-                        <td class="sun"><span>所有者权益内部结转：</span></td>
-                        <td class="sun"><input type="text" class="ITOOE dataBinding" id="itooetotle" tag="aoioditcytotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>资本公积转增资本（或股本）：</span></td>
-                        <td><input type="text" class="CSICOCS dataBinding" tag="itooetotle"></td>
-                        <td><span>盈余公积转增资本（或股本）：</span></td>
-                        <td><input type="text" class="SSTICOCS dataBinding"  tag="itooetotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>盈余公积弥补亏损：</span></td>
-                        <td><input type="text" class="SSTMUFL dataBinding"  tag="itooetotle"></td>
-                        <td><span>其他：</span></td>
-                        <td><input type="text" class="other4 dataBinding"  tag="itooetotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>专项储备：</span></td>
-                        <td class="sum"><input type="text" class="specialReserves dataBinding" id="specialReserves" tag="aoioditcytotle"></td>
-                        <td><span>本期提取：</span></td>
-                        <td><input type="text" class="currentExtraction dataBinding"  tag="specialReserves"></td>
-                    </tr>
-                    <tr>
-                        <td><span>本期使用：</span></td>
-                        <td><input type="text" class="currentUse dataBinding"  tag="specialReserves"></td>
-                        <td><span>其他：</span></td>
-                        <td><input type="text" class="other5 dataBinding"  tag="aoioditcytotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>本年年末余额：</span></td>
-                        <td class="sun"><input type="text" class="BATEOTY" id="bateotytotle"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button class="saveOwnersEquityChange">保存</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                <!--所有者权益变动-->
+                <div class="dataType" id="ownersEquityChange">
+                    <input class="id" type="hidden"/>
+                    <table>
+                        <tr>
+                            <td><span>上年年末余额：</span></td>
+                            <td><input type="text" class="YEBATEOLY dataBinding" tag="batbotytotle"></td>
+                            <td><span>会计政策变更：</span></td>
+                            <td><input type="text" class="APC dataBinding" tag="batbotytotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>前期差错更正：</span></td>
+                            <td><input type="text" class="EEC dataBinding" tag="batbotytotle"></td>
+                            <td class="sun"><span>本年年初余额：</span></td>
+                            <td class="sun"><input type="text" class="BATBOTY dataBinding" id="batbotytotle" tag="bateotytotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>本年增减变动金额：</span></td>
+                            <td class="sun"><input type="text" class="AOIODITCY dataBinding" id="aoioditcytotle" tag="bateotytotle"></td>
+                            <td><span>综合收益总额：</span></td>
+                            <td><input type="text" class="NP dataBinding" tag="aoioditcytotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>直接计入所有者权益的利得和损失：</span></td>
+                            <td class="sun"><input type="text" class="GALDIIOE dataBinding" id="galdiioetotle" tag="aoioditcytotle"></td>
+                            <td><span>可供出售金融资产公允值变动净额：</span></td>
+                            <td><input type="text" class="NCIFVOAFSFA dataBinding" tag="galdiioetotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>权益法下被投资单位其他所有者权益变动的影响：</span></td>
+                            <td><input type="text" class="TIOCIOORAIOIUUEM dataBinding" tag="galdiioetotle"></td>
+                            <td><span>与计入所有者权益项目相关的所得税影响：</span></td>
+                            <td><input type="text" class="ITRTOEI dataBinding" tag="galdiioetotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>其他：</span></td>
+                            <td><input type="text" class="other1 dataBinding" tag="galdiioetotle"></td>
+                            <td class="sun"><span>所有者投入和减少资本：</span></td>
+                            <td class="sun"><input type="text" class="OIARC dataBinding" id="oiarctotle" tag="aoioditcytotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>所有者投入资本：</span></td>
+                            <td><input type="text" class="CIBO dataBinding" tag="oiarctotle"></td>
+                            <td><span>其他权益工具持有者投入：</span></td>
+                            <td><input type="text" class="OEIHI dataBinding" tag="oiarctotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>股份支付计入所有者权益的金额：</span></td>
+                            <td><input type="text" class="TAOSPIITOE dataBinding" tag="oiarctotle"></td>
+                            <td><span>其他：</span></td>
+                            <td><input type="text" class="other2 dataBinding" tag="oiarctotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>利润分配：</span></td>
+                            <td class="sun"><input type="text" class="PD dataBinding" id="pdtotle" tag="aoioditcytotle"></td>
+                            <td><span>提取盈余公积：</span></td>
+                            <td><input type="text" class="ESR dataBinding" tag="pdtotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>提取一般风险准备：</span></td>
+                            <td><input type="text" class="EGRP dataBinding" tag="pdtotle"></td>
+                            <td><span>对所有者（或股东）的分配：</span></td>
+                            <td><input type="text" class="DOOOS dataBinding" tag="pdtotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>其他：</span></td>
+                            <td><input type="text" class="other3 dataBinding" tag="pdtotle"></td>
+                            <td class="sun"><span>所有者权益内部结转：</span></td>
+                            <td class="sun"><input type="text" class="ITOOE dataBinding" id="itooetotle" tag="aoioditcytotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>资本公积转增资本（或股本）：</span></td>
+                            <td><input type="text" class="CSICOCS dataBinding" tag="itooetotle"></td>
+                            <td><span>盈余公积转增资本（或股本）：</span></td>
+                            <td><input type="text" class="SSTICOCS dataBinding"  tag="itooetotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>盈余公积弥补亏损：</span></td>
+                            <td><input type="text" class="SSTMUFL dataBinding"  tag="itooetotle"></td>
+                            <td><span>其他：</span></td>
+                            <td><input type="text" class="other4 dataBinding"  tag="itooetotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>专项储备：</span></td>
+                            <td class="sum"><input type="text" class="specialReserves dataBinding" id="specialReserves" tag="aoioditcytotle"></td>
+                            <td><span>本期提取：</span></td>
+                            <td><input type="text" class="currentExtraction dataBinding"  tag="specialReserves"></td>
+                        </tr>
+                        <tr>
+                            <td><span>本期使用：</span></td>
+                            <td><input type="text" class="currentUse dataBinding"  tag="specialReserves"></td>
+                            <td><span>其他：</span></td>
+                            <td><input type="text" class="other5 dataBinding"  tag="aoioditcytotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>本年年末余额：</span></td>
+                            <td class="sun"><input type="text" class="BATEOTY" id="bateotytotle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button class="saveOwnersEquityChange">保存</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-            <!--利润-->
-            <div class="dataType" id="profit">
-                <input class="id" type="hidden"/>
-                <table>
-                    <tr>
-                        <td><span>营业收入：</span></td>
-                        <td><input type="text" class="businessIncome dataBinding" tag="toi"></td>
-                        <td><span>利息收入：</span></td>
-                        <td><input type="text" class="interestIncome dataBinding" tag="toi"></td>
-                    </tr>
-                    <tr>
-                        <td><span>已赚保费：</span></td>
-                        <td><input type="text" class="earnedPremium dataBinding" tag="toi"></td>
-                        <td><span>手续费及佣金收入：</span></td>
-                        <td><input type="text" class="FACI dataBinding" tag="toi"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>营业总收入：</span></td>
-                        <td class="sun"><input type="text" class="TOI dataBinding" id="toi" tag="optotle"></td>
-                        <td><span>营业成本：</span></td>
-                        <td><input type="text" class="operatingCost dataBinding" tag="toc"></td>
-                    </tr>
-                    <tr>
-                        <td><span>营业税金及附加：</span></td>
-                        <td><input type="text" class="BTAA dataBinding" tag="toc"></td>
-                        <td><span>销售费用：</span></td>
-                        <td><input type="text" class="sellingExpenses dataBinding" tag="toc"></td>
-                    </tr>
-                    <tr>
-                        <td><span>管理费用：</span></td>
-                        <td><input type="text" class="managementCost dataBinding" tag="toc"></td>
-                        <td><span>财务费用：</span></td>
-                        <td><input type="text" class="financialCost dataBinding" tag="toc"></td>
-                    </tr>
-                    <tr>
-                        <td><span>资产减值损失：</span></td>
-                        <td><input type="text" class="AIL dataBinding" tag="toc"></td>
-                        <td class="sun"><span>营业总成本：</span></td>
-                        <td class="sun"><input type="text" class="TOC dataBinding" id="toc" tag="optotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>公允价值变动收益：</span></td>
-                        <td><input type="text" class="FVCI dataBinding" tag="optotle"></td>
-                        <td><span>联营企业和合营企业投资损益：</span></td>
-                        <td><input type="text" class="IIOJVAJV dataBinding" tag="iitotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>其他投资损益：</span></td>
-                        <td><input type="text" class="OII dataBinding" tag="iitotle"></td>
-                        <td class="sun"><span>投资损益：</span></td>
-                        <td class="sun"><input type="text" class="IFI dataBinding" id="iitotle" tag="optotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>资产处置收益：</span></td>
-                        <td><input type="text" class="ADI dataBinding" tag="optotle"></td>
-                        <td><span>汇兑收益：</span></td>
-                        <td><input type="text" class="exchangeGains dataBinding" tag="optotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>其他收益：</span></td>
-                        <td><input type="text" class="otherIncome dataBinding" tag="optotle"></td>
-                        <td class="sun"><span>营业利润：</span></td>
-                        <td class="sun"><input type="text" class="operatingProfit dataBinding" id="optotle" tag="tptotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>营业外收入：</span></td>
-                        <td><input type="text" class="NOI dataBinding" tag="tptotle"></td>
-                        <td><span>营业外支出：</span></td>
-                        <td><input type="text" class="NOE dataBinding" tag="tptotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>利润总额：</span></td>
-                        <td class="sun"><input type="text" class="totalProfit dataBinding" id="tptotle" tag="nptotle"></td>
-                        <td><span>减：所得税费用：</span></td>
-                        <td><input type="text" class="ITE dataBinding" tag="nptotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>净利润：</span></td>
-                        <td class="sun"><input type="text" class="netProfit dataBinding" id="nptotle" tag="tci"></td>
-                        <td><span>其他综合收益的税后净额：</span></td>
-                        <td><input type="text" class="NATFOCI dataBinding" tag="tci"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>综合收益总额：</span></td>
-                        <td class="sun"><input type="text" class="TCI" id="tci"></td>
-                        <td class="sun"><span>每股收益：</span></td>
-                        <td class="sun"><input type="text" class="EPS"></td>
-                    </tr>
-                    <tr>
-                        <td><span>基本每股收益：</span></td>
-                        <td><input type="text" class="BEPS"></td>
-                        <td><span>稀释每股收益：</span></td>
-                        <td><input type="text" class="DEPS"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button class="saveProfit">保存</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                <!--利润-->
+                <div class="dataType" id="profit">
+                    <input class="id" type="hidden"/>
+                    <table>
+                        <tr>
+                            <td><span>营业收入：</span></td>
+                            <td><input type="text" class="businessIncome dataBinding" tag="toi"></td>
+                            <td><span>利息收入：</span></td>
+                            <td><input type="text" class="interestIncome dataBinding" tag="toi"></td>
+                        </tr>
+                        <tr>
+                            <td><span>已赚保费：</span></td>
+                            <td><input type="text" class="earnedPremium dataBinding" tag="toi"></td>
+                            <td><span>手续费及佣金收入：</span></td>
+                            <td><input type="text" class="FACI dataBinding" tag="toi"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>营业总收入：</span></td>
+                            <td class="sun"><input type="text" class="TOI dataBinding" id="toi" tag="optotle"></td>
+                            <td><span>营业成本：</span></td>
+                            <td><input type="text" class="operatingCost dataBinding" tag="toc"></td>
+                        </tr>
+                        <tr>
+                            <td><span>营业税金及附加：</span></td>
+                            <td><input type="text" class="BTAA dataBinding" tag="toc"></td>
+                            <td><span>销售费用：</span></td>
+                            <td><input type="text" class="sellingExpenses dataBinding" tag="toc"></td>
+                        </tr>
+                        <tr>
+                            <td><span>管理费用：</span></td>
+                            <td><input type="text" class="managementCost dataBinding" tag="toc"></td>
+                            <td><span>财务费用：</span></td>
+                            <td><input type="text" class="financialCost dataBinding" tag="toc"></td>
+                        </tr>
+                        <tr>
+                            <td><span>资产减值损失：</span></td>
+                            <td><input type="text" class="AIL dataBinding" tag="toc"></td>
+                            <td class="sun"><span>营业总成本：</span></td>
+                            <td class="sun"><input type="text" class="TOC dataBinding" id="toc" tag="optotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>公允价值变动收益：</span></td>
+                            <td><input type="text" class="FVCI dataBinding" tag="optotle"></td>
+                            <td><span>联营企业和合营企业投资损益：</span></td>
+                            <td><input type="text" class="IIOJVAJV dataBinding" tag="iitotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>其他投资损益：</span></td>
+                            <td><input type="text" class="OII dataBinding" tag="iitotle"></td>
+                            <td class="sun"><span>投资损益：</span></td>
+                            <td class="sun"><input type="text" class="IFI dataBinding" id="iitotle" tag="optotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>资产处置收益：</span></td>
+                            <td><input type="text" class="ADI dataBinding" tag="optotle"></td>
+                            <td><span>汇兑收益：</span></td>
+                            <td><input type="text" class="exchangeGains dataBinding" tag="optotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>其他收益：</span></td>
+                            <td><input type="text" class="otherIncome dataBinding" tag="optotle"></td>
+                            <td class="sun"><span>营业利润：</span></td>
+                            <td class="sun"><input type="text" class="operatingProfit dataBinding" id="optotle" tag="tptotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>营业外收入：</span></td>
+                            <td><input type="text" class="NOI dataBinding" tag="tptotle"></td>
+                            <td><span>营业外支出：</span></td>
+                            <td><input type="text" class="NOE dataBinding" tag="tptotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>利润总额：</span></td>
+                            <td class="sun"><input type="text" class="totalProfit dataBinding" id="tptotle" tag="nptotle"></td>
+                            <td><span>减：所得税费用：</span></td>
+                            <td><input type="text" class="ITE dataBinding" tag="nptotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>净利润：</span></td>
+                            <td class="sun"><input type="text" class="netProfit dataBinding" id="nptotle" tag="tci"></td>
+                            <td><span>其他综合收益的税后净额：</span></td>
+                            <td><input type="text" class="NATFOCI dataBinding" tag="tci"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>综合收益总额：</span></td>
+                            <td class="sun"><input type="text" class="TCI" id="tci"></td>
+                            <td class="sun"><span>每股收益：</span></td>
+                            <td class="sun"><input type="text" class="EPS"></td>
+                        </tr>
+                        <tr>
+                            <td><span>基本每股收益：</span></td>
+                            <td><input type="text" class="BEPS"></td>
+                            <td><span>稀释每股收益：</span></td>
+                            <td><input type="text" class="DEPS"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button class="saveProfit">保存</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-            <!--现金流-->
-            <div class="dataType" id="cashFlow">
-                <input class="id" type="hidden"/>
-                <table>
-                    <tr>
-                        <td colspan="4">
-                            <hr />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="color: #3A76D8;text-align: left;"><span>经营活动产生的现金流量：</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>销售商品、提供劳务收到的现金：</span></td>
-                        <td><input type="text" class="CRFSOGAS dataBinding" tag="ciioatotle"></td>
-                        <td><span>收到的税费返还：</span></td>
-                        <td><input type="text" class="ROT dataBinding" tag="ciioatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>收到的其他与经营活动相关的现金：</span></td>
-                        <td><input type="text" class="OCRTBAR dataBinding" tag="ciioatotle"></td>
-                        <td class="sun"><span>经营活动现金流入小计：</span></td>
-                        <td class="sun"><input type="text" class="CIIOA dataBinding" id="ciioatotle" tag="ncffoatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>购买商品、接受劳务支付的现金：</span></td>
-                        <td><input type="text" class="CPFGAS dataBinding" tag="cffoatotle"></td>
-                        <td><span>支付给职工以及为职工支付的现金：</span></td>
-                        <td><input type="text" class="CPTEAPTE dataBinding" tag="cffoatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>支付的各项税费：</span></td>
-                        <td><input type="text" class="POATOT dataBinding" tag="cffoatotle"></td>
-                        <td><span>支付其他与经营活动有关的现金：</span></td>
-                        <td><input type="text" class="POOCRTBA dataBinding" tag="cffoatotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>经营活动现金流出小计：</span></td>
-                        <td class="sun"><input type="text" class="CFFOA dataBinding" id="cffoatotle" tag="ncffoatotle"></td>
-                        <td class="sun"><span>经营活动产生的现金流净额：</span></td>
-                        <td class="sun"><input type="text" class="NCFFOA" id="ncffoatotle"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <hr />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="color: #3A76D8;text-align: left;"><span>投资活动产生的现金流量：</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>收回投资收到的现金：</span></td>
-                        <td><input type="text" class="CRFIR dataBinding" tag="cioiatotle"></td>
-                        <td><span>取得投资收益收到的现金：</span></td>
-                        <td><input type="text" class="CRFII dataBinding" tag="cioiatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>处置固定资产、无形资产和其他上期资产收回的现金净额：</span></td>
-                        <td><input type="text" class="NCIDOFAIAAOAITPP dataBinding" tag="cioiatotle"></td>
-                        <td><span>处置子公司及其他营业单位收到的现金净额：</span></td>
-                        <td><input type="text" class="NCRFDOSAOBU dataBinding" tag="cioiatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>收到其他与投资活动相关的现金：</span></td>
-                        <td><input type="text" class="OCRTIAHBR dataBinding" tag="cioiatotle"></td>
-                        <td class="sun"><span>投资活动现金流入小计：</span></td>
-                        <td class="sun"><input type="text" class="CIOIA dataBinding" id="cioiatotle" tag="ncffiatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>构建固定资产、无形资产和其他上期投资支付的现金：</span></td>
-                        <td><input type="text" class="COFAIAAOCPFPI dataBinding" tag="cfooiatotle"></td>
-                        <td><span>投资支付的现金：</span></td>
-                        <td><input type="text" class="CPFI dataBinding" tag="cfooiatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>取得子公司及其他营业单位支付的现金净额：</span></td>
-                        <td><input type="text" class="NCPBSAOBU dataBinding" tag="cfooiatotle"></td>
-                        <td><span>支付其他与投资活动有关的现金：</span></td>
-                        <td><input type="text" class="POOCRTIA dataBinding" tag="cfooiatotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>投资活动现金流出小计：</span></td>
-                        <td class="sun"><input type="text" class="CFOOIA dataBinding" id="cfooiatotle" tag="ncffiatotle"></td>
-                        <td class="sun"><span>投资活动产生的现金流净额：</span></td>
-                        <td class="sun"><input type="text" class="NCFFIA" id="ncffiatotle"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <hr />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="color: #3A76D8;text-align: left;"><span>筹资活动产生的现金流量：</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>吸收投资收到的现金：</span></td>
-                        <td><input type="text" class="CRFI dataBinding" tag="ciofatotle"></td>
-                        <td><span>取得借款收到的现金：</span></td>
-                        <td><input type="text" class="CRFB dataBinding" tag="ciofatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>发行债券收到的现金：</span></td>
-                        <td><input type="text" class="CRFTIOB dataBinding" tag="ciofatotle"></td>
-                        <td><span>收到其他与筹资活动有关的现金：</span></td>
-                        <td><input type="text" class="OCRTFAR dataBinding" tag="ciofatotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>筹资活动现金流入小计：</span></td>
-                        <td class="sun"><input type="text" class="CIOFA dataBinding" id="ciofatotle" tag="ncfgbfratotle"></td>
-                        <td><span>偿还债务支出的现金：</span></td>
-                        <td><input type="text" class="CFDR dataBinding" tag="cfoofatotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>分配股利、利润或偿付利息支付的现金：</span></td>
-                        <td><input type="text" class="CPFDPOIP dataBinding" tag="cfoofatotle"></td>
-                        <td><span>支付其他与筹资活动有关的现金：</span></td>
-                        <td><input type="text" class="POOCRTFA dataBinding" tag="cfoofatotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>筹资活动现金流出小计：</span></td>
-                        <td class="sun"><input type="text" class="CFOOFA dataBinding" id="cfoofatotle" tag="ncfgbfratotle"></td>
-                        <td class="sun"><span>筹资活动产生的现金流量净额：</span></td>
-                        <td class="sun"><input type="text" class="NCFGBFRA" id="ncfgbfratotle"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <hr />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="color: #3A76D8;text-align: left;"><span>其它：</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>汇率变动对现金及现金等价物的影响：</span></td>
-                        <td><input type="text" class="TEOERFOCACE dataBinding"></td>
-                        <td><span>现金及现金等价物净增加额：</span></td>
-                        <td><input type="text" class="NIICACE dataBinding" tag="bocaceaeot"></td>
-                    </tr>
-                    <tr>
-                        <td><span>期初现金及现金等价物余额：</span></td>
-                        <td><input type="text" class="CACEATBOTY dataBinding" tag="bocaceaeot"></td>
-                        <td class="sun"><span>期末现金及现金等价物余额：</span></td>
-                        <td class="sun"><input type="text" class="BOCACEAEOT" id="bocaceaeot"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button class="saveCashFlow">保存</button>
-                        </td>
-                    </tr>
-                </table>
-            </div>
+                <!--现金流-->
+                <div class="dataType" id="cashFlow">
+                    <input class="id" type="hidden"/>
+                    <table>
+                        <tr>
+                            <td colspan="4">
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="color: #3A76D8;text-align: left;"><span>经营活动产生的现金流量：</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>销售商品、提供劳务收到的现金：</span></td>
+                            <td><input type="text" class="CRFSOGAS dataBinding" tag="ciioatotle"></td>
+                            <td><span>收到的税费返还：</span></td>
+                            <td><input type="text" class="ROT dataBinding" tag="ciioatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>收到的其他与经营活动相关的现金：</span></td>
+                            <td><input type="text" class="OCRTBAR dataBinding" tag="ciioatotle"></td>
+                            <td class="sun"><span>经营活动现金流入小计：</span></td>
+                            <td class="sun"><input type="text" class="CIIOA dataBinding" id="ciioatotle" tag="ncffoatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>购买商品、接受劳务支付的现金：</span></td>
+                            <td><input type="text" class="CPFGAS dataBinding" tag="cffoatotle"></td>
+                            <td><span>支付给职工以及为职工支付的现金：</span></td>
+                            <td><input type="text" class="CPTEAPTE dataBinding" tag="cffoatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>支付的各项税费：</span></td>
+                            <td><input type="text" class="POATOT dataBinding" tag="cffoatotle"></td>
+                            <td><span>支付其他与经营活动有关的现金：</span></td>
+                            <td><input type="text" class="POOCRTBA dataBinding" tag="cffoatotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>经营活动现金流出小计：</span></td>
+                            <td class="sun"><input type="text" class="CFFOA dataBinding" id="cffoatotle" tag="ncffoatotle"></td>
+                            <td class="sun"><span>经营活动产生的现金流净额：</span></td>
+                            <td class="sun"><input type="text" class="NCFFOA" id="ncffoatotle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="color: #3A76D8;text-align: left;"><span>投资活动产生的现金流量：</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>收回投资收到的现金：</span></td>
+                            <td><input type="text" class="CRFIR dataBinding" tag="cioiatotle"></td>
+                            <td><span>取得投资收益收到的现金：</span></td>
+                            <td><input type="text" class="CRFII dataBinding" tag="cioiatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>处置固定资产、无形资产和其他上期资产收回的现金净额：</span></td>
+                            <td><input type="text" class="NCIDOFAIAAOAITPP dataBinding" tag="cioiatotle"></td>
+                            <td><span>处置子公司及其他营业单位收到的现金净额：</span></td>
+                            <td><input type="text" class="NCRFDOSAOBU dataBinding" tag="cioiatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>收到其他与投资活动相关的现金：</span></td>
+                            <td><input type="text" class="OCRTIAHBR dataBinding" tag="cioiatotle"></td>
+                            <td class="sun"><span>投资活动现金流入小计：</span></td>
+                            <td class="sun"><input type="text" class="CIOIA dataBinding" id="cioiatotle" tag="ncffiatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>构建固定资产、无形资产和其他上期投资支付的现金：</span></td>
+                            <td><input type="text" class="COFAIAAOCPFPI dataBinding" tag="cfooiatotle"></td>
+                            <td><span>投资支付的现金：</span></td>
+                            <td><input type="text" class="CPFI dataBinding" tag="cfooiatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>取得子公司及其他营业单位支付的现金净额：</span></td>
+                            <td><input type="text" class="NCPBSAOBU dataBinding" tag="cfooiatotle"></td>
+                            <td><span>支付其他与投资活动有关的现金：</span></td>
+                            <td><input type="text" class="POOCRTIA dataBinding" tag="cfooiatotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>投资活动现金流出小计：</span></td>
+                            <td class="sun"><input type="text" class="CFOOIA dataBinding" id="cfooiatotle" tag="ncffiatotle"></td>
+                            <td class="sun"><span>投资活动产生的现金流净额：</span></td>
+                            <td class="sun"><input type="text" class="NCFFIA" id="ncffiatotle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="color: #3A76D8;text-align: left;"><span>筹资活动产生的现金流量：</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>吸收投资收到的现金：</span></td>
+                            <td><input type="text" class="CRFI dataBinding" tag="ciofatotle"></td>
+                            <td><span>取得借款收到的现金：</span></td>
+                            <td><input type="text" class="CRFB dataBinding" tag="ciofatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>发行债券收到的现金：</span></td>
+                            <td><input type="text" class="CRFTIOB dataBinding" tag="ciofatotle"></td>
+                            <td><span>收到其他与筹资活动有关的现金：</span></td>
+                            <td><input type="text" class="OCRTFAR dataBinding" tag="ciofatotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>筹资活动现金流入小计：</span></td>
+                            <td class="sun"><input type="text" class="CIOFA dataBinding" id="ciofatotle" tag="ncfgbfratotle"></td>
+                            <td><span>偿还债务支出的现金：</span></td>
+                            <td><input type="text" class="CFDR dataBinding" tag="cfoofatotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>分配股利、利润或偿付利息支付的现金：</span></td>
+                            <td><input type="text" class="CPFDPOIP dataBinding" tag="cfoofatotle"></td>
+                            <td><span>支付其他与筹资活动有关的现金：</span></td>
+                            <td><input type="text" class="POOCRTFA dataBinding" tag="cfoofatotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>筹资活动现金流出小计：</span></td>
+                            <td class="sun"><input type="text" class="CFOOFA dataBinding" id="cfoofatotle" tag="ncfgbfratotle"></td>
+                            <td class="sun"><span>筹资活动产生的现金流量净额：</span></td>
+                            <td class="sun"><input type="text" class="NCFGBFRA" id="ncfgbfratotle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="color: #3A76D8;text-align: left;"><span>其它：</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>汇率变动对现金及现金等价物的影响：</span></td>
+                            <td><input type="text" class="TEOERFOCACE dataBinding"></td>
+                            <td><span>现金及现金等价物净增加额：</span></td>
+                            <td><input type="text" class="NIICACE dataBinding" tag="bocaceaeot"></td>
+                        </tr>
+                        <tr>
+                            <td><span>期初现金及现金等价物余额：</span></td>
+                            <td><input type="text" class="CACEATBOTY dataBinding" tag="bocaceaeot"></td>
+                            <td class="sun"><span>期末现金及现金等价物余额：</span></td>
+                            <td class="sun"><input type="text" class="BOCACEAEOT" id="bocaceaeot"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button class="saveCashFlow">保存</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
 
-            <!--现金流附注-->
-            <div class="dataType" id="cashFlowStatement">
-                <input class="id" type="hidden"/>
-                <table>
-                    <tr>
-                        <td colspan="4">
-                            <hr />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="color: #3A76D8;text-align: left;"><span>将净利润调节为经营活动现金流量：</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>净利润：</span></td>
-                        <td><input type="text" class="NP dataBinding" tag="ncffoactotle"></td>
-                        <td><span>资产减值准备：</span></td>
-                        <td><input type="text" class="AIP dataBinding" tag="ncffoactotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>固定资产折旧、汽油资产拆耗、生产性生物资产折旧：</span></td>
-                        <td><input type="text" class="DOFAGADADOPBA dataBinding" tag="ncffoactotle"></td>
-                        <td><span>无形资产摊销：</span></td>
-                        <td><input type="text" class="AOIA dataBinding" tag="ncffoactotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>长期待摊费用摊销：</span></td>
-                        <td><input type="text" class="AOLTPE dataBinding" tag="ncffoactotle"></td>
-                        <td><span>处置固定资产、无形资产和其他长期资产的损失（收益）：</span></td>
-                        <td><input type="text" class="LOIFFAIAAOLTA dataBinding" tag="ncffoactotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>固定资产报废损失：</span></td>
-                        <td><input type="text" class="LOSOFA dataBinding" tag="ncffoactotle"></td>
-                        <td><span>公允值变动损失：</span></td>
-                        <td><input type="text" class="LOFVC dataBinding" tag="ncffoactotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>财务费用：</span></td>
-                        <td><input type="text" class="FC dataBinding" tag="ncffoactotle"></td>
-                        <td><span>投资损失：</span></td>
-                        <td><input type="text" class="LL dataBinding" tag="ncffoactotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>递延所得税资产减少：</span></td>
-                        <td><input type="text" class="DITAD dataBinding" tag="ncffoactotle"></td>
-                        <td><span>递延所得税负债增加：</span></td>
-                        <td><input type="text" class="IIIDITL dataBinding" tag="ncffoactotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>存货的减少：</span></td>
-                        <td><input type="text" class="LR dataBinding" tag="ncffoactotle"></td>
-                        <td><span>经营性应收项目的减少：</span></td>
-                        <td><input type="text" class="DIORI dataBinding" tag="ncffoactotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>经营性应付项目的增加：</span></td>
-                        <td><input type="text" class="IIOPI dataBinding" tag="ncffoactotle"></td>
-                        <td><span>其他：</span></td>
-                        <td><input type="text" class="Other dataBinding" tag="ncffoactotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>经营活动产生的现金流量净额：</span></td>
-                        <td class="sun"><input type="text" class="NCFFOAc" id="ncffoactotle"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <hr />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="color: #3A76D8;text-align: left;"><span>不涉及现金收支的重大投资和筹资活动：</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>债务转为资本：</span></td>
-                        <td><input type="text" class="DTC"></td>
-                        <td><span>一年内到期的可转换公司债券：</span></td>
-                        <td><input type="text" class="SCBDWOY"></td>
-                    </tr>
-                    <tr>
-                        <td><span>融资租入固定资产：</span></td>
-                        <td><input type="text" class="FLOFA"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <hr />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan="4" style="color: #3A76D8;text-align: left;"><span>现金及现金等价物净变动情况：</span></td>
-                    </tr>
-                    <tr>
-                        <td><span>现金的期末余额：</span></td>
-                        <td><input type="text" class="CATEOTP dataBinding" tag="niicacetotle"></td>
-                        <td><span>减：现金的期初余额：</span></td>
-                        <td><input type="text" class="IBOC dataBinding" tag="niicacetotle"></td>
-                    </tr>
-                    <tr>
-                        <td><span>加：现金等价物的期末余额：</span></td>
-                        <td><input type="text" class="EBOCE dataBinding" tag="niicacetotle"></td>
-                        <td><span>减：现金等价物的期初余额：</span></td>
-                        <td><input type="text" class="IBOCE dataBinding" tag="niicacetotle"></td>
-                    </tr>
-                    <tr>
-                        <td class="sun"><span>现金及现金等价物净增加额：</span></td>
-                        <td class="sun"><input type="text" class="NIICACE" id="niicacetotle"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="4">
-                            <button class="saveCashFlowStatement">保存</button>
-                        </td>
-                    </tr>
-                </table>
+                <!--现金流附注-->
+                <div class="dataType" id="cashFlowStatement">
+                    <input class="id" type="hidden"/>
+                    <table>
+                        <tr>
+                            <td colspan="4">
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="color: #3A76D8;text-align: left;"><span>将净利润调节为经营活动现金流量：</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>净利润：</span></td>
+                            <td><input type="text" class="NP dataBinding" tag="ncffoactotle"></td>
+                            <td><span>资产减值准备：</span></td>
+                            <td><input type="text" class="AIP dataBinding" tag="ncffoactotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>固定资产折旧、汽油资产拆耗、生产性生物资产折旧：</span></td>
+                            <td><input type="text" class="DOFAGADADOPBA dataBinding" tag="ncffoactotle"></td>
+                            <td><span>无形资产摊销：</span></td>
+                            <td><input type="text" class="AOIA dataBinding" tag="ncffoactotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>长期待摊费用摊销：</span></td>
+                            <td><input type="text" class="AOLTPE dataBinding" tag="ncffoactotle"></td>
+                            <td><span>处置固定资产、无形资产和其他长期资产的损失（收益）：</span></td>
+                            <td><input type="text" class="LOIFFAIAAOLTA dataBinding" tag="ncffoactotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>固定资产报废损失：</span></td>
+                            <td><input type="text" class="LOSOFA dataBinding" tag="ncffoactotle"></td>
+                            <td><span>公允值变动损失：</span></td>
+                            <td><input type="text" class="LOFVC dataBinding" tag="ncffoactotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>财务费用：</span></td>
+                            <td><input type="text" class="FC dataBinding" tag="ncffoactotle"></td>
+                            <td><span>投资损失：</span></td>
+                            <td><input type="text" class="LL dataBinding" tag="ncffoactotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>递延所得税资产减少：</span></td>
+                            <td><input type="text" class="DITAD dataBinding" tag="ncffoactotle"></td>
+                            <td><span>递延所得税负债增加：</span></td>
+                            <td><input type="text" class="IIIDITL dataBinding" tag="ncffoactotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>存货的减少：</span></td>
+                            <td><input type="text" class="LR dataBinding" tag="ncffoactotle"></td>
+                            <td><span>经营性应收项目的减少：</span></td>
+                            <td><input type="text" class="DIORI dataBinding" tag="ncffoactotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>经营性应付项目的增加：</span></td>
+                            <td><input type="text" class="IIOPI dataBinding" tag="ncffoactotle"></td>
+                            <td><span>其他：</span></td>
+                            <td><input type="text" class="Other dataBinding" tag="ncffoactotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>经营活动产生的现金流量净额：</span></td>
+                            <td class="sun"><input type="text" class="NCFFOAc" id="ncffoactotle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="color: #3A76D8;text-align: left;"><span>不涉及现金收支的重大投资和筹资活动：</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>债务转为资本：</span></td>
+                            <td><input type="text" class="DTC"></td>
+                            <td><span>一年内到期的可转换公司债券：</span></td>
+                            <td><input type="text" class="SCBDWOY"></td>
+                        </tr>
+                        <tr>
+                            <td><span>融资租入固定资产：</span></td>
+                            <td><input type="text" class="FLOFA"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <hr />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="color: #3A76D8;text-align: left;"><span>现金及现金等价物净变动情况：</span></td>
+                        </tr>
+                        <tr>
+                            <td><span>现金的期末余额：</span></td>
+                            <td><input type="text" class="CATEOTP dataBinding" tag="niicacetotle"></td>
+                            <td><span>减：现金的期初余额：</span></td>
+                            <td><input type="text" class="IBOC dataBinding" tag="niicacetotle"></td>
+                        </tr>
+                        <tr>
+                            <td><span>加：现金等价物的期末余额：</span></td>
+                            <td><input type="text" class="EBOCE dataBinding" tag="niicacetotle"></td>
+                            <td><span>减：现金等价物的期初余额：</span></td>
+                            <td><input type="text" class="IBOCE dataBinding" tag="niicacetotle"></td>
+                        </tr>
+                        <tr>
+                            <td class="sun"><span>现金及现金等价物净增加额：</span></td>
+                            <td class="sun"><input type="text" class="NIICACE" id="niicacetotle"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4">
+                                <button class="saveCashFlowStatement">保存</button>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
-</div>
-</body>
-<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../js/financialData.js"></script>
-<script type="text/javascript" src="../js/util.js"></script>
 </body>
 </html>

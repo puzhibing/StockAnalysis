@@ -12,9 +12,25 @@ html , body , .stdtar-home{
     width: 95%;
     min-height: 95%;
     border-radius: 5px;
-    box-shadow: 0px 0px 5px #AAAAAA;
+    border: 1px solid #D3D3D3;
     margin: 0 auto;
     margin-bottom: 30px;
+}
+
+.stdtar-home .stdtar-content .title{
+    height: 28px;
+    width: 100%;
+    background-color: #D3D3D3;
+    line-height: 28px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.stdtar-home .stdtar-content .title span{
+    font-size: 14px;
+    margin-left: 20px;
+    color: #333333;
+    font-family: '微软雅黑';
+    font-weight: 600;
 }
 
 .stdtar-home .stdtar-queryConditions{
@@ -105,13 +121,16 @@ html , body , .stdtar-home{
 .stdtar-home .stdtar-curve>div>div{
     float: left;
     height: 300px;
-    width: 48%;
+    width: 47.5%;
 }
 
 .stdtar-home .stdtar-curve>div>div:first-of-type{
-    margin-right: 4%;
+    margin-right: 2%;
 }
 
+.stdtar-home .stdtar-curve>div>div:last-of-type{
+    margin-left: 2%;
+}
 
 
 .stdtar-queryConditions .selectionPanel{
@@ -226,12 +245,12 @@ html , body , .stdtar-home{
     color: #F8F8F8;
 }
 
-.title{
+.selectionPanelIndustry .table .title{
     height: 29px;
     border-bottom: 1px solid #BCBCBC;
 }
 
-.title span{
+.selectionPanelIndustry .table .title span{
     line-height: 35px;
     margin-left: 20px;
     color: #547576;

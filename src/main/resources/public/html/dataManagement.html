@@ -4,115 +4,115 @@
     <meta charset="UTF-8">
     <title>数据管理</title>
     <link type="text/css" rel="stylesheet" href="../css/dataManagement.css">
+    <script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="../js/dataManagement.js"></script>
+    <script type="text/javascript" src="../js/util.js"></script>
 </head>
 <body>
-<div class="panl">
-    <div class="title">
-        <div>
-            <span>数据管理</span>
-        </div>
-        <div class="text">
-            <input class="companyId" type="hidden">
-            <input type="text" class="securitiesNumber" placeholder="证券编号/企业名称">
-            <div class="selectionPanel">
+    <div class="panl">
+        <div class="title">
+            <div>
+                <span>数据管理</span>
+            </div>
+            <div class="text">
+                <input class="companyId" type="hidden">
+                <input type="text" class="securitiesNumber" placeholder="证券编号/企业名称">
+                <div class="selectionPanel">
+                </div>
+            </div>
+            <div>
+                <button class="search">搜索</button>
+                <button class="reset">重置</button>
             </div>
         </div>
-        <div>
-            <button class="search">搜索</button>
-            <button class="reset">重置</button>
-        </div>
-    </div>
-    <div class="content">
-        <div class="enterpriseInfo">
-            <div class="head"><span>企业信息</span></div>
-            <div class="data">
-                <div class="company">
+        <div class="content">
+            <div class="enterpriseInfo">
+                <div class="head"><span>企业信息</span></div>
+                <div class="data">
+                    <div class="company">
 
+                    </div>
+                    <div class="companyStocks">
+                        <table>
+
+                        </table>
+                    </div>
                 </div>
-                <div class="companyStocks">
+            </div>
+            <div class="currentAssets">
+                <div class="head"><span>流动资产</span></div>
+                <div class="data">
                     <table>
 
                     </table>
                 </div>
             </div>
-        </div>
-        <div class="currentAssets">
-            <div class="head"><span>流动资产</span></div>
-            <div class="data">
-                <table>
+            <div class="nonCurrentAssets">
+                <div class="head"><span>非流动资产</span></div>
+                <div class="data">
+                    <table>
 
-                </table>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="nonCurrentAssets">
-            <div class="head"><span>非流动资产</span></div>
-            <div class="data">
-                <table>
+            <div class="currentLiabilities">
+                <div class="head"><span>流动负债</span></div>
+                <div class="data">
+                    <table>
 
-                </table>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="currentLiabilities">
-            <div class="head"><span>流动负债</span></div>
-            <div class="data">
-                <table>
+            <div class="nonCurrentLiabilities">
+                <div class="head"><span>非流动负债</span></div>
+                <div class="data">
+                    <table>
 
-                </table>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="nonCurrentLiabilities">
-            <div class="head"><span>非流动负债</span></div>
-            <div class="data">
-                <table>
+            <div class="ownersEquity">
+                <div class="head"><span>所有者权益</span></div>
+                <div class="data">
+                    <table>
 
-                </table>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="ownersEquity">
-            <div class="head"><span>所有者权益</span></div>
-            <div class="data">
-                <table>
+            <div class="ownersEquityChange">
+                <div class="head"><span>所有者权益变动</span></div>
+                <div class="data">
+                    <table>
 
-                </table>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="ownersEquityChange">
-            <div class="head"><span>所有者权益变动</span></div>
-            <div class="data">
-                <table>
+            <div class="profit">
+                <div class="head"><span>利润</span></div>
+                <div class="data">
+                    <table>
 
-                </table>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="profit">
-            <div class="head"><span>利润</span></div>
-            <div class="data">
-                <table>
+            <div class="cashFlow">
+                <div class="head"><span>现金流</span></div>
+                <div class="data">
+                    <table>
 
-                </table>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="cashFlow">
-            <div class="head"><span>现金流</span></div>
-            <div class="data">
-                <table>
+            <div class="cashFlowStatement">
+                <div class="head"><span>现金流附注</span></div>
+                <div class="data">
+                    <table>
 
-                </table>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="cashFlowStatement">
-            <div class="head"><span>现金流附注</span></div>
-            <div class="data">
-                <table>
 
-                </table>
-            </div>
         </div>
-
     </div>
-</div>
 </body>
-<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="../js/dataManagement.js"></script>
-<script type="text/javascript" src="../js/util.js"></script>
 </html>
