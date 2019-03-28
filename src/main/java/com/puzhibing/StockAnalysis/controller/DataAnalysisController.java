@@ -118,4 +118,54 @@ public class DataAnalysisController {
         }
         return resultBeanUtilObj;
     }
+
+
+    /**
+     * 经营活动结构分析
+     * @param startTime
+     * @param endTime
+     * @param industryId
+     * @param stockTypeId
+     * @param companyId
+     * @param sm
+     * @return
+     */
+    @RequestMapping(value = "/aotsoba")
+    public ResultBeanUtil<Object> aotsoba(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm){
+        if(StringUtils.isNotEmpty(stockTypeId) && StringUtils.isNotEmpty(sm)){
+            try {
+                resultBeanUtilObj = dataAnalysisServiceImpl.aotsoba(startTime , endTime , industryId , stockTypeId , companyId, sm);
+            }catch (Exception e){
+                resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("逻辑处理异常" , false);
+            }
+        }else {
+            resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("请求参数异常" , false);
+        }
+        return resultBeanUtilObj;
+    }
+
+
+    /**
+     *
+     * @param startTime
+     * @param endTime
+     * @param industryId
+     * @param stockTypeId
+     * @param companyId
+     * @param sm
+     * @return
+     */
+    @RequestMapping(value = "/comprehensiveAnalysis")
+    public ResultBeanUtil<Object> comprehensiveAnalysis(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm){
+        if(StringUtils.isNotEmpty(stockTypeId) && StringUtils.isNotEmpty(sm)){
+            try {
+                resultBeanUtilObj = dataAnalysisServiceImpl.comprehensiveAnalysis(startTime , endTime , industryId , stockTypeId , companyId, sm);
+            }catch (Exception e){
+                resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("逻辑处理异常" , false);
+            }
+        }else {
+            resultBeanUtilObj = ResultBeanUtil.getResultBeanUtil("请求参数异常" , false);
+        }
+        return resultBeanUtilObj;
+    }
 }

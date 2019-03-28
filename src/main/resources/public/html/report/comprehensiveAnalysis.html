@@ -1,0 +1,142 @@
+<!DOCTYPE html> <!-  ->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="../css/comprehensiveAnalysis.css"/>
+    <link type="text/css" rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>-->
+    <!--<script type="text/javascript" src="../Highcharts-6.2.0/highcharts.js"></script>-->
+    <script type="text/javascript" src="../js/comprehensiveAnalysis.js"></script>
+</head>
+<body>
+<div class="stdtar-home">
+    <div class="stdtar-content">
+        <div class="title"><span>综合数据分析</span></div>
+        <div class="stdtar-queryConditions">
+            <div>
+                <label for="start">开始日期</label>
+                <input type="month" id="start" class="star-time">
+            </div>
+            <div>
+                <label for="end">结束日期</label>
+                <input type="month" id="end" class="end-time">
+            </div>
+            <div>
+                <label for="industry">所属行业</label>
+                <input type="text" id="industry" class="industry" readonly="readonly">
+            </div>
+            <div>
+                <label for="stockType">证券类型</label>
+                <select class="stockType" id="stockType">
+
+                </select>
+            </div>
+            <div>
+                <label for="enterprise">企业</label>
+                <input type="text" id="enterprise" class="enterprise">
+                <div class="selectionPanel">
+                </div>
+            </div>
+            <div>
+                <label for="sm">统计方式</label>
+                <select class="sm" id="sm">
+                    <option value="year">按整年</option>
+                    <option value="halfYear">按半年</option>
+                    <option value="quarter">按季度</option>
+                </select>
+            </div>
+            <div>
+                <button class="submit">查询</button>
+                <button class="reset">重置</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="stdtar-curve">
+                <div>
+                    <span>流动比率分析</span>
+                    <div class="con">
+                        <div id="currentRatio"></div>
+                        <hr/>
+                        <div id="currentRatioSM"></div>
+                    </div>
+                    <div class="tool amplification" title="放大" data="directRevenueShare;directRevenueShareSM"><i class="fa fa-search-plus"></i></div>
+                </div>
+            </div>
+            <div class="stdtar-curve">
+                <div>
+                    <span>速动比率分析</span>
+                    <div class="con">
+                        <div id="quickRatio"></div>
+                        <hr/>
+                        <div id="quickRatioSM"></div>
+                    </div>
+                    <div class="tool amplification" title="放大" data="mainBusinessCashFlowRatio;mainBusinessCashFlowRatioSM"><i class="fa fa-search-plus"></i></div>
+                </div>
+            </div>
+            <div class="stdtar-curve">
+                <div>
+                    <span>资产负债率分析</span>
+                    <div class="con">
+                        <div id="assetsAndLiabilities"></div>
+                        <hr/>
+                        <div id="assetsAndLiabilitiesSM"></div>
+                    </div>
+                    <div class="tool amplification" title="放大" data="json"><i class="fa fa-search-plus"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="stdtar-curve">
+                <div>
+                    <span>主营业务净收入占比分析</span>
+                    <div class="con">
+                        <div id="directRevenueShare"></div>
+                        <hr/>
+                        <div id="directRevenueShareSM"></div>
+                    </div>
+                    <div class="tool amplification" title="放大" data="directRevenueShare;directRevenueShareSM"><i class="fa fa-search-plus"></i></div>
+                </div>
+            </div>
+            <div class="stdtar-curve">
+                <div>
+                    <span>主营业务现金流占比分析</span>
+                    <div class="con">
+                        <div id="mainBusinessCashFlowRatio"></div>
+                        <hr/>
+                        <div id="mainBusinessCashFlowRatioSM"></div>
+                    </div>
+                    <div class="tool amplification" title="放大" data="mainBusinessCashFlowRatio;mainBusinessCashFlowRatioSM"><i class="fa fa-search-plus"></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="selectionPanelIndustry">
+    <div class="table">
+        <div class="title">
+            <span>所属行业选择</span>
+            <i class="fa fa-remove"></i>
+        </div>
+        <div class="condition">
+
+        </div>
+        <div class="foot">
+            <button>选择</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="window">
+    <div class="content">
+        <span></span>
+        <div class="containerBig" id="containerBig"></div>
+        <hr>
+        <div class="containerBig" id="containerBigSM"></div>
+        <div class="tool narrow" title="缩小"><i class="fa fa-search-minus"></i></div>
+    </div>
+</div>
+</body>
+</html>

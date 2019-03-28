@@ -58,4 +58,26 @@ public interface DataAnalysisService {
      * @throws Exception
      */
     ResultBeanUtil<Object> managementCapacity(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm) throws Exception;
+
+
+    /**
+     * 经营活动结构分析
+     * @param startTime
+     * @param endTime
+     * @param industryId
+     * @param stockTypeId
+     * @param companyId
+     * @param sm
+     * @return
+     * @throws Exception
+     */
+    ResultBeanUtil<Object> aotsoba(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm) throws Exception;
+
+
+
+
+
+    ResultBeanUtil<Object> comprehensiveAnalysis(String startTime, String endTime, String industryId, String stockTypeId, String companyId, String sm) throws Exception;
+
+
 }

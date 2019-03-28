@@ -13,7 +13,9 @@ $(function () {
             $('.head').removeAttr('style');
         }else{
             $('.head').css({
-                'box-shadow':'0px 3px 6px #808080'
+                'box-shadow':'0px 3px 10px rgba(128,128,128,0.3)' +
+                    '                ,0px 3px 5px rgba(128,128,128,0.2)' +
+                    '                ,0px 3px 3px rgba(128,128,128,0.1)'
             });
         }
     });
@@ -78,6 +80,12 @@ function getPageHtml(a) {
             break;
         case 'managementCapacity':
             url = 'report/managementCapacity.html';
+            break;
+        case 'aotsoba':
+            url = 'report/aotsoba.html';
+            break;
+        case 'comprehensiveAnalysis':
+            url = 'report/comprehensiveAnalysis.html';
             break;
         default:
             break;

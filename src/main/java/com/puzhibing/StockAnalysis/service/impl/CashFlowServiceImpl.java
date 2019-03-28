@@ -86,7 +86,7 @@ public class CashFlowServiceImpl implements CashFlowService {
 		resultBean = new ResultBean<>();
 		if(!StringUtils.isEmpty(companyStockId)) {
 			try {
-				List<CashFlow> list = cashFlowMapper.selectCashFlowByCompanyStockId(companyStockId);
+				List<CashFlow> list = cashFlowMapper.selectCashFlowByCompanyStockId(companyStockId, null, null);
 				resultBean.setB(true);
 				resultBean.setResult(list);
 			} catch (Exception e) {

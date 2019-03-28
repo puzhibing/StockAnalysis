@@ -1,5 +1,6 @@
 package com.puzhibing.StockAnalysis.dao.mapper;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.InsertProvider;
@@ -27,5 +28,5 @@ public interface CashFlowMapper {
 	 * @return
 	 */
 	@SelectProvider(type = CashFlowSql.class , method = "selectCashFlowByCompanyStockId")
-	List<CashFlow> selectCashFlowByCompanyStockId(String companyStockId);
+	List<CashFlow> selectCashFlowByCompanyStockId(String companyStockId, Date startTime, Date endTime);
 }

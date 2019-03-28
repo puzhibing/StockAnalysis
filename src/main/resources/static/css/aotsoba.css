@@ -1,0 +1,257 @@
+*{
+    padding: 0px;
+    margin: 0px;
+}
+
+html , body , .stdtar-home{
+    width: 100%;
+    height: 100%;
+}
+
+.stdtar-home .stdtar-content{
+    width: 95%;
+    min-height: 95%;
+    border-radius: 5px;
+    border: 1px solid #D3D3D3;
+    margin: 0 auto;
+    margin-bottom: 30px;
+}
+
+.stdtar-home .stdtar-content .title{
+    height: 28px;
+    width: 100%;
+    background-color: #D3D3D3;
+    line-height: 28px;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.stdtar-home .stdtar-content .title span{
+    font-size: 14px;
+    margin-left: 20px;
+    color: #333333;
+    font-family: '微软雅黑';
+    font-weight: 600;
+}
+
+.stdtar-home .stdtar-queryConditions{
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    border-bottom: 1px solid #D6D6D6;
+    background-color: #F8F8F8;
+    font-size: 10px;
+}
+
+.stdtar-home .stdtar-queryConditions>div{
+    float: left;
+}
+
+.stdtar-home .stdtar-queryConditions>div:first-of-type{
+    margin-left: 20px;
+}
+
+.stdtar-home .stdtar-queryConditions input{
+    margin-right: 12px;
+    height: 26px;
+    width: 160px;
+    border: 1px solid #547576;
+    border-radius: 3px;
+}
+
+.stdtar-home .stdtar-queryConditions input[type='month']{
+    width: 130px;
+}
+
+.stdtar-home .stdtar-queryConditions input[class="industry"]:hover{
+    cursor: pointer;
+}
+
+.stdtar-home .stdtar-queryConditions select{
+    margin-right: 12px;
+    height: 26px;
+    width: 100px;
+    border: 1px solid #547576;
+    border-radius: 3px;
+}
+
+.stdtar-home .stdtar-queryConditions button{
+    padding: 0px 10px;
+    background-color: #75A2A5;
+    border: 1px solid #75A2A5;
+    border-radius: 3px;
+    color: #F8F8F8;
+    height: 26px;
+    width: 60px;
+    letter-spacing: 3px;
+}
+
+.stdtar-home .stdtar-queryConditions button:first-of-type{
+    margin-right: 12px;
+}
+
+.stdtar-home .stdtar-queryConditions button:hover{
+    cursor: pointer;
+    background-color: #547576;
+    color: #F8F8F8;
+}
+
+.stdtar-home .stdtar-curve{
+    margin: 0 auto;
+    margin-top: 20px;
+    border-radius: 3px;
+    width: 95%;
+    text-align: center;
+}
+
+.stdtar-home .stdtar-curve span{
+    font-size: 15px;
+    color: #757575;
+    font-family: '微软雅黑';
+    letter-spacing: 2px;
+    font-weight: 500;
+    line-height: 30px;
+}
+
+.stdtar-home .stdtar-curve>div{
+    margin-top: 50px;
+    height: 300px;
+    width: 100%;
+}
+
+.stdtar-home .stdtar-curve>div>div{
+    float: left;
+    height: 300px;
+    width: 47.5%;
+}
+
+.stdtar-home .stdtar-curve>div>div:first-of-type{
+    margin-right: 2%;
+}
+
+.stdtar-home .stdtar-curve>div>div:last-of-type{
+    margin-left: 2%;
+}
+
+
+.stdtar-queryConditions .selectionPanel{
+    display: none;
+    width: 160px;
+    height: 80px;
+    background-color: #F8F8F8;
+    border: 1px solid #547576;
+    z-index: 99;
+    position: relative;
+    overflow: auto;
+    left: 37px;
+}
+
+.stdtar-queryConditions .selectionPanel ul{
+    list-style-type: none;
+}
+
+.stdtar-queryConditions .selectionPanel ul li{
+    padding: 5px 5px;
+}
+
+.stdtar-queryConditions .selectionPanel ul li:hover{
+    cursor: pointer;
+    backgroup-color: #81CBCE;
+}
+
+.stdtar-queryConditions .selectionPanel ul li span{
+    font-size: 13px;
+}
+
+
+/** 选择面板 **/
+.selectionPanelIndustry{
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 200;
+    width: 100vw;
+    height: 100vh;
+    background-color:rgba(140,140,140,0.5);/*设置背景透明*/
+    display: none;
+    font-size: 14px;
+}
+
+.selectionPanelIndustry .table{
+    position:absolute;
+    z-index: 500;
+    top: 100px;
+    width: 500px;
+    height: 550px;
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px #464646;
+}
+
+.selectionPanelIndustry .table .title i{
+    font-size: 16px;
+    color: #C86A6A;
+    margin-left: 365px;
+}
+
+.selectionPanelIndustry .table .title i:hover{
+    font-size: 18px;
+    color: #B14141;
+}
+
+.selectionPanelIndustry .table .condition{
+    overflow: auto;
+    width: 100%;
+    height: 480px;
+}
+
+.selectionPanelIndustry .table .condition ul{
+    list-style-type: none;
+    margin-left: 35px;
+}
+
+.selectionPanelIndustry .table .condition ul li{
+    min-height: 30px;
+    line-height: 30px;
+}
+
+.selectionPanelIndustry .table .condition ul li div:hover{
+    cursor: pointer;
+    color: #547576;
+}
+
+
+.selectionPanelIndustry .table .condition ul li div>i{
+    margin-right: 10px;
+}
+
+.selectionPanelIndustry .table .foot{
+    width: 100%;
+    height: 41px;
+    line-height: 41px;
+}
+
+.selectionPanelIndustry .table .foot button{
+    width: 100px;
+    height: 30px;
+    border-radius: 3px;
+    border: 1px solid #75A2A5;
+    background-color: #75A2A5;
+    color: #F8F8F8;
+    margin-left: 380px;
+}
+
+.selectionPanelIndustry .table .foot button:hover{
+    background-color: #5E8586;
+    color: #F8F8F8;
+}
+
+.selectionPanelIndustry .table .title{
+    height: 29px;
+    border-bottom: 1px solid #BCBCBC;
+}
+
+.selectionPanelIndustry .table .title span{
+    line-height: 35px;
+    margin-left: 20px;
+    color: #547576;
+}

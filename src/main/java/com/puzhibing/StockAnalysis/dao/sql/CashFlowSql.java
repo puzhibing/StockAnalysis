@@ -4,6 +4,8 @@ import org.apache.ibatis.jdbc.SQL;
 
 import com.puzhibing.StockAnalysis.pojo.CashFlow;
 
+import java.util.Date;
+
 
 /**
  * 现金流
@@ -44,7 +46,7 @@ public class CashFlowSql {
 	 * @param companyStockId
 	 * @return
 	 */
-	public String selectCashFlowByCompanyStockId(String companyStockId) {
+	public String selectCashFlowByCompanyStockId(String companyStockId, Date startTime, Date endTime) {
 		return new SQL() {{
 			SELECT("id , companyStockId , dataTime , crfsogas , ort , cortbar , ciioa , cpfgas , cpteapte , poatot , poocrtba , cffoa , ncffoa");
 			SELECT("crfir , crfii , ncidofaiaaoaitpp , ncrfdosaobu , ocrtiahbr , cioia , cofaiaaocpfpi , cpfi , ncpbsaobu , poocrtia");
@@ -52,7 +54,11 @@ public class CashFlowSql {
 			SELECT("niicace , caceatboty , bocaceaeot");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_cashflow");
-			WHERE("companyStockId = #{companyStockId} and del = '0'");
+			if(null != startTime && null != endTime){
+				WHERE("del = '0' and companyStockId = #{param1} and dataTime BETWEEN #{param2} AND #{param3}");
+			}else {
+				WHERE("del = '0' and companyStockId = #{param1}");
+			}
 		}}.toString();
 	}
 }
