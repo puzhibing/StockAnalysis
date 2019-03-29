@@ -10,6 +10,18 @@ $(document).ready(function() {
         'left': (width - 500) / 2,
     });
 
+    $(window).scroll(function () {
+        if($(window).scrollTop() <= 300){
+            $('.stdtar-home .stdtar-queryConditions').removeAttr('style');
+        }else{
+            $('.stdtar-home .stdtar-queryConditions').css({
+                'box-shadow':'0px 2px 6px rgba(65,65,65,0.5)' +
+                    '        ,0px 2px 4px rgba(65,65,65,0.2)' +
+                    '        ,0px 2px 2px rgba(65,65,65,0.1)'
+            });
+        }
+    })
+
     $(document).click(function () {
         var se = $('.stdtar-queryConditions .selectionPanel');
         if(se.css('display') == 'block'){
