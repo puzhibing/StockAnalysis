@@ -12,6 +12,8 @@ public class CurrentLiabilities extends StockDataBean {
 	
 	private String uf;//拆入资金
 
+	private String cwstb;//应付短期债券
+
 	private String tfl;//交易性金融负债
 
 	private String dfl;//衍生金融负债
@@ -54,6 +56,14 @@ public class CurrentLiabilities extends StockDataBean {
 
 	public void setUf(String uf) {
 		this.uf = uf;
+	}
+
+	public String getCwstb() {
+		return cwstb;
+	}
+
+	public void setCwstb(String cwstb) {
+		this.cwstb = cwstb;
 	}
 
 	public String getTfl() {
@@ -174,6 +184,7 @@ public class CurrentLiabilities extends StockDataBean {
 		return "CurrentLiabilities{" +
 				"stl='" + stl + '\'' +
 				", uf='" + uf + '\'' +
+				", cwstb='" + cwstb + '\'' +
 				", tfl='" + tfl + '\'' +
 				", dfl='" + dfl + '\'' +
 				", srfa='" + srfa + '\'' +

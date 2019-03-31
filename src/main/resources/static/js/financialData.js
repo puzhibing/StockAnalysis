@@ -363,6 +363,7 @@ function saveCurrentLiabilities(){
     var currencyUnit = $('.public').find(".currencyUnit").val();//单位
     var STL = div.find(".STL").val();//短期借款
     var UF = div.find(".UF").val();//拆入资金
+    var CWSTB = div.find(".CWSTB").val();//应付短期债券
     var TFL = div.find(".TFL").val();//交易性金融负债
     var DFL = div.find(".DFL").val();//衍生金融负债
     var SRFA = div.find(".SRFA").val();//卖出回购金融资产款
@@ -390,6 +391,7 @@ function saveCurrentLiabilities(){
     formData.append('currencyUnit', currencyUnit);
     formData.append('stl', STL);
     formData.append('uf', UF);
+    formData.append('cwstb', CWSTB);
     formData.append('tfl', TFL);
     formData.append('dfl', DFL);
     formData.append('srfa', SRFA);
@@ -429,6 +431,7 @@ function resetCurrentLiabilities(){
     div.find(".id").val('');//数据id
     div.find(".STL").val('');//短期借款
     div.find(".UF").val('');//拆入资金
+    div.find(".CWSTB").val('');//应付短期债券
     div.find(".TFL").val('');//交易性金融负债
     div.find(".DFL").val('');//衍生金融负债
     div.find(".SRFA").val('');//卖出回购金融资产款
@@ -767,6 +770,7 @@ function saveCashFlow(){
     var OCRTFAR = div.find(".OCRTFAR").val();//收到其他与筹资活动有关的现金
     var CIOFA = div.find(".CIOFA").val();//筹资活动现金流入小计
     var CFDR = div.find(".CFDR").val();//偿还债务支出的现金
+    var CPFROB = div.find(".CPFROB").val();//偿还债券所支付的现金
     var CPFDPOIP = div.find(".CPFDPOIP").val();//分配股利、利润或偿付利息支付的现金
     var POOCRTFA = div.find(".POOCRTFA").val();//支付其他与筹资活动有关的现金
     var CFOOFA = div.find(".CFOOFA").val();//筹资活动现金流出小计
@@ -814,6 +818,7 @@ function saveCashFlow(){
     formData.append('ocrtfar', OCRTFAR);
     formData.append('ciofa', CIOFA);
     formData.append('cfdr', CFDR);
+    formData.append('cpfrob', CPFROB);
     formData.append('cpfdpoip', CPFDPOIP);
     formData.append('poocrtfa', POOCRTFA);
     formData.append('cfoofa', CFOOFA);

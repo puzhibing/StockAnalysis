@@ -17,11 +17,11 @@ public class CurrentLiabilitiesSql {
 	public String insertCurrentLiabilities(CurrentLiabilities currentLiabilities) {
 		return new SQL() {{
 			INSERT_INTO("t_currentliabilities");
-			INTO_COLUMNS("id , companyStockId , dataTime , stl , uf , tfl , dfl , srfa , billsPayable , accountsPayable , advancePayment , payrollPayable");
+			INTO_COLUMNS("id , companyStockId , dataTime , stl , uf , cwstb , tfl , dfl , srfa , billsPayable , accountsPayable , advancePayment , payrollPayable");
 			INTO_COLUMNS("taxesPayable , interestPayable , dividendPayable , otherPayables , nldwoy , ocl , tcl");
 			INTO_COLUMNS("del , insertUserId , insertTime , updateUserId , updateTime");
 			
-			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{stl} , #{uf} , #{tfl} , #{dfl} , #{srfa} , #{billsPayable} , #{accountsPayable} , #{advancePayment} , #{payrollPayable}");
+			INTO_VALUES("#{id} , #{companyStockId} , #{dataTime} , #{stl} , #{uf} , #{cwstb} , #{tfl} , #{dfl} , #{srfa} , #{billsPayable} , #{accountsPayable} , #{advancePayment} , #{payrollPayable}");
 			INTO_VALUES("#{taxesPayable} , #{interestPayable} , #{dividendPayable} , #{otherPayables} , #{nldwoy} , #{ocl} , #{tcl}");
 			INTO_VALUES("#{del} , #{insertUserId} , #{insertTime} , #{updateUserId} , #{updateTime}");
 		}}.toString();
@@ -36,7 +36,7 @@ public class CurrentLiabilitiesSql {
 	public String updateCurrentLiabilities(CurrentLiabilities currentLiabilities) {
 		return new SQL() {{
 			UPDATE("t_currentliabilities");
-			SET("dataTime = #{dataTime} , stl = #{stl} , uf = #{uf} , tfl = #{tfl} , dfl = #{dfl} , srfa = ${srfa} , billsPayable = #{billsPayable} , accountsPayable = #{accountsPayable}");
+			SET("dataTime = #{dataTime} , stl = #{stl} , uf = #{uf} , cwstb = #{cwstb} , tfl = #{tfl} , dfl = #{dfl} , srfa = ${srfa} , billsPayable = #{billsPayable} , accountsPayable = #{accountsPayable}");
 			SET("advancePayment = #{advancePayment} , payrollPayable = #{payrollPayable} , taxesPayable = #{taxesPayable} , interestPayable = #{interestPayable}");
 			SET("dividendPayable = #{dividendPayable} , otherPayables = #{otherPayables} , nldwoy = #{nldwoy} , ocl = #{ocl} , tcl = #{tcl}");
 			SET("updateUserId = #{updateUserId} , updateTime = #{updateTime}");
@@ -67,7 +67,7 @@ public class CurrentLiabilitiesSql {
 	 */
 	public String selectCurrentLiabilities(String companyStockId , Date startTime , Date endTime) {
 		return new SQL() {{
-			SELECT("id , companyStockId , dataTime , stl , uf , tfl , dfl , srfa , billsPayable , accountsPayable , advancePayment , payrollPayable");
+			SELECT("id , companyStockId , dataTime , stl , uf , cwstb , tfl , dfl , srfa , billsPayable , accountsPayable , advancePayment , payrollPayable");
 			SELECT("taxesPayable , interestPayable , dividendPayable , otherPayables , nldwoy , ocl , tcl");
 			SELECT("del , insertUserId , insertTime , updateUserId , updateTime");
 			FROM("t_currentliabilities");

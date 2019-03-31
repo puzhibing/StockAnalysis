@@ -64,6 +64,8 @@ public class CashFlow extends StockDataBean {
 
     private String cfdr;//偿还债务支出的现金
 
+	private String cpfrob;//偿还债券所支付的现金
+
     private String cpfdpoip;//分配股利、利润或偿付利息支付的现金
 
     private String poocrtfa;//支付其他与筹资活动有关的现金
@@ -304,6 +306,14 @@ public class CashFlow extends StockDataBean {
 		this.cfdr = cfdr;
 	}
 
+	public String getCpfrob() {
+		return cpfrob;
+	}
+
+	public void setCpfrob(String cpfrob) {
+		this.cpfrob = cpfrob;
+	}
+
 	public String getCpfdpoip() {
 		return cpfdpoip;
 	}
@@ -399,6 +409,7 @@ public class CashFlow extends StockDataBean {
 				", ocrtfar='" + ocrtfar + '\'' +
 				", ciofa='" + ciofa + '\'' +
 				", cfdr='" + cfdr + '\'' +
+				", cpfrob='" + cpfrob + '\'' +
 				", cpfdpoip='" + cpfdpoip + '\'' +
 				", poocrtfa='" + poocrtfa + '\'' +
 				", cfoofa='" + cfoofa + '\'' +
